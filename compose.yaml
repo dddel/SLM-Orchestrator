@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: llmorchestrator:latest
-    container_name: llmorchestrator-app
+    image: slm-orchestrator:latest
+    container_name: slm-orchestrator-app
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -24,12 +24,12 @@ services:
         condition: service_healthy
         required: false
     networks:
-      - llmnet
+      - slmnet
 
   # Motore SLM / LLM locale Ollama
   ollama:
     image: ollama/ollama:latest
-    container_name: llmorchestrator-ollama
+    container_name: slm-orchestrator-ollama
     restart: unless-stopped
     ports:
       - "11434:11434"
@@ -43,12 +43,12 @@ services:
       retries: 5
       start_period: 10s
     networks:
-      - llmnet
+      - slmnet
 
   # Sidecar one-shot per il download e la compilazione dei Modelfile personalizzati
   ollama-init:
     image: curlimages/curl:latest
-    container_name: llmorchestrator-ollama-init
+    container_name: slm-orchestrator-ollama-init
     restart: "no"
     depends_on:
       ollama:
@@ -60,12 +60,12 @@ services:
       - OLLAMA_BASE_URL=http://ollama:11434
     entrypoint: ["sh", "/modelfiles/init-models.sh"]
     networks:
-      - llmnet
+      - slmnet
 
 volumes:
   ollama_data:
-    name: llmorchestrator_ollama_data
+    name: slm_orchestrator_ollama_data
 
 networks:
-  llmnet:
-    name: llmorchestrator_net
+  slmnet:
+    name: slm_orchestrator_net

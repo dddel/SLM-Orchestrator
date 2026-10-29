@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tirocinioaltrama</groupId>
-	<artifactId>llmorchestrator</artifactId>
+	<artifactId>slm-orchestrator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>slm-orchestrator</name>
+	<description>SLM Orchestrator</description>
 	<url/>
 	<licenses>
 		<license/>

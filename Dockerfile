@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Multi-stage build per llmorchestrator (Spring Boot 4 / Java 21)
+# Multi-stage build per slm-orchestrator (Spring Boot 4 / Java 21)
 
 # Stage 1: Build dell'applicazione
 FROM eclipse-temurin:21-jdk-alpine AS builder
