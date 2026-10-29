@@ -1,0 +1,786 @@
+[
+  {
+    "id": "HO_FAT_01",
+    "type": "FATTURA",
+    "template": "FAT_PARCELLA_DISCORSIVA",
+    "payload": "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI\nVia delle Terme 42, 50123 Firenze (FI) - P.IVA 04128930486\n\nFattura Professionale n. 2026/PAR-084 emessa in data 12/03/2026\nSpettabile Committente: Impresa Costruzioni Generali Edilizia Moderna S.p.A.\nCantiere: Riqualificazione strutturale compendio immobiliare 'Le Terrazze'.\n\nOggetto: Onorario per collaudo statico in corso d'opera delle strutture in c.a.\nImponibile concordato: Euro 2.800,00\nContributo previdenziale Cassa Ingegneri (4%): Euro 112,00\nImponibile IVA: Euro 2.912,00\nIVA ordinaria 22%: Euro 640,64\nTotale dovuto da saldare: Euro 3.552,64\n\nEstremi di pagamento: Bonifico Bancario presso Banca Monte dei Paschi di Siena\nIBAN: IT81S0306909606100000019482\nCondizioni: rimessa a 30 giorni data fattura.",
+    "ground_truth": {
+      "numeroFattura": "2026/PAR-084",
+      "dataFattura": "12/03/2026",
+      "fornitore": {
+        "denominazione": "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+        "partitaIva": "04128930486"
+      },
+      "cliente": {
+        "denominazione": "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 3552.64,
+      "iban": "IT81S0306909606100000019482"
+    }
+  },
+  {
+    "id": "HO_FAT_02",
+    "type": "FATTURA",
+    "template": "FAT_TABELLARE_COMPATTA",
+    "payload": "MECCANICA DI PRECISIONE VENETA S.R.L.\nVia dell'Artigianato 18, 36015 Schio (VI)\nPartita IVA: 01847290242\n\nDOCUMENTO: FATTURA COMMERCIALE\nNumero documento: 2026-FATT-00412\nData emissione: 18/02/2026\n\nDESTINATARIO: BAVARIA MOTORWERKE GMBH\nIndustriestrasse 94, 80331 Monaco di Baviera (Germania)\n\nDettaglio Fornitura:\n- N. 40 Cuscinetti speciali autolubrificanti cod. CS-88: Euro 840,00\n- N. 12 Alberi di trasmissione rettificati cod. AT-102: Euro 489,80\nOperazione intracomunitaria non imponibile art. 41 D.L. 331/93.\nTotale Documento: € 1.329,80\n\nPagamento mediante bonifico estero su IBAN: IT80A0503411701000000049182",
+    "ground_truth": {
+      "numeroFattura": "2026-FATT-00412",
+      "dataFattura": "18/02/2026",
+      "fornitore": {
+        "denominazione": "MECCANICA DI PRECISIONE VENETA S.R.L.",
+        "partitaIva": "01847290242"
+      },
+      "cliente": {
+        "denominazione": "BAVARIA MOTORWERKE GMBH",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1329.8,
+      "iban": "IT80A0503411701000000049182"
+    }
+  },
+  {
+    "id": "HO_FAT_03",
+    "type": "FATTURA",
+    "template": "FAT_B2B_CONSULENZA",
+    "payload": "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.\nPiazza Cavour 7, 20121 Milano (MI) - C.F. e P.IVA: 09234810159\n\nFattura Elettronica n. FT-2026-099 del 05/03/2026\nCliente: OROLOGERIE MILANESI S.P.A.\nSede: Corso Magenta 45, 20123 Milano (MI)\n\nDescrizione prestazioni:\nAttività di assessment organizzativo e ottimizzazione supply chain (Fase 1)\nImporto imponibile: Euro 4.000,00\nIVA 22%: Euro 880,00\nImporto Totale Fattura: Euro 4.880,00\n\nModalità di regolamento: Ricevuta Bancaria (Ri.Ba.) a 60 giorni data fattura fine mese.",
+    "ground_truth": {
+      "numeroFattura": "FT-2026-099",
+      "dataFattura": "05/03/2026",
+      "fornitore": {
+        "denominazione": "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.",
+        "partitaIva": "09234810159"
+      },
+      "cliente": {
+        "denominazione": "OROLOGERIE MILANESI S.P.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 4880.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_04",
+    "type": "FATTURA",
+    "template": "FAT_LOCAZIONE_IMMOBILE",
+    "payload": "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.\nVia Santo Stefano 110, 40125 Bologna (BO)\nP.IVA: 03194820373\n\nFATTURA N. LOC-2026/03 Data: 01/03/2026\nIntestata a: Dott.ssa Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14\n\nCanone di locazione mese di Marzo 2026: Euro 2.000,00\nIVA applicata (22%): Euro 440,00\nTotale da corrispondere: Euro 2.440,00\n\nModalità di pagamento: Addebito diretto SDD già concordato sul conto corrente del conduttore.",
+    "ground_truth": {
+      "numeroFattura": "LOC-2026/03",
+      "dataFattura": "01/03/2026",
+      "fornitore": {
+        "denominazione": "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+        "partitaIva": "03194820373"
+      },
+      "cliente": {
+        "denominazione": "Dott.ssa Elena Ferri",
+        "codiceFiscale": null
+      },
+      "importoTotale": 2440.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_05",
+    "type": "FATTURA",
+    "template": "FAT_MATERIALI_EDILI",
+    "payload": "EDILIZIA PADOVANA FORNITURE S.R.L.\nCorso Stati Uniti 33, 35127 Padova (PD)\nPartita IVA Fornitore: 05492810287\n\nFattura di vendita n. ED-892/2026 emessa il 24/02/2026\nSpettabile Sig. Stefano Rinaldi\nCodice Fiscale: RNLSFN78H14G224N\nVia Venezia 82, 35129 Padova (PD)\n\nMateriale: Fornitura isolante termico lana di roccia spessore 12cm.\nImponibile merci: Euro 5.500,00\nAliquota IVA 22%: Euro 1.210,00\nTotale Documento Fiscale: Euro 6.710,00\n\nModalità di pagamento: Transazione POS bancomat al momento del carico merci presso il deposito.",
+    "ground_truth": {
+      "numeroFattura": "ED-892/2026",
+      "dataFattura": "24/02/2026",
+      "fornitore": {
+        "denominazione": "EDILIZIA PADOVANA FORNITURE S.R.L.",
+        "partitaIva": "05492810287"
+      },
+      "cliente": {
+        "denominazione": "Stefano Rinaldi",
+        "codiceFiscale": "RNLSFN78H14G224N"
+      },
+      "importoTotale": 6710.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_06",
+    "type": "FATTURA",
+    "template": "FAT_SAAS_CLOUD",
+    "payload": "NUVOLA DIGITALE SOLUTIONS S.R.L.\nViale Certosa 130, 20156 Milano (MI)\nP.IVA: 07823940965\n\nRICEVUTA FATTURA N. SAAS-2026-1104 del 15/01/2026\nAcquirente: STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI\nCanone abbonamento Cloud Storage & Compute dedicato 12 mesi.\nPrezzo imponibile: Euro 700,00\nIVA 22%: Euro 154,00\nTotale transazione: Euro 854,00\n\nMetodo di pagamento: Addebito automatico su Carta di Credito Corporate terminante con 4091.\nTransazione autorizzata con successo con codice AUTH-883921.",
+    "ground_truth": {
+      "numeroFattura": "SAAS-2026-1104",
+      "dataFattura": "15/01/2026",
+      "fornitore": {
+        "denominazione": "NUVOLA DIGITALE SOLUTIONS S.R.L.",
+        "partitaIva": "07823940965"
+      },
+      "cliente": {
+        "denominazione": "STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI",
+        "codiceFiscale": null
+      },
+      "importoTotale": 854.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_07",
+    "type": "FATTURA",
+    "template": "FAT_ARREDI_COMMERCIALI",
+    "payload": "DESIGN UFFICIO & CONTRACT VERONA S.R.L.\nViale del Lavoro 25, 37135 Verona (VR) - P.IVA 02948170234\n\nFattura di vendita N. 2026/AR-045 Data: 20/02/2026\nCliente: LOGISTICA SCALIGERA S.R.L.\nViale Europa 12, Verona\nFornitura 10 scrivanie operative regolabili e 10 poltrone ergonomiche.\nSubtotale: Euro 4.200,00\nIVA al 22%: Euro 924,00\nImporto Totale da Saldare: Euro 5.124,00\n\nBonifico a favore di Design Ufficio Verona:\nIBAN: IT04B0503411701000000091847",
+    "ground_truth": {
+      "numeroFattura": "2026/AR-045",
+      "dataFattura": "20/02/2026",
+      "fornitore": {
+        "denominazione": "DESIGN UFFICIO & CONTRACT VERONA S.R.L.",
+        "partitaIva": "02948170234"
+      },
+      "cliente": {
+        "denominazione": "LOGISTICA SCALIGERA S.R.L.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 5124.0,
+      "iban": "IT04B0503411701000000091847"
+    }
+  },
+  {
+    "id": "HO_FAT_08",
+    "type": "FATTURA",
+    "template": "FAT_MANUTENZIONE_FOTOVOLTAICO",
+    "payload": "ECO-ENERGY IMPIANTI BERGAMO S.R.L.\nVia Borgo Palazzo 88, 24125 Bergamo (BG)\nPartita IVA: 04819230162\n\nFATTURA N. 2026-F-189\nData emissione: 02/03/2026\nDestinatario fattura: Condominio Parco dei Fiori\nIntervento: Manutenzione straordinaria inverter e lavaggio pannelli impianto fotovoltaico 50kWp.\nCorrispettivo pattuito: Euro 1.600,00\nIVA 22%: Euro 352,00\nTotale Documento: Euro 1.952,00\n\nCondizioni di pagamento: Emissione bollettino MAV bancario inviato separatamente a mezzo posta.",
+    "ground_truth": {
+      "numeroFattura": "2026-F-189",
+      "dataFattura": "02/03/2026",
+      "fornitore": {
+        "denominazione": "ECO-ENERGY IMPIANTI BERGAMO S.R.L.",
+        "partitaIva": "04819230162"
+      },
+      "cliente": {
+        "denominazione": "Condominio Parco dei Fiori",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1952.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_09",
+    "type": "FATTURA",
+    "template": "FAT_DPI_CASSA",
+    "payload": "SICUREZZA & LAVORO PIEMONTE S.A.S.\nVia Cuneo 12, 12100 Cuneo (CN) - P.IVA: 06192840046\n\nFattura di vendita immediata N. VEND-2026-081 del 10/02/2026\nAcquirente: ALPES CONSTRUCTIONS SARL\nFornitura n. 30 elmetti protettivi e calzature di sicurezza.\nTotale imponibile: Euro 600,00\nIVA 22%: Euro 132,00\nTotale Complessivo: Euro 732,00\n\nPagamento: Saldato per contanti alla consegna presso nostro magazzino con emissione di quietanza.",
+    "ground_truth": {
+      "numeroFattura": "VEND-2026-081",
+      "dataFattura": "10/02/2026",
+      "fornitore": {
+        "denominazione": "SICUREZZA & LAVORO PIEMONTE S.A.S.",
+        "partitaIva": "06192840046"
+      },
+      "cliente": {
+        "denominazione": "ALPES CONSTRUCTIONS SARL",
+        "codiceFiscale": null
+      },
+      "importoTotale": 732.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_10",
+    "type": "FATTURA",
+    "template": "FAT_PARCELLA_LEGALE",
+    "payload": "STUDIO LEGALE AVV. GABRIELE MORETTI\nVia Barberini 16, 00187 Roma (RM) - Partita IVA: 08129470582\n\nFattura n. LEG-2026/019 emessa il 16/03/2026\nCliente assistito: Sig.ra Giulia Marchetti\nCodice Fiscale: MRCGLI82M45H501E\nOggetto: Assistenza legale stragiudiziale per stipula contratto di locazione ad uso commerciale.\nCompensi professionali: Euro 3.200,00\nIVA 22%: Euro 704,00\nImporto Totale Dovuto: Euro 3.904,00\n\nPagamento su conto corrente studio:\nIBAN: IT04F0200805000000104829104",
+    "ground_truth": {
+      "numeroFattura": "LEG-2026/019",
+      "dataFattura": "16/03/2026",
+      "fornitore": {
+        "denominazione": "STUDIO LEGALE AVV. GABRIELE MORETTI",
+        "partitaIva": "08129470582"
+      },
+      "cliente": {
+        "denominazione": "Giulia Marchetti",
+        "codiceFiscale": "MRCGLI82M45H501E"
+      },
+      "importoTotale": 3904.0,
+      "iban": "IT04F0200805000000104829104"
+    }
+  },
+  {
+    "id": "HO_FAT_11",
+    "type": "FATTURA",
+    "template": "FAT_TRASPORTI_RIBA",
+    "payload": "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.\nVia Emilia Ovest 210, 41123 Modena (MO)\nPartita IVA: 01928370368\n\nFattura Trasporti n. TR-2026-033 del 28/02/2026\nDestinatario: CERAMICHE MODERNE DEL DISTRETTO S.P.A.\nServizio: Trasporto con bilico autoarticolato Modena - Lione.\nPrezzo trasporto: Euro 1.800,00\nIVA 22%: Euro 396,00\nTotale Documento: Euro 2.196,00\n\nModalità di pagamento: Ricevuta Bancaria (Ri.Ba.) a 60 giorni d.f. f.m. tramite appoggio bancario abituale.",
+    "ground_truth": {
+      "numeroFattura": "TR-2026-033",
+      "dataFattura": "28/02/2026",
+      "fornitore": {
+        "denominazione": "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.",
+        "partitaIva": "01928370368"
+      },
+      "cliente": {
+        "denominazione": "CERAMICHE MODERNE DEL DISTRETTO S.P.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 2196.0,
+      "iban": null
+    }
+  },
+  {
+    "id": "HO_FAT_12",
+    "type": "FATTURA",
+    "template": "FAT_GRAFICA_STAMPA",
+    "payload": "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.\nVia Mantova 45, 26100 Cremona (CR)\nP.IVA: 03847290198\n\nFATTURA N. 2026/077 Data: 11/03/2026\nSpettabile: CASEIFICIO TIPICO DEL PO S.R.L.\nVia Argine 8, Cremona\nStampa cataloghi promozionali ed etichette autoadesive alimentari.\nImponibile: Euro 1.300,00\nIVA 22%: Euro 286,00\nTotale a Vostro Carico: Euro 1.586,00\n\nBonifico su conto Credito Padano:\nIBAN: IT29G0503411701000000082736",
+    "ground_truth": {
+      "numeroFattura": "2026/077",
+      "dataFattura": "11/03/2026",
+      "fornitore": {
+        "denominazione": "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+        "partitaIva": "03847290198"
+      },
+      "cliente": {
+        "denominazione": "CASEIFICIO TIPICO DEL PO S.R.L.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1586.0,
+      "iban": "IT29G0503411701000000082736"
+    }
+  },
+  {
+    "id": "HO_FAT_13",
+    "type": "FATTURA",
+    "template": "FAT_NOLEGGIO_MACCHINARI",
+    "payload": "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.\nVia Como 90, 22036 Erba (CO)\nPartita IVA: 07192840135\n\nFattura n. NOL-2026/102 del 09/03/2026\nCliente: CANTIERE NAVALE DEL LARIO S.R.L.\nCanone mensile noleggio escavatore cingolato 35 quintali.\nImponibile: Euro 3.500,00\nIVA al 22%: Euro 770,00\nImporto Totale Fattura: Euro 4.270,00\n\nBonifico bancario:\nIBAN: IT91H0306909606100000062839",
+    "ground_truth": {
+      "numeroFattura": "NOL-2026/102",
+      "dataFattura": "09/03/2026",
+      "fornitore": {
+        "denominazione": "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.",
+        "partitaIva": "07192840135"
+      },
+      "cliente": {
+        "denominazione": "CANTIERE NAVALE DEL LARIO S.R.L.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 4270.0,
+      "iban": "IT91H0306909606100000062839"
+    }
+  },
+  {
+    "id": "HO_FAT_14",
+    "type": "FATTURA",
+    "template": "FAT_PROVVIGIONE_AGENZIA",
+    "payload": "LIGURIA REAL ESTATE BROKERAGE S.R.L.\nVia XX Settembre 30, 16121 Genova (GE) - P.IVA: 08291830100\n\nFATTURA N. 2026/PROV-015 del 04/03/2026\nMandante acquirente: INVESTIMENTI PORTUALI GENOVESI S.P.A.\nVia del Molo 18, Genova\nProvvigione per mediazione compravendita immobile commerciale sito in Genova Porto Antico.\nCorrispettivo: Euro 6.000,00\nIVA di legge 22%: Euro 1.320,00\nSaldo Complessivo: Euro 7.320,00\n\nBonifico a favore di Liguria Real Estate Brokerage:\nIBAN: IT54E0200801400000105928371",
+    "ground_truth": {
+      "numeroFattura": "2026/PROV-015",
+      "dataFattura": "04/03/2026",
+      "fornitore": {
+        "denominazione": "LIGURIA REAL ESTATE BROKERAGE S.R.L.",
+        "partitaIva": "08291830100"
+      },
+      "cliente": {
+        "denominazione": "INVESTIMENTI PORTUALI GENOVESI S.P.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 7320.0,
+      "iban": "IT54E0200801400000105928371"
+    }
+  },
+  {
+    "id": "HO_ANA_01",
+    "type": "ANAGRAFICA",
+    "template": "ANA_CIE_COMPLETA",
+    "payload": "REPUBBLICA ITALIANA - MINISTERO DELL'INTERNO\nCARTA DI IDENTITÀ ELETTRONICA N. CA72910AA\n\nCognome: Galli\nNome: Federico\nLuogo e data di nascita: Roma (RM), 18/04/1983\nCodice Fiscale: GLLFRC83D18H501K\nRilasciata dal: Comune di Roma\nData di emissione: 14/05/2022\nData di scadenza: 18/04/2032",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Federico",
+      "cognome": "Galli",
+      "codiceFiscale": "GLLFRC83D18H501K",
+      "dataNascita": "18/04/1983",
+      "luogoNascita": "Roma (RM)",
+      "sesso": null,
+      "numeroDocumento": "CA72910AA",
+      "dataRilascio": "14/05/2022",
+      "dataScadenza": "18/04/2032",
+      "enteRilascio": "Comune di Roma"
+    }
+  },
+  {
+    "id": "HO_ANA_02",
+    "type": "ANAGRAFICA",
+    "template": "ANA_PASSAPORTO_COMPLETO",
+    "payload": "REPUBBLICA ITALIANA - PASSAPORTO ITALIANO N. YA8192031\nCognome / Surname: Pellegrini\nNome / Given names: Chiara\nSesso / Sex: F\nData di nascita / Date of birth: 09/10/1990\nLuogo di nascita / Place of birth: Milano (MI)\nCodice Fiscale: PLLCHR90R49F205B\nAutorità di rilascio / Authority: Questura di Milano\nData di rilascio / Date of issue: 22/01/2021\nData di scadenza / Date of expiry: 22/01/2031",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Chiara",
+      "cognome": "Pellegrini",
+      "codiceFiscale": "PLLCHR90R49F205B",
+      "dataNascita": "09/10/1990",
+      "luogoNascita": "Milano (MI)",
+      "sesso": "F",
+      "numeroDocumento": "YA8192031",
+      "dataRilascio": "22/01/2021",
+      "dataScadenza": "22/01/2031",
+      "enteRilascio": "Questura di Milano"
+    }
+  },
+  {
+    "id": "HO_ANA_03",
+    "type": "ANAGRAFICA",
+    "template": "ANA_PATENTE_GUIDA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA\n1. Lombardi\n2. Davide\n3. 25/07/1976 Torino (TO)\n4a. 05/09/2019  4b. 25/07/2029  4c. MIT-UCO\n5. U1928401X\nCodice Fiscale: LMBDVD76L25L219I",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Davide",
+      "cognome": "Lombardi",
+      "codiceFiscale": "LMBDVD76L25L219I",
+      "dataNascita": "25/07/1976",
+      "luogoNascita": "Torino (TO)",
+      "sesso": null,
+      "numeroDocumento": "U1928401X",
+      "dataRilascio": "05/09/2019",
+      "dataScadenza": "25/07/2029",
+      "enteRilascio": "MIT-UCO"
+    }
+  },
+  {
+    "id": "HO_ANA_04",
+    "type": "ANAGRAFICA",
+    "template": "ANA_TESSERA_SANITARIA",
+    "payload": "MINISTERO DELL'ECONOMIA E DELLE FINANZE\nTESSERA SANITARIA - CARTA NAZIONALE DEI SERVIZI\nCognome: De Luca\nNome: Serena\nCodice Fiscale: DLCSRN94A52F839Q\nSesso: F\nData di nascita: 12/01/1994\nLuogo di nascita: Napoli (NA)\nNumero di identificazione della tessera: 80380001200394829102\nScadenza: 12/01/2028",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Serena",
+      "cognome": "De Luca",
+      "codiceFiscale": "DLCSRN94A52F839Q",
+      "dataNascita": "12/01/1994",
+      "luogoNascita": "Napoli (NA)",
+      "sesso": "F",
+      "numeroDocumento": "80380001200394829102",
+      "dataRilascio": null,
+      "dataScadenza": "12/01/2028",
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_ANA_05",
+    "type": "ANAGRAFICA",
+    "template": "ANA_AUTOCERTIFICAZIONE_RESIDENZA",
+    "payload": "DICHIARAZIONE SOSTITUTIVA DI CERTIFICAZIONE ANAGRAFICA\n(Art. 46 D.P.R. 28 dicembre 2000, n. 445)\n\nIl sottoscritto Caruso Vincenzo, nato a Palermo (PA) il 03/03/1968,\nCodice Fiscale CRSVCN68C03G273D, residente in Via Roma 40, Palermo,\ndichiara sotto la propria personale responsabilità di essere residente al recapito sopra indicato.\n\nPalermo, 08/03/2026\nFirma del dichiarante: Vincenzo Caruso",
+    "ground_truth": {
+      "tipoDocumento": "NON_SPECIFICATO",
+      "nome": "Vincenzo",
+      "cognome": "Caruso",
+      "codiceFiscale": "CRSVCN68C03G273D",
+      "dataNascita": "03/03/1968",
+      "luogoNascita": "Palermo (PA)",
+      "sesso": null,
+      "numeroDocumento": null,
+      "dataRilascio": null,
+      "dataScadenza": null,
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_ANA_06",
+    "type": "ANAGRAFICA",
+    "template": "ANA_VERBALE_TESTIMONE",
+    "payload": "COMANDO POLIZIA LOCALE - VERBALE DI SOMMARIE INFORMAZIONI\nAddì 14/02/2026, è presente il teste:\nCognome: Venturi\nNome: Andrea\nNato a Bologna (BO) il 30/11/1985\nCodice Fiscale: VNTNDR85S30A944S\nIdentificato a mezzo Carta d'Identità cartacea n. AT9182371 rilasciata dal Comune di Bologna\nin data 10/01/2018 con scadenza il 30/11/2028.",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Andrea",
+      "cognome": "Venturi",
+      "codiceFiscale": "VNTNDR85S30A944S",
+      "dataNascita": "30/11/1985",
+      "luogoNascita": "Bologna (BO)",
+      "sesso": null,
+      "numeroDocumento": "AT9182371",
+      "dataRilascio": "10/01/2018",
+      "dataScadenza": "30/11/2028",
+      "enteRilascio": "Comune di Bologna"
+    }
+  },
+  {
+    "id": "HO_ANA_07",
+    "type": "ANAGRAFICA",
+    "template": "ANA_FONDO_PENSIONE",
+    "payload": "MODULO DI ADESIONE FONDO PENSIONE REGIONALE\nDATI DELL'ADERENTE:\nNome: Silvia\nCognome: Bernardi\nData di Nascita: 17/09/1988\nLuogo di Nascita: Firenze (FI)\nCodice Fiscale: BRNSLV88P57D612A\nDocumento allegato: Carta d'Identità n. CD3829104 emessa dal Comune di Firenze\nRilascio: 01/10/2020 - Scadenza: 17/09/2030",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Silvia",
+      "cognome": "Bernardi",
+      "codiceFiscale": "BRNSLV88P57D612A",
+      "dataNascita": "17/09/1988",
+      "luogoNascita": "Firenze (FI)",
+      "sesso": null,
+      "numeroDocumento": "CD3829104",
+      "dataRilascio": "01/10/2020",
+      "dataScadenza": "17/09/2030",
+      "enteRilascio": "Comune di Firenze"
+    }
+  },
+  {
+    "id": "HO_ANA_08",
+    "type": "ANAGRAFICA",
+    "template": "ANA_CONTO_TITOLI",
+    "payload": "BANCA DI CREDITO PUGLIESE - PROFILO ANAGRAFICO CLIENTE\nNominativo: Santoro Michele\nData di nascita: 21/05/1974\nComune di nascita: Bari (BA)\nCodice Fiscale: SNTMHL74E21A662H\nDocumento esibito: Passaporto numero 14AB92810 rilasciato dalla Questura di Bari\nValido fino al: 04/06/2028",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Michele",
+      "cognome": "Santoro",
+      "codiceFiscale": "SNTMHL74E21A662H",
+      "dataNascita": "21/05/1974",
+      "luogoNascita": "Bari (BA)",
+      "sesso": null,
+      "numeroDocumento": "14AB92810",
+      "dataRilascio": null,
+      "dataScadenza": "04/06/2028",
+      "enteRilascio": "Questura di Bari"
+    }
+  },
+  {
+    "id": "HO_ANA_09",
+    "type": "ANAGRAFICA",
+    "template": "ANA_ASSUNZIONE_DIPENDENTE",
+    "payload": "RISORSE UMANE - REGISTRO ANAGRAFICA DIPENDENTI\nDipendente: Parodi Francesca\nNata a Genova (GE) in data 08/02/1993\nCodice Fiscale: PRDFNC93B48D969W\nEstremi patente di guida per guida autovettura aziendale:\nPatente n. U1829402T rilasciata da MIT-UCO il 15/03/2021, scadenza 08/02/2031.",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Francesca",
+      "cognome": "Parodi",
+      "codiceFiscale": "PRDFNC93B48D969W",
+      "dataNascita": "08/02/1993",
+      "luogoNascita": "Genova (GE)",
+      "sesso": null,
+      "numeroDocumento": "U1829402T",
+      "dataRilascio": "15/03/2021",
+      "dataScadenza": "08/02/2031",
+      "enteRilascio": "MIT-UCO"
+    }
+  },
+  {
+    "id": "HO_ANA_10",
+    "type": "ANAGRAFICA",
+    "template": "ANA_DICHIARAZIONE_NOTORIETA",
+    "payload": "DICHIARAZIONE SOSTITUTIVA DELL'ATTO DI NOTORIETÀ\nIo sottoscritto Sartori Alberto, nato a Verona (VR) il 19/07/1971,\nsesso M, residente in Corso Cavour 22, Verona,\ndichiaro la conformità all'originale delle copie documentali prodotte.\nVerona, 26/02/2026.",
+    "ground_truth": {
+      "tipoDocumento": "NON_SPECIFICATO",
+      "nome": "Alberto",
+      "cognome": "Sartori",
+      "codiceFiscale": null,
+      "dataNascita": "19/07/1971",
+      "luogoNascita": "Verona (VR)",
+      "sesso": "M",
+      "numeroDocumento": null,
+      "dataRilascio": null,
+      "dataScadenza": null,
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_ANA_11",
+    "type": "ANAGRAFICA",
+    "template": "ANA_CONSEGNA_BADGE",
+    "payload": "MODULO ASSEGNAZIONE CHIAVI E TESSERA DI ACCESSO SEDE\nSi certifica l'identità del collaboratore:\nCognome: Trevisan\nNome: Monica\nNata a Venezia (VE) il 14/12/1986\nCodice Fiscale: TRVMNC86T54L736S\nIdentificata a vista mediante Tessera Sanitaria n. 80380001492817293841.",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Monica",
+      "cognome": "Trevisan",
+      "codiceFiscale": "TRVMNC86T54L736S",
+      "dataNascita": "14/12/1986",
+      "luogoNascita": "Venezia (VE)",
+      "sesso": null,
+      "numeroDocumento": "80380001492817293841",
+      "dataRilascio": null,
+      "dataScadenza": null,
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_ANA_12",
+    "type": "ANAGRAFICA",
+    "template": "ANA_ISCRIZIONE_ALBO",
+    "payload": "COLLEGIO DEI GEOMETRI E DEI GEOMETRI LAUREATI\nDOMANDA DI ISCRIZIONE ALL'ALBO PROFESSIONALE\nCandidato: Rastelli Simone\nData di nascita: 28/08/1980\nLuogo: Perugia (PG)\nCodice Fiscale: RSTSMN80M28G478G\nDocumento di riconoscimento: Carta d'Identità n. AS8291042 rilasciata dal Comune di Perugia\nData rilascio: 19/09/2021 - Data scadenza: 28/08/2031",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Simone",
+      "cognome": "Rastelli",
+      "codiceFiscale": "RSTSMN80M28G478G",
+      "dataNascita": "28/08/1980",
+      "luogoNascita": "Perugia (PG)",
+      "sesso": null,
+      "numeroDocumento": "AS8291042",
+      "dataRilascio": "19/09/2021",
+      "dataScadenza": "28/08/2031",
+      "enteRilascio": "Comune di Perugia"
+    }
+  },
+  {
+    "id": "HO_ANA_13",
+    "type": "ANAGRAFICA",
+    "template": "ANA_VISITA_SPORTIVA",
+    "payload": "CENTRO DI MEDICINA DELLO SPORT ETNEO\nSCHEDA ATLETA VISITA DI IDONEITÀ AGONISTICA\nCognome: Rapisarda\nNome: Domenico\nSesso: M\nData di nascita: 11/04/1995\nComune di nascita: Catania (CT)\nC.F.: RPSDNC95D11C351E\nTessera Sanitaria esibita n. 80380001593820194821",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Domenico",
+      "cognome": "Rapisarda",
+      "codiceFiscale": "RPSDNC95D11C351E",
+      "dataNascita": "11/04/1995",
+      "luogoNascita": "Catania (CT)",
+      "sesso": "M",
+      "numeroDocumento": "80380001593820194821",
+      "dataRilascio": null,
+      "dataScadenza": null,
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_ANA_14",
+    "type": "ANAGRAFICA",
+    "template": "ANA_CONSENSO_PRIVACY",
+    "payload": "MODULO DI CONSENSO INFORMATO AL TRATTAMENTO DEI DATI PERSONALI\nPaziente: Kovacs Elena\nNata a Trieste (TS) il 06/06/1987\nCodice Fiscale: KVCLNE87H46L424A\nLa sottoscritta acconsente al trattamento dei dati per finalità diagnostiche.\nTrieste, 03/03/2026.",
+    "ground_truth": {
+      "tipoDocumento": "NON_SPECIFICATO",
+      "nome": "Elena",
+      "cognome": "Kovacs",
+      "codiceFiscale": "KVCLNE87H46L424A",
+      "dataNascita": "06/06/1987",
+      "luogoNascita": "Trieste (TS)",
+      "sesso": null,
+      "numeroDocumento": null,
+      "dataRilascio": null,
+      "dataScadenza": null,
+      "enteRilascio": null
+    }
+  },
+  {
+    "id": "HO_EML_01",
+    "type": "EMAIL",
+    "template": "EML_CATERING_CONVENTION",
+    "payload": "Da: Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>\nData: 10/03/2026 09:15\nA: preventivi@banqueting-excellence.it\nOggetto: Richiesta preventivo catering convention aziendale annuale\n\nGentile Team Banqueting,\nper conto di Eventi Aziendali Roma S.r.l., desidero richiedere una proposta di catering per la convention annuale prevista a Roma il giorno 28/05/2026.\nLa platea attesa è di 150 partecipanti e prevediamo un coffee break mattutino e un buffet lunch.\nIl nostro budget allocato per il servizio è di Euro 12.000,00.\nResto a disposizione per concordare un sopralluogo.\n\nCordiali saluti,\nStefano Brambilla\nEventi Aziendali Roma S.r.l.\nTelefono: +39 06 48920145",
+    "ground_truth": {
+      "mittente": "Stefano Brambilla",
+      "email": "s.brambilla@eventi-aziendali-roma.it",
+      "telefono": "+39 06 48920145",
+      "azienda": "Eventi Aziendali Roma S.r.l.",
+      "oggetto": "Richiesta preventivo catering convention aziendale annuale",
+      "citta": "Roma",
+      "numeroPartecipanti": 150,
+      "budgetEuro": 12000.0,
+      "dataEvento": "28/05/2026"
+    }
+  },
+  {
+    "id": "HO_EML_02",
+    "type": "EMAIL",
+    "template": "EML_TICKET_SUPPORTO",
+    "payload": "Da: Ing. Marco Ferretti <m.ferretti@ferretti-logistica.it>\nData: 04/03/2026 14:22\nA: helpdesk@cloud-servizi-b2b.com\nOggetto: Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione\n\nBuongiorno,\nsegnalo che da questa mattina i nostri operatori di filiale non riescono ad accedere al portale.\nIl sistema restituisce errore di autenticazione 502 Bad Gateway.\nVi chiediamo un intervento tempestivo data l'urgenza di spedizione dei lotti.\n\nDistinti saluti,\nIng. Marco Ferretti\nFerretti Logistica Integrata S.p.A.\nTel. +39 051 6829104",
+    "ground_truth": {
+      "mittente": "Marco Ferretti",
+      "email": "m.ferretti@ferretti-logistica.it",
+      "telefono": "+39 051 6829104",
+      "azienda": "Ferretti Logistica Integrata S.p.A.",
+      "oggetto": "Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione",
+      "citta": null,
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_03",
+    "type": "EMAIL",
+    "template": "EML_QUESITO_GARA",
+    "payload": "Da: Dott.ssa Cristina Valli <c.valli@vigilanza-lombarda.it>\nData: 22/02/2026 11:40\nA: rsu.appalti@comune.milano.it\nOggetto: Chiarimento gara europea vigilanza armata sedi municipali Milano\n\nSpettabile Stazione Appaltante del Comune di Milano,\nin riferimento alla procedura di gara per i servizi di vigilanza armata, chiediamo conferma se la fideiussione provvisoria possa essere emessa con firma digitale qualificata e autentica notarile telematica.\n\nIn attesa di riscontro,\nDott.ssa Cristina Valli\nVigilanza Lombarda Sicurezza S.r.l. - Milano\nRecapito: +39 02 87192044",
+    "ground_truth": {
+      "mittente": "Cristina Valli",
+      "email": "c.valli@vigilanza-lombarda.it",
+      "telefono": "+39 02 87192044",
+      "azienda": "Vigilanza Lombarda Sicurezza S.r.l.",
+      "oggetto": "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "citta": "Milano",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_04",
+    "type": "EMAIL",
+    "template": "EML_CONFERMA_SALA",
+    "payload": "Da: Dott. Alberto Sala <alberto.sala@centro-congressi-to.it>\nData: 15/02/2026 16:30\nA: amministrazione@finanza-piemonte.org\nOggetto: Conferma prenotazione Sala Cavour per seminario finanza etica\n\nGentile Dottore,\nconfermiamo la prenotazione della Sala Cavour presso la nostra sede di Torino per il giorno 18/04/2026.\nL'allestimento a platea sarà predisposto per 45 partecipanti con impianto audio e videoproiettore 4K.\nIl corrispettivo pattuito per l'intera giornata ammonta a Euro 800,00.\n\nA presto,\nDott. Alberto Sala\nCentro Congressi Metropolitano Torino S.r.l.\nTel: +39 011 5928104",
+    "ground_truth": {
+      "mittente": "Alberto Sala",
+      "email": "alberto.sala@centro-congressi-to.it",
+      "telefono": "+39 011 5928104",
+      "azienda": "Centro Congressi Metropolitano Torino S.r.l.",
+      "oggetto": "Conferma prenotazione Sala Cavour per seminario finanza etica",
+      "citta": "Torino",
+      "numeroPartecipanti": 45,
+      "budgetEuro": 800.0,
+      "dataEvento": "18/04/2026"
+    }
+  },
+  {
+    "id": "HO_EML_05",
+    "type": "EMAIL",
+    "template": "EML_SEGNALAZIONE_GUASTO",
+    "payload": "Da: Roberto Maran <roberto.maran@telecom-fibra-net.org>\nData: 02/03/2026 08:50\nA: noc-operazioni@retelombardia.it\nOggetto: Segnalazione trancio cavo ottico dorsale Brescia - Bergamo\n\nGentili colleghi del NOC,\nvi informo che una scavatrice di terzi ha tranciato il fascio principale in ingresso a Brescia.\nSquadre di giuntisti già inviate sul posto per ripristino entro le ore 13:00.\n\nSaluti,\nRoberto Maran",
+    "ground_truth": {
+      "mittente": "Roberto Maran",
+      "email": "roberto.maran@telecom-fibra-net.org",
+      "telefono": null,
+      "azienda": null,
+      "oggetto": "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "citta": "Brescia",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_06",
+    "type": "EMAIL",
+    "template": "EML_CORSO_FORMAZIONE",
+    "payload": "Da: Dott.ssa Giorgia Bellini <formazione@sicur-academy-bo.it>\nData: 19/02/2026 10:05\nA: hr-gestione@officine-meccaniche-re.it\nOggetto: Iscrizione corso antincendio e primo soccorso D.Lgs 81/08\n\nGentile Responsabile Risorse Umane,\nconfermiamo l'avvio della sessione formativa a Bologna per il 06/05/2026.\nAbbiamo riservato i posti per 8 partecipanti della Vostra azienda.\nLa quota complessiva di iscrizione è pari a Euro 1.600,00 comprensiva di attestati e manualistica.\n\nUn cordiale saluto,\nDott.ssa Giorgia Bellini\nSicur Academy Bologna S.r.l.\nTelefono diretto: +39 051 4482910",
+    "ground_truth": {
+      "mittente": "Giorgia Bellini",
+      "email": "formazione@sicur-academy-bo.it",
+      "telefono": "+39 051 4482910",
+      "azienda": "Sicur Academy Bologna S.r.l.",
+      "oggetto": "Iscrizione corso antincendio e primo soccorso D.Lgs 81/08",
+      "citta": "Bologna",
+      "numeroPartecipanti": 8,
+      "budgetEuro": 1600.0,
+      "dataEvento": "06/05/2026"
+    }
+  },
+  {
+    "id": "HO_EML_07",
+    "type": "EMAIL",
+    "template": "EML_PROPOSTA_WORKSHOP",
+    "payload": "Da: Dott. Paolo Vianello <p.vianello@digital-hub-firenze.it>\nData: 12/03/2026 15:45\nA: relazioni.esterne@fondazione-ricerca-toscana.org\nOggetto: Proposta collaborazione per workshop su Intelligenza Artificiale Generativa\n\nGentile Direttore,\nvi proponiamo di co-organizzare una giornata di studio a Firenze in data 24/09/2026.\nL'aula magna del polo tecnologico è già stata opzionata per la conferenza.\nSaremmo felici di valutare insieme le modalità di patrocinio.\n\nCordiali saluti,\nDott. Paolo Vianello\nDigital Hub Firenze Consorzio",
+    "ground_truth": {
+      "mittente": "Paolo Vianello",
+      "email": "p.vianello@digital-hub-firenze.it",
+      "telefono": null,
+      "azienda": "Digital Hub Firenze Consorzio",
+      "oggetto": "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "citta": "Firenze",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": "24/09/2026"
+    }
+  },
+  {
+    "id": "HO_EML_08",
+    "type": "EMAIL",
+    "template": "EML_RECLAMO_COMMERCIALE",
+    "payload": "Da: Federica Neri <acquisti@distribuzione-alimentare-nord.it>\nData: 27/02/2026 12:10\nA: contabilita@pastificio-emiliano-dop.it\nOggetto: Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26\n\nBuongiorno,\nalla ricezione del carico odierno abbiamo riscontrato lo schiacciamento di un pallet di farina tipo 00.\nCome anticipato al trasportatore, respingiamo 20 colli e vi chiediamo di emettere relativa nota di accredito.\n\nGrazie e saluti,\nFederica Neri\nDistribuzione Alimentare Nord S.r.l.\nTel. +39 045 8920148",
+    "ground_truth": {
+      "mittente": "Federica Neri",
+      "email": "acquisti@distribuzione-alimentare-nord.it",
+      "telefono": "+39 045 8920148",
+      "azienda": "Distribuzione Alimentare Nord S.r.l.",
+      "oggetto": "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "citta": null,
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_09",
+    "type": "EMAIL",
+    "template": "EML_SOLLECITO_CONSEGNA",
+    "payload": "Da: Gianluca Riva <gianluca.riva@studio-associato-riva.it>\nData: 06/03/2026 17:00\nA: ordini@forniture-ufficio-online.com\nOggetto: Sollecito consegna ordine cancelleria ORD-2026-9921\n\nGentile Assistenza Clienti,\nabbiamo inoltrato l'ordine 10 giorni fa con consegna garantita in 48 ore a Padova.\nIl materiale cartaceo e i toner non sono ancora stati recapitati.\nVi chiediamo aggiornamento immediato sul tracking del corriere.\n\nGianluca Riva",
+    "ground_truth": {
+      "mittente": "Gianluca Riva",
+      "email": "gianluca.riva@studio-associato-riva.it",
+      "telefono": null,
+      "azienda": null,
+      "oggetto": "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "citta": "Padova",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_10",
+    "type": "EMAIL",
+    "template": "EML_INVITO_CONVEGNO",
+    "payload": "Da: Dott.ssa Beatrice Pozzi <segreteria@confindustria-liguria.it>\nData: 01/03/2026 11:20\nA: associati.territorio@imprese-liguri.it\nOggetto: Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR\n\nGentili Imprenditori Associati,\nsiamo lieti di invitarVi al dibattito che si terrà a Genova il prossimo 11/06/2026.\nLa sala convegni del Porto Antico accoglierà fino a 70 partecipanti.\nLa partecipazione è gratuita previa iscrizione.\n\nCordiali saluti,\nDott.ssa Beatrice Pozzi\nConfindustria Liguria Servizi S.c.a.r.l.\nTelefono: +39 010 2498105",
+    "ground_truth": {
+      "mittente": "Beatrice Pozzi",
+      "email": "segreteria@confindustria-liguria.it",
+      "telefono": "+39 010 2498105",
+      "azienda": "Confindustria Liguria Servizi S.c.a.r.l.",
+      "oggetto": "Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR",
+      "citta": "Genova",
+      "numeroPartecipanti": 70,
+      "budgetEuro": null,
+      "dataEvento": "11/06/2026"
+    }
+  },
+  {
+    "id": "HO_EML_11",
+    "type": "EMAIL",
+    "template": "EML_PREVENTIVO_FLOTTA",
+    "payload": "Da: Dott. Fabio Manzoni <f.manzoni@manzoni-commerciale.it>\nData: 17/02/2026 15:10\nA: corporate-sales@lease-plan-italia.it\nOggetto: Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric\n\nSpettabile Lease Plan,\nper la nostra sede di Milano valutiamo la sostituzione delle auto dei nostri commerciali.\nAbbiamo stimato un budget annuo di Euro 30.000,00 comprensivo di kasko e manutenzione ordinaria.\nAttendiamo un Vostro prospetto comparativo.\n\nCordiali saluti,\nDott. Fabio Manzoni\nManzoni Soluzioni Commerciali S.p.A.\nTel. +39 02 67194012",
+    "ground_truth": {
+      "mittente": "Fabio Manzoni",
+      "email": "f.manzoni@manzoni-commerciale.it",
+      "telefono": "+39 02 67194012",
+      "azienda": "Manzoni Soluzioni Commerciali S.p.A.",
+      "oggetto": "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "citta": "Milano",
+      "numeroPartecipanti": null,
+      "budgetEuro": 30000.0,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_12",
+    "type": "EMAIL",
+    "template": "EML_CIRCOLARE_ORARI",
+    "payload": "Da: Dott.ssa Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>\nData: 11/03/2026 18:05\nA: clienti-tutti@studio-ruggiero-commercialisti.it\nOggetto: Comunicazione orari estivi di apertura al pubblico sede di Bari\n\nGentili Clienti,\nvi informiamo che a partire dal mese prossimo la sede di Bari effettuerà orario continuato 08:30 - 16:30.\nI consulenti fiscali riceveranno solo su appuntamento telematico.\n\nStudio Ruggiero Dottori Commercialisti Associati\nDott.ssa Simona Ruggiero",
+    "ground_truth": {
+      "mittente": "Simona Ruggiero",
+      "email": "amministrazione@studio-ruggiero-commercialisti.it",
+      "telefono": null,
+      "azienda": "Studio Ruggiero Dottori Commercialisti Associati",
+      "oggetto": "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "citta": "Bari",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  },
+  {
+    "id": "HO_EML_13",
+    "type": "EMAIL",
+    "template": "EML_CYBERSECURITY_AUDIT",
+    "payload": "Da: Dott. Lorenzo Gatti <l.gatti@finanza-veneta-holding.it>\nData: 09/03/2026 10:40\nA: security-assessment@cyber-defense-italy.com\nOggetto: Incarico per vulnerability assessment e penetration test infrastruttura cloud\n\nGentile Security Team,\nconfermiamo l'affidamento delle verifiche tecniche sui nostri endpoint di Verona a partire dal 15/05/2026.\nIl corrispettivo concordato per le attività di ethical hacking è fissato in Euro 6.500,00.\nRestiamo in attesa dell'accordo di non divulgazione (NDA) controfirmato.\n\nLorenzo Gatti\nFinanza Veneta Holding S.p.A.\nTelefono: +39 045 4920194",
+    "ground_truth": {
+      "mittente": "Lorenzo Gatti",
+      "email": "l.gatti@finanza-veneta-holding.it",
+      "telefono": "+39 045 4920194",
+      "azienda": "Finanza Veneta Holding S.p.A.",
+      "oggetto": "Incarico per vulnerability assessment e penetration test infrastruttura cloud",
+      "citta": "Verona",
+      "numeroPartecipanti": null,
+      "budgetEuro": 6500.0,
+      "dataEvento": "15/05/2026"
+    }
+  },
+  {
+    "id": "HO_EML_14",
+    "type": "EMAIL",
+    "template": "EML_CANDIDATURA_LAVORO",
+    "payload": "Da: Ing. Matteo Salvi <matteo.salvi.dev@libero-mail.it>\nData: 07/03/2026 12:55\nA: recruiting-tech@innovazione-software-torino.it\nOggetto: Candidatura per posizione Senior Data Platform Engineer - Sede Torino\n\nSpettabile Team Risorse Umane,\ncon la presente desidero sottoporre il mio profilo per le selezioni attive nel Vostro polo tecnologico di Torino.\nHo maturato 7 anni di esperienza su architetture a microservizi e pipeline analitiche.\nAllego curriculum vitae aggiornato con dettaglio delle certificazioni conseguite.\n\nCordiali saluti,\nIng. Matteo Salvi\nCellulare: +39 347 8920145",
+    "ground_truth": {
+      "mittente": "Matteo Salvi",
+      "email": "matteo.salvi.dev@libero-mail.it",
+      "telefono": "+39 347 8920145",
+      "azienda": null,
+      "oggetto": "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "citta": "Torino",
+      "numeroPartecipanti": null,
+      "budgetEuro": null,
+      "dataEvento": null
+    }
+  }
+]

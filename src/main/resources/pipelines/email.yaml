@@ -1,0 +1,18 @@
+id: email_pipeline
+documentType: EMAIL
+steps:
+  - id: email_inference
+    type: model_inference
+    model: "${ollama.email-model}"
+    schema: schemas/email_info.json
+    system_prompt: prompts/email-system.txt
+
+  - id: email_validation
+    type: field_validation
+    on_failure:
+      retry_step: email_inference
+      max_retries: 2
+      feedback: true
+    validators:
+      - field: email
+        validator: email

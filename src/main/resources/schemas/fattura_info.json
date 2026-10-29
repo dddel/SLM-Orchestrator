@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "properties": {
+    "numeroFattura": {
+      "type": "string"
+    },
+    "dataFattura": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fornitore": {
+      "type": "object",
+      "properties": {
+        "denominazione": {
+          "type": "string"
+        },
+        "partitaIva": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "denominazione",
+        "partitaIva"
+      ]
+    },
+    "cliente": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "denominazione": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codiceFiscale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "denominazione",
+        "codiceFiscale"
+      ]
+    },
+    "importoTotale": {
+      "type": "number"
+    },
+    "iban": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "numeroFattura",
+    "dataFattura",
+    "fornitore",
+    "cliente",
+    "importoTotale",
+    "iban"
+  ]
+}

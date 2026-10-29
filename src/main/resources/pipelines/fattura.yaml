@@ -1,0 +1,22 @@
+id: fattura_pipeline
+documentType: FATTURA
+steps:
+  - id: fattura_inference
+    type: model_inference
+    model: "${ollama.invoice-model}"
+    schema: schemas/fattura_info.json
+    system_prompt: prompts/fattura-system.txt
+
+  - id: fattura_validation
+    type: field_validation
+    on_failure:
+      retry_step: fattura_inference
+      max_retries: 2
+      feedback: true
+    validators:
+      - field: fornitore.partitaIva
+        validator: partita_iva
+      - field: cliente.codiceFiscale
+        validator: codice_fiscale_o_partita_iva
+      - field: iban
+        validator: iban

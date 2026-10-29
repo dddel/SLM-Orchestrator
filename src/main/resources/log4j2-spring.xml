@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+        <Property name="LOG_FILE">llmorchestrator</Property>
+        <Property name="CONSOLE_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=white} [%15.15t] %cyan{%-35.35c{1.}} : %m%n%throwable
+        </Property>
+        <Property name="FILE_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %c{1.} : %m%n%throwable
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Appender Console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${CONSOLE_PATTERN}"/>
+        </Console>
+
+        <!-- Appender RollingFile per archiviare i log su disco -->
+        <RollingFile name="RollingFile"
+                     fileName="${LOG_DIR}/${LOG_FILE}.log"
+                     filePattern="${LOG_DIR}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${FILE_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Livello di log per i componenti del nostro orchestratore -->
+        <Logger name="com.tirocinioaltrama.llmorchestrator" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <!-- Spring Framework e server HTTP -->
+        <Logger name="org.springframework" level="INFO"/>
+        <Logger name="org.apache.catalina" level="INFO"/>
+
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

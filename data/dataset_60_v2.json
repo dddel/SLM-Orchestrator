@@ -1,0 +1,1868 @@
+[
+  {
+    "id": "FAT_01",
+    "type": "FATTURA",
+    "payload": "Spett.le Cliente Spettabile 1 S.p.A. (C.F. CFXUSR71A03H501A),\nvi trasmettiamo documento contabile ref. 2026/001 emesso in data 04/02/2026.\nEmittente: Fornitore Aziendale 1 S.r.l., Partita IVA 10000001379.\nTotale dovuto pari a euro 145.50. Bonifico su conto corrente IBAN IT42L1234512345123456789012.",
+    "ground_truth": {
+      "numeroFattura": "2026/001",
+      "dataFattura": "04/02/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 1 S.r.l.",
+        "partitaIva": "10000001379"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 1 S.p.A.",
+        "codiceFiscale": "CFXUSR71A03H501A"
+      },
+      "importoTotale": 145.5,
+      "iban": "IT42L1234512345123456789012"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "FAT_T1_STANDARD_LINEARE",
+    "null_fields": [],
+    "notes": "Fattura storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_02",
+    "type": "FATTURA",
+    "payload": "[DOC_CONTABILE] NUM: 2026/002 | DATA: 07/03/2026\nFORNITORE: Fornitore Aziendale 2 S.r.l. (P.IVA 10000002740)\nCLIENTE: Cliente Spettabile 2 S.p.A. (CF: CFXUSR72A05H501H)\nTOTALE DOCUMENTO: 245.50 EUR\nIBAN: IT60X0542811101000000123456",
+    "ground_truth": {
+      "numeroFattura": "2026/002",
+      "dataFattura": "07/03/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 2 S.r.l.",
+        "partitaIva": "10000002740"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 2 S.p.A.",
+        "codiceFiscale": "CFXUSR72A05H501H"
+      },
+      "importoTotale": 245.5,
+      "iban": "IT60X0542811101000000123456"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "FAT_T1_STANDARD_LINEARE",
+    "null_fields": [],
+    "notes": "Fattura storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_03",
+    "type": "FATTURA",
+    "payload": "FATTURA COMMERCIALE N. 2026/003 DEL 10/04/2026\nCedente/Prestatore: Fornitore Aziendale 3 S.r.l. - P.IVA: 10000004118\nCessionario/Committente: Cliente Spettabile 3 S.p.A. - C.F.: CFXUSR73A07H501M\nDescrizione: Fornitura lotti industriali.\nImporto totale da saldare: EUR 345.50\nCoordinate accredito: IBAN IT42L1234512345123456789012",
+    "ground_truth": {
+      "numeroFattura": "2026/003",
+      "dataFattura": "10/04/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 3 S.r.l.",
+        "partitaIva": "10000004118"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 3 S.p.A.",
+        "codiceFiscale": "CFXUSR73A07H501M"
+      },
+      "importoTotale": 345.5,
+      "iban": "IT42L1234512345123456789012"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "FAT_T1_STANDARD_LINEARE",
+    "null_fields": [],
+    "notes": "Fattura storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_04",
+    "type": "FATTURA",
+    "payload": "Spett.le Cliente Spettabile 4 S.p.A. (C.F. CFXUSR74A09H501R),\nvi trasmettiamo documento contabile ref. 2026/004 emesso in data 13/05/2026.\nEmittente: Fornitore Aziendale 4 S.r.l., Partita IVA 10000005487.\nTotale dovuto pari a euro 445.50. Bonifico su conto corrente IBAN IT60X0542811101000000123456.",
+    "ground_truth": {
+      "numeroFattura": "2026/004",
+      "dataFattura": "13/05/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 4 S.r.l.",
+        "partitaIva": "10000005487"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 4 S.p.A.",
+        "codiceFiscale": "CFXUSR74A09H501R"
+      },
+      "importoTotale": 445.5,
+      "iban": "IT60X0542811101000000123456"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "FAT_T1_STANDARD_LINEARE",
+    "null_fields": [],
+    "notes": "Fattura storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "EML_01",
+    "type": "EMAIL",
+    "payload": "Mittente: Persona Nome 1 (utente.1@innovazione-tech.it)\nOrganizzazione: Azienda Partner 1 S.r.l.\nTel: +39 02 9000111\nOggetto: Richiesta preventivo e allineamento progetto 1\nSalve, vi scrivo per richiedere supporto per evento a Roma programmato per il 03/11/2026. I partecipanti saranno 12 con disponibilità economica di euro 1250. Resto a disposizione.",
+    "ground_truth": {
+      "mittente": "Persona Nome 1",
+      "email": "utente.1@innovazione-tech.it",
+      "telefono": "+39 02 9000111",
+      "azienda": "Azienda Partner 1 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 1",
+      "numeroPartecipanti": 12,
+      "dataEvento": "03/11/2026",
+      "budgetEuro": 1250.0,
+      "citta": "Roma"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "EML_T1_EVENTO_RICHIESTA",
+    "null_fields": [],
+    "notes": "Email storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_02",
+    "type": "EMAIL",
+    "payload": "Da: Persona Nome 2 <utente.2@innovazione-tech.it>\nOggetto: Richiesta preventivo e allineamento progetto 2\nAzienda: Azienda Partner 2 S.r.l.\nGentile Team,\nvorremmo organizzare una conferenza tecnica nella citta di Torino in data 05/11/2026.\nPrevediamo circa 14 persone con budget indicativo di 1500 euro.\nPotete ricontattarmi al telefono +39 02 9000222.\nCordiali saluti,\nPersona Nome 2",
+    "ground_truth": {
+      "mittente": "Persona Nome 2",
+      "email": "utente.2@innovazione-tech.it",
+      "telefono": "+39 02 9000222",
+      "azienda": "Azienda Partner 2 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 2",
+      "numeroPartecipanti": 14,
+      "dataEvento": "05/11/2026",
+      "budgetEuro": 1500.0,
+      "citta": "Torino"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "EML_T1_EVENTO_RICHIESTA",
+    "null_fields": [],
+    "notes": "Email storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "mittente",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_03",
+    "type": "EMAIL",
+    "payload": "Mittente: Persona Nome 3 (utente.3@innovazione-tech.it)\nOrganizzazione: Azienda Partner 3 S.r.l.\nTel: +39 02 9000333\nOggetto: Richiesta preventivo e allineamento progetto 3\nSalve, vi scrivo per richiedere supporto per evento a Milano programmato per il 07/11/2026. I partecipanti saranno 16 con disponibilità economica di euro 1750. Resto a disposizione.",
+    "ground_truth": {
+      "mittente": "Persona Nome 3",
+      "email": "utente.3@innovazione-tech.it",
+      "telefono": "+39 02 9000333",
+      "azienda": "Azienda Partner 3 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 3",
+      "numeroPartecipanti": 16,
+      "dataEvento": "07/11/2026",
+      "budgetEuro": 1750.0,
+      "citta": "Milano"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "EML_T1_EVENTO_RICHIESTA",
+    "null_fields": [],
+    "notes": "Email storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_04",
+    "type": "EMAIL",
+    "payload": "Da: Persona Nome 4 <utente.4@innovazione-tech.it>\nOggetto: Richiesta preventivo e allineamento progetto 4\nAzienda: Azienda Partner 4 S.r.l.\nGentile Team,\nvorremmo organizzare una conferenza tecnica nella citta di Roma in data 09/11/2026.\nPrevediamo circa 18 persone con budget indicativo di 2000 euro.\nPotete ricontattarmi al telefono +39 02 9000444.\nCordiali saluti,\nPersona Nome 4",
+    "ground_truth": {
+      "mittente": "Persona Nome 4",
+      "email": "utente.4@innovazione-tech.it",
+      "telefono": "+39 02 9000444",
+      "azienda": "Azienda Partner 4 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 4",
+      "numeroPartecipanti": 18,
+      "dataEvento": "09/11/2026",
+      "budgetEuro": 2000.0,
+      "citta": "Roma"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "EML_T1_EVENTO_RICHIESTA",
+    "null_fields": [],
+    "notes": "Email storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "mittente",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "ANA_01",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA MODELLO UE\n1. Cognome1 2. Nome1\n3. 03/05/1981 Roma (RM)\n4a. 10/01/2021 4b. 10/01/2031 4c. MIT-UCO\n5. U1900023K\nCodice Fiscale: COGNOM81M03H501F",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Nome1",
+      "cognome": "Cognome1",
+      "codiceFiscale": "COGNOM81M03H501F",
+      "dataNascita": "03/05/1981",
+      "luogoNascita": "Roma (RM)",
+      "sesso": null,
+      "numeroDocumento": "U1900023K",
+      "dataRilascio": "10/01/2021",
+      "dataScadenza": "10/01/2031",
+      "enteRilascio": "MIT-UCO"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "ANA_T1_CARTA_IDENTITA_CARTACEA",
+    "null_fields": [
+      "sesso"
+    ],
+    "notes": "Anagrafica storica: sesso non esplicitato nel testo (null atteso).",
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_02",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PASSAPORTO\nTipo: P Documento: YA100014\nCognome: Cognome2 Nome: Nome2\nCittadinanza: ITA Data di nascita: 05/05/1982 Sesso: M\nLuogo di nascita: Napoli (NA)\nCodice Fiscale: COGNOM82M05H501M\nRilasciato da: Questura di Napoli in data 10/01/2022 con validita' fino al 10/01/2032",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Nome2",
+      "cognome": "Cognome2",
+      "codiceFiscale": "COGNOM82M05H501M",
+      "dataNascita": "05/05/1982",
+      "luogoNascita": "Napoli (NA)",
+      "sesso": "M",
+      "numeroDocumento": "YA100014",
+      "dataRilascio": "10/01/2022",
+      "dataScadenza": "10/01/2032",
+      "enteRilascio": "Questura di Napoli"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "ANA_T1_CARTA_IDENTITA_CARTACEA",
+    "null_fields": [],
+    "notes": "Anagrafica storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_03",
+    "type": "ANAGRAFICA",
+    "payload": "MINISTERO DELL'INTERNO - CARTA D'IDENTITA N. CA80039AA\nCognome: Cognome3 Nome: Nome3\nNato a: Milano (MI) il: 07/05/1983 Sesso: F\nCodice Fiscale: COGNOM83M07H501R\nRilasciata il: 10/01/2023 Scadenza: 10/01/2033\nEnte di emissione: Comune di Milano",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Nome3",
+      "cognome": "Cognome3",
+      "codiceFiscale": "COGNOM83M07H501R",
+      "dataNascita": "07/05/1983",
+      "luogoNascita": "Milano (MI)",
+      "sesso": "F",
+      "numeroDocumento": "CA80039AA",
+      "dataRilascio": "10/01/2023",
+      "dataScadenza": "10/01/2033",
+      "enteRilascio": "Comune di Milano"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "ANA_T1_CARTA_IDENTITA_CARTACEA",
+    "null_fields": [],
+    "notes": "Anagrafica storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_04",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA MODELLO UE\n1. Cognome4 2. Nome4\n3. 09/05/1984 Roma (RM)\n4a. 10/01/2020 4b. 10/01/2030 4c. MIT-UCO\n5. U1900092K\nCodice Fiscale: COGNOM84M09H501W",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Nome4",
+      "cognome": "Cognome4",
+      "codiceFiscale": "COGNOM84M09H501W",
+      "dataNascita": "09/05/1984",
+      "luogoNascita": "Roma (RM)",
+      "sesso": null,
+      "numeroDocumento": "U1900092K",
+      "dataRilascio": "10/01/2020",
+      "dataScadenza": "10/01/2030",
+      "enteRilascio": "MIT-UCO"
+    },
+    "split": "dev",
+    "observed_in_baseline": true,
+    "template": "ANA_T1_CARTA_IDENTITA_CARTACEA",
+    "null_fields": [
+      "sesso"
+    ],
+    "notes": "Anagrafica storica di baseline (dev già osservato).",
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "FAT_05",
+    "type": "FATTURA",
+    "template": "FAT_T2_TABELLARE_COMPATTO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "PROSPETTO FATTURA N. 2026/055 DEL 12/05/2026\nFORNITORE: Alpha Soluzioni S.r.l. - P.IVA: 10000001379\nCOMMITTENTE: Beta Consulting S.p.A.\nTOTALE DOVUTO: 1.850,50 EUR\nPagamento a vista senza coordinate bancarie.",
+    "ground_truth": {
+      "numeroFattura": "2026/055",
+      "dataFattura": "12/05/2026",
+      "fornitore": {
+        "denominazione": "Alpha Soluzioni S.r.l.",
+        "partitaIva": "10000001379"
+      },
+      "cliente": {
+        "denominazione": "Beta Consulting S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1850.5,
+      "iban": null
+    },
+    "notes": "Importo europeo con virgola; CF cliente e IBAN assenti (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "dataFattura",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_06",
+    "type": "FATTURA",
+    "template": "FAT_T2_TABELLARE_COMPATTO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "DOC. CONTABILE N. 2026/056 emesso a saldo prestazione\nFornitore: Delta Impianti S.r.l. [P.IVA 10000002740]\nCliente: Spettabile Gamma Servizi S.r.l.\nImporto totale: euro 420,00\nModalità: rimessa contanti.",
+    "ground_truth": {
+      "numeroFattura": "2026/056",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Delta Impianti S.r.l.",
+        "partitaIva": "10000002740"
+      },
+      "cliente": {
+        "denominazione": "Gamma Servizi S.r.l.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 420.0,
+      "iban": null
+    },
+    "notes": "Data, CF e IBAN non presenti (tre null attesi); onorifico Spettabile.",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_07",
+    "type": "FATTURA",
+    "template": "FAT_T2_TABELLARE_COMPATTO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "Fattura 789\nEmessa da: Epsilon Logistica S.r.l. - P.IVA 10000004118\nA favore di: Zenith Log S.p.A.\nTotale documento: 2,450.00 EUR\nPagamento mediante assegno circolare.",
+    "ground_truth": {
+      "numeroFattura": "789",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Epsilon Logistica S.r.l.",
+        "partitaIva": "10000004118"
+      },
+      "cliente": {
+        "denominazione": "Zenith Log S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 2450.0,
+      "iban": null
+    },
+    "notes": "Numero fattura solo numerico; data, CF e IBAN assenti (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_08",
+    "type": "FATTURA",
+    "template": "FAT_T2_TABELLARE_COMPATTO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "FATTURA N. FT-2026-088 emessa in data 20 luglio 2026\nSocietà fornitrice: Kronos Energy S.r.l., Partita IVA 10000005487\nDestinatario: Egr. Studio Associato Rossi\nTotale fattura: 980.00 EUR\nPagamento mediante assegno bancario.",
+    "ground_truth": {
+      "numeroFattura": "FT-2026-088",
+      "dataFattura": "2026-07-20",
+      "fornitore": {
+        "denominazione": "Kronos Energy S.r.l.",
+        "partitaIva": "10000005487"
+      },
+      "cliente": {
+        "denominazione": "Studio Associato Rossi",
+        "codiceFiscale": null
+      },
+      "importoTotale": 980.0,
+      "iban": null
+    },
+    "notes": "Data estesa '20 luglio 2026'; CF e IBAN assenti; onorifico Egr.",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_09",
+    "type": "FATTURA",
+    "template": "FAT_T3_DISCORSIVO_NOTULA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Notula professionale n. NP-101 redatta il 03/08/2026 da Studio Legale Giuris (P.IVA 10000006857) per il cliente Gent.le Mario Bianchi. Onorario complessivo concordato in euro 1.500,00 da saldare a vista senza coordinate bancarie.",
+    "ground_truth": {
+      "numeroFattura": "NP-101",
+      "dataFattura": "03/08/2026",
+      "fornitore": {
+        "denominazione": "Studio Legale Giuris",
+        "partitaIva": "10000006857"
+      },
+      "cliente": {
+        "denominazione": "Mario Bianchi",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1500.0,
+      "iban": null
+    },
+    "notes": "Testo discorsivo; onorifico Gent.le; CF e IBAN assenti (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_10",
+    "type": "FATTURA",
+    "template": "FAT_T3_DISCORSIVO_NOTULA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Con la presente si trasmette la notula spesa n. 102/2026 emessa per incarico concluso. Emittente: Dott.ssa Elena Neri Consulenze (Partita IVA 10000007228). Committente: Spett.le Astra Holding S.p.A. Il saldo totale ammonta a 3.500 EUR.",
+    "ground_truth": {
+      "numeroFattura": "102/2026",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Elena Neri Consulenze",
+        "partitaIva": "10000007228"
+      },
+      "cliente": {
+        "denominazione": "Astra Holding S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 3500.0,
+      "iban": null
+    },
+    "notes": "Data, CF e IBAN omessi (tre null attesi); onorifici Dott.ssa e Spett.le.",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_11",
+    "type": "FATTURA",
+    "template": "FAT_T3_DISCORSIVO_NOTULA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Liquidazione compensi n. LC-2026-9 emessa in data 14 settembre 2026. Prestatore d'opera: WebCraft Studio (P.IVA 10000008598). Cliente: Nexa Digital S.r.l. Importo netto concordato: euro 750,00. Regolamento con assegno circolare.",
+    "ground_truth": {
+      "numeroFattura": "LC-2026-9",
+      "dataFattura": "2026-09-14",
+      "fornitore": {
+        "denominazione": "WebCraft Studio",
+        "partitaIva": "10000008598"
+      },
+      "cliente": {
+        "denominazione": "Nexa Digital S.r.l.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 750.0,
+      "iban": null
+    },
+    "notes": "Data in lettere '14 settembre 2026'; CF e IBAN non presenti (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "dataFattura",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_12",
+    "type": "FATTURA",
+    "template": "FAT_T3_DISCORSIVO_NOTULA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Documento di rimborso spese 88/B emesso a chiusura trasferta. Fornitore: EcoServices S.r.l. (P.IVA: 10000009968). Destinatario: Verde S.p.A. Spesa finale: euro 120,50. Pagamento per cassa contanti.",
+    "ground_truth": {
+      "numeroFattura": "88/B",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "EcoServices S.r.l.",
+        "partitaIva": "10000009968"
+      },
+      "cliente": {
+        "denominazione": "Verde S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 120.5,
+      "iban": null
+    },
+    "notes": "Data, CF e IBAN assenti (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_13",
+    "type": "FATTURA",
+    "template": "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "<FatturaElettronica>\n  <DatiGenerali><Numero>2026-FE-013</Numero><Data>2026-10-15</Data><ImportoTotaleDocumento>5400.00</ImportoTotaleDocumento></DatiGenerali>\n  <CedentePrestatore><Denominazione>CloudHub S.r.l.</Denominazione><IdFiscaleIVA>10000001379</IdFiscaleIVA></CedentePrestatore>\n  <CessionarioCommittente><Denominazione>Retail Group S.p.A.</Denominazione></CessionarioCommittente>\n</FatturaElettronica>",
+    "ground_truth": {
+      "numeroFattura": "2026-FE-013",
+      "dataFattura": "2026-10-15",
+      "fornitore": {
+        "denominazione": "CloudHub S.r.l.",
+        "partitaIva": "10000001379"
+      },
+      "cliente": {
+        "denominazione": "Retail Group S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 5400.0,
+      "iban": null
+    },
+    "notes": "Tag pseudo-XML; CF cliente e IBAN omessi (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "dataFattura",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_14",
+    "type": "FATTURA",
+    "template": "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "<FatturaElettronica>\n  <DatiGenerali><Numero>FE/2026/14</Numero><Data>2026-11-01</Data><ImportoTotaleDocumento>310.50</ImportoTotaleDocumento></DatiGenerali>\n  <CedentePrestatore><Denominazione>PrintFast S.r.l.</Denominazione><IdFiscaleIVA>10000002740</IdFiscaleIVA></CedentePrestatore>\n  <CessionarioCommittente><Denominazione>Studio Ingegneria Associato</Denominazione></CessionarioCommittente>\n</FatturaElettronica>",
+    "ground_truth": {
+      "numeroFattura": "FE/2026/14",
+      "dataFattura": "2026-11-01",
+      "fornitore": {
+        "denominazione": "PrintFast S.r.l.",
+        "partitaIva": "10000002740"
+      },
+      "cliente": {
+        "denominazione": "Studio Ingegneria Associato",
+        "codiceFiscale": null
+      },
+      "importoTotale": 310.5,
+      "iban": null
+    },
+    "notes": "CF e IBAN omessi nel markup XML (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "dataFattura",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_15",
+    "type": "FATTURA",
+    "template": "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "<FatturaElettronica>\n  <DatiGenerali><Numero>9981</Numero><ImportoTotaleDocumento>12500.00</ImportoTotaleDocumento></DatiGenerali>\n  <CedentePrestatore><Denominazione>Heavy Machinery S.p.A.</Denominazione><IdFiscaleIVA>10000004118</IdFiscaleIVA></CedentePrestatore>\n  <CessionarioCommittente><Denominazione>Costruzioni Edili S.r.l.</Denominazione></CessionarioCommittente>\n</FatturaElettronica>",
+    "ground_truth": {
+      "numeroFattura": "9981",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Heavy Machinery S.p.A.",
+        "partitaIva": "10000004118"
+      },
+      "cliente": {
+        "denominazione": "Costruzioni Edili S.r.l.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 12500.0,
+      "iban": null
+    },
+    "notes": "Data, CF e IBAN omessi in XML (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_16",
+    "type": "FATTURA",
+    "template": "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "<FatturaElettronica>\n  <DatiGenerali><Numero>2026/X16</Numero><ImportoTotaleDocumento>89.90</ImportoTotaleDocumento></DatiGenerali>\n  <CedentePrestatore><Denominazione>Telecom Soluzioni S.p.A.</Denominazione><IdFiscaleIVA>10000005487</IdFiscaleIVA></CedentePrestatore>\n  <CessionarioCommittente><Denominazione>Ufficio Servizi S.r.l.</Denominazione></CessionarioCommittente>\n</FatturaElettronica>",
+    "ground_truth": {
+      "numeroFattura": "2026/X16",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Telecom Soluzioni S.p.A.",
+        "partitaIva": "10000005487"
+      },
+      "cliente": {
+        "denominazione": "Ufficio Servizi S.r.l.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 89.9,
+      "iban": null
+    },
+    "notes": "Tag Data, CF e IBAN del tutto assenti (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_17",
+    "type": "FATTURA",
+    "template": "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "AVVISO DI PARCELLA N. PAR-2026-17\nData emissione: 05/12/2026\nProfessionista: Ing. Roberto Ferri - Partita IVA: 10000006857\nSpett.le Committente: Impianti Solari S.p.A.\nTotale onorari e spese: EUR 4.200,00\nModalità: rimessa diretta.",
+    "ground_truth": {
+      "numeroFattura": "PAR-2026-17",
+      "dataFattura": "05/12/2026",
+      "fornitore": {
+        "denominazione": "Roberto Ferri",
+        "partitaIva": "10000006857"
+      },
+      "cliente": {
+        "denominazione": "Impianti Solari S.p.A.",
+        "codiceFiscale": null
+      },
+      "importoTotale": 4200.0,
+      "iban": null
+    },
+    "notes": "Onorifici Ing. e Spett.le; CF e IBAN assenti (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_18",
+    "type": "FATTURA",
+    "template": "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PROSPETTO FATTURAZIONE N. 18/2026 emesso in data 12 dicembre 2026\nFornitore: Architetto Giulia Monti - P.IVA: 10000007228\nCliente: Egr. Dott. Franco Riva\nTotale competenze: 1.150 euro\nPagamento tramite vaglia postale.",
+    "ground_truth": {
+      "numeroFattura": "18/2026",
+      "dataFattura": "2026-12-12",
+      "fornitore": {
+        "denominazione": "Giulia Monti",
+        "partitaIva": "10000007228"
+      },
+      "cliente": {
+        "denominazione": "Franco Riva",
+        "codiceFiscale": null
+      },
+      "importoTotale": 1150.0,
+      "iban": null
+    },
+    "notes": "Data in lettere; onorifici multipli; CF e IBAN assenti (due null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "iban"
+    ],
+    "difficult_fields": [
+      "cliente.denominazione",
+      "dataFattura",
+      "fornitore.denominazione",
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_19",
+    "type": "FATTURA",
+    "template": "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "ESTRATTO FATTURA 2026/019 emesso a consuntivo annuale\nSocietà: Sanitas Lab S.r.l. (P.IVA 10000008598)\nDestinatario: Azienda Ospedaliera Centro\nImporto complessivo: 650.00 EUR\nPagamento mediante assegno di traenza.",
+    "ground_truth": {
+      "numeroFattura": "2026/019",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Sanitas Lab S.r.l.",
+        "partitaIva": "10000008598"
+      },
+      "cliente": {
+        "denominazione": "Azienda Ospedaliera Centro",
+        "codiceFiscale": null
+      },
+      "importoTotale": 650.0,
+      "iban": null
+    },
+    "notes": "Data fattura, CF cliente e IBAN omessi (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "FAT_20",
+    "type": "FATTURA",
+    "template": "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "AVVISO FATTURA n. 20 emesso senza data specificata nel verbale.\nStudio Geologico Terrae (P.IVA 10000009968)\nCommittente: Consorzio Bonifica Nord\nCompenso finale: 2.100 euro\nPagamento mediante compensazione debiti.",
+    "ground_truth": {
+      "numeroFattura": "20",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Studio Geologico Terrae",
+        "partitaIva": "10000009968"
+      },
+      "cliente": {
+        "denominazione": "Consorzio Bonifica Nord",
+        "codiceFiscale": null
+      },
+      "importoTotale": 2100.0,
+      "iban": null
+    },
+    "notes": "Data, CF e IBAN omessi; numero fattura '20' (tre null attesi).",
+    "null_fields": [
+      "cliente.codiceFiscale",
+      "dataFattura",
+      "iban"
+    ],
+    "difficult_fields": [
+      "importoTotale",
+      "numeroFattura"
+    ]
+  },
+  {
+    "id": "EML_05",
+    "type": "EMAIL",
+    "template": "EML_T2_PREVENTIVO_SERVIZIO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "Da: Marco Neri <m.neri@innovasol.it>\nA: commerciale@eventi.it\nData: 10/05/2026\nOggetto: Workshop formativo intelligenza artificiale\n\nGentili colleghi,\nvorremmo pianificare una sessione formativa online per venticinque partecipanti in data 15/10/2026.\nAbbiamo stanziato un budget indicativo di 3.500 euro.\nContattatemi unicamente a questo indirizzo email.\n\nSaluti,\nMarco Neri - Innovasol S.r.l.",
+    "ground_truth": {
+      "mittente": "Marco Neri",
+      "email": "m.neri@innovasol.it",
+      "telefono": null,
+      "azienda": "Innovasol S.r.l.",
+      "oggetto": "Workshop formativo intelligenza artificiale",
+      "dataEvento": "15/10/2026",
+      "citta": null,
+      "numeroPartecipanti": 25,
+      "budgetEuro": 3500.0
+    },
+    "notes": "Partecipanti 'venticinque'; evento online (città assente); telefono assente (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_06",
+    "type": "EMAIL",
+    "template": "EML_T2_PREVENTIVO_SERVIZIO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "Da: Sara Donati <sara.donati@cloudtech.com>\nData: 18/05/2026\nOggetto: Richiesta quotazione convegno annuale\n\nBuongiorno,\nchiediamo un preventivo per il nostro convegno del 22/11/2026 da remoto via web.\nPrevediamo 50 partecipanti e un tetto di spesa massimo di 2000 EUR.\nCanale di contatto via ticket web senza reperibilità telefonica.\n\nSara Donati - CloudTech S.p.A.",
+    "ground_truth": {
+      "mittente": "Sara Donati",
+      "email": "sara.donati@cloudtech.com",
+      "telefono": null,
+      "azienda": "CloudTech S.p.A.",
+      "oggetto": "Richiesta quotazione convegno annuale",
+      "dataEvento": "22/11/2026",
+      "citta": null,
+      "numeroPartecipanti": 50,
+      "budgetEuro": 2000.0
+    },
+    "notes": "Evento remoto (città assente); telefono assente (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_07",
+    "type": "EMAIL",
+    "template": "EML_T2_PREVENTIVO_SERVIZIO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "Da: Luca Brambilla <l.brambilla@logistix.it>\nOggetto: Incontro partner a Bologna\nData invio: 01/06/2026\n\nFacendo seguito alla call del 28/05/2026, confermiamo la richiesta per la sala meeting a Bologna per il 14/12/2026.\nSessione ad accesso libero senza numero programmato e senza budget stabilito.\nRecapito telefonico: 051-223344.\n\nLuca Brambilla - Logistix S.r.l.",
+    "ground_truth": {
+      "mittente": "Luca Brambilla",
+      "email": "l.brambilla@logistix.it",
+      "telefono": "051223344",
+      "azienda": "Logistix S.r.l.",
+      "oggetto": "Incontro partner a Bologna",
+      "dataEvento": "14/12/2026",
+      "citta": "Bologna",
+      "numeroPartecipanti": null,
+      "budgetEuro": null
+    },
+    "notes": "Date multiple; partecipanti e budget non stabiliti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "numeroPartecipanti"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_08",
+    "type": "EMAIL",
+    "template": "EML_T2_PREVENTIVO_SERVIZIO",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "Da: Dott.ssa Chiara Moretti <chiara.moretti@medialab.it>\nOggetto: Conferenza stampa Firenze\nData: 10/06/2026\n\nChiedo disponibilità sede di Firenze per conferenza in data 05/11/2026.\nNumero invitati e importo spesa da definire successivamente.\nTel: 055 998877.\n\nChiara Moretti - MediaLab Group",
+    "ground_truth": {
+      "mittente": "Chiara Moretti",
+      "email": "chiara.moretti@medialab.it",
+      "telefono": "055998877",
+      "azienda": "MediaLab Group",
+      "oggetto": "Conferenza stampa Firenze",
+      "dataEvento": "05/11/2026",
+      "citta": "Firenze",
+      "numeroPartecipanti": null,
+      "budgetEuro": null
+    },
+    "notes": "Onorifico Dott.ssa; partecipanti e budget non definiti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "numeroPartecipanti"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "mittente",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_09",
+    "type": "EMAIL",
+    "template": "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Mittente: ing. Paolo Rossi <p.rossi@automotive-nord.it>\nData: 01/07/2026\nOggetto: Sessione tecnica R&D virtuale\n\nConfermo giornata tecnica in videoconferenza il 18/11/2026 per dodici partecipanti.\nBudget stanziato: 1.200 euro.\nNessun contatto telefonico disponibile.\n\nPaolo Rossi - Automotive Nord S.p.A.",
+    "ground_truth": {
+      "mittente": "Paolo Rossi",
+      "email": "p.rossi@automotive-nord.it",
+      "telefono": null,
+      "azienda": "Automotive Nord S.p.A.",
+      "oggetto": "Sessione tecnica R&D virtuale",
+      "dataEvento": "18/11/2026",
+      "citta": null,
+      "numeroPartecipanti": 12,
+      "budgetEuro": 1200.0
+    },
+    "notes": "Partecipanti 'dodici'; budget con punto; titolo ing.; città e telefono assenti (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_10",
+    "type": "EMAIL",
+    "template": "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Federica Rinaldi <f.rinaldi@greencell.eu>\nData invio: 15/07/2026\nOggetto: Seminario sostenibilità aziendale\n\nPrenotiamo sala a Genova per il 25 novembre 2026 per 45 persone.\nLa disponibilità finanziaria non è ancora quantificabile. Non dispongo di linea telefonica.\n\nFederica Rinaldi - GreenCell Ltd",
+    "ground_truth": {
+      "mittente": "Federica Rinaldi",
+      "email": "f.rinaldi@greencell.eu",
+      "telefono": null,
+      "azienda": "GreenCell Ltd",
+      "oggetto": "Seminario sostenibilità aziendale",
+      "dataEvento": "2026-11-25",
+      "citta": "Genova",
+      "numeroPartecipanti": 45,
+      "budgetEuro": null
+    },
+    "notes": "Data '25 novembre 2026'; telefono e budget omessi (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_11",
+    "type": "EMAIL",
+    "template": "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Valerio Galli <v.galli@fintechitaly.it>\nData: 20/07/2026\nOggetto: Team building aziendale\n\nPianifichiamo evento per il 03/12/2026 per venti dipendenti. Budget: 5000 euro.\nLa sede cittadina non è definita e rispondo solo via ticket web.\n\nValerio Galli - FinTech Italy S.r.l.",
+    "ground_truth": {
+      "mittente": "Valerio Galli",
+      "email": "v.galli@fintechitaly.it",
+      "telefono": null,
+      "azienda": "FinTech Italy S.r.l.",
+      "oggetto": "Team building aziendale",
+      "dataEvento": "03/12/2026",
+      "citta": null,
+      "numeroPartecipanti": 20,
+      "budgetEuro": 5000.0
+    },
+    "notes": "Partecipanti 'venti'; città e telefono non definiti (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_12",
+    "type": "EMAIL",
+    "template": "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Dott. Andrea Colombo <andrea.colombo@biohealth.it>\nData: 28/07/2026\nOggetto: Riunione clinica a Verona\n\nRichiedo sala a Verona per il 10/12/2026.\nNon possiamo indicare partecipanti né budget poiché l'accesso è libero.\nTelefono: 045-8001122.\n\nAndrea Colombo - BioHealth Corp",
+    "ground_truth": {
+      "mittente": "Andrea Colombo",
+      "email": "andrea.colombo@biohealth.it",
+      "telefono": "0458001122",
+      "azienda": "BioHealth Corp",
+      "oggetto": "Riunione clinica a Verona",
+      "dataEvento": "10/12/2026",
+      "citta": "Verona",
+      "numeroPartecipanti": null,
+      "budgetEuro": null
+    },
+    "notes": "Onorifico Dott.; telefono con trattino; partecipanti e budget assenti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "numeroPartecipanti"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "mittente",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_13",
+    "type": "EMAIL",
+    "template": "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Marta Ferri <marta.ferri@agritech.it>\nData: 05/08/2026\nOggetto: Convegno Bari\n\nCome da accordi presi il 20/07 e 30/07, la conferenza a Bari si terrà il 16/12/2026.\nPrevediamo ottanta partecipanti. Spesa a carico dei singoli senza budget aziendale.\n\nMarta Ferri - AgriTech S.r.l.",
+    "ground_truth": {
+      "mittente": "Marta Ferri",
+      "email": "marta.ferri@agritech.it",
+      "telefono": null,
+      "azienda": "AgriTech S.r.l.",
+      "oggetto": "Convegno Bari",
+      "dataEvento": "16/12/2026",
+      "citta": "Bari",
+      "numeroPartecipanti": 80,
+      "budgetEuro": null
+    },
+    "notes": "Date multiple; partecipanti 'ottanta'; telefono e budget assenti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_14",
+    "type": "EMAIL",
+    "template": "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Avv. Giorgio Bassi <giorgio.bassi@studiobassi.it>\nData: 10/08/2026\nOggetto: Incontro fiscale telematico\n\nDopo il webinar del 15/06/2026, confermiamo l'incontro telematico per il 18/12/2026.\nSaremo quindici partecipanti. Sessione pro-bono gratuita.\nTel: +39-051-990011.\n\nGiorgio Bassi - Studio Legale Bassi",
+    "ground_truth": {
+      "mittente": "Giorgio Bassi",
+      "email": "giorgio.bassi@studiobassi.it",
+      "telefono": "+39051990011",
+      "azienda": "Studio Legale Bassi",
+      "oggetto": "Incontro fiscale telematico",
+      "dataEvento": "18/12/2026",
+      "citta": null,
+      "numeroPartecipanti": 15,
+      "budgetEuro": null
+    },
+    "notes": "Titolo Avv.; partecipanti 'quindici'; date multiple; città e budget assenti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "citta"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "mittente",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_15",
+    "type": "EMAIL",
+    "template": "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Simona De Luca <s.deluca@fashionbrand.it>\nData: 22/08/2026\nOggetto: Presentazione collezione Milano\n\nConfermiamo l'evento a Milano per il 22/12/2026.\nNon abbiamo limite di budget né conteggio dei partecipanti per questa fase.\nContatto: +39 02 11223344.\n\nSimona De Luca - FashionBrand S.p.A.",
+    "ground_truth": {
+      "mittente": "Simona De Luca",
+      "email": "s.deluca@fashionbrand.it",
+      "telefono": "+39 02 11223344",
+      "azienda": "FashionBrand S.p.A.",
+      "oggetto": "Presentazione collezione Milano",
+      "dataEvento": "22/12/2026",
+      "citta": "Milano",
+      "numeroPartecipanti": null,
+      "budgetEuro": null
+    },
+    "notes": "Partecipanti e budget non definiti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "numeroPartecipanti"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_16",
+    "type": "EMAIL",
+    "template": "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Matteo Fontana <m.fontana@solarenergia.it>\nData: 30/08/2026\nOggetto: Tavola rotonda transizione energetica\n\nLa tavola rotonda online si svolgerà il 28/12/2026 per 60 persone.\nBudget: 3000 EUR.\n\nMatteo Fontana - SolarEnergia S.r.l.",
+    "ground_truth": {
+      "mittente": "Matteo Fontana",
+      "email": "m.fontana@solarenergia.it",
+      "telefono": null,
+      "azienda": "SolarEnergia S.r.l.",
+      "oggetto": "Tavola rotonda transizione energetica",
+      "dataEvento": "28/12/2026",
+      "citta": null,
+      "numeroPartecipanti": 60,
+      "budgetEuro": 3000.0
+    },
+    "notes": "Città e telefono omessi (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_17",
+    "type": "EMAIL",
+    "template": "EML_T5_THREAD_RECAPITO_FIRMA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Sig.ra Roberta Conti <r.conti@edilsmart.it>\nData: 02/09/2026\nOggetto: Corso sicurezza sul lavoro da remoto\n\nConfermo corso online per il 12/01/2027 per dieci partecipanti.\nFondi aziendali interni a rendiconto successivo.\n\nRoberta Conti - EdilSmart S.r.l.\nTel. 091-6677889",
+    "ground_truth": {
+      "mittente": "Roberta Conti",
+      "email": "r.conti@edilsmart.it",
+      "telefono": "0916677889",
+      "azienda": "EdilSmart S.r.l.",
+      "oggetto": "Corso sicurezza sul lavoro da remoto",
+      "dataEvento": "12/01/2027",
+      "citta": null,
+      "numeroPartecipanti": 10,
+      "budgetEuro": null
+    },
+    "notes": "Onorifico Sig.ra; partecipanti 'dieci'; telefono nella firma; città e budget assenti (due null attesi).",
+    "null_fields": [
+      "budgetEuro",
+      "citta"
+    ],
+    "difficult_fields": [
+      "dataEvento",
+      "mittente",
+      "numeroPartecipanti",
+      "telefono"
+    ]
+  },
+  {
+    "id": "EML_18",
+    "type": "EMAIL",
+    "template": "EML_T5_THREAD_RECAPITO_FIRMA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Lorenzo Villa <l.villa@roboticsitaly.com>\nData: 10/09/2026\nOggetto: Prototipo Trieste\n\nIncontro fissato a Trieste per il 15/01/2027 a ingresso libero senza conteggio dei presenti. Budget: 2500 EUR.\nNon sono reperibile via telefono.\n\nLorenzo Villa - Robotics Italy S.p.A.",
+    "ground_truth": {
+      "mittente": "Lorenzo Villa",
+      "email": "l.villa@roboticsitaly.com",
+      "telefono": null,
+      "azienda": "Robotics Italy S.p.A.",
+      "oggetto": "Prototipo Trieste",
+      "dataEvento": "15/01/2027",
+      "citta": "Trieste",
+      "numeroPartecipanti": null,
+      "budgetEuro": 2500.0
+    },
+    "notes": "Telefono e partecipanti assenti (due null attesi).",
+    "null_fields": [
+      "numeroPartecipanti",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento"
+    ]
+  },
+  {
+    "id": "EML_19",
+    "type": "EMAIL",
+    "template": "EML_T5_THREAD_RECAPITO_FIRMA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Dott. Filippo Sala <f.sala@pharmaone.it>\nData: 18/09/2026\nOggetto: Convegno medico digitale\n\nConfermo streaming digitale per il 20/01/2027.\nPartecipanti: cento persone. Budget stimato: 15.000 euro.\nNessun centralino telefonico attivo.\n\nFilippo Sala - PharmaOne S.p.A.",
+    "ground_truth": {
+      "mittente": "Filippo Sala",
+      "email": "f.sala@pharmaone.it",
+      "telefono": null,
+      "azienda": "PharmaOne S.p.A.",
+      "oggetto": "Convegno medico digitale",
+      "dataEvento": "20/01/2027",
+      "citta": null,
+      "numeroPartecipanti": 100,
+      "budgetEuro": 15000.0
+    },
+    "notes": "Partecipanti 'cento'; budget 15000; onorifico Dott.; città e telefono assenti (due null attesi).",
+    "null_fields": [
+      "citta",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "budgetEuro",
+      "dataEvento",
+      "mittente",
+      "numeroPartecipanti"
+    ]
+  },
+  {
+    "id": "EML_20",
+    "type": "EMAIL",
+    "template": "EML_T5_THREAD_RECAPITO_FIRMA",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "Da: Beatrice Leone <b.leone@designlab.it>\nData: 25/09/2026\nOggetto: Mostra design 2027\n\nEvento per il 25/01/2027 senza città stabilita.\nNessun budget o conteggio partecipanti definiti.\n\nBeatrice Leone - DesignLab S.r.l.",
+    "ground_truth": {
+      "mittente": "Beatrice Leone",
+      "email": "b.leone@designlab.it",
+      "telefono": null,
+      "azienda": "DesignLab S.r.l.",
+      "oggetto": "Mostra design 2027",
+      "dataEvento": "25/01/2027",
+      "citta": null,
+      "numeroPartecipanti": null,
+      "budgetEuro": null
+    },
+    "notes": "Quattro null attesi contemporaneamente.",
+    "null_fields": [
+      "budgetEuro",
+      "citta",
+      "numeroPartecipanti",
+      "telefono"
+    ],
+    "difficult_fields": [
+      "dataEvento"
+    ]
+  },
+  {
+    "id": "ANA_05",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T2_PATENTE_GUIDA_CARD",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "REPUBBLICA ITALIANA\nPATENTE DI GUIDA N. U1X987654Z\n1. BIANCHI 2. MARIO\n3. 12/03/1985 ROMA (RM)\n4a. 05/05/2020 4b. 05/05/2030",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Mario",
+      "cognome": "Bianchi",
+      "codiceFiscale": null,
+      "dataNascita": "12/03/1985",
+      "luogoNascita": "Roma (RM)",
+      "sesso": null,
+      "numeroDocumento": "U1X987654Z",
+      "dataRilascio": "05/05/2020",
+      "dataScadenza": "05/05/2030",
+      "enteRilascio": null
+    },
+    "notes": "Patente di guida UE; date 05/05 ripetute; sesso, CF ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_06",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T2_PATENTE_GUIDA_CARD",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "PATENTE DI GUIDA N. U1Y112233K\nCognome: VERDI\nNome: GIULIA\nNascita: 24/09/1990 a MILANO (MI)\nRilascio: 10/10/2021 | Scadenza: 10/10/2031",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Giulia",
+      "cognome": "Verdi",
+      "codiceFiscale": null,
+      "dataNascita": "24/09/1990",
+      "luogoNascita": "Milano (MI)",
+      "sesso": null,
+      "numeroDocumento": "U1Y112233K",
+      "dataRilascio": "10/10/2021",
+      "dataScadenza": "10/10/2031",
+      "enteRilascio": null
+    },
+    "notes": "CF, sesso ed ente omessi (tre null attesi); date 10/10 ripetute.",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_07",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T2_PATENTE_GUIDA_CARD",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "CARTA DI IDENTITA CA12345XY\nCognome: DE ROSSI\nNome: FRANCESCO PAOLO\nNato il 15/07/1978 a NAPOLI (NA)\nEmissione: 01/02/2022 | Scadenza: 15/07/2032",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Francesco Paolo",
+      "cognome": "De Rossi",
+      "codiceFiscale": null,
+      "dataNascita": "15/07/1978",
+      "luogoNascita": "Napoli (NA)",
+      "sesso": null,
+      "numeroDocumento": "CA12345XY",
+      "dataRilascio": "01/02/2022",
+      "dataScadenza": "15/07/2032",
+      "enteRilascio": null
+    },
+    "notes": "Nome e cognome composti; CF, sesso ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "cognome",
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "nome",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_08",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T2_PATENTE_GUIDA_CARD",
+    "split": "dev",
+    "observed_in_baseline": false,
+    "payload": "DOCUMENTO DI IDENTITA N. AB9876543\nIntestatario: ANDREA RIVA\nNascita: 4 febbraio 1986 a BOLOGNA (BO)\nRilascio: 10/05/2019 - Scadenza: 04/02/2029",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Andrea",
+      "cognome": "Riva",
+      "codiceFiscale": null,
+      "dataNascita": "1986-02-04",
+      "luogoNascita": "Bologna (BO)",
+      "sesso": null,
+      "numeroDocumento": "AB9876543",
+      "dataRilascio": "10/05/2019",
+      "dataScadenza": "04/02/2029",
+      "enteRilascio": null
+    },
+    "notes": "Data estesa '4 febbraio 1986'; sesso, CF ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_09",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T3_PASSAPORTO_MINISTERO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PASSAPORTO ITALIANO YA5544332\nCognome: ESPOSITO\nNome: GENNARO\nNascita: 03/03/1980 | Luogo: SALERNO (SA)\nRilascio: 01/06/2021 | Scadenza: 01/06/2031",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Gennaro",
+      "cognome": "Esposito",
+      "codiceFiscale": null,
+      "dataNascita": "03/03/1980",
+      "luogoNascita": "Salerno (SA)",
+      "sesso": null,
+      "numeroDocumento": "YA5544332",
+      "dataRilascio": "01/06/2021",
+      "dataScadenza": "01/06/2031",
+      "enteRilascio": null
+    },
+    "notes": "Cifre ripetute 03/03 e 01/06; CF, sesso ed ente omessi (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_10",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T3_PASSAPORTO_MINISTERO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PASSAPORTO YB9988771\nCognome: FERRARI\nNome: VALENTINA\nNata a FIRENZE (FI) il 18/11/1992\nValidità dal 12/12/2022 al 12/12/2032",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Valentina",
+      "cognome": "Ferrari",
+      "codiceFiscale": null,
+      "dataNascita": "18/11/1992",
+      "luogoNascita": "Firenze (FI)",
+      "sesso": null,
+      "numeroDocumento": "YB9988771",
+      "dataRilascio": "12/12/2022",
+      "dataScadenza": "12/12/2032",
+      "enteRilascio": null
+    },
+    "notes": "CF, sesso ed ente assenti (tre null attesi); date ripetute 12/12.",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_11",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T3_PASSAPORTO_MINISTERO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PASSAPORTO YC1239876\nTitolare: MARCO AURELIO MANCINI\nNascita: 07/07/1975 a ROMA (RM)\nRilascio: 20/03/2023 | Scadenza: 20/03/2033",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Marco Aurelio",
+      "cognome": "Mancini",
+      "codiceFiscale": null,
+      "dataNascita": "07/07/1975",
+      "luogoNascita": "Roma (RM)",
+      "sesso": null,
+      "numeroDocumento": "YC1239876",
+      "dataRilascio": "20/03/2023",
+      "dataScadenza": "20/03/2033",
+      "enteRilascio": null
+    },
+    "notes": "Nome composto; CF, sesso ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "nome",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_12",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T3_PASSAPORTO_MINISTERO",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PASSAPORTO YD4433221\nCognome: SERRA\nNome: BEATRICE\nNascita a CAGLIARI (CA) il 30/08/1984\nRilascio: 15/04/2020 | Scadenza: 15/04/2030",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Beatrice",
+      "cognome": "Serra",
+      "codiceFiscale": null,
+      "dataNascita": "30/08/1984",
+      "luogoNascita": "Cagliari (CA)",
+      "sesso": null,
+      "numeroDocumento": "YD4433221",
+      "dataRilascio": "15/04/2020",
+      "dataScadenza": "15/04/2030",
+      "enteRilascio": null
+    },
+    "notes": "Date 15/04 ripetute; CF, sesso ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_13",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T4_TESSERA_SANITARIA_TEAM",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "TESSERA SANITARIA\nCF: CSTLGI88D14F205I\nCognome: COSTA\nNome: LUIGI\nNascita: 14/04/1988 | MILANO (MI)\nScadenza: 14/04/2028\nNumero tessera: 80380001234567890123",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Luigi",
+      "cognome": "Costa",
+      "codiceFiscale": "CSTLGI88D14F205I",
+      "dataNascita": "14/04/1988",
+      "luogoNascita": "Milano (MI)",
+      "sesso": null,
+      "numeroDocumento": "80380001234567890123",
+      "dataRilascio": null,
+      "dataScadenza": "14/04/2028",
+      "enteRilascio": null
+    },
+    "notes": "Numero a 20 cifre; sesso, data rilascio ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "dataRilascio",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_14",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T4_TESSERA_SANITARIA_TEAM",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "TESSERA SANITARIA NAZIONALE\nCognome: GALLO\nNome: MARTINA\nLuogo: TORINO (TO)\nData nascita: 25/12/1995\nCF: GLLMTN95T65L219K\nScadenza: 25/12/2030\nID Tessera: 80380009876543210987",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Martina",
+      "cognome": "Gallo",
+      "codiceFiscale": "GLLMTN95T65L219K",
+      "dataNascita": "25/12/1995",
+      "luogoNascita": "Torino (TO)",
+      "sesso": null,
+      "numeroDocumento": "80380009876543210987",
+      "dataRilascio": null,
+      "dataScadenza": "25/12/2030",
+      "enteRilascio": null
+    },
+    "notes": "Tre null attesi (sesso, rilascio, ente).",
+    "null_fields": [
+      "dataRilascio",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_15",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T4_TESSERA_SANITARIA_TEAM",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "TESSERA SANITARIA TEAM\nCF: RZZPLA70E10H501T\nIntestatario: RIZZO PAOLO\nNato a ROMA il 10/05/1970\nScadenza: 10/05/2026\nNumero carta: TS-77665544",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Paolo",
+      "cognome": "Rizzo",
+      "codiceFiscale": "RZZPLA70E10H501T",
+      "dataNascita": "10/05/1970",
+      "luogoNascita": "Roma",
+      "sesso": null,
+      "numeroDocumento": "TS-77665544",
+      "dataRilascio": null,
+      "dataScadenza": "10/05/2026",
+      "enteRilascio": null
+    },
+    "notes": "Sesso, rilascio ed ente omessi (tre null attesi).",
+    "null_fields": [
+      "dataRilascio",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_16",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T4_TESSERA_SANITARIA_TEAM",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "CARTA SANITARIA REGIONALE\nCognome: GRECO\nNome: ALESSANDRA\nCF: GRCSSN82A50F839A\nNascita: 10/01/1982 a NAPOLI (NA)\nScadenza: 10/01/2027\nCodice: TS99001122",
+    "ground_truth": {
+      "tipoDocumento": "TESSERA_SANITARIA",
+      "nome": "Alessandra",
+      "cognome": "Greco",
+      "codiceFiscale": "GRCSSN82A50F839A",
+      "dataNascita": "10/01/1982",
+      "luogoNascita": "Napoli (NA)",
+      "sesso": null,
+      "numeroDocumento": "TS99001122",
+      "dataRilascio": null,
+      "dataScadenza": "10/01/2027",
+      "enteRilascio": null
+    },
+    "notes": "Tre null attesi (sesso, rilascio, ente).",
+    "null_fields": [
+      "dataRilascio",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_17",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T5_DOCUMENTO_OCR_NOISY",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "REPUBBLICA ITAlIANA - CARTA D'IDENTITA CA-998877\nCognome: LOMBARDI\nNome: STEFANO\nNato a: BARI (BA) il 02/02/1981\nData rilascio: 15/03/2021 | Data scadenza: 02/02/2031",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Stefano",
+      "cognome": "Lombardi",
+      "codiceFiscale": null,
+      "dataNascita": "02/02/1981",
+      "luogoNascita": "Bari (BA)",
+      "sesso": null,
+      "numeroDocumento": "CA-998877",
+      "dataRilascio": "15/03/2021",
+      "dataScadenza": "02/02/2031",
+      "enteRilascio": null
+    },
+    "notes": "Rumore OCR leggero ('ITAlIANA'); CF, sesso ed ente non indicati (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_18",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T5_DOCUMENTO_OCR_NOISY",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "PATENTE DI GUIDA U1Z334455W\n1. BARBIERI 2. CLAUDIA\n3. 18/06/1993 GENOVA (GE)\n4a. 01/07/2023 4b. 01/07/2033\n(Codice fiscale non apposto sul supporto)",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Claudia",
+      "cognome": "Barbieri",
+      "codiceFiscale": null,
+      "dataNascita": "18/06/1993",
+      "luogoNascita": "Genova (GE)",
+      "sesso": null,
+      "numeroDocumento": "U1Z334455W",
+      "dataRilascio": "01/07/2023",
+      "dataScadenza": "01/07/2033",
+      "enteRilascio": null
+    },
+    "notes": "CF, sesso ed ente omessi (tre null attesi); date 01/07.",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_19",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T5_DOCUMENTO_OCR_NOISY",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "CIE CD112233AA\nCognome: FONTANA\nNome: MATTEO\nNascita: 11/11/1988 a VERONA (VR)\nRilascio: 11/11/2021 | Scadenza: 11/11/2031",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Matteo",
+      "cognome": "Fontana",
+      "codiceFiscale": null,
+      "dataNascita": "11/11/1988",
+      "luogoNascita": "Verona (VR)",
+      "sesso": null,
+      "numeroDocumento": "CD112233AA",
+      "dataRilascio": "11/11/2021",
+      "dataScadenza": "11/11/2031",
+      "enteRilascio": null
+    },
+    "notes": "Giorno e mese 11/11 ripetuti in tutte le tre date; CF, sesso ed ente assenti (tre null attesi).",
+    "null_fields": [
+      "codiceFiscale",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "dataScadenza",
+      "numeroDocumento"
+    ]
+  },
+  {
+    "id": "ANA_20",
+    "type": "ANAGRAFICA",
+    "template": "ANA_T5_DOCUMENTO_OCR_NOISY",
+    "split": "test",
+    "observed_in_baseline": false,
+    "payload": "CERTIFICATO ANAGRAFICO N. CERT-889900\nSoggetto: SILVIA SANTORO\nData e luogo: 20/05/1991 a PISA (PI)\nCF: SNTLSV91E60G702T\nRilascio: 10/01/2020\nScadenza: Non prevista (tempo indeterminato)",
+    "ground_truth": {
+      "tipoDocumento": "NON_SPECIFICATO",
+      "nome": "Silvia",
+      "cognome": "Santoro",
+      "codiceFiscale": "SNTLSV91E60G702T",
+      "dataNascita": "20/05/1991",
+      "luogoNascita": "Pisa (PI)",
+      "sesso": null,
+      "numeroDocumento": "CERT-889900",
+      "dataRilascio": "10/01/2020",
+      "dataScadenza": null,
+      "enteRilascio": null
+    },
+    "notes": "Scadenza non prevista, sesso ed ente omessi (tre null attesi).",
+    "null_fields": [
+      "dataScadenza",
+      "enteRilascio",
+      "sesso"
+    ],
+    "difficult_fields": [
+      "dataNascita",
+      "dataRilascio",
+      "numeroDocumento"
+    ]
+  }
+]

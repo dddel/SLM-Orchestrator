@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "mittente": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "azienda": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oggetto": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "citta": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "numeroPartecipanti": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "budgetEuro": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "dataEvento": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "mittente",
+    "email"
+  ]
+}

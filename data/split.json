@@ -1,0 +1,120 @@
+{
+  "rule": "Dev (osservato): 24 documenti (12 storici T1 già osservati + 12 documenti T2 usati per sviluppo e tuning; T2 è ora osservato e non costituisce più test indipendente). Test (non osservato): 36 documenti nominali (12 per tipo) basati su template T3, T4, T5 disgiunti che non compaiono mai nel dev e non vengono aperti fino alla Fase 5.",
+  "counts": {
+    "total_documents": 60,
+    "dev_documents": 24,
+    "test_documents": 36,
+    "by_type": {
+      "FATTURA": {
+        "dev": 8,
+        "test": 12,
+        "total": 20
+      },
+      "EMAIL": {
+        "dev": 8,
+        "test": 12,
+        "total": 20
+      },
+      "ANAGRAFICA": {
+        "dev": 8,
+        "test": 12,
+        "total": 20
+      }
+    }
+  },
+  "dev_ids": [
+    "FAT_01",
+    "FAT_02",
+    "FAT_03",
+    "FAT_04",
+    "EML_01",
+    "EML_02",
+    "EML_03",
+    "EML_04",
+    "ANA_01",
+    "ANA_02",
+    "ANA_03",
+    "ANA_04",
+    "FAT_05",
+    "FAT_06",
+    "FAT_07",
+    "FAT_08",
+    "EML_05",
+    "EML_06",
+    "EML_07",
+    "EML_08",
+    "ANA_05",
+    "ANA_06",
+    "ANA_07",
+    "ANA_08"
+  ],
+  "test_ids": [
+    "FAT_09",
+    "FAT_10",
+    "FAT_11",
+    "FAT_12",
+    "FAT_13",
+    "FAT_14",
+    "FAT_15",
+    "FAT_16",
+    "FAT_17",
+    "FAT_18",
+    "FAT_19",
+    "FAT_20",
+    "EML_09",
+    "EML_10",
+    "EML_11",
+    "EML_12",
+    "EML_13",
+    "EML_14",
+    "EML_15",
+    "EML_16",
+    "EML_17",
+    "EML_18",
+    "EML_19",
+    "EML_20",
+    "ANA_09",
+    "ANA_10",
+    "ANA_11",
+    "ANA_12",
+    "ANA_13",
+    "ANA_14",
+    "ANA_15",
+    "ANA_16",
+    "ANA_17",
+    "ANA_18",
+    "ANA_19",
+    "ANA_20"
+  ],
+  "dev_templates": [
+    "ANA_T1_CARTA_IDENTITA_CARTACEA",
+    "ANA_T2_PATENTE_GUIDA_CARD",
+    "EML_T1_EVENTO_RICHIESTA",
+    "EML_T2_PREVENTIVO_SERVIZIO",
+    "FAT_T1_STANDARD_LINEARE",
+    "FAT_T2_TABELLARE_COMPATTO"
+  ],
+  "test_templates": [
+    "ANA_T3_PASSAPORTO_MINISTERO",
+    "ANA_T4_TESSERA_SANITARIA_TEAM",
+    "ANA_T5_DOCUMENTO_OCR_NOISY",
+    "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+    "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+    "EML_T5_THREAD_RECAPITO_FIRMA",
+    "FAT_T3_DISCORSIVO_NOTULA",
+    "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+    "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE"
+  ],
+  "dev_templates_status": {
+    "T1_storici_osservati": [
+      "FAT_T1_STANDARD_LINEARE",
+      "EML_T1_EVENTO_RICHIESTA",
+      "ANA_T1_CARTA_IDENTITA_CARTACEA"
+    ],
+    "T2_sviluppo_osservati": [
+      "FAT_T2_TABELLARE_COMPATTO",
+      "EML_T2_PREVENTIVO_SERVIZIO",
+      "ANA_T2_PATENTE_GUIDA_CARD"
+    ]
+  }
+}

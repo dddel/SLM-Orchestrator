@@ -1,0 +1,319 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BustaDocumentoMonolitico",
+  "type": "object",
+  "properties": {
+    "tipoDocumento": {
+      "type": "string",
+      "enum": [
+        "FATTURA",
+        "EMAIL",
+        "ANAGRAFICA",
+        "ALTRO"
+      ]
+    },
+    "fattura": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "numeroFattura": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataFattura": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fornitore": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "denominazione": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "partitaIva": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "denominazione",
+            "partitaIva"
+          ]
+        },
+        "cliente": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "denominazione": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "codiceFiscale": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "denominazione",
+            "codiceFiscale"
+          ]
+        },
+        "importoTotale": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "iban": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "numeroFattura",
+        "dataFattura",
+        "fornitore",
+        "cliente",
+        "importoTotale",
+        "iban"
+      ]
+    },
+    "email": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "mittente": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "telefono": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "azienda": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "oggetto": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "citta": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numeroPartecipanti": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "budgetEuro": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "dataEvento": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "mittente",
+        "email",
+        "telefono",
+        "azienda",
+        "oggetto",
+        "citta",
+        "numeroPartecipanti",
+        "budgetEuro",
+        "dataEvento"
+      ]
+    },
+    "anagrafica": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "tipoDocumento": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "CARTA_IDENTITA",
+            "PASSAPORTO",
+            "TESSERA_SANITARIA",
+            "PATENTE",
+            "NON_SPECIFICATO"
+          ]
+        },
+        "nome": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cognome": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codiceFiscale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataNascita": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "luogoNascita": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sesso": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numeroDocumento": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataRilascio": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataScadenza": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "enteRilascio": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "tipoDocumento",
+        "nome",
+        "cognome",
+        "codiceFiscale",
+        "dataNascita",
+        "luogoNascita",
+        "sesso",
+        "numeroDocumento",
+        "dataRilascio",
+        "dataScadenza",
+        "enteRilascio"
+      ]
+    },
+    "altro": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "categoriaRilevata": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "argomentoPrincipale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "motivoEsclusione": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entitaRilevate": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "categoriaRilevata",
+        "argomentoPrincipale",
+        "motivoEsclusione",
+        "entitaRilevate"
+      ]
+    }
+  },
+  "required": [
+    "tipoDocumento",
+    "fattura",
+    "email",
+    "anagrafica",
+    "altro"
+  ]
+}

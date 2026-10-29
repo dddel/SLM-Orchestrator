@@ -1,0 +1,71 @@
+services:
+  # Servizio Principale: Orchestratore Spring Boot
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: llmorchestrator:latest
+    container_name: llmorchestrator-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - ROUTER_TYPE=${ROUTER_TYPE:-local-ollama}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - JEV_API_KEY=${JEV_API_KEY:-}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
+    depends_on:
+      ollama-init:
+        condition: service_completed_successfully
+        required: false
+      ollama:
+        condition: service_healthy
+        required: false
+    networks:
+      - llmnet
+
+  # Motore SLM / LLM locale Ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: llmorchestrator-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      # Volume nominato OCI: compatibile con Docker, Podman e SELinux (nessun conflitto permessi)
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - llmnet
+
+  # Sidecar one-shot per il download e la compilazione dei Modelfile personalizzati
+  ollama-init:
+    image: curlimages/curl:latest
+    container_name: llmorchestrator-ollama-init
+    restart: "no"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      # Flag :ro,z assicura la lettura universale su Docker e Podman con SELinux attivo
+      - ./ollama:/modelfiles:ro,z
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    entrypoint: ["sh", "/modelfiles/init-models.sh"]
+    networks:
+      - llmnet
+
+volumes:
+  ollama_data:
+    name: llmorchestrator_ollama_data
+
+networks:
+  llmnet:
+    name: llmorchestrator_net
