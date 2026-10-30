@@ -15,5 +15,6 @@ public enum ValidationErrorCode {
     VALUE_EMPTY,
     VALUE_NOT_IN_CATALOG,
     FIELD_SWAP_DETECTED,
-    INFERENCE_ERROR
+    INFERENCE_ERROR,
+    INDETERMINATE
 }

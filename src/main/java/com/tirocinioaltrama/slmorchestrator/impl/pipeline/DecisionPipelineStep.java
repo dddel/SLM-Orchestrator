@@ -47,6 +47,8 @@ public class DecisionPipelineStep implements PipelineStep {
     private final String systemPrompt;
     private final boolean shuffleCandidates;
     private final java.util.Random random;
+    private final int kPermutations;
+    private final double minAgreementRatio;
 
     public record CandidateOption(
             char letter,
@@ -58,7 +60,7 @@ public class DecisionPipelineStep implements PipelineStep {
     ) {}
 
     public DecisionPipelineStep(String id, ModelClient modelClient, String model) {
-        this(id, modelClient, model, "company_roles", "destinatario", null, false, null);
+        this(id, modelClient, model, "company_roles", "destinatario", null, false, null, 1, 0.5);
     }
 
     public DecisionPipelineStep(
@@ -69,7 +71,7 @@ public class DecisionPipelineStep implements PipelineStep {
             String targetField,
             String systemPrompt
     ) {
-        this(id, modelClient, model, candidatesSource, targetField, systemPrompt, false, null);
+        this(id, modelClient, model, candidatesSource, targetField, systemPrompt, false, null, 1, 0.5);
     }
 
     public DecisionPipelineStep(
@@ -82,6 +84,21 @@ public class DecisionPipelineStep implements PipelineStep {
             boolean shuffleCandidates,
             java.util.Random random
     ) {
+        this(id, modelClient, model, candidatesSource, targetField, systemPrompt, shuffleCandidates, random, 1, 0.5);
+    }
+
+    public DecisionPipelineStep(
+            String id,
+            ModelClient modelClient,
+            String model,
+            String candidatesSource,
+            String targetField,
+            String systemPrompt,
+            boolean shuffleCandidates,
+            java.util.Random random,
+            int kPermutations,
+            double minAgreementRatio
+    ) {
         this.id = (id != null && !id.isBlank()) ? id : "decision_step";
         this.modelClient = modelClient;
         this.model = (model != null && !model.isBlank()) ? model : DEFAULT_REFLEX_MODEL;
@@ -90,6 +107,16 @@ public class DecisionPipelineStep implements PipelineStep {
         this.systemPrompt = systemPrompt;
         this.shuffleCandidates = shuffleCandidates;
         this.random = random != null ? random : new java.util.Random();
+        this.kPermutations = Math.max(1, kPermutations);
+        this.minAgreementRatio = (minAgreementRatio > 0.0 && minAgreementRatio <= 1.0) ? minAgreementRatio : 0.5;
+    }
+
+    public int getKPermutations() {
+        return kPermutations;
+    }
+
+    public double getMinAgreementRatio() {
+        return minAgreementRatio;
     }
 
     public boolean isShuffleCandidates() {
@@ -131,43 +158,90 @@ public class DecisionPipelineStep implements PipelineStep {
             return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.INFERENCE_ERROR, msg)), List.of());
         }
 
-        List<CandidateOption> candidates = buildCandidateOptions(rawCandidates, shuffleCandidates, random);
-        if (candidates.isEmpty()) {
-            String msg = "Nessun candidato valido estratto dalla sorgente '" + candidatesSource + "'.";
-            log.error(msg);
-            return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.INFERENCE_ERROR, msg)), List.of());
-        }
+        int effectiveK = Math.max(1, kPermutations);
+        java.util.Map<String, Integer> voteCounts = new java.util.LinkedHashMap<>();
+        java.util.Map<String, CandidateOption> keyToOption = new java.util.HashMap<>();
+        long totalInferenceLatencyMs = 0;
+        int totalInvocations = 0;
+        CandidateOption lastSelected = null;
 
-        String prompt = buildPrompt(context, candidates);
-        log.info("Esecuzione step decisionale '{}' con modello '{}' su {} candidati...", id, model, candidates.size());
-
-        ModelRequest request = new ModelRequest(
-                model,
-                prompt,
-                null,
-                Map.of("num_predict", 1, "temperature", 0.0, "repeat_penalty", 1.0),
-                systemPrompt
-        );
-
-        String answer;
-        try {
-            ModelResponse response = modelClient.generate(request);
-            if (response == null || response.content() == null || response.content().isBlank()) {
-                throw new IllegalStateException("Risposta vuota ricevuta dal modello decisionale.");
+        for (int p = 0; p < effectiveK; p++) {
+            boolean shouldShuffle = (effectiveK > 1) || shuffleCandidates;
+            List<CandidateOption> candidates = buildCandidateOptions(rawCandidates, shouldShuffle, random);
+            if (candidates.isEmpty()) {
+                String msg = "Nessun candidato valido estratto dalla sorgente '" + candidatesSource + "'.";
+                log.error(msg);
+                return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.INFERENCE_ERROR, msg)), List.of());
             }
-            answer = response.content().strip();
-            log.debug("Step decisionale '{}' risposta grezza: '{}'", id, answer);
-        } catch (Exception e) {
-            String msg = "Errore durante l'interrogazione del modello decisionale nello step '" + id + "': " + e.getMessage();
-            log.error(msg, e);
-            return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.INFERENCE_ERROR, msg)), List.of());
+
+            String prompt = buildPrompt(context, candidates);
+            log.info("Esecuzione step decisionale '{}' con modello '{}' su {} candidati (perm {}/{})...",
+                    id, model, candidates.size(), (p + 1), effectiveK);
+
+            ModelRequest request = new ModelRequest(
+                    model,
+                    prompt,
+                    null,
+                    Map.of("num_predict", 1, "temperature", 0.0, "repeat_penalty", 1.0),
+                    systemPrompt
+            );
+
+            long callStart = System.currentTimeMillis();
+            String answer;
+            try {
+                ModelResponse response = modelClient.generate(request);
+                totalInferenceLatencyMs += (System.currentTimeMillis() - callStart);
+                totalInvocations++;
+                if (response == null || response.content() == null || response.content().isBlank()) {
+                    throw new IllegalStateException("Risposta vuota ricevuta dal modello decisionale.");
+                }
+                answer = response.content().strip();
+                log.debug("Step decisionale '{}' risposta grezza perm {}: '{}'", id, p, answer);
+            } catch (Exception e) {
+                String msg = "Errore durante l'interrogazione del modello decisionale nello step '" + id + "' (perm " + p + "): " + e.getMessage();
+                log.error(msg, e);
+                return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.INFERENCE_ERROR, msg)), List.of());
+            }
+
+            CandidateOption selected = resolveCandidate(answer, candidates);
+            if (selected == null) {
+                String msg = "Risposta del modello decisionale ('" + answer + "') non corrisponde ad alcuna opzione valida tra A e " + candidates.get(candidates.size() - 1).letter() + ".";
+                log.warn(msg);
+                return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.VALUE_NOT_IN_CATALOG, msg)), List.of());
+            }
+
+            voteCounts.put(selected.key(), voteCounts.getOrDefault(selected.key(), 0) + 1);
+            keyToOption.put(selected.key(), selected);
+            lastSelected = selected;
         }
 
-        CandidateOption selected = resolveCandidate(answer, candidates);
-        if (selected == null) {
-            String msg = "Risposta del modello decisionale ('" + answer + "') non corrisponde ad alcuna opzione valida tra A e " + candidates.get(candidates.size() - 1).letter() + ".";
+        java.util.Map.Entry<String, Integer> topEntry = java.util.Collections.max(
+                voteCounts.entrySet(), java.util.Map.Entry.comparingByValue());
+        double agreementRatio = (double) topEntry.getValue() / effectiveK;
+
+        // Tracciamento osservabilità e metriche
+        context.recordStepMetric(new com.tirocinioaltrama.slmorchestrator.core.model.StepMetric(
+                id, "DECISION_VOTING", model, totalInferenceLatencyMs, 0, totalInvocations,
+                agreementRatio >= minAgreementRatio ? "CONSENSUS" : "INDETERMINATE"));
+        context.setAttribute("decision." + id + ".votes", voteCounts);
+        context.setAttribute("decision." + id + ".invocations", totalInvocations);
+        context.setAttribute("decision." + id + ".latencyMs", totalInferenceLatencyMs);
+        context.setAttribute("decision." + id + ".agreementRatio", agreementRatio);
+
+        if (agreementRatio < minAgreementRatio) {
+            String msg = String.format(Locale.ROOT,
+                    "Decisione indeterminata su step '%s': accordo insufficiente tra %d permutazioni (max: %.1f%% su '%s', richiesta: %.1f%%). Distribuzione voti: %s",
+                    id, effectiveK, (agreementRatio * 100.0), topEntry.getKey(), (minAgreementRatio * 100.0), voteCounts);
             log.warn(msg);
-            return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.VALUE_NOT_IN_CATALOG, msg)), List.of());
+            return ValidationResult.withFieldErrors(
+                    List.of(new FieldError(targetField, id, ValidationErrorCode.INDETERMINATE, msg)),
+                    List.of(msg)
+            );
+        }
+
+        CandidateOption selected = keyToOption.get(topEntry.getKey());
+        if (selected == null) {
+            selected = lastSelected;
         }
 
         log.info("Step decisionale '{}' ha selezionato opzione {}: {} (ruolo: '{}', persona: '{}')",

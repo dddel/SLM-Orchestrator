@@ -175,4 +175,87 @@ class DecisionPipelineStepTest {
         assertFalse(result.isValid());
         assertEquals(ValidationErrorCode.INFERENCE_ERROR, result.fieldErrors().get(0).code());
     }
+
+    @Test
+    @DisplayName("Fase 4: Voto su k permutazioni con consenso supera la soglia e valida la scelta")
+    void testVotingConsensusSucceeds() {
+        // Mock che restituisce sempre l'opzione associata a 'risorse_umane' (H.R.)
+        when(mockModelClient.generate(any(ModelRequest.class))).thenAnswer(inv -> {
+            ModelRequest req = inv.getArgument(0);
+            for (String line : req.userPrompt().split("\n")) {
+                if (line.contains("H.R.") || line.contains("Claudia Frammartino")) {
+                    return new ModelResponse(String.valueOf(line.trim().charAt(0)), 15L, null);
+                }
+            }
+            return new ModelResponse("A", 15L, null);
+        });
+
+        DecisionPipelineStep step = new DecisionPipelineStep(
+                "decision_step",
+                mockModelClient,
+                "reflex-model",
+                "company_roles",
+                "destinatario",
+                null,
+                true,
+                new java.util.Random(42),
+                3,     // k=3 permutazioni
+                0.60   // soglia consenso 60%
+        );
+
+        PipelineContext context = new PipelineContext("Email per ferie", DocumentType.EMAIL);
+        context.setAttribute("company_roles", sampleRolesJson);
+
+        ValidationResult result = step.execute(context);
+        assertTrue(result.isValid(), "Il voto su 3 permutazioni con accordo unanime deve essere valido");
+
+        assertEquals(3, context.getAttribute("decision.decision_step.invocations"));
+        assertNotNull(context.getAttribute("decision.decision_step.votes"));
+        assertEquals(1.0, (Double) context.getAttribute("decision.decision_step.agreementRatio"), 0.001);
+        assertFalse(context.getStepMetrics().isEmpty());
+        assertEquals("DECISION_VOTING", context.getStepMetrics().get(0).type());
+    }
+
+    @Test
+    @DisplayName("Fase 4: Voto su k permutazioni con disaccordo transita a INDETERMINATE")
+    void testVotingDisagreementYieldsIndeterminate() {
+        // Mock che restituisce ogni volta un candidato semantico diverso (direzione, risorse_umane, reparto_tecnico)
+        final List<String> distinctRoles = List.of("Direttore", "H.R.", "Reparto Tecnico");
+        final java.util.concurrent.atomic.AtomicInteger counter = new java.util.concurrent.atomic.AtomicInteger(0);
+        when(mockModelClient.generate(any(ModelRequest.class))).thenAnswer(inv -> {
+            int c = counter.getAndIncrement();
+            String targetRole = distinctRoles.get(c % distinctRoles.size());
+            ModelRequest req = inv.getArgument(0);
+            for (String line : req.userPrompt().split("\n")) {
+                if (line.contains(targetRole)) {
+                    return new ModelResponse(String.valueOf(line.trim().charAt(0)), 15L, null);
+                }
+            }
+            return new ModelResponse("A", 15L, null);
+        });
+
+        DecisionPipelineStep step = new DecisionPipelineStep(
+                "decision_step",
+                mockModelClient,
+                "reflex-model",
+                "company_roles",
+                "destinatario",
+                null,
+                true,
+                new java.util.Random(123),
+                3,     // k=3
+                0.60   // soglia 60% (1/3 = 33.3% < 60%)
+        );
+
+        PipelineContext context = new PipelineContext("Email ambigua tra reparti", DocumentType.EMAIL);
+        context.setAttribute("company_roles", sampleRolesJson);
+
+        ValidationResult result = step.execute(context);
+        assertFalse(result.isValid(), "Senza consenso sufficiente il passo deve restituire esito non valido");
+        assertEquals(1, result.fieldErrors().size());
+        assertEquals(ValidationErrorCode.INDETERMINATE, result.fieldErrors().get(0).code());
+        assertTrue(result.fieldErrors().get(0).message().contains("accordo insufficiente"));
+        assertEquals(3, context.getAttribute("decision.decision_step.invocations"));
+        assertEquals(1.0 / 3.0, (Double) context.getAttribute("decision.decision_step.agreementRatio"), 0.01);
+    }
 }
