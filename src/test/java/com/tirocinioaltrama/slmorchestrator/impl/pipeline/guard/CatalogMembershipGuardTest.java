@@ -132,4 +132,21 @@ class CatalogMembershipGuardTest {
         assertTrue(guard.validate("Claudia Frammartino").isValid());
         assertFalse(guard.validate("Soggetto Inesistente").isValid());
     }
+
+    @Test
+    @DisplayName("Limite noto: la guardia valida l'appartenenza al catalogo ma non la correttezza semantica della scelta")
+    void testGuardPassesSyntacticallyValidChoiceEvenIfSemanticallyWrong() throws Exception {
+        // Esempio: richiesta ferie del personale (pertinente a H.R. / Claudia Frammartino)
+        // erroneamente indirizzata alla Direzione Generale (Stefano Vena / Direttore).
+        // Poiché Stefano Vena e Direttore appartengono al catalogo, la guardia lascia passare la scelta.
+        String semanticallyWrongJson = """
+                {
+                  "destinatario": "Stefano Vena",
+                  "ruoloDestinatario": "Direttore"
+                }
+                """;
+        JsonNode node = mapper.readTree(semanticallyWrongJson);
+        ValidationResult res = CatalogMembershipGuard.validateJson(node, sampleRolesJson, List.of("destinatario", "ruoloDestinatario"));
+        assertTrue(res.isValid(), "Limite noto: la guardia non rileva incongruenze semantiche se i valori appartengono al catalogo");
+    }
 }

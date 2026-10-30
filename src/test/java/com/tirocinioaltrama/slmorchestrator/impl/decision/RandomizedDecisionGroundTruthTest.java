@@ -362,20 +362,24 @@ public class RandomizedDecisionGroundTruthTest {
     }
 
     // =========================================================================
-    // 4. MEMBERSHIP GUARD INVIOLABILITY TESTS
+    // 4. MEMBERSHIP GUARD SYNTACTIC VALIDATION TESTS
     // =========================================================================
 
     @Test
-    @DisplayName("CatalogMembershipGuard intercetta tentativi di allucinazione o scelte fuori catalogo")
-    void testMembershipGuardRejectsHallucinations() throws Exception {
-        String hallucinatedJson = """
+    @DisplayName("CatalogMembershipGuard su input forgiato: intercetta valori estranei al catalogo")
+    void testMembershipGuardRejectsForgedValues() throws Exception {
+        // NOTA METODOLOGICA: Questo test verifica il comportamento della guardia su un payload JSON contenente
+        // valori arbitrari/forgiati estranei al catalogo ("Babbo Natale", "Ufficio Magico").
+        // Dimostra che la guardia respinge stringhe fuori catalogo, NON l'assenza di allucinazioni
+        // da parte del modello neuronale.
+        String forgedJson = """
                 {
                   "destinatario": "Babbo Natale",
                   "ruoloDestinatario": "Ufficio Magico",
                   "emailDestinatario": "babbonatale@polo-nord.it"
                 }
                 """;
-        JsonNode node = OBJECT_MAPPER.readTree(hallucinatedJson);
+        JsonNode node = OBJECT_MAPPER.readTree(forgedJson);
         ValidationResult check = CatalogMembershipGuard.validateJson(
                 node, companyRolesJson, List.of("destinatario", "ruoloDestinatario")
         );
@@ -384,6 +388,26 @@ public class RandomizedDecisionGroundTruthTest {
         assertEquals(2, check.fieldErrors().size());
         assertEquals(ValidationErrorCode.VALUE_NOT_IN_CATALOG, check.fieldErrors().get(0).code());
         assertEquals(ValidationErrorCode.VALUE_NOT_IN_CATALOG, check.fieldErrors().get(1).code());
-        log.info("Test inviolabilità superato: tentata iniezione di 'Babbo Natale' intercettata con codice VALUE_NOT_IN_CATALOG");
+        log.info("Test guardia su input forgiato completato: valori estranei respinti con codice VALUE_NOT_IN_CATALOG");
+    }
+
+    @Test
+    @DisplayName("Limite noto CatalogMembershipGuard: autorizza scelte errate purché presenti nel catalogo")
+    void testMembershipGuardAllowsSemanticallyIncorrectChoiceInCatalog() throws Exception {
+        // Se una decisione è semanticamente scorretta (es. richiesta ferie assegnata a 'Reparto Tecnico'),
+        // la guardia simbolica la autorizza poiché i valori esistono formalmente nel catalogo.
+        String wrongChoiceJson = """
+                {
+                  "destinatario": "Marco Rossi",
+                  "ruoloDestinatario": "Reparto Tecnico"
+                }
+                """;
+        JsonNode node = OBJECT_MAPPER.readTree(wrongChoiceJson);
+        ValidationResult check = CatalogMembershipGuard.validateJson(
+                node, companyRolesJson, List.of("destinatario", "ruoloDestinatario")
+        );
+
+        assertTrue(check.isValid(),
+                "Limite strutturale: la guardia certifica solo l'appartenenza al catalogo, non la correttezza semantica");
     }
 }

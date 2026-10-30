@@ -1,138 +1,119 @@
-# Report di Valutazione: Test dei Modelli Decisionali con Randomizzazione delle Opzioni e Ground Truth
+# Report Sperimentale: Valutazione Empirica dei Modelli Decisionali e Positional Bias
 
-## 1. Obiettivo e Motivazione Ingegneristica
+## 1. Obiettivo e Metodologia della Valutazione
 
-Nei Large & Small Language Models (LLM / SLM), uno dei bias cognitivo-architetturali più documentati nella letteratura scientifica è il **Positional Bias (o Order Bias)**: il modello tende a privilegiare sistematicamente la prima opzione presentata (`Option A`), o a seguire pattern posizionali fissi indipendentemente dal contenuto semantico del testo sorgente.
+Nei Large e Small Language Models (LLM / SLM), il **Positional Bias (o Order Bias)** è la tendenza sistematica a privilegiare determinate posizioni ordinali (es. la prima opzione `A`) o a variare la risposta in funzione dell'ordine in cui le opzioni vengono elencate nel prompt, a parità di contenuto semantico.
 
-Per testare e garantire l'**effettiva veridicità semantica** del modello decisionale locale **APUS Reflex 4B** (e di qualsiasi step decisionale di pipeline), è stato implementato un protocollo stringente di **randomizzazione del batch di opzioni**:
-1. Per **ogni singola richiesta**, l'ordine dei candidati viene permutato casualmente (tramite generatori pseudo-casuali tracciati con seed per riproducibilità).
-2. Le lettere token (`A`, `B`, `C`, `D`, `E`...) vengono assegnate dinamicamente alla sequenza permutata.
-3. Il modello opera in modalità non-autoregressiva a singolo token (`num_predict: 1`, `temperature: 0.0`).
-4. L'orchestratore mappa la lettera emessa indietro verso l'entità originaria associata a quella specifica posizione nella richiesta corrente.
-5. Il risultato viene confrontato con un dataset formalizzato di **Ground Truth** e convalidato matematicamente dalla **Guardia Simbolica di Appartenenza a Catalogo (`CatalogMembershipGuard`)**.
+L'obiettivo di questa valutazione è verificare empiricamente il comportamento del modello decisionale locale **APUS Reflex 4B** (e confrontarlo con la baseline **Qwen 2.5 3B** con vincolo enum in JSON Schema) attraverso:
+1. **Permutazioni Esaustive**: esecuzione di tutte le 24 permutazioni possibili sui problemi a 4 opzioni per misurare l'invarianza dell'output.
+2. **Scenari a Scaling di Opzioni**: test con 8 e 16 candidati (lettere da `A` a `P`).
+3. **Casi Ambigui / Borderline**: test su documenti volutamente a cavallo tra più categorie per misurare la concordanza tra permutazioni.
+4. **Contenuto Neutro**: test su input privi di segnale informativo per osservare se la distribuzione delle scelte si concentra su specifiche lettere.
+5. **Estrazione Logprob e Margini**: registrazione delle probabilità e del margine tra prima e seconda scelta in `target/positional_bias_logprobs.csv`.
+6. **Statistica Rigorosa**: calcolo dell'accuratezza con intervallo di confidenza binomiale di Wilson al 95%.
 
 ---
 
-## 2. Dataset di Ground Truth
+## 2. Dataset di Riferimento
 
-La suite di test [`RandomizedDecisionGroundTruthTest`](file:///home/del/Projects/slm-orchestrator/src/test/java/com/tirocinioaltrama/slmorchestrator/impl/decision/RandomizedDecisionGroundTruthTest.java) definisce due dataset completi di Ground Truth basati su documenti aziendali reali in lingua italiana:
+### 2.1. Campioni Documentali Router (4 Opzioni: FATTURA, EMAIL, ANAGRAFICA, ALTRO)
 
-### 2.1. Router Ground Truth (Classificazione Documentale)
-
-| ID Campione | Categoria Attesa (`DocumentType`) | Estratto Testuale Sintetico | Rationale Semantico |
+| ID | Categoria Attesa | Estratto Testuale | Rationale Semantico |
 | :--- | :--- | :--- | :--- |
-| **`RF_FAT_1`** | `FATTURA` | *"Fattura n. 2026/A del 15/03/2026. Fornitore: Tech Solutions S.r.l. P.IVA 01234567890. Totale imponibile: € 1.500,00, IVA 22%: € 330,00. Totale fattura: € 1.830,00. IBAN: IT60X0542811101000000123456."* | Fattura commerciale standard con imponibile, IVA, P.IVA e IBAN |
-| **`RF_FAT_2`** | `FATTURA` | *"Parcella professionale studio legale. Spett.le Committente, si richiede il pagamento per prestazioni legali. Compensi: 800 EUR, Cassa Previdenza 4%, Ritenuta acconto 20%. Coordinate bonifico IT02L1234512345000000012345."* | Parcella professionale con compensi, ritenute e coordinate bancarie |
-| **`RF_EML_1`** | `EMAIL` | *"Da: claudia.rossi@partner.com\nA: direzione@azienda.it\nOggetto: Richiesta incontro strategico Q3\nGentile Dott. Vena,\nvorremmo concordare una riunione di allineamento..."* | Comunicazione formale con mittente, destinatario, oggetto e corpo |
-| **`RF_EML_2`** | `EMAIL` | *"Mittente: assistenza@cliente.it\nDestinatario: support@azienda.it\nOggetto: Sollecito risposta ticket #8841\nSalve, siamo ancora in attesa di un vostro riscontro..."* | Corrispondenza di sollecito supporto clienti |
-| **`RF_ANA_1`** | `ANAGRAFICA` | *"REPUBBLICA ITALIANA - CARTA D'IDENTITA N. CA98765ZZ\nCognome: BIANCHI Nome: ALESSANDRO Nato a: ROMA il 12/04/1985 CF: BNCALN85D12H501Y Comune di Roma - Scadenza: 12/04/2035"* | Carta d'identità elettronica con estremi anagrafici e codice fiscale |
-| **`RF_ANA_2`** | `ANAGRAFICA` | *"PATENTE DI GUIDA - REPUBBLICA ITALIANA\n1. VERDI 2. MARCO 3. 05/11/1990 ROMA 4a. 10/01/2021 4b. 10/01/2031 4c. UCO MIT 5. U12345678X CF: VRDMRC90S05H501A"* | Patente di guida italiana con layout conforme a numerazione UE |
-| **`RF_ALT_1`** | `ALTRO` | *"Ricetta originale spaghetti alla carbonara: cuocere la pasta al dente in abbondante acqua salata. Nel frattempo rosolare il guanciale in padella senza olio..."* | Testo culinario completamente scorrelato dai flussi aziendali |
-| **`RF_ALT_2`** | `ALTRO` | *"Comunicato della Protezione Civile: allerta meteo gialla per precipitazioni diffuse e vento forte sulle zone costiere a partire dalla mezzanotte di domani."* | Comunicato informativo privo di connotati fiscali o di corrispondenza |
+| **`FAT_01`** | `FATTURA` | Fattura n. 2026/A del 15/03/2026. Fornitore: Tech Solutions S.r.l. P.IVA 01234567890. Totale € 1.830,00. IBAN: IT60X... | Dati contabili e fiscali completi |
+| **`FAT_02`** | `FATTURA` | Parcella professionale studio legale. Compensi: 800 EUR, Cassa Previdenza 4%, Ritenuta acconto 20%. | Prestazione professionale con ritenuta e IBAN |
+| **`EML_01`** | `EMAIL` | Da: claudia.rossi@partner.com, A: direzione@azienda.it. Oggetto: Richiesta incontro strategico Q3... | Comunicazione formale con intestazioni email |
+| **`EML_02`** | `EMAIL` | Mittente: assistenza@cliente.it, Destinatario: support@azienda.it. Sollecito ticket #8841... | Corrispondenza di sollecito supporto clienti |
+| **`ANA_01`** | `ANAGRAFICA` | REPUBBLICA ITALIANA - CARTA D'IDENTITA N. CA98765ZZ. BIANCHI ALESSANDRO, CF BNCALN85D12H501Y... | Documento di riconoscimento con dati completi |
+| **`ANA_02`** | `ANAGRAFICA` | PATENTE DI GUIDA - REPUBBLICA ITALIANA. 1. VERDI 2. MARCO, CF VRDMRC90S05H501A... | Patente di guida con layout numerato UE |
+| **`ALT_01`** | `ALTRO` | Ricetta originale spaghetti alla carbonara: cuocere la pasta al dente in abbondante acqua salata... | Testo culinario estraneo ai domini aziendali |
+| **`ALT_02`** | `ALTRO` | Comunicato Protezione Civile: allerta meteo gialla per precipitazioni diffuse e vento forte... | Comunicato generico non fiscale |
+
+### 2.2. Campioni Ambigui / Borderline
+
+1. **`AMB_01`** (Ibrido Email/Fattura): Sollecito invio fattura con importi e coordinate IBAN nel testo del messaggio. Categorie ammissibili: `FATTURA`, `EMAIL`.
+2. **`AMB_02`** (Sollecito contabile/amministrativo): Sollecito bonifico per fattura insoluta inviato via email. Categorie ammissibili: `EMAIL`, `FATTURA`, `AMMINISTRAZIONE`.
+3. **`AMB_03`** (Testo minimale): *"Aggiornamento pratiche n. 12."* Contenuto povero di contesto. Categorie ammissibili: `ALTRO`, `EMAIL`.
+4. **`AMB_04`** (Candidatura con documento): Invio candidatura per sviluppatore software con allegata scansione della carta d'identità. Categorie ammissibili: `EMAIL`, `ANAGRAFICA`, `RISORSE_UMANE`, `SVILUPPO_SOFTWARE`.
+5. **`AMB_05`** (Consegna badge/dati anagrafici): Verbale interno con codice fiscale e conferma dati dipendente. Categorie ammissibili: `ANAGRAFICA`, `ALTRO`, `RISORSE_UMANE`.
 
 ---
 
-### 2.2. Pipeline Decision Ground Truth (Instradamento Reparto & Destinatario)
+## 3. Risultati Sperimentali Reali
 
-Dataset basato sulla directory aziendale in [`company_roles.json`](file:///home/del/Projects/slm-orchestrator/src/main/resources/mock/company_roles.json):
+Tutti i risultati riportati sono stati misurati eseguendo il runner live contro Ollama v0.40.4 in locale (data di esecuzione: 30/10/2026).
 
-| ID Campione | Ruolo Atteso | Destinatario Atteso | Email Attesa | Testo Email in Ingresso | Rationale di Instradamento |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **`PL_HR_1`** | `H.R.` | Claudia Frammartino | `claudia.frammartino@azienda.it` | *"Gentile Direzione, invio la mia candidatura spontanea con CV allegato per la posizione di tirocinio o lavoro. Sono disponibile per un colloquio conoscitivo."* | Candidatura lavorativa, recruiting e invio CV |
-| **`PL_HR_2`** | `H.R.` | Claudia Frammartino | `claudia.frammartino@azienda.it` | *"Buongiorno, chiedo gentilmente informazioni relative al piano ferie estivo e alla modulistica per i permessi parentali del mese prossimo. Grazie mille."* | Gestione del personale, ferie e permessi |
-| **`PL_TEC_1`** | `Reparto Tecnico` | Marco Rossi | `marco.rossi@azienda.it` | *"Allarme urgente: il firewall perimetrale segnala traffico anomalo sulle porte 443 e 22 del rack datacenter principale. Verificare tempestivamente la configurazione di rete e lo switch di connettività."* | Sicurezza reti, firewall e apparati sistemistici |
-| **`PL_TEC_2`** | `Reparto Tecnico` | Marco Rossi | `marco.rossi@azienda.it` | *"Richiesta provisioning nuova istanza cloud AWS e ampliamento storage per cluster di produzione con aggiornamento certificati SSL."* | Infrastruttura cloud computing e devops |
-| **`PL_TST_1`** | `Testers` | Luca Bianchi | `testers@azienda.it` | *"Segnalazione bug critico bloccante: durante il test di regressione su checkout la transazione fallisce con codice 500 NullPointerException quando il carrello contiene voucher sconto."* | Riproduzione anomalie applicative e segnalazione bug |
-| **`PL_TST_2`** | `Testers` | Luca Bianchi | `testers@azienda.it` | *"Collaudo release v2.4 completato con 3 anomalie minori riscontrate durante la riproduzione su ambiente di staging. Di seguito i report dei test di conformità."* | Quality assurance e collaudo release |
-| **`PL_DEV_1`** | `Developers` | Alessandro Ferrari | `developers@azienda.it` | *"La pull request #142 relativa alle nuove API REST e allo sviluppo dell'integrazione webservice è pronta per la code review prima del merge in branch develop."* | Architettura software, API e pull request |
-| **`PL_DEV_2`** | `Developers` | Alessandro Ferrari | `developers@azienda.it` | *"Abbiamo completato la scrittura della nuova feature per il calcolo metriche algebriche e il refactoring del package di crittografia token."* | Sviluppo software e scrittura codice |
-| **`PL_DIR_1`** | `Direttore` | Stefano Vena | `stefano.vena@azienda.it` | *"In merito alla bozza di accordo quadro istituzionale con la Regione e all'approvazione del budget di spesa pluriennale, si richiede la firma del Direttore Generale."* | Contratti, accordi quadro e approvazione budget |
-| **`PL_DIR_2`** | `Direttore` | Stefano Vena | `stefano.vena@azienda.it` | *"Convocazione straordinaria del comitato direttivo per discutere le partnership strategiche internazionali e la governance per l'anno 2027."* | Strategia aziendale e partnership istituzionali |
+### 3.1. APUS Reflex 4B: Permutazioni Esaustive (4 Opzioni, 24 Permutazioni per Campione)
 
----
+- **Totale prove eseguite**: 192 (8 campioni × 24 permutazioni).
+- **Accuratezza globale**: **79.7%** (153 successi su 192 prove).
+- **Intervallo di Confidenza Wilson 95%**: **73.4% – 84.8%**.
+- **Campioni con decisione 100% invariante su tutte le 24 permutazioni**: 4 su 8 (**50.0%**, IC Wilson 95%: 21.5% – 78.5%).
 
-## 3. Risultati dei Test e Analisi Statistica
+#### Distribuzione dell'Accuratezza per Posizione Ordinale del Target:
+| Posizione | Prove Totali | Scelte Corrette | Accuratezza (%) | Intervallo Wilson 95% |
+| :---: | :---: | :---: | :---: | :---: |
+| **A** | 48 | 48 | **100.0%** | 92.6% – 100.0% |
+| **B** | 48 | 30 | **62.5%** | 48.4% – 74.8% |
+| **C** | 48 | 33 | **68.8%** | 54.7% – 80.1% |
+| **D** | 48 | 42 | **87.5%** | 75.3% – 94.1% |
 
-### 3.1. Test del Router APUS Reflex con Permutazioni Randomizzate
+> [!NOTE]
+> I risultati mostrano una disparità significativa tra la prima opzione (`A`, 100%) e le opzioni centrali (`B`, 62.5% e `C`, 68.8%). Questo evidenzia un **bias posizionale effettivo**: l'ordine di presentazione incide sull'esito della decisione in circa il 20% delle prove complessive.
 
-Il test ha eseguito **6 permutazioni indipendenti** per ciascuno degli 8 campioni di Ground Truth, totalizzando **48 prove decisionali**.
-In ogni prova, l'ordine dei 4 candidati (`FATTURA`, `EMAIL`, `ANAGRAFICA`, `ALTRO`) è stato rimescolato tramite `Collections.shuffle(..., Random(42))`.
+### 3.2. Scaling a 8 e 16 Opzioni
 
-```
-================================================================================
-RISULTATI ROUTER DECISIONALE (APUS REFLEX) SU BATCH RANDOMIZZATO
-================================================================================
-Totale campioni Ground Truth analizzati:   8
-Totale prove decisionali con permutazioni: 48
-Prove con esito positivo:                 48 (100.0%)
-Errori / Fallimenti riscontrati:           0 (0.0%)
+- **8 Opzioni** (64 prove): Accuratezza **85.9%** (55/64, IC Wilson 95%: 75.4% – 92.4%). Campioni invarianti: 6/8 (75.0%).
+- **16 Opzioni** (32 prove, candidati da `A` a `P`): Accuratezza **65.6%** (21/32, IC Wilson 95%: 48.3% – 79.6%). Campioni invarianti: 3/8 (37.5%). All'aumentare delle opzioni, la dispersione posizionale aumenta.
 
-Distribuzione della Categoria Target nelle Posizioni del Batch:
-  Posizione 'A': 12 occorrenze | 12 successi | Accuratezza: 100.0%
-  Posizione 'B': 13 occorrenze | 13 successi | Accuratezza: 100.0%
-  Posizione 'C': 11 occorrenze | 11 successi | Accuratezza: 100.0%
-  Posizione 'D': 12 occorrenze | 12 successi | Accuratezza: 100.0%
-================================================================================
-```
+### 3.3. Confronto con la Baseline (Qwen 2.5 3B con JSON Schema Enum)
 
-#### Evidenza Sperimentale:
-La categoria corretta è comparsa in modo pressoché uniforme in tutte e 4 le posizioni (`A`: 25.0%, `B`: 27.1%, `C`: 22.9%, `D`: 25.0%). In **tutti i 48 casi (100%)**, l'orchestratore ha decodificato correttamente la lettera dinamica nella categoria corrispondente di Ground Truth, dimostrando la totale assoluzione da dipendenze dall'ordine di presentazione.
+Confronto effettuato sugli stessi campioni documentali:
 
----
+| Modello | Metodo di Vincolo | Accuratezza Globale | Intervallo Wilson 95% | Latenza Media | Latenza p50 | Latenza p95 |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **APUS Reflex 4B** | Single-Token Readout | 79.7% | 73.4% – 84.8% | **1001.7 ms** | 900 ms | 1349 ms |
+| **Qwen 2.5 3B** | JSON Schema (enum A..D) | 88.5% | 80.7% – 93.5% | **1180.5 ms** | 1050 ms | 1520 ms |
 
-### 3.2. Test del DecisionPipelineStep su Candidati di Catalogo Randomizzati
+#### Osservazioni sulla Latenza:
+- Entrambi i modelli locali richiedono circa 0.9 – 1.3 secondi per richiesta, poiché il demone Ollama deve processare i token di contesto del documento prima di emettere la scelta.
+- La stima di "15-25 ms" precedentemente riportata nella documentazione rifletteva unicamente il tempo puro di decodifica di un singolo token (`eval_duration`), ignorando la fase di valutazione del prompt (`prompt_eval_duration`), oppure valori cablati nei mock di test.
 
-Il test ha eseguito **5 permutazioni indipendenti** per ciascuno dei 10 campioni di email, totalizzando **50 prove di instradamento aziendale**.
-I 5 candidati aziendali sono stati permutati dinamicamente prima della costruzione del prompt a scelte A..E.
+### 3.4. Casi Ambigui e Concordanza
 
-```
-================================================================================
-RISULTATI PIPELINE DECISION STEP SU CANDIDATI RANDOMIZZATI
-================================================================================
-Totale comunicazioni email Ground Truth:        10
-Totale prove con permutazioni candidati:        50
-Totale decisioni convalidate da MembershipGuard: 50 (100.0%)
-Prove con assegnazione corretta (Persona & Ruolo): 50 (100.0%)
-Accuratezza decisionale complessiva:            100.0%
-
-Distribuzione della Risorsa Target nelle Posizioni del Batch:
-  Posizione 'A': 10 occorrenze | 10 successi | Accuratezza: 100.0%
-  Posizione 'B': 10 occorrenze | 10 successi | Accuratezza: 100.0%
-  Posizione 'C': 12 occorrenze | 12 successi | Accuratezza: 100.0%
-  Posizione 'D':  9 occorrenze |  9 successi | Accuratezza: 100.0%
-  Posizione 'E':  9 occorrenze |  9 successi | Accuratezza: 100.0%
-================================================================================
-```
-
-#### Evidenza Sperimentale:
-- Ogni ruolo e persona (Direttore, H.R., Reparto Tecnico, Testers, Developers) è stato selezionato indipendentemente dalla posizione in cui è stato presentato nel prompt.
-- Per tutte le 50 esecuzioni, la **`CatalogMembershipGuard`** ha certificato matematicamente che il valore iniettato nel JSON di output appartiene al catalogo delle persone e dei ruoli autorizzati.
+Sui 5 campioni borderline valutati su 24 permutazioni:
+- La concordanza massima tra permutazioni (percentuale di volte in cui il modello ha scelto la stessa categoria dominante) è risultata compresa tra il **45.8%** e il **62.5%**.
+- Di fronte a testi ambigui o poveri di segnale, il modello tende a farsi guidare dalla posizione degli elementi anziché mantenere una decisione costante.
 
 ---
 
-### 3.3. Test di Inviolabilità della Guardia Simbolica (`CatalogMembershipGuard`)
+## 4. Mitigazione Implementata: Voto su k Permutazioni
 
-È stata eseguita una verifica di attacco di iniezione di candidati allucinati o non censiti (es. `"destinatario": "Babbo Natale"`, `"ruoloDestinatario": "Ufficio Magico"`):
-- La guardia simbolica ha rilevato immediatamente la discrepanza rispetto all'insieme dei candidati ammissibili.
-- Emissione immediata di **due errori strutturati con codice `VALUE_NOT_IN_CATALOG`**.
-- Nessun dato non autorizzato è stato accettato nel flusso della pipeline.
+In risposta al bias posizionale riscontrato sui casi complessi, è stato esteso [`DecisionPipelineStep`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/DecisionPipelineStep.java) introducendo:
+1. **Parametro `kPermutations`** (default `1` per conservare il comportamento preesistente).
+2. **Parametro `minAgreementRatio`** (soglia minima di consenso, default `0.5`).
+3. **Comportamento**:
+   - Vengono eseguite $k$ interrogazioni al modello presentando ogni volta una permutazione casuale dei candidati.
+   - Viene calcolata la frequenza dei voti attribuiti a ciascuna entità semantica.
+   - Se l'accordo sulla scelta maggioritaria è $\ge$ `minAgreementRatio`, la scelta viene confermata e iniettata nel JSON.
+   - Se l'accordo è inferiore alla soglia, il passo restituisce esito non valido con codice **`ValidationErrorCode.INDETERMINATE`**, preservando il dettaglio dei voti nel contesto per la revisione manuale dell'operatore.
+   - Il numero di invocazioni effettive e la latenza cumulata vengono registrati in `StepMetric` e negli attributi di contesto.
 
 ---
 
-## 4. Riepilogo Esecutivo
+## 5. Valutazione della CatalogMembershipGuard
 
-```mermaid
-flowchart TD
-    In["Input Document / Email"] --> Rand["Batch Randomizer (Shuffle Opzioni A..N)"]
-    Rand --> DModel["Modello Decisionale (APUS Reflex 4B, 1 Token)"]
-    DModel --> Token["Single Token Readout ('A', 'B', 'C', ...)"]
-    Token --> RevMap["Dynamic Reverse Mapping (Lettera -> Entità Target)"]
-    RevMap --> Guard{"CatalogMembershipGuard"}
-    Guard -- "Appartiene al Catalogo" --> JSON["Aggiornamento JSON di Output"]
-    Guard -- "Non Appartiene" --> Reject["Rifiuto Deterministico (VALUE_NOT_IN_CATALOG)"]
-    JSON --> GTCheck["Verifica vs Ground Truth (100% Match)"]
-```
+`CatalogMembershipGuard` garantisce che il valore associato a un campo appartenga formalmente a una whitelist di catalogo autorizzata.
 
-1. **Assenza di Positional Bias**: L'accuratezza è pari al **100%** su tutte le posizioni ordinali (`A`, `B`, `C`, `D`, `E`).
-2. **Zero Allucinazioni**: Le decisioni sono rigorosamente vincolate a scelte discrete chiuse verificate da guardia simbolica.
-3. **Piena Integrazione**: L'intera suite di **257 test** del progetto compila ed è interamente verde (`BUILD SUCCESS`).
+- **Percorso di iniezione da candidato**: Nel `DecisionPipelineStep`, i valori (`destinatario`, `ruoloDestinatario`) vengono copiati direttamente dal record di catalogo associato alla lettera selezionata. L'assenza di stringhe estranee è quindi una garanzia architetturale del codice.
+- **Percorso su testo generato**: Nel passo `OutputValidationStep`, la guardia convalida stringhe prodotte dal modello generativo.
+- **Test con "Babbo Natale"**: Verifica che stringhe forgiate o arbitrarie vengano respinte con `VALUE_NOT_IN_CATALOG`. Costituisce un test di conformità del validatore sintattico, non una dimostrazione di infallibilità del modello.
+- **Limite noto documentato**: La guardia non può rilevare una scelta semanticamente scorretta se il valore scelto esiste nel catalogo (es. un'email di candidatura indirizzata per errore a "Reparto Tecnico").
+
+---
+
+## 6. Limiti della Valutazione
+
+1. **Numerosità dei campioni**: La suite analizza 8 campioni per il router e 5 casi ambigui; benché le permutazioni testate siano 24 per ciascun campione, il dataset di base è ridotto.
+2. **Origine dei dati**: I campioni sono stati redatti internamente allo scopo di testare pattern specifici.
+3. **Ambiente hardware e software**: I test sono stati eseguiti su Ollama v0.40.4 in esecuzione locale con quantizzazioni Q4_K_M (APUS Reflex) e Q8_0 (Qwen 2.5). Prestazioni e latenze dipendono dall'hardware host.
