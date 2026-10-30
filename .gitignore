@@ -33,7 +33,5 @@ build/
 .vscode/
 
 ###
-secret/
 /ollama/
 logs/
-.env

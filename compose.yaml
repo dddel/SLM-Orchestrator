@@ -12,10 +12,6 @@ services:
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
       - ROUTER_TYPE=${ROUTER_TYPE:-local-ollama}
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
-      - JEV_API_KEY=${JEV_API_KEY:-}
-      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
-      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
     depends_on:
       ollama-init:
         condition: service_completed_successfully
@@ -45,7 +41,7 @@ services:
     networks:
       - slmnet
 
-  # Sidecar one-shot per il download e la compilazione dei Modelfile personalizzati
+  # Sidecar one-shot per il download dei modelli locali (generativo + decisionale)
   ollama-init:
     image: curlimages/curl:latest
     container_name: slm-orchestrator-ollama-init
@@ -53,12 +49,19 @@ services:
     depends_on:
       ollama:
         condition: service_healthy
-    volumes:
-      # Flag :ro,z assicura la lettura universale su Docker e Podman con SELinux attivo
-      - ./ollama:/modelfiles:ro,z
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
-    entrypoint: ["sh", "/modelfiles/init-models.sh"]
+      - OLLAMA_BASE_MODEL=${OLLAMA_BASE_MODEL:-qwen2.5:3b-instruct-q8_0}
+      - OLLAMA_REFLEX_MODEL=${OLLAMA_REFLEX_MODEL:-hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M}
+    entrypoint:
+      - "sh"
+      - "-c"
+      - |
+        echo "Pull modello generativo: $$OLLAMA_BASE_MODEL"
+        curl -fsS http://ollama:11434/api/pull -d "{\"model\": \"$$OLLAMA_BASE_MODEL\", \"stream\": false}" || true
+        echo "Pull modello decisionale: $$OLLAMA_REFLEX_MODEL"
+        curl -fsS http://ollama:11434/api/pull -d "{\"model\": \"$$OLLAMA_REFLEX_MODEL\", \"stream\": false}" || true
+        echo "Inizializzazione modelli completata."
     networks:
       - slmnet
 

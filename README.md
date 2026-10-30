@@ -1,6 +1,6 @@
 # SLM Orchestrator
 
-Piattaforma neuro-simbolica basata su Java e Spring Boot per l'orchestrazione di Small Language Model (SLM) locali (tramite Ollama) o modelli remoti (Gemini, Cloudflare/Jev), con pipeline di estrazione strutturata, validazione simbolica e recupero degli errori.
+Piattaforma neuro-simbolica basata su Java e Spring Boot per l'orchestrazione di Small Language Model (SLM) locali (tramite Ollama), con pipeline di estrazione strutturata, validazione simbolica, tool calling e recupero degli errori.
 
 ---
 
@@ -15,19 +15,16 @@ Piattaforma neuro-simbolica basata su Java e Spring Boot per l'orchestrazione di
 
 ## 2. Configurazione e Variabili d'Ambiente
 
-La configurazione dell'applicazione può essere definita tramite file `.env` o variabili d'ambiente di sistema. Un modello di riferimento è disponibile in `.env.example`.
+La configurazione dell'applicazione può essere personalizzata tramite variabili d'ambiente di sistema oppure modificando i valori predefiniti in `src/main/resources/application.properties`. Non sono necessari secret o chiavi API esterne in quanto l'architettura opera al 100% in locale (offline).
 
 ### Variabili Principali
 
 | Variabile | Descrizione | Valore Predefinito / Esempio |
 | :--- | :--- | :--- |
-| `ROUTER_TYPE` | Meccanismo di routing dei documenti (`local-ollama`, `gemini`, `jev`) | `local-ollama` |
+| `ROUTER_TYPE` | Meccanismo di routing dei documenti (`local-ollama`) | `local-ollama` |
 | `OLLAMA_BASE_URL` | URL base dell'istanza Ollama per inferenza locale | `http://localhost:11434` |
-| `GEMINI_API_KEY` | Chiave API per Google AI Studio (necessaria con router o client Gemini) | - |
-| `JEV_PROVIDER` | Provider per router Jev (`typesafe` o `cloudflare`) | `typesafe` |
-| `JEV_API_KEY` | Chiave API per TypeSafe AI | - |
-| `CLOUDFLARE_API_TOKEN` | Token API per Cloudflare Workers AI | - |
-| `CLOUDFLARE_ACCOUNT_ID` | Account ID Cloudflare | - |
+| `OLLAMA_BASE_MODEL` | Modello SLM di default da interrogare | `qwen2.5:3b-instruct-q8_0` |
+| `OLLAMA_TIMEOUT_SECONDS` | Timeout in secondi per le chiamate HTTP a Ollama | `30` |
 
 Le proprietà applicative predefinite e i parametri di runtime sono definiti in `src/main/resources/application.properties`.
 
@@ -51,7 +48,7 @@ Per eseguire i test unitari e di integrazione offline:
 ./mvnw test
 ```
 
-I test che richiedono un'istanza live di Ollama o chiavi API esterne sono contrassegnati con il tag JUnit `@Tag("live")` e sono esclusi per impostazione predefinita dal profilo di test standard. Per eseguirli esplicitamente:
+I test che richiedono un'istanza live di Ollama sono contrassegnati con il tag JUnit `@Tag("live")` e sono esclusi per impostazione predefinita dal profilo di test standard. Per eseguirli esplicitamente:
 
 ```bash
 ./mvnw test -DexcludedGroups="" -Dgroups=live
@@ -79,7 +76,7 @@ docker compose up -d
 podman compose up -d
 ```
 
-Per l'abilitazione di accelerazione GPU NVIDIA, consultare `compose.gpu.yaml`.
+Per la guida dettagliata sull'architettura dei container, il ciclo di vita dei modelli locali e l'abilitazione dell'accelerazione GPU NVIDIA, consultare la guida dedicata: [**`DOCKER.md`**](file:///home/del/Projects/slm-orchestrator/DOCKER.md).
 
 ---
 

@@ -32,7 +32,7 @@
 
     <Loggers>
         <!-- Livello di log per i componenti del nostro orchestratore -->
-        <Logger name="com.tirocinioaltrama.llmorchestrator" level="DEBUG" additivity="false">
+        <Logger name="com.tirocinioaltrama.slmorchestrator" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Logger>

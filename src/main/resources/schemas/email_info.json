@@ -48,6 +48,24 @@
         "string",
         "null"
       ]
+    },
+    "destinatario": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ruoloDestinatario": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "motivoInstradamento": {
+      "type": [
+        "string",
+        "null"
+      ]
     }
   },
   "required": [

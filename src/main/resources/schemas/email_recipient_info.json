@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "destinatario": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ruoloDestinatario": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "motivoInstradamento": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
