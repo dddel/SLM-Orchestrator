@@ -13,6 +13,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.tirocinioaltrama.slmorchestrator.core.DocumentType;
 import com.tirocinioaltrama.slmorchestrator.core.model.ModelClient;
@@ -159,6 +161,46 @@ class DecisionPipelineStepTest {
         assertTrue(result.isValid(), "Il retry deve consentire il recupero e la validazione dello step");
         assertEquals("A", context.getAttribute("decision.decision_step.choice"));
         assertEquals("risorse_umane", context.getAttribute("decision.decision_step"));
+    }
+
+    @ParameterizedTest(name = "Retry con N={0}, lettera retry=''{1}'' -> mappa su candidato indice {2}")
+    @CsvSource({
+            "2, A, 1",
+            "2, B, 0",
+            "4, A, 1",
+            "4, B, 2",
+            "4, C, 3",
+            "4, D, 0",
+            "5, A, 1",
+            "5, B, 2",
+            "5, C, 3",
+            "5, D, 4",
+            "5, E, 0"
+    })
+    @DisplayName("Fase A2-ter: Verifica parametrica rimappatura retry ruotato per N=2, N=4, N=5 su tutte le lettere")
+    void testRotatedRetryRemappingParameterized(int n, String retryLetter, int expectedOriginalIndex) {
+        when(mockModelClient.generate(any(ModelRequest.class)))
+                .thenReturn(new ModelResponse("The", 10L, null))
+                .thenReturn(new ModelResponse(retryLetter, 10L, null));
+
+        DecisionPipelineStep step = new DecisionPipelineStep(
+                "decision_step",
+                mockModelClient,
+                "reflex-model"
+        );
+
+        List<String> candidates = new java.util.ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            candidates.add("cand_" + i);
+        }
+
+        PipelineContext context = new PipelineContext("Test payload", DocumentType.EMAIL);
+        context.setAttribute("company_roles", candidates);
+
+        ValidationResult result = step.execute(context);
+        assertTrue(result.isValid(), "Il retry deve avere successo per lettera " + retryLetter);
+        assertEquals(retryLetter, context.getAttribute("decision.decision_step.choice"));
+        assertEquals("cand_" + expectedOriginalIndex, context.getAttribute("decision.decision_step"));
     }
 
     @Test

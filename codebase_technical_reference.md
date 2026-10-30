@@ -254,6 +254,7 @@ Nel sistema esiste una distinzione architetturale intenzionale nella gestione di
 
 2. **Nel Passo di Pipeline (`DecisionPipelineStep`)**:
    - *Comportamento*: Se il modello decisionale restituisce un token non ammesso, viene eseguito **un retry con permutazione alternativa delle opzioni** (rotazione ciclica con rimappatura inversa deterministica). Se anche la permutazione alternativa restituisce un token non ammesso, lo step non interpola e transita all'errore `ValidationErrorCode.INDETERMINATE`, mappato dall'orchestratore in `OrchestratorStatus.INDETERMINATE`.
+   - *Costo di latenza e limiti*: Il retry comporta un sovraccarico di circa 1,1 s aggiuntivi nei soli casi in cui il token iniziale sia non valido. L'efficacia empirica di recupero della rotazione ciclica non è ancora misurata e sarà oggetto di quantificazione nella suite di benchmark.
    - *Motivazione*: All'interno della pipeline (ad es. assegnazione del responsabile da catalogo ruoli), un'assegnazione tirata a indovinare causerebbe un'allucinazione o un errore operativo. L'astensione tramite `INDETERMINATE` preserva il dato grezzo per la revisione dell'operatore umano.
 - **`OutputValidationStep`**: Validazione dell'output JSON: conformità sintattica, campi required, validatori formali, guardie post-processing e validazione di catalogo.
 - **`ToolPipelineStep`**: Esegue sincronicamente un tool depositando il risultato nel contesto.

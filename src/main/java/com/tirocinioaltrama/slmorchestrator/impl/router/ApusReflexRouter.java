@@ -133,20 +133,27 @@ public class ApusReflexRouter implements Router {
         if (modelName == null || modelName.isBlank()) {
             return false;
         }
-        return thinkingCapabilityCache.computeIfAbsent(modelName, m -> {
-            try {
-                ShowResponse resp = restClient.post()
-                        .uri("/api/show")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(Map.of("name", m))
-                        .retrieve()
-                        .body(ShowResponse.class);
-                return resp != null && resp.capabilities() != null && resp.capabilities().contains("thinking");
-            } catch (Exception e) {
-                log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Default: false.", m, e.getMessage());
-                return false;
+        Boolean cached = thinkingCapabilityCache.get(modelName);
+        if (cached != null) {
+            return cached;
+        }
+        try {
+            ShowResponse resp = restClient.post()
+                    .uri("/api/show")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Map.of("name", modelName))
+                    .retrieve()
+                    .body(ShowResponse.class);
+            if (resp != null && resp.capabilities() != null) {
+                boolean supports = resp.capabilities().contains("thinking");
+                thinkingCapabilityCache.put(modelName, supports);
+                return supports;
             }
-        });
+            return false;
+        } catch (Exception e) {
+            log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Default temporaneo: false (non memorizzato in cache).", modelName, e.getMessage());
+            return false;
+        }
     }
 
     public void setThinkingCapability(String modelName, boolean supportsThinking) {

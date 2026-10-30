@@ -198,6 +198,64 @@ class OllamaModelClientUnitTest {
     }
 
     @Test
+    @DisplayName("Fase A2-ter: Fallimento temporaneo di /api/show non viene memorizzato in cache; chiamata successiva con capability thinking invia think:false")
+    void testShowFailureNotCachedAndSecondCallRecoversThinking() {
+        String chatResponse = """
+                {
+                  "message": {
+                    "role": "assistant",
+                    "content": "A"
+                  }
+                }
+                """;
+        String showResponse = """
+                {
+                  "capabilities": ["tools", "thinking", "completion"]
+                }
+                """;
+
+        // Registra tutte le aspettative in sequenza prima di eseguire le richieste
+        // Chiamata 1: /api/show fallisce con 500 -> capability non in cache, chat senza think
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withServerError());
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").doesNotExist())
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        // Chiamata 2: /api/show ora risponde con successo -> capability memorizzata, think:false inviato
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        // Chiamata 3 (verifica cache): nessuna chiamata a /api/show, think:false inviato direttamente
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest req1 = new ModelRequest("transient-model", "Test prompt 1", null, null, null, Boolean.FALSE);
+        ModelResponse resp1 = client.generate(req1);
+        assertEquals("A", resp1.content());
+
+        ModelRequest req2 = new ModelRequest("transient-model", "Test prompt 2", null, null, null, Boolean.FALSE);
+        ModelResponse resp2 = client.generate(req2);
+        assertEquals("A", resp2.content());
+
+        ModelResponse resp3 = client.generate(req2);
+        assertEquals("A", resp3.content());
+
+        server.verify();
+    }
+
+    @Test
     @DisplayName("Costruttori sovraccaricati di OllamaModelClient")
     void testConstructors() {
         RestClient restClient = RestClient.builder().build();
