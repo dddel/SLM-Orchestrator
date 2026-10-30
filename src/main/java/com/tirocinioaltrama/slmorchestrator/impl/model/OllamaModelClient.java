@@ -219,13 +219,6 @@ public class OllamaModelClient implements ModelClient {
         if (model == null || model.isBlank()) {
             return false;
         }
-        String lower = model.toLowerCase(java.util.Locale.ROOT);
-        if (lower.contains("reflex") || lower.contains("think") || lower.contains("deepseek-r1")) {
-            return true;
-        }
-        if (lower.contains("qwen2.5") || lower.contains("llama3") || lower.contains("mistral")) {
-            return false;
-        }
         return thinkingCapabilityCache.computeIfAbsent(model, m -> {
             try {
                 ShowResponse resp = restClient.post()
@@ -236,10 +229,16 @@ public class OllamaModelClient implements ModelClient {
                         .body(ShowResponse.class);
                 return resp != null && resp.capabilities() != null && resp.capabilities().contains("thinking");
             } catch (Exception e) {
-                log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Fallback per nome modello.", m, e.getMessage());
+                log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Default: false.", m, e.getMessage());
                 return false;
             }
         });
+    }
+
+    public void setThinkingCapability(String model, boolean supportsThinking) {
+        if (model != null && !model.isBlank()) {
+            thinkingCapabilityCache.put(model, supportsThinking);
+        }
     }
 
     private static boolean isBlank(String value) {

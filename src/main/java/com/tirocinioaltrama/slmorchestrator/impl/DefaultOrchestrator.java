@@ -176,7 +176,12 @@ public class DefaultOrchestrator implements Orchestrator {
                     ? result.validationResult().fieldErrors()
                     : List.of(new FieldError("$", "system", ValidationErrorCode.INFERENCE_ERROR, "Elaborazione pipeline non determinata"));
 
-            log.warn("Esecuzione pipeline '{}' non andata a buon fine (status INDETERMINATE): {} errori", effectiveType, fieldErrors.size());
+            boolean hasIndeterminateCode = fieldErrors.stream().anyMatch(fe -> fe.code() == ValidationErrorCode.INDETERMINATE);
+            if (hasIndeterminateCode) {
+                log.warn("Esecuzione pipeline '{}' ha restituito ValidationErrorCode.INDETERMINATE: mappatura esplicita su OrchestratorStatus.INDETERMINATE.", effectiveType);
+            } else {
+                log.warn("Esecuzione pipeline '{}' non andata a buon fine: transizione a OrchestratorStatus.INDETERMINATE ({} errori).", effectiveType, fieldErrors.size());
+            }
 
             List<String> actionErrors = actionExecutor.executeActions(
                     actionsGroup,

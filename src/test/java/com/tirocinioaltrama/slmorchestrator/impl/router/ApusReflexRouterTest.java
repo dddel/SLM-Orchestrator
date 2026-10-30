@@ -61,6 +61,10 @@ class ApusReflexRouterTest {
                 }
                 """;
 
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
+
         server.expect(requestTo("http://localhost:11434/api/chat"))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
@@ -89,6 +93,10 @@ class ApusReflexRouterTest {
                 }
                 """;
 
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
+
         server.expect(requestTo("http://localhost:11434/api/chat"))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
@@ -106,6 +114,10 @@ class ApusReflexRouterTest {
         RestClient restClient = builder.build();
 
         ApusReflexRouter router = new ApusReflexRouter(restClient, "reflex-model");
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
 
         server.expect(requestTo("http://localhost:11434/api/chat"))
                 .andExpect(method(HttpMethod.POST))
@@ -135,6 +147,10 @@ class ApusReflexRouterTest {
                   }
                 }
                 """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
 
         server.expect(requestTo("http://localhost:11434/api/chat"))
                 .andExpect(method(HttpMethod.POST))
@@ -166,6 +182,10 @@ class ApusReflexRouterTest {
                   }
                 }
                 """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
 
         server.expect(requestTo("http://localhost:11434/api/chat"))
                 .andExpect(method(HttpMethod.POST))

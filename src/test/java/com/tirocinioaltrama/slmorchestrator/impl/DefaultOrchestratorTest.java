@@ -30,7 +30,10 @@ import com.tirocinioaltrama.slmorchestrator.config.ollama.OllamaProperties;
 import com.tirocinioaltrama.slmorchestrator.core.model.ModelClient;
 import com.tirocinioaltrama.slmorchestrator.core.model.ModelRequest;
 import com.tirocinioaltrama.slmorchestrator.core.model.ModelResponse;
+import com.tirocinioaltrama.slmorchestrator.core.pipeline.Pipeline;
 import com.tirocinioaltrama.slmorchestrator.core.pipeline.PipelineRegistry;
+import com.tirocinioaltrama.slmorchestrator.core.validation.FieldError;
+import java.util.List;
 
 class DefaultOrchestratorTest {
 
@@ -274,5 +277,27 @@ class DefaultOrchestratorTest {
         var ex = assertThrows(com.tirocinioaltrama.slmorchestrator.core.exception.RoutingException.class,
                 () -> orchWithoutRouter.process(new OrchestratorRequest("Testo generico senza tipo")));
         assertTrue(ex.getMessage().contains("Nessun router"));
+    }
+
+    @Test
+    void processMappaEsplicitamenteValidationErrorCodeIndeterminateSuOrchestratorStatusIndeterminate() {
+        Pipeline mockPipeline = mock(Pipeline.class);
+        when(mockPipeline.getSupportedType()).thenReturn(DocumentType.EMAIL);
+
+        FieldError indeterminateError = new FieldError("destinatario", "recipient_decision", ValidationErrorCode.INDETERMINATE, "Decisione indeterminata per consenso insufficiente");
+        com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult valResult = com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult.withFieldErrors(List.of(indeterminateError), List.of());
+        com.tirocinioaltrama.slmorchestrator.core.pipeline.PipelineResult pipeResult = com.tirocinioaltrama.slmorchestrator.core.pipeline.PipelineResult.indeterminate("{\"raw\":\"unvalidated\"}", valResult, 50L, com.tirocinioaltrama.slmorchestrator.core.model.ExecutionMetrics.empty(50L));
+        when(mockPipeline.execute(any())).thenReturn(pipeResult);
+
+        PipelineRegistry customRegistry = new PipelineRegistry(List.of(mockPipeline));
+        DefaultOrchestrator customOrch = new DefaultOrchestrator(router, customRegistry, new ActionExecutor(new ToolRegistry()));
+
+        OrchestratorRequest request = new OrchestratorRequest(DocumentType.EMAIL, "Test email");
+        OrchestratorResponse response = customOrch.process(request);
+
+        assertNotNull(response);
+        assertEquals(OrchestratorStatus.INDETERMINATE, response.status());
+        assertEquals(1, response.errors().size());
+        assertEquals(ValidationErrorCode.INDETERMINATE, response.errors().get(0).code());
     }
 }

@@ -156,6 +156,10 @@ public class RandomizedDecisionGroundTruthTest {
         MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
         RestClient restClient = builder.build();
 
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess("{\"capabilities\": [\"thinking\"]}", MediaType.APPLICATION_JSON));
+
         ApusReflexRouter router = new ApusReflexRouter(restClient, "hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M");
 
         int totalTrials = 0;

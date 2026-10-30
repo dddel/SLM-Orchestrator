@@ -206,16 +206,35 @@ public class DecisionPipelineStep implements PipelineStep {
 
             CandidateOption selected = resolveCandidate(answer, candidates);
             if (selected == null) {
-                log.warn("Step decisionale '{}': token non ammesso ('{}'). Esecuzione retry immediato...", id, answer);
+                log.warn("Step decisionale '{}': token non ammesso ('{}'). Esecuzione retry con permutazione alternativa delle opzioni...", id, answer);
                 totalInvocations++;
                 long retryStart = System.currentTimeMillis();
                 try {
-                    ModelResponse retryResp = modelClient.generate(request);
+                    // Costruzione permutazione alternativa ciclica (shift = 1) per cambiare sostanzialmente l'ordine delle opzioni
+                    List<CandidateOption> retryCandidates = new ArrayList<>(candidates.size());
+                    int shift = 1;
+                    for (int i = 0; i < candidates.size(); i++) {
+                        char newLetter = (char) ('A' + i);
+                        CandidateOption orig = candidates.get((i + shift) % candidates.size());
+                        retryCandidates.add(new CandidateOption(newLetter, orig.key(), orig.role(), orig.person(), orig.email(), orig.label()));
+                    }
+
+                    String retryPrompt = buildPrompt(context, retryCandidates);
+                    ModelRequest retryRequest = new ModelRequest(
+                            model,
+                            retryPrompt,
+                            null,
+                            Map.of("num_predict", 1, "temperature", 0.0, "repeat_penalty", 1.0),
+                            systemPrompt,
+                            Boolean.FALSE
+                    );
+
+                    ModelResponse retryResp = modelClient.generate(retryRequest);
                     totalInferenceLatencyMs += (System.currentTimeMillis() - retryStart);
                     if (retryResp != null && retryResp.content() != null && !retryResp.content().isBlank()) {
                         String retryAnswer = retryResp.content().strip();
-                        log.debug("Step decisionale '{}' risposta retry: '{}'", id, retryAnswer);
-                        selected = resolveCandidate(retryAnswer, candidates);
+                        log.debug("Step decisionale '{}' risposta retry con permutazione alternativa: '{}'", id, retryAnswer);
+                        selected = resolveCandidate(retryAnswer, retryCandidates);
                         if (selected == null) {
                             answer = retryAnswer;
                         }
@@ -226,7 +245,7 @@ public class DecisionPipelineStep implements PipelineStep {
 
                 if (selected == null) {
                     String msg = String.format(Locale.ROOT,
-                            "Token non ammesso dal modello decisionale ('%s') non corrispondente ad alcuna opzione valida tra A e %c anche dopo retry.",
+                            "Token non ammesso dal modello decisionale ('%s') non corrispondente ad alcuna opzione valida tra A e %c anche dopo retry con permutazione alternativa.",
                             answer, candidates.get(candidates.size() - 1).letter());
                     log.warn(msg);
                     return ValidationResult.withFieldErrors(

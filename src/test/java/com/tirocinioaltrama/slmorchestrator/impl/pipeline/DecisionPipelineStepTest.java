@@ -158,7 +158,7 @@ class DecisionPipelineStepTest {
         ValidationResult result = step.execute(context);
         assertTrue(result.isValid(), "Il retry deve consentire il recupero e la validazione dello step");
         assertEquals("A", context.getAttribute("decision.decision_step.choice"));
-        assertEquals("direzione", context.getAttribute("decision.decision_step"));
+        assertEquals("risorse_umane", context.getAttribute("decision.decision_step"));
     }
 
     @Test

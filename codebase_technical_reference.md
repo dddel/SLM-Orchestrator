@@ -240,7 +240,21 @@ flowchart TD
 - **`DecisionPipelineStep`**: Passo di pipeline per modelli decisionali discreti (APUS Reflex 4B):
   - Estrae i candidati dal contesto (`candidatesSource`).
   - Supporta il **voto su k permutazioni** (`kPermutations`, default 1; `minAgreementRatio`, default 0.5): se il consenso tra le permutazioni non raggiunge la soglia configurata, restituisce `INDETERMINATE` preservando l'output per revisione operatore.
+  - Invia `think: false` su modelli con capability thinking per inibire catene discorsive e garantire la risposta a singolo token.
   - Traccia nelle metriche il numero di invocazioni e la latenza complessiva.
+
+### Gestione dei Token Non Validi: Router vs DecisionPipelineStep
+
+Nel sistema esiste una distinzione architetturale intenzionale nella gestione di un token non ammesso (ovvero un output che non corrisponde ad alcuna delle opzioni lecite `A`..`N`):
+
+1. **Nel Router (`ApusReflexRouter`)**:
+   - *Comportamento*: Se il modello decisionale emette un token non valido o si verifica un errore, il router attiva il **fallback euristico** basato su regole e parole chiave (`LocalOllamaRouter.fallbackHeuristic`).
+   - *Tracciamento*: Il nome del router dichiara esplicitamente l'intervento del fallback e il token non valido riscontrato (es. `APUS Reflex (<modello> -> Fallback Euristico per Token Non Valido: '<token>')`), e il contatore interno `invalidTokenCount` viene incrementato.
+   - *Motivazione*: Il router opera a monte dell'intero flusso elaborativo. Un blocco a monte impedirebbe l'avvio della pipeline; il fallback euristico garantisce continuità instradando il payload verso la pipeline di competenza presunta, dove le guardie successive potranno comunque validare il documento.
+
+2. **Nel Passo di Pipeline (`DecisionPipelineStep`)**:
+   - *Comportamento*: Se il modello decisionale restituisce un token non ammesso, viene eseguito **un retry con permutazione alternativa delle opzioni** (rotazione ciclica con rimappatura inversa deterministica). Se anche la permutazione alternativa restituisce un token non ammesso, lo step non interpola e transita all'errore `ValidationErrorCode.INDETERMINATE`, mappato dall'orchestratore in `OrchestratorStatus.INDETERMINATE`.
+   - *Motivazione*: All'interno della pipeline (ad es. assegnazione del responsabile da catalogo ruoli), un'assegnazione tirata a indovinare causerebbe un'allucinazione o un errore operativo. L'astensione tramite `INDETERMINATE` preserva il dato grezzo per la revisione dell'operatore umano.
 - **`OutputValidationStep`**: Validazione dell'output JSON: conformità sintattica, campi required, validatori formali, guardie post-processing e validazione di catalogo.
 - **`ToolPipelineStep`**: Esegue sincronicamente un tool depositando il risultato nel contesto.
 - **`ValidationFeedbackBuilder`**: Costruttore del prompt di correzione per i tentativi di retry del modello generativo.

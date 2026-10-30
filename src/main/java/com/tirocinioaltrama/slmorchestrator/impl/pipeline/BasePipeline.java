@@ -247,11 +247,15 @@ public class BasePipeline implements Pipeline {
                     return PipelineResult.indeterminate(context.getModelOutput(), stepResult, elapsed, metrics);
                 }
 
-                // Nessun retry configurato per lo step: fallimento secco (esito INDETERMINATE se output presente, altrimenti failure)
+                // Nessun retry configurato per lo step: se il codice è INDETERMINATE o se è presente un output parziale, transita esplicitamente a INDETERMINATE
                 long elapsed = System.currentTimeMillis() - start;
                 ExecutionMetrics metrics =
                         ExecutionMetrics.of(elapsed, context.getStepMetrics());
-                if (context.getModelOutput() != null && !context.getModelOutput().isBlank()) {
+                boolean hasIndeterminateCode = stepResult.fieldErrors() != null && stepResult.fieldErrors().stream()
+                        .anyMatch(fe -> fe.code() == com.tirocinioaltrama.slmorchestrator.core.validation.ValidationErrorCode.INDETERMINATE);
+                if (hasIndeterminateCode || (context.getModelOutput() != null && !context.getModelOutput().isBlank())) {
+                    log.warn("Step '{}' non valido con codice INDETERMINATE o output presente per pipeline {}. Transizione a INDETERMINATE.",
+                            step.getName(), supportedType);
                     return PipelineResult.indeterminate(context.getModelOutput(), stepResult, elapsed, metrics);
                 }
                 return PipelineResult.failure(stepResult, elapsed, metrics);

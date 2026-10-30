@@ -130,6 +130,74 @@ class OllamaModelClientUnitTest {
     }
 
     @Test
+    @DisplayName("Fase A2-bis: modello con capabilities ['completion', 'tools'] -> think omesso")
+    void testThinkOmittedForNonThinkingModel() {
+        String showResponse = """
+                {
+                  "capabilities": ["completion", "tools"]
+                }
+                """;
+
+        String chatResponse = """
+                {
+                  "model": "qwen2.5:3b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "A"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").doesNotExist())
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest("qwen2.5:3b", "Choose A", null, null, null, Boolean.FALSE);
+        ModelResponse response = client.generate(request);
+        assertEquals("A", response.content());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2-bis: modello con capabilities ['completion', 'thinking', 'tools'] -> think: false inviato")
+    void testThinkFalseSentForThinkingModel() {
+        String showResponse = """
+                {
+                  "capabilities": ["completion", "thinking", "tools"]
+                }
+                """;
+
+        String chatResponse = """
+                {
+                  "model": "reflex-4b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "B"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest("reflex-4b", "Choose B", null, null, null, Boolean.FALSE);
+        ModelResponse response = client.generate(request);
+        assertEquals("B", response.content());
+        server.verify();
+    }
+
+    @Test
     @DisplayName("Costruttori sovraccaricati di OllamaModelClient")
     void testConstructors() {
         RestClient restClient = RestClient.builder().build();
