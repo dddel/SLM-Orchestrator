@@ -22,8 +22,8 @@ OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 REFLEX_MODEL = "hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M"
 QWEN_MODEL = "qwen2.5:3b-instruct-q8_0"
 
-DATASET_PATH = os.environ.get("PHASE_B_DATASET", "eval_decision_benchmark/dataset/phase_b_dataset.json" if os.path.exists("eval_decision_benchmark/dataset/phase_b_dataset.json") else "scripts/data/phase_b_dataset.json")
-OUTPUT_DIR = os.environ.get("PHASE_B_OUTPUT_DIR", "eval_decision_benchmark/results" if os.path.exists("eval_decision_benchmark/results") else "target/phase_b")
+DATASET_PATH = os.environ.get("PHASE_B_DATASET", "dataset/phase_b_dataset.json" if os.path.exists("dataset/phase_b_dataset.json") else ("eval_decision_benchmark/dataset/phase_b_dataset.json" if os.path.exists("eval_decision_benchmark/dataset/phase_b_dataset.json") else "scripts/data/phase_b_dataset.json"))
+OUTPUT_DIR = os.environ.get("PHASE_B_OUTPUT_DIR", "results" if os.path.exists("results") else ("eval_decision_benchmark/results" if os.path.exists("eval_decision_benchmark/results") else "target/phase_b"))
 RAW_OUTPUT_PATH = os.path.join(OUTPUT_DIR, "phase_b_raw.jsonl")
 
 def load_dataset():

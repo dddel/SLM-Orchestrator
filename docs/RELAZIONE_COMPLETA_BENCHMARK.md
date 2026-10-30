@@ -239,37 +239,41 @@ Confronto a livello di cluster per singolo campione (10.000 ricampionamenti):
 
 ## 8. Mappa dei File e Istruzioni di Riproducibilità
 
-Tutti gli elementi del benchmark risiedono esclusivamente in questa cartella:
+Tutti gli elementi del benchmark, della documentazione e delle evidenze empiriche sono organizzati nel branch `docs`:
 
 ```
-eval_decision_benchmark/
-├── RELAZIONE_COMPLETA_BENCHMARK.md          # La presente relazione tecnica integrale
+slm-orchestrator/
+├── docs/
+│   ├── RELAZIONE_COMPLETA_BENCHMARK.md          # La presente relazione tecnica integrale
+│   ├── codebase_technical_reference.md          # Riferimento tecnico architetturale della codebase
+│   ├── randomized_decision_ground_truth_report.md # Report di audit sui test randomizzati
+│   └── Riepilogo_Catena_SLM_150h.docx           # Riepilogo del tirocinio / attività
 ├── dataset/
-│   └── phase_b_dataset.json                 # Dataset congelato con SHA-256 e checksum validi
+│   └── phase_b_dataset.json                     # Dataset congelato con SHA-256 e checksum validi
 ├── scripts/
-│   ├── run_phase_b_benchmark.py             # Esecutore delle 4.208 prove live su Ollama
-│   ├── analyze_phase_b.py                   # Script di ricalcolo statistico deterministico
-│   ├── sanitize_and_freeze_phase_b_dataset.py # Generatore e validatore algebrico dei checksum
-│   ├── generate_phase_b_dataset.py          # Generatore sorgente del dataset
-│   ├── phase_a_step1.py                     # Script Step 1 Fase A (analisi artefatto thinking)
-│   ├── phase_a_step2.py                     # Script Step 2 Fase A (768 prove comparative)
-│   └── analyze_phase_a.py                   # Analizzatore Fase A
+│   ├── run_phase_b_benchmark.py                 # Esecutore delle 4.208 prove live su Ollama
+│   ├── analyze_phase_b.py                       # Script di ricalcolo statistico deterministico
+│   ├── sanitize_and_freeze_phase_b_dataset.py   # Generatore e validatore algebrico dei checksum
+│   ├── generate_phase_b_dataset.py              # Generatore sorgente del dataset
+│   ├── phase_a_step1.py                         # Script Step 1 Fase A (analisi artefatto thinking)
+│   ├── phase_a_step2.py                         # Script Step 2 Fase A (768 prove comparative)
+│   └── analyze_phase_a.py                       # Analizzatore Fase A
 └── results/
-    ├── phase_b_raw.jsonl                    # Log grezzo di tutte le 4.208 chiamate live Fase B
-    ├── phase_b_report.md                    # Report sintetico generato dallo script di analisi
-    ├── phase_a_step1_raw.jsonl              # Log grezzo Step 1 Fase A
-    └── phase_a_step2_raw.jsonl              # Log grezzo Step 2 Fase A
+    ├── phase_b_raw.jsonl                        # Log grezzo di tutte le 4.208 chiamate live Fase B
+    ├── phase_b_report.md                        # Report sintetico generato dallo script di analisi
+    ├── phase_a_step1_raw.jsonl                  # Log grezzo Step 1 Fase A
+    └── phase_a_step2_raw.jsonl                  # Log grezzo Step 2 Fase A
 ```
 
 ### Come Riprodurre l'Analisi
 Per ricalcolare tutte le tabelle e metriche direttamente dai log grezzi senza rieseguire le chiamate a Ollama:
 ```bash
-python3 eval_decision_benchmark/scripts/analyze_phase_b.py
+python3 scripts/analyze_phase_b.py
 ```
 
 ### Come Rieseguire l'Intero Benchmark Live
 Con Ollama attivo su `http://localhost:11434`:
 ```bash
-python3 eval_decision_benchmark/scripts/run_phase_b_benchmark.py
+python3 scripts/run_phase_b_benchmark.py
 ```
 *(Lo script supporta la ripresa automatica in append nel caso in cui il file di log contenga già record parziali).*
