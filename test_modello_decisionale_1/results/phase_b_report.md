@@ -1,7 +1,7 @@
 # Report Finale FASE B — Valutazione Rigorosa dei Modelli Decisionali (think: false)
 
 > **Nota metodologica per la tesi sperimentale**: Tutte le metriche riportate derivano dall'elaborazione
-> deterministica dei log grezzi memorizzati in `results/phase_b_raw.jsonl`. Nessun valore è stimato o inserito a mano.
+> deterministica dei log grezzi memorizzati in `/home/del/Projects/slm-orchestrator/test_modello_decisionale_1/results/phase_b_raw.jsonl`. Nessun valore è stimato o inserito a mano.
 
 ## 1. Router su 4 Opzioni (24 Permutazioni Esaustive per Campione, 960 Invocazioni per Modello)
 

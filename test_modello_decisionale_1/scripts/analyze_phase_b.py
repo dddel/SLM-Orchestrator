@@ -21,8 +21,13 @@ import sys
 from collections import defaultdict, Counter
 import random
 
-RAW_PATH = os.environ.get("PHASE_B_RAW", "results/phase_b_raw.jsonl" if os.path.exists("results/phase_b_raw.jsonl") else ("eval_decision_benchmark/results/phase_b_raw.jsonl" if os.path.exists("eval_decision_benchmark/results/phase_b_raw.jsonl") else "target/phase_b/phase_b_raw.jsonl"))
-REPORT_MD_PATH = os.environ.get("PHASE_B_REPORT", "results/phase_b_report.md" if os.path.exists("results") else ("eval_decision_benchmark/results/phase_b_report.md" if os.path.exists("eval_decision_benchmark/results") else "target/phase_b/phase_b_report.md"))
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+TEST_ROOT = os.path.dirname(SCRIPT_DIR)
+DEFAULT_RAW = os.path.join(TEST_ROOT, "results", "phase_b_raw.jsonl")
+DEFAULT_REPORT = os.path.join(TEST_ROOT, "results", "phase_b_report.md")
+
+RAW_PATH = os.environ.get("PHASE_B_RAW", DEFAULT_RAW)
+REPORT_MD_PATH = os.environ.get("PHASE_B_REPORT", DEFAULT_REPORT)
 
 def wilson_interval(k, n, z=1.96):
     if n == 0:

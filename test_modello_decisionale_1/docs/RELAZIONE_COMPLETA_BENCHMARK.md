@@ -239,15 +239,13 @@ Confronto a livello di cluster per singolo campione (10.000 ricampionamenti):
 
 ## 8. Mappa dei File e Istruzioni di Riproducibilità
 
-Tutti gli elementi del benchmark, della documentazione e delle evidenze empiriche sono organizzati nel branch `docs`:
+Tutti gli elementi di questo test risiedono nella cartella autocontenuta `test_modello_decisionale_1/` (sul branch `docs`):
 
 ```
-slm-orchestrator/
+test_modello_decisionale_1/
 ├── docs/
 │   ├── RELAZIONE_COMPLETA_BENCHMARK.md          # La presente relazione tecnica integrale
-│   ├── codebase_technical_reference.md          # Riferimento tecnico architetturale della codebase
-│   ├── randomized_decision_ground_truth_report.md # Report di audit sui test randomizzati
-│   └── Riepilogo_Catena_SLM_150h.docx           # Riepilogo del tirocinio / attività
+│   └── randomized_decision_ground_truth_report.md # Report di audit sui test randomizzati
 ├── dataset/
 │   └── phase_b_dataset.json                     # Dataset congelato con SHA-256 e checksum validi
 ├── scripts/
@@ -268,12 +266,13 @@ slm-orchestrator/
 ### Come Riprodurre l'Analisi
 Per ricalcolare tutte le tabelle e metriche direttamente dai log grezzi senza rieseguire le chiamate a Ollama:
 ```bash
-python3 scripts/analyze_phase_b.py
+python3 test_modello_decisionale_1/scripts/analyze_phase_b.py
 ```
+*(Oppure entrando direttamente nella cartella con `cd test_modello_decisionale_1 && python3 scripts/analyze_phase_b.py`).*
 
 ### Come Rieseguire l'Intero Benchmark Live
 Con Ollama attivo su `http://localhost:11434`:
 ```bash
-python3 scripts/run_phase_b_benchmark.py
+python3 test_modello_decisionale_1/scripts/run_phase_b_benchmark.py
 ```
 *(Lo script supporta la ripresa automatica in append nel caso in cui il file di log contenga già record parziali).*
