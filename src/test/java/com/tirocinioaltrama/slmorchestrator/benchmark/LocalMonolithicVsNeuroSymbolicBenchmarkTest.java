@@ -57,6 +57,7 @@ import com.tirocinioaltrama.slmorchestrator.core.RouterType;
         "router.type=local-ollama"
 })
 @Tag("live")
+@Tag("live-model")
 public class LocalMonolithicVsNeuroSymbolicBenchmarkTest {
 
     private static final Logger log = LoggerFactory.getLogger(LocalMonolithicVsNeuroSymbolicBenchmarkTest.class);

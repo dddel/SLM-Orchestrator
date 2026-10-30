@@ -50,6 +50,7 @@ import com.tirocinioaltrama.slmorchestrator.impl.router.LocalOllamaRouter;
         "router.type=local-ollama"
 })
 @Tag("live")
+@Tag("live-model")
 class SingleModelArchitectureLiveTest {
 
     private static final Logger log = LoggerFactory.getLogger(SingleModelArchitectureLiveTest.class);

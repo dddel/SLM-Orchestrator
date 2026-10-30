@@ -26,6 +26,7 @@ import com.tirocinioaltrama.slmorchestrator.core.model.ModelResponse;
 @SpringBootTest
 @Tag("ollama")
 @Tag("live")
+@Tag("live-model")
 class OllamaModelClientTest {
 
     private static final String ANAGRAFICA_SCHEMA_PATH = "/schemas/anagrafica_documento.json";

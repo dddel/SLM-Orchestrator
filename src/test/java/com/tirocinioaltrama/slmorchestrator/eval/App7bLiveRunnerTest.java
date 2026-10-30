@@ -48,6 +48,7 @@ import com.tirocinioaltrama.slmorchestrator.core.RouterType;
         }
 )
 @Tag("live")
+@Tag("live-model")
 public class App7bLiveRunnerTest {
 
     private static final Logger log = LoggerFactory.getLogger(App7bLiveRunnerTest.class);

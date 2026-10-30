@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<excludedGroups>live</excludedGroups>
+		<excludedGroups>live,live-model</excludedGroups>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -227,6 +227,17 @@
 			</activation>
 			<properties>
 				<excludedGroups></excludedGroups>
+			</properties>
+		</profile>
+		<profile>
+			<id>live-model</id>
+			<activation>
+				<property>
+					<name>live-model</name>
+				</property>
+			</activation>
+			<properties>
+				<excludedGroups>live</excludedGroups>
 			</properties>
 		</profile>
 	</profiles>

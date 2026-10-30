@@ -41,6 +41,7 @@ import com.tirocinioaltrama.slmorchestrator.core.RouterType;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Tag("live")
+@Tag("live-model")
 public class CellLiveRunnerTest {
 
     private static final Logger log = LoggerFactory.getLogger(CellLiveRunnerTest.class);

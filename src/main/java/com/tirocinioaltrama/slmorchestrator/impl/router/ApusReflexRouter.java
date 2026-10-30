@@ -179,8 +179,12 @@ public class ApusReflexRouter implements Router {
                     .retrieve()
                     .body(OllamaChatResponse.class);
 
-            if (response != null && response.message() != null && response.message().content() != null) {
-                String token = response.message().content().strip();
+            if (response != null && response.message() != null) {
+                String rawContent = response.message().content();
+                String rawThinking = response.message().thinking();
+                String token = (rawContent != null && !rawContent.isBlank())
+                        ? rawContent.strip()
+                        : (rawThinking != null ? rawThinking.strip() : "");
                 DocumentType detected = parseChoiceTokenFromMap(token, letterMap);
                 if (detected != null) {
                     long loadMs = response.load_duration() != null ? response.load_duration() / 1_000_000 : 0;
@@ -252,7 +256,11 @@ public class ApusReflexRouter implements Router {
             Map<String, Object> options,
             String keep_alive) {}
 
-    record Message(String role, String content) {}
+    record Message(String role, String content, String thinking) {
+        Message(String role, String content) {
+            this(role, content, null);
+        }
+    }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     record OllamaChatResponse(Message message, Long load_duration) {}

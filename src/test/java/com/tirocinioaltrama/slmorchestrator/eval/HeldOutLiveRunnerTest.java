@@ -47,6 +47,7 @@ import com.tirocinioaltrama.slmorchestrator.impl.router.LocalOllamaRouter;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Tag("live")
+@Tag("live-model")
 public class HeldOutLiveRunnerTest {
 
     private static final Logger log = LoggerFactory.getLogger(HeldOutLiveRunnerTest.class);
