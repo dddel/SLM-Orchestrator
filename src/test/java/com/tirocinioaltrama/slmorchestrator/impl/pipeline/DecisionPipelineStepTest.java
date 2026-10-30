@@ -140,10 +140,33 @@ class DecisionPipelineStepTest {
     }
 
     @Test
-    @DisplayName("DecisionPipelineStep restituisce errore se il modello genera un token fuori catalogo (es. 'Z')")
-    void testDecisionInvalidTokenReturnsError() {
+    @DisplayName("Fase A2: DecisionPipelineStep su token 'The' ritenta; se il retry restituisce token valido 'A', ha successo")
+    void testDecisionInvalidTokenRetryRecovers() {
         when(mockModelClient.generate(any(ModelRequest.class)))
-                .thenReturn(new ModelResponse("Z", 10L, null));
+                .thenReturn(new ModelResponse("The", 10L, null))
+                .thenReturn(new ModelResponse("A", 10L, null));
+
+        DecisionPipelineStep step = new DecisionPipelineStep(
+                "decision_step",
+                mockModelClient,
+                "reflex-model"
+        );
+
+        PipelineContext context = new PipelineContext("Testo generico", DocumentType.EMAIL);
+        context.setAttribute("company_roles", sampleRolesJson);
+
+        ValidationResult result = step.execute(context);
+        assertTrue(result.isValid(), "Il retry deve consentire il recupero e la validazione dello step");
+        assertEquals("A", context.getAttribute("decision.decision_step.choice"));
+        assertEquals("direzione", context.getAttribute("decision.decision_step"));
+    }
+
+    @Test
+    @DisplayName("Fase A2: DecisionPipelineStep su token non ammesso ('The' o 'Z') ritenta; se persiste, restituisce INDETERMINATE")
+    void testDecisionInvalidTokenReturnsIndeterminateAfterRetry() {
+        when(mockModelClient.generate(any(ModelRequest.class)))
+                .thenReturn(new ModelResponse("The", 10L, null))
+                .thenReturn(new ModelResponse("The", 10L, null));
 
         DecisionPipelineStep step = new DecisionPipelineStep(
                 "decision_step",
@@ -156,7 +179,8 @@ class DecisionPipelineStepTest {
 
         ValidationResult result = step.execute(context);
         assertFalse(result.isValid());
-        assertEquals(ValidationErrorCode.VALUE_NOT_IN_CATALOG, result.fieldErrors().get(0).code());
+        assertEquals(ValidationErrorCode.INDETERMINATE, result.fieldErrors().get(0).code());
+        assertTrue(result.fieldErrors().get(0).message().contains("anche dopo retry"));
     }
 
     @Test

@@ -183,7 +183,8 @@ public class DecisionPipelineStep implements PipelineStep {
                     prompt,
                     null,
                     Map.of("num_predict", 1, "temperature", 0.0, "repeat_penalty", 1.0),
-                    systemPrompt
+                    systemPrompt,
+                    Boolean.FALSE
             );
 
             long callStart = System.currentTimeMillis();
@@ -205,9 +206,34 @@ public class DecisionPipelineStep implements PipelineStep {
 
             CandidateOption selected = resolveCandidate(answer, candidates);
             if (selected == null) {
-                String msg = "Risposta del modello decisionale ('" + answer + "') non corrisponde ad alcuna opzione valida tra A e " + candidates.get(candidates.size() - 1).letter() + ".";
-                log.warn(msg);
-                return ValidationResult.withFieldErrors(List.of(new FieldError(id, "decision", ValidationErrorCode.VALUE_NOT_IN_CATALOG, msg)), List.of());
+                log.warn("Step decisionale '{}': token non ammesso ('{}'). Esecuzione retry immediato...", id, answer);
+                totalInvocations++;
+                long retryStart = System.currentTimeMillis();
+                try {
+                    ModelResponse retryResp = modelClient.generate(request);
+                    totalInferenceLatencyMs += (System.currentTimeMillis() - retryStart);
+                    if (retryResp != null && retryResp.content() != null && !retryResp.content().isBlank()) {
+                        String retryAnswer = retryResp.content().strip();
+                        log.debug("Step decisionale '{}' risposta retry: '{}'", id, retryAnswer);
+                        selected = resolveCandidate(retryAnswer, candidates);
+                        if (selected == null) {
+                            answer = retryAnswer;
+                        }
+                    }
+                } catch (Exception retryEx) {
+                    log.warn("Retry step decisionale '{}' fallito con eccezione: {}", id, retryEx.getMessage());
+                }
+
+                if (selected == null) {
+                    String msg = String.format(Locale.ROOT,
+                            "Token non ammesso dal modello decisionale ('%s') non corrispondente ad alcuna opzione valida tra A e %c anche dopo retry.",
+                            answer, candidates.get(candidates.size() - 1).letter());
+                    log.warn(msg);
+                    return ValidationResult.withFieldErrors(
+                            List.of(new FieldError(targetField != null ? targetField : id, id, ValidationErrorCode.INDETERMINATE, msg)),
+                            List.of(msg)
+                    );
+                }
             }
 
             voteCounts.put(selected.key(), voteCounts.getOrDefault(selected.key(), 0) + 1);

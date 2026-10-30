@@ -65,6 +65,9 @@ public class ApusReflexRouter implements Router {
     private final String promptTemplate;
     private final boolean randomizeOptions;
     private final java.util.Random random;
+    private final java.util.concurrent.atomic.AtomicLong invalidTokenCount = new java.util.concurrent.atomic.AtomicLong();
+    private final java.util.concurrent.atomic.AtomicLong fallbackInvocationCount = new java.util.concurrent.atomic.AtomicLong();
+    private final java.util.Map<String, Boolean> thinkingCapabilityCache = new java.util.concurrent.ConcurrentHashMap<>();
 
     public ApusReflexRouter(String baseUrl, String model, Duration timeout) {
         this(baseUrl, model, timeout, null, false, null);
@@ -118,6 +121,41 @@ public class ApusReflexRouter implements Router {
         return model;
     }
 
+    public long getInvalidTokenCount() {
+        return invalidTokenCount.get();
+    }
+
+    public long getFallbackInvocationCount() {
+        return fallbackInvocationCount.get();
+    }
+
+    public boolean isThinkingModel(String modelName) {
+        if (modelName == null || modelName.isBlank()) {
+            return false;
+        }
+        String lower = modelName.toLowerCase(Locale.ROOT);
+        if (lower.contains("reflex") || lower.contains("think") || lower.contains("deepseek-r1")) {
+            return true;
+        }
+        if (lower.contains("qwen2.5") || lower.contains("llama3") || lower.contains("mistral")) {
+            return false;
+        }
+        return thinkingCapabilityCache.computeIfAbsent(modelName, m -> {
+            try {
+                ShowResponse resp = restClient.post()
+                        .uri("/api/show")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(Map.of("name", m))
+                        .retrieve()
+                        .body(ShowResponse.class);
+                return resp != null && resp.capabilities() != null && resp.capabilities().contains("thinking");
+            } catch (Exception e) {
+                log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Fallback per nome modello.", m, e.getMessage());
+                return false;
+            }
+        });
+    }
+
     @Override
     public DocumentType route(String payload) {
         return routeWithDecision(payload).documentType();
@@ -163,12 +201,15 @@ public class ApusReflexRouter implements Router {
                 "repeat_penalty", 1.0
         );
 
+        Boolean thinkParam = isThinkingModel(model) ? Boolean.FALSE : null;
+
         OllamaChatRequest requestBody = new OllamaChatRequest(
                 model,
                 List.of(new Message(ROLE_USER, userContent)),
                 false,
                 options,
-                "60m"
+                "60m",
+                thinkParam
         );
 
         try {
@@ -192,13 +233,23 @@ public class ApusReflexRouter implements Router {
                     log.info("APUS Reflex Router ha deciso: '{}' (token: '{}', load: {} ms)", detected, token, loadMs);
                     return new RoutingDecision(detected, routerName);
                 }
-                log.warn("APUS Reflex Router ha restituito un token non riconosciuto ('{}'). Attivazione fallback euristico.", token);
+                invalidTokenCount.incrementAndGet();
+                fallbackInvocationCount.incrementAndGet();
+                DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
+                String fallbackRouterName = ROUTER_NAME_PREFIX + model + " -> Fallback Euristico per Token Non Valido: '" + token + "')";
+                log.warn("APUS Reflex Router ha restituito un token non riconosciuto ('{}'). Attivazione fallback: '{}'", token, fallbackRouterName);
+                return new RoutingDecision(fallbackType, fallbackRouterName);
             }
         } catch (Exception e) {
-            log.error("Errore durante l'invocazione di APUS Reflex Router ({}): {}. Attivazione fallback euristico.",
-                    model, e.getMessage());
+            fallbackInvocationCount.incrementAndGet();
+            DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
+            String fallbackRouterName = ROUTER_NAME_PREFIX + model + " -> Fallback Euristico per Errore: " + e.getMessage() + ")";
+            log.error("Errore durante l'invocazione di APUS Reflex Router ({}): {}. Attivazione fallback: '{}'",
+                    model, e.getMessage(), fallbackRouterName);
+            return new RoutingDecision(fallbackType, fallbackRouterName);
         }
 
+        fallbackInvocationCount.incrementAndGet();
         DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
         log.info("Routing completato tramite fallback euristico: '{}'", fallbackType);
         return new RoutingDecision(fallbackType, ROUTER_NAME_FALLBACK);
@@ -254,13 +305,17 @@ public class ApusReflexRouter implements Router {
             List<Message> messages,
             boolean stream,
             Map<String, Object> options,
-            String keep_alive) {}
+            String keep_alive,
+            Boolean think) {}
 
     record Message(String role, String content, String thinking) {
         Message(String role, String content) {
             this(role, content, null);
         }
     }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    record ShowResponse(List<String> capabilities) {}
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     record OllamaChatResponse(Message message, Long load_duration) {}

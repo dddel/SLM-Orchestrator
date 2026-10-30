@@ -165,6 +165,61 @@ public class OllamaServerInitializer implements ApplicationRunner {
                 log.warn("Modello '{}' non trovato nel demone Ollama: le richieste che lo usano falliranno a runtime", reqModel);
             }
         }
+
+        // Controllo non bloccante all'avvio per modello decisionale
+        verifyDecisionModelProbe(availableTags);
+    }
+
+    /**
+     * Esegue una chiamata di prova al modello decisionale all'avvio.
+     * Se il primo token non arriva in message.content o compare thinking non vuoto, emette un avviso.
+     */
+    public void verifyDecisionModelProbe(Set<String> availableTags) {
+        if (availableTags == null || availableTags.isEmpty()) {
+            return;
+        }
+        String reflexModel = "hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M";
+        boolean present = availableTags.stream().anyMatch(avail -> matchesModel(reflexModel, avail));
+        if (!present) {
+            return;
+        }
+
+        try {
+            HttpClient client = HttpClient.newBuilder()
+                    .connectTimeout(TAGS_TIMEOUT)
+                    .build();
+            String jsonPayload = objectMapper.writeValueAsString(java.util.Map.of(
+                    "model", reflexModel,
+                    "messages", java.util.List.of(java.util.Map.of("role", "user", "content", "Respond ONLY with letter A.\nChoice:")),
+                    "stream", false,
+                    "think", false,
+                    "options", java.util.Map.of("num_predict", 1, "temperature", 0.0)
+            ));
+
+            HttpRequest request = HttpRequest.newBuilder(URI.create(properties.baseUrl() + "/api/chat"))
+                    .timeout(TAGS_TIMEOUT)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                    .build();
+
+            HttpResponse<String> resp = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (resp.statusCode() == 200) {
+                ChatProbeResponse probeResp = objectMapper.readValue(resp.body(), ChatProbeResponse.class);
+                if (probeResp != null && probeResp.message() != null) {
+                    String content = probeResp.message().content();
+                    String thinking = probeResp.message().thinking();
+                    if ((content == null || content.isBlank()) || (thinking != null && !thinking.isBlank())) {
+                        log.warn("AVVISO DECISION MODEL: Il modello decisionale '{}' ha restituito token in thinking ('{}') o content vuoto ('{}'). Verificare supporto 'think: false' su Ollama.",
+                                reflexModel, thinking, content);
+                    } else {
+                        log.info("Verifica avvio modello decisionale '{}' completata: token ricevuto in content ('{}').",
+                                reflexModel, content.strip());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.debug("Verifica modello decisionale '{}' non completata (non bloccante): {}", reflexModel, e.getMessage());
+        }
     }
 
     /**
@@ -296,4 +351,10 @@ public class OllamaServerInitializer implements ApplicationRunner {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     record ModelTag(String name, String model) {}
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    record ChatProbeMessage(String content, String thinking) {}
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    record ChatProbeResponse(ChatProbeMessage message) {}
 }

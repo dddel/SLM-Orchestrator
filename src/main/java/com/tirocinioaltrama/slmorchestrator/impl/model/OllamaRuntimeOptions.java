@@ -10,6 +10,7 @@ package com.tirocinioaltrama.slmorchestrator.impl.model;
  * @param numPredict    limite massimo di token da generare (num_predict); null = default (400)
  * @param temperature   temperatura di campionamento (default: 0.0)
  * @param seed          seed deterministico per la generazione (default: 42)
+ * @param think         parametro esplicito per abilitare/disabilitare la catena di pensiero (null = default del runner)
  */
 public record OllamaRuntimeOptions(
         String keepAlive,
@@ -18,7 +19,8 @@ public record OllamaRuntimeOptions(
         Integer numThread,
         Integer numPredict,
         Double temperature,
-        Integer seed
+        Integer seed,
+        Boolean think
 ) {
 
     public static final double DEFAULT_REPEAT_PENALTY = 1.0;
@@ -50,18 +52,23 @@ public record OllamaRuntimeOptions(
         }
     }
 
+    /** Costruttore a 7 parametri retrocompatibile. */
+    public OllamaRuntimeOptions(String keepAlive, Integer numCtx, Double repeatPenalty, Integer numThread, Integer numPredict, Double temperature, Integer seed) {
+        this(keepAlive, numCtx, repeatPenalty, numThread, numPredict, temperature, seed, null);
+    }
+
     /** Costruttore a 5 parametri retrocompatibile. */
     public OllamaRuntimeOptions(String keepAlive, Integer numCtx, Double repeatPenalty, Integer numThread, Integer numPredict) {
-        this(keepAlive, numCtx, repeatPenalty, numThread, numPredict, DEFAULT_TEMPERATURE, DEFAULT_SEED);
+        this(keepAlive, numCtx, repeatPenalty, numThread, numPredict, DEFAULT_TEMPERATURE, DEFAULT_SEED, null);
     }
 
     /** Costruttore di compatibilità a 4 parametri (applica numPredict = 400 di default). */
     public OllamaRuntimeOptions(String keepAlive, Integer numCtx, Double repeatPenalty, Integer numThread) {
-        this(keepAlive, numCtx, repeatPenalty, numThread, DEFAULT_NUM_PREDICT, DEFAULT_TEMPERATURE, DEFAULT_SEED);
+        this(keepAlive, numCtx, repeatPenalty, numThread, DEFAULT_NUM_PREDICT, DEFAULT_TEMPERATURE, DEFAULT_SEED, null);
     }
 
     /** Opzioni di default retrocompatibili (repeat_penalty = 1.0, num_predict = 400, temp = 0.0, seed = 42). */
     public static OllamaRuntimeOptions defaults() {
-        return new OllamaRuntimeOptions(null, null, DEFAULT_REPEAT_PENALTY, null, DEFAULT_NUM_PREDICT, DEFAULT_TEMPERATURE, DEFAULT_SEED);
+        return new OllamaRuntimeOptions(null, null, DEFAULT_REPEAT_PENALTY, null, DEFAULT_NUM_PREDICT, DEFAULT_TEMPERATURE, DEFAULT_SEED, null);
     }
 }

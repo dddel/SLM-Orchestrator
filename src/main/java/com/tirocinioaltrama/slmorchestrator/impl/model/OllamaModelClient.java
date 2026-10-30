@@ -39,6 +39,7 @@ public class OllamaModelClient implements ModelClient {
     private final boolean includeSensitiveValues;
     private final OllamaRuntimeOptions runtimeOptions;
     private final PromptCacheGuard cacheGuard;
+    private final java.util.Map<String, Boolean> thinkingCapabilityCache = new java.util.concurrent.ConcurrentHashMap<>();
 
     public OllamaModelClient(RestClient restClient) {
         this(restClient, null, false);
@@ -93,12 +94,21 @@ public class OllamaModelClient implements ModelClient {
 
         long latencyMs = (System.nanoTime() - start) / 1_000_000;
 
-        if (response == null || response.message() == null || response.message().content() == null) {
+        if (response == null || response.message() == null) {
             log.error("Risposta vuota o non conforme ricevuta da Ollama per il modello '{}'", body.model());
             throw new IllegalStateException("Risposta non valida o vuota ricevuta da Ollama.");
         }
 
         String content = response.message().content();
+        String thinking = response.message().thinking();
+        if ((content == null || content.isBlank()) && (thinking != null && !thinking.isBlank())) {
+            log.warn("ATTENZIONE: Risposta ricevuta dal modello '{}' con 'content' vuoto ma 'thinking' presente ('{}').",
+                    body.model(), thinking.strip());
+        }
+        if (content == null) {
+            log.error("Risposta senza campo content ricevuta da Ollama per il modello '{}'", body.model());
+            throw new IllegalStateException("Risposta non valida o vuota ricevuta da Ollama.");
+        }
         
         int promptTokens = response.prompt_eval_count() != null ? response.prompt_eval_count() : 0;
         int completionTokens = response.eval_count() != null ? response.eval_count() : 0;
@@ -171,13 +181,65 @@ public class OllamaModelClient implements ModelClient {
             effectiveOptions.putAll(request.options());
         }
 
+        Boolean requestedThink = request.think();
+        if (requestedThink == null && request.options() != null && request.options().containsKey("think")) {
+            Object val = request.options().get("think");
+            if (val instanceof Boolean b) {
+                requestedThink = b;
+            } else if (val != null) {
+                requestedThink = Boolean.parseBoolean(val.toString());
+            }
+        }
+        if (requestedThink == null) {
+            requestedThink = runtimeOptions.think();
+        }
+
+        Boolean effectiveThink = null;
+        if (requestedThink != null) {
+            // Invia "think" solo se le capability del modello (da /api/show) includono thinking
+            if (supportsThinking(effectiveModel)) {
+                effectiveThink = requestedThink;
+            } else {
+                log.debug("Parametro 'think: {}' ignorato per il modello '{}': il modello non include la capability 'thinking'.",
+                        requestedThink, effectiveModel);
+            }
+        }
+
         return new OllamaChatRequest(
                 effectiveModel,
                 List.copyOf(messages),
                 false,
                 format,
                 effectiveOptions,
-                runtimeOptions.keepAlive());
+                runtimeOptions.keepAlive(),
+                effectiveThink);
+    }
+
+    public boolean supportsThinking(String model) {
+        if (model == null || model.isBlank()) {
+            return false;
+        }
+        String lower = model.toLowerCase(java.util.Locale.ROOT);
+        if (lower.contains("reflex") || lower.contains("think") || lower.contains("deepseek-r1")) {
+            return true;
+        }
+        if (lower.contains("qwen2.5") || lower.contains("llama3") || lower.contains("mistral")) {
+            return false;
+        }
+        return thinkingCapabilityCache.computeIfAbsent(model, m -> {
+            try {
+                ShowResponse resp = restClient.post()
+                        .uri("/api/show")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(java.util.Map.of("name", m))
+                        .retrieve()
+                        .body(ShowResponse.class);
+                return resp != null && resp.capabilities() != null && resp.capabilities().contains("thinking");
+            } catch (Exception e) {
+                log.debug("Verifica capability 'thinking' per '{}' non disponibile tramite /api/show ({}). Fallback per nome modello.", m, e.getMessage());
+                return false;
+            }
+        });
     }
 
     private static boolean isBlank(String value) {
@@ -191,10 +253,18 @@ public class OllamaModelClient implements ModelClient {
             boolean stream,
             @JsonRawValue String format,
             java.util.Map<String, Object> options,
-            String keep_alive) {
+            String keep_alive,
+            Boolean think) {
     }
 
-    record Message(String role, String content) {
+    record Message(String role, String content, String thinking) {
+        Message(String role, String content) {
+            this(role, content, null);
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    record ShowResponse(List<String> capabilities) {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

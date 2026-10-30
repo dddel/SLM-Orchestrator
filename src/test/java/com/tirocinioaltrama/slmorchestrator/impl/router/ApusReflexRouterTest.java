@@ -113,7 +113,68 @@ class ApusReflexRouterTest {
 
         RoutingDecision decision = router.routeWithDecision("Carta d'identità n. CA12345AA, CF: RSSMRA80A01H501U");
         assertEquals(DocumentType.ANAGRAFICA, decision.documentType());
-        assertEquals("Fallback Euristico", decision.routerName());
+        assertTrue(decision.routerName().contains("Fallback Euristico"));
+        assertEquals(1, router.getFallbackInvocationCount());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2: ApusReflexRouter su token non valido 'The' in content dichiara fallback nel nome e conta token non valido")
+    void testInvalidTokenInContentTriggersFallbackWithDeclaredNameAndMetrics() {
+        RestClient.Builder builder = RestClient.builder().baseUrl("http://localhost:11434");
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
+        RestClient restClient = builder.build();
+
+        ApusReflexRouter router = new ApusReflexRouter(restClient, "hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M");
+
+        String jsonResponse = """
+                {
+                  "message": {
+                    "role": "assistant",
+                    "content": "The"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+
+        RoutingDecision decision = router.routeWithDecision("Carta d'identità n. CA12345AA, CF: RSSMRA80A01H501U");
+        assertEquals(DocumentType.ANAGRAFICA, decision.documentType());
+        assertTrue(decision.routerName().contains("Fallback Euristico per Token Non Valido: 'The'"));
+        assertEquals(1, router.getInvalidTokenCount());
+        assertEquals(1, router.getFallbackInvocationCount());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2: ApusReflexRouter su token in thinking con content vuoto gestisce token non valido e attiva fallback")
+    void testInvalidTokenInThinkingTriggersFallbackWithDeclaredName() {
+        RestClient.Builder builder = RestClient.builder().baseUrl("http://localhost:11434");
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
+        RestClient restClient = builder.build();
+
+        ApusReflexRouter router = new ApusReflexRouter(restClient, "hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M");
+
+        String jsonResponse = """
+                {
+                  "message": {
+                    "role": "assistant",
+                    "content": "",
+                    "thinking": "The"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+
+        RoutingDecision decision = router.routeWithDecision("Carta d'identità n. CA12345AA, CF: RSSMRA80A01H501U");
+        assertEquals(DocumentType.ANAGRAFICA, decision.documentType());
+        assertTrue(decision.routerName().contains("Fallback Euristico per Token Non Valido: 'The'"));
+        assertEquals(1, router.getInvalidTokenCount());
         server.verify();
     }
 
