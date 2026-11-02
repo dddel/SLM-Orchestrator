@@ -1,0 +1,180 @@
+<div class="parameter-drawer-container">
+  <div class="drawer-header">
+    <div class="title-with-icon">
+      <app-icon name="sliders" [size]="16"></app-icon>
+      <span class="drawer-title">Parametri di Configurazione Richiesta</span>
+    </div>
+    <span class="drawer-hint">Configura parametri ed espandi le sezioni</span>
+  </div>
+
+  <div class="accordion-stack">
+    <!-- Sezione 1: Tipo Documento -->
+    <app-accordion-item
+      title="Tipo Documento"
+      subtitle="Forza la tipologia o affida lo smistamento al router"
+      icon="file-text"
+      [activeValue]="selectedDocType() || 'Auto-Detect'"
+      [(isOpen)]="isDocTypeOpen"
+    >
+      <div class="options-grid">
+        @for (opt of documentTypes; track opt.label) {
+          <button
+            type="button"
+            class="option-card"
+            [class.selected]="selectedDocType() === opt.type"
+            (click)="selectDocType(opt.type)"
+          >
+            <div class="option-header">
+              <span class="option-name">{{ opt.label }}</span>
+              <app-badge [variant]="selectedDocType() === opt.type ? 'accent' : 'neutral'" size="sm">
+                {{ opt.badge }}
+              </app-badge>
+            </div>
+            <p class="option-description">{{ opt.description }}</p>
+          </button>
+        }
+      </div>
+    </app-accordion-item>
+
+    <!-- Sezione 2: Motore Router -->
+    <app-accordion-item
+      title="Motore Router"
+      subtitle="Seleziona il modello di routing per l'inferenza"
+      icon="cpu"
+      [activeValue]="selectedRouterType() || 'Default'"
+      [(isOpen)]="isRouterOpen"
+    >
+      <div class="options-grid">
+        @for (opt of routerOptions; track opt.label) {
+          <button
+            type="button"
+            class="option-card"
+            [class.selected]="selectedRouterType() === opt.type"
+            (click)="selectRouter(opt.type)"
+          >
+            <div class="option-header">
+              <span class="option-name">{{ opt.label }}</span>
+              <app-badge [variant]="selectedRouterType() === opt.type ? 'accent' : 'neutral'" size="sm">
+                {{ opt.badge }}
+              </app-badge>
+            </div>
+            <p class="option-description">{{ opt.description }}</p>
+          </button>
+        }
+      </div>
+    </app-accordion-item>
+
+    <!-- Sezione 3: Parametri Liberi (Stringhe) -->
+    <app-accordion-item
+      title="Parametri Liberi & Metadati"
+      subtitle="Campi testuali liberi aggiuntivi per la richiesta"
+      icon="terminal"
+      [activeValue]="customParams().length ? customParams().length + ' parametri' : ''"
+      [(isOpen)]="isCustomParamsOpen"
+    >
+      <div class="custom-params-wrapper">
+        <div class="preset-chips-bar">
+          <span class="chips-label">Suggeriti:</span>
+          <button type="button" class="preset-chip" (click)="addPresetParam('correlationId', 'req-' + (customParams().length + 1))">
+            + correlationId
+          </button>
+          <button type="button" class="preset-chip" (click)="addPresetParam('debugMode', 'true')">
+            + debugMode
+          </button>
+          <button type="button" class="preset-chip" (click)="addPresetParam('noteOperatore', 'Revisione rapida')">
+            + noteOperatore
+          </button>
+        </div>
+
+        @if (customParams().length === 0) {
+          <div class="empty-params">
+            <app-icon name="sliders" [size]="20"></app-icon>
+            <p>Nessun parametro libero configurato. Aggiungi campi stringa arbitrari se necessario.</p>
+          </div>
+        } @else {
+          <div class="params-list">
+            @for (param of customParams(); track param.id) {
+              <div class="param-row" [class.disabled]="!param.enabled">
+                <input
+                  type="checkbox"
+                  class="param-toggle"
+                  [checked]="param.enabled"
+                  (change)="toggleCustomParam(param.id)"
+                  title="Abilita/Disabilita parametro"
+                />
+
+                <div class="input-field-box key-box">
+                  <label class="field-label">Chiave (String)</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    placeholder="es. correlationId"
+                    [value]="param.key"
+                    (input)="updateParamKey(param.id, $any($event.target).value)"
+                  />
+                </div>
+
+                <div class="input-field-box val-box">
+                  <label class="field-label">Valore (String)</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    placeholder="es. 12345-abc"
+                    [value]="param.value"
+                    (input)="updateParamValue(param.id, $any($event.target).value)"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="remove-param-btn"
+                  (click)="removeCustomParam(param.id)"
+                  title="Rimuovi parametro"
+                >
+                  <app-icon name="trash" [size]="14"></app-icon>
+                </button>
+              </div>
+            }
+          </div>
+        }
+
+        <button type="button" class="add-param-btn" (click)="addCustomParam()">
+          <app-icon name="plus" [size]="14"></app-icon>
+          <span>Aggiungi Parametro Testuale Libero</span>
+        </button>
+      </div>
+    </app-accordion-item>
+
+    <!-- Sezione 4: Connessione Endpoint -->
+    <app-accordion-item
+      title="Endpoint API & Host"
+      subtitle="Indirizzo backend Spring Boot (default: relativo /api)"
+      icon="database"
+      [activeValue]="baseUrl() ? baseUrl() : 'Default (/api)'"
+      [(isOpen)]="isConnectionOpen"
+    >
+      <div class="connection-config">
+        <div class="input-field-box">
+          <label class="field-label">Base URL Server (Parametro libero stringa)</label>
+          <div class="url-input-group">
+            <input
+              type="text"
+              class="text-input"
+              placeholder="es. http://localhost:8080 (lascia vuoto per proxy locale)"
+              [value]="baseUrl()"
+              (input)="baseUrl.set($any($event.target).value)"
+            />
+            @if (baseUrl()) {
+              <button type="button" class="clear-btn" (click)="baseUrl.set('')" title="Ripristina predefinito">
+                <app-icon name="x" [size]="14"></app-icon>
+              </button>
+            }
+          </div>
+          <span class="field-note">
+            Se il frontend è avviato con <code>ng serve</code>, le chiamate a <code>/api</code> sono proxate automaticamente a <code>localhost:8080</code>.
+          </span>
+        </div>
+      </div>
+    </app-accordion-item>
+  </div>
+</div>

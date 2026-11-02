@@ -1,0 +1,78 @@
+<header class="app-header">
+  <div class="header-left">
+    <div class="brand-badge-box">
+      <app-icon name="sparkles" [size]="20" customClass="brand-icon"></app-icon>
+    </div>
+    <div class="brand-info">
+      <div class="brand-row">
+        <h1 class="brand-title">SLM Orchestrator</h1>
+        <app-badge variant="accent" size="sm">Neuro-Symbolic</app-badge>
+      </div>
+      <p class="brand-tagline">Single Model Architecture &bull; Dynamic System Prompts &bull; Deterministic Guards</p>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- Presets Dropdown -->
+    <div class="presets-dropdown-wrapper">
+      <button
+        type="button"
+        class="header-action-btn presets-btn"
+        (click)="togglePresets()"
+        [attr.aria-expanded]="isPresetsMenuOpen()"
+      >
+        <app-icon name="file-text" [size]="16"></app-icon>
+        <span>Esempi Predefiniti</span>
+        <app-icon name="chevron-down" [size]="14"></app-icon>
+      </button>
+
+      @if (isPresetsMenuOpen()) {
+        <div class="presets-menu-overlay" (click)="isPresetsMenuOpen.set(false)"></div>
+        <div class="presets-dropdown-menu">
+          <div class="menu-heading">Seleziona un caso d'uso di test</div>
+          @for (preset of presetsService.getPresets(); track preset.id) {
+            <button
+              type="button"
+              class="preset-menu-item"
+              (click)="onSelectPreset(preset)"
+            >
+              <div class="preset-item-top">
+                <span class="preset-item-title">{{ preset.title }}</span>
+                <app-badge variant="neutral" size="sm">{{ preset.docType }}</app-badge>
+              </div>
+              <p class="preset-item-desc">{{ preset.description }}</p>
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- History button -->
+    <button
+      type="button"
+      class="header-action-btn"
+      (click)="openHistory.emit()"
+      title="Cronologia esecuzioni"
+    >
+      <app-icon name="history" [size]="16"></app-icon>
+      <span class="btn-text">Cronologia</span>
+      @if (orchestratorService.history().length > 0) {
+        <span class="history-count">{{ orchestratorService.history().length }}</span>
+      }
+    </button>
+
+    <!-- Theme Toggle -->
+    <button
+      type="button"
+      class="icon-toggle-btn"
+      (click)="themeService.toggleTheme()"
+      [title]="themeService.currentTheme() === 'dark' ? 'Passa al tema Chiaro' : 'Passa al tema Scuro'"
+    >
+      @if (themeService.currentTheme() === 'dark') {
+        <app-icon name="sun" [size]="17"></app-icon>
+      } @else {
+        <app-icon name="moon" [size]="17"></app-icon>
+      }
+    </button>
+  </div>
+</header>

@@ -1,0 +1,83 @@
+<div class="modal-backdrop" (click)="close.emit()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="header-title-box">
+        <app-icon name="history" [size]="18"></app-icon>
+        <h3>Cronologia Esecuzioni</h3>
+        <span class="count-pill">{{ orchestratorService.history().length }}</span>
+      </div>
+
+      <div class="header-actions">
+        @if (orchestratorService.history().length > 0) {
+          <button
+            type="button"
+            class="clear-all-btn"
+            (click)="orchestratorService.clearHistory()"
+            title="Svuota cronologia"
+          >
+            <app-icon name="trash" [size]="14"></app-icon>
+            <span>Svuota</span>
+          </button>
+        }
+        <button
+          type="button"
+          class="close-btn"
+          (click)="close.emit()"
+          title="Chiudi finestra"
+        >
+          <app-icon name="x" [size]="18"></app-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      @if (orchestratorService.history().length === 0) {
+        <div class="empty-history">
+          <app-icon name="history" [size]="32"></app-icon>
+          <p>Nessuna esecuzione recente salvata.</p>
+        </div>
+      } @else {
+        <div class="history-list">
+          @for (item of orchestratorService.history(); track item.id) {
+            <div class="history-item-row" (click)="onSelect(item)">
+              <div class="item-left">
+                <div class="item-meta">
+                  <app-badge
+                    [variant]="item.status === 'OK' ? 'success' : item.status === 'INDETERMINATE' ? 'warning' : 'danger'"
+                    size="sm"
+                  >
+                    {{ item.status }}
+                  </app-badge>
+
+                  <span class="item-time">{{ item.timestamp | date: 'HH:mm:ss - dd/MM' }}</span>
+                  <span class="item-latency font-mono">{{ item.latencyMs }} ms</span>
+                  @if (item.request.type) {
+                    <span class="item-type-badge">{{ item.request.type }}</span>
+                  }
+                </div>
+
+                <p class="item-snippet font-mono">
+                  {{ item.request.payload | slice: 0: 120 }}...
+                </p>
+              </div>
+
+              <div class="item-right">
+                <button
+                  type="button"
+                  class="delete-item-btn"
+                  (click)="$event.stopPropagation(); orchestratorService.deleteHistoryEntry(item.id)"
+                  title="Elimina voce"
+                >
+                  <app-icon name="trash" [size]="13"></app-icon>
+                </button>
+                <button type="button" class="restore-action" title="Ripristina nel form">
+                  <app-icon name="arrow-right" [size]="15"></app-icon>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

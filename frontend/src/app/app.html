@@ -1,0 +1,47 @@
+<div class="app-layout">
+  <!-- Top Navigation Header -->
+  <app-header
+    (openHistory)="isHistoryOpen.set(true)"
+    (selectPreset)="onSelectPreset($event)"
+  ></app-header>
+
+  <!-- Main Split Console Area -->
+  <main class="console-main">
+    <div class="console-grid">
+      <!-- Left Column: Request Configuration & Payload -->
+      <section class="console-pane left-pane">
+        <app-request-panel
+          [(payload)]="payload"
+          [(selectedDocType)]="selectedDocType"
+          [(selectedRouterType)]="selectedRouterType"
+          [(customParams)]="customParams"
+          [(baseUrl)]="baseUrl"
+        ></app-request-panel>
+      </section>
+
+      <!-- Right Column: Neuro-Symbolic Results & Metrics -->
+      <section class="console-pane right-pane">
+        <app-response-viewer></app-response-viewer>
+      </section>
+    </div>
+  </main>
+
+  <!-- Bottom Minimal Status Bar -->
+  <footer class="app-footer">
+    <div class="footer-left">
+      <span class="status-indicator-dot"></span>
+      <span class="footer-text">Architettura SLM Monolitica Locale &bull; Qwen 2.5 3B &bull; APUS Reflex</span>
+    </div>
+    <div class="footer-right">
+      <span class="footer-text">Guardie Simboliche Attive (CF &bull; P.IVA &bull; IBAN &bull; Schemi JSON)</span>
+    </div>
+  </footer>
+
+  <!-- History Modal / Drawer -->
+  @if (isHistoryOpen()) {
+    <app-history-modal
+      (close)="isHistoryOpen.set(false)"
+      (restoreEntry)="onRestoreHistory($event)"
+    ></app-history-modal>
+  }
+</div>

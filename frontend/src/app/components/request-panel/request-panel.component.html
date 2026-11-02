@@ -1,0 +1,69 @@
+<div class="request-panel">
+  <!-- Payload Box Header -->
+  <div class="editor-header">
+    <div class="editor-title-group">
+      <span class="editor-label">Payload Documento</span>
+      <span class="editor-sublabel">Testo non strutturato in ingresso</span>
+    </div>
+
+    <div class="editor-stats">
+      <span class="stat-pill">{{ lineCount() }} righe</span>
+      <span class="stat-pill">{{ charCount() }} caratteri</span>
+      @if (payload()) {
+        <button
+          type="button"
+          class="clear-text-btn"
+          (click)="clearPayload()"
+          title="Cancella testo"
+        >
+          <app-icon name="trash" [size]="13"></app-icon>
+          <span>Pulisci</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Main Textarea Editor -->
+  <div class="textarea-container">
+    <textarea
+      class="payload-textarea"
+      placeholder="Incolla qui il testo del documento non strutturato (es. fattura, email, verbale, anagrafica)... oppure seleziona un Esempio Predefinito."
+      [value]="payload()"
+      (input)="payload.set($any($event.target).value)"
+      rows="10"
+    ></textarea>
+  </div>
+
+  <!-- Expandable Parameters Drawer (DocumentType, RouterType, Custom Free Params, Endpoint) -->
+  <app-parameter-drawer
+    [(selectedDocType)]="selectedDocType"
+    [(selectedRouterType)]="selectedRouterType"
+    [(customParams)]="customParams"
+    [(baseUrl)]="baseUrl"
+  ></app-parameter-drawer>
+
+  <!-- Submit / Action Footer -->
+  <div class="editor-footer">
+    <div class="footer-hint">
+      <span class="shortcut-badge">Ctrl + Invio</span>
+      <span class="hint-text">per eseguire l'inferenza</span>
+    </div>
+
+    <div class="action-buttons">
+      <button
+        type="button"
+        class="submit-button"
+        [disabled]="!payload().trim() || orchestratorService.isLoading()"
+        (click)="submitRequest()"
+      >
+        @if (orchestratorService.isLoading()) {
+          <app-icon name="refresh" [size]="16" customClass="spin-icon"></app-icon>
+          <span>Elaborazione in corso...</span>
+        } @else {
+          <app-icon name="play" [size]="15"></app-icon>
+          <span>Elabora Documento</span>
+        }
+      </button>
+    </div>
+  </div>
+</div>
