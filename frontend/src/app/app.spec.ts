@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { App } from './app';
+import { OrchestratorService } from './core/services/orchestrator.service';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -42,5 +43,17 @@ describe('App', () => {
     expect(app.payload()).toBe('Fattura 123');
     expect(app.selectedDocType()).toBe('FATTURA');
     expect(app.selectedRouterType()).toBe('local-ollama');
+  });
+
+  it('should reject non-local base url for security', () => {
+    const service = TestBed.inject(OrchestratorService);
+    let thrownError: Error | null = null;
+    service.process({ payload: 'test' }, [], 'https://malicious-external-site.com').subscribe({
+      error: (err: unknown) => {
+        thrownError = err as Error;
+      }
+    });
+    expect(thrownError).toBeTruthy();
+    expect((thrownError as Error | null)?.message).toContain('Per motivi di sicurezza');
   });
 });

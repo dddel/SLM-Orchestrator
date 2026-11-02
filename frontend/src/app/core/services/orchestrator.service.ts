@@ -32,6 +32,16 @@ export class OrchestratorService {
     this.isLoading.set(true);
     this.currentError.set(null);
 
+    const cleanBaseUrl = baseUrl ? baseUrl.trim().replace(/\/+$/, '') : '';
+
+    // Validazione severa dell'endpoint: consentito solo vuoto (relativo /api) o loopback locale
+    if (cleanBaseUrl && !/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(cleanBaseUrl)) {
+      this.isLoading.set(false);
+      const securityError = 'Per motivi di sicurezza, sono consentiti esclusivamente endpoint locali (localhost o 127.0.0.1).';
+      this.currentError.set(securityError);
+      return throwError(() => new Error(securityError));
+    }
+
     const startTime = performance.now();
 
     // Construct final payload object merging clean core request + enabled custom parameters
@@ -53,7 +63,6 @@ export class OrchestratorService {
       }
     }
 
-    const cleanBaseUrl = baseUrl ? baseUrl.replace(/\/+$/, '') : '';
     const endpoint = `${cleanBaseUrl}/api/orchestrator/process`;
 
     return this.http.post<OrchestratorResponse>(endpoint, body).pipe(
