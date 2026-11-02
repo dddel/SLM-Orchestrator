@@ -22,7 +22,7 @@ IBAN: IT60X0542811101000000123456
 Cessionario/Committente:
 Rossi Meccanica S.p.A.
 Via Emilia Ponente 102, 40133 Bologna (BO)
-P.IVA: 98765432109
+P.IVA: 98765432103
 
 Descrizione prestazioni:
 1. Consulenza architettura Microservizi e SLM: € 3.200,00
