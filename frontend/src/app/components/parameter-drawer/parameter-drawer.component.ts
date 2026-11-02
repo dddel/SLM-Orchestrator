@@ -82,15 +82,15 @@ export class ParameterDrawerComponent {
     },
     {
       type: 'local-ollama',
-      label: 'Ollama Semantico (local-ollama)',
+      label: 'Ollama Semantico',
       description: 'Classificazione basata su prompt semantico con modello Qwen residente',
-      badge: 'Zero Hallucinations'
+      badge: 'local-ollama'
     },
     {
       type: 'reflex',
-      label: 'APUS Reflex (reflex)',
-      description: 'Classificatore discreto locale ultra-rapido (GGUF Q4_K_M)',
-      badge: 'Bassa Latenza'
+      label: 'APUS Reflex',
+      description: 'Classificatore discreto locale basato su modello APUS GGUF',
+      badge: 'reflex'
     }
   ];
 
