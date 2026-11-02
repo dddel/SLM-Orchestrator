@@ -13,39 +13,16 @@
   </div>
 
   <div class="header-right">
-    <!-- Presets Dropdown -->
-    <div class="presets-dropdown-wrapper">
-      <button
-        type="button"
-        class="header-action-btn presets-btn"
-        (click)="togglePresets()"
-        [attr.aria-expanded]="isPresetsMenuOpen()"
-      >
-        <app-icon name="file-text" [size]="16"></app-icon>
-        <span>Esempi Predefiniti</span>
-        <app-icon name="chevron-down" [size]="14"></app-icon>
-      </button>
-
-      @if (isPresetsMenuOpen()) {
-        <div class="presets-menu-overlay" (click)="isPresetsMenuOpen.set(false)"></div>
-        <div class="presets-dropdown-menu">
-          <div class="menu-heading">Seleziona un caso d'uso di test</div>
-          @for (preset of presetsService.getPresets(); track preset.id) {
-            <button
-              type="button"
-              class="preset-menu-item"
-              (click)="onSelectPreset(preset)"
-            >
-              <div class="preset-item-top">
-                <span class="preset-item-title">{{ preset.title }}</span>
-                <app-badge variant="neutral" size="sm">{{ preset.docType }}</app-badge>
-              </div>
-              <p class="preset-item-desc">{{ preset.description }}</p>
-            </button>
-          }
-        </div>
-      }
-    </div>
+    <!-- Presets Modal Open Button -->
+    <button
+      type="button"
+      class="header-action-btn presets-btn"
+      (click)="openPresetsModal.emit()"
+      title="Apri catalogo esempi con esito atteso e guardie"
+    >
+      <app-icon name="file-text" [size]="16"></app-icon>
+      <span>Esempi Predefiniti & Expected</span>
+    </button>
 
     <!-- History button -->
     <button

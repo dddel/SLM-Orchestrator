@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RequestPanelComponent } from './components/request-panel/request-panel.component';
 import { ResponseViewerComponent } from './components/response-viewer/response-viewer.component';
 import { HistoryModalComponent } from './components/history-modal/history-modal.component';
+import { PresetsModalComponent } from './components/presets-modal/presets-modal.component';
 import {
   DocumentType,
   HistoryEntry,
@@ -26,7 +27,8 @@ import { OrchestratorService } from './core/services/orchestrator.service';
     HeaderComponent,
     RequestPanelComponent,
     ResponseViewerComponent,
-    HistoryModalComponent
+    HistoryModalComponent,
+    PresetsModalComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
@@ -40,6 +42,7 @@ export class App {
   readonly selectedRouterType = signal<RouterType | null>(null);
 
   readonly isHistoryOpen = signal<boolean>(false);
+  readonly isPresetsOpen = signal<boolean>(false);
 
   @ViewChild(RequestPanelComponent) requestPanel?: RequestPanelComponent;
 

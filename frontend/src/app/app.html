@@ -2,7 +2,7 @@
   <!-- Top Navigation Header -->
   <app-header
     (openHistory)="isHistoryOpen.set(true)"
-    (selectPreset)="onSelectPreset($event)"
+    (openPresetsModal)="isPresetsOpen.set(true)"
   ></app-header>
 
   <!-- Main Split Console Area -->
@@ -41,5 +41,13 @@
       (close)="isHistoryOpen.set(false)"
       (restoreEntry)="onRestoreHistory($event)"
     ></app-history-modal>
+  }
+
+  <!-- Presets & Expected Modal -->
+  @if (isPresetsOpen()) {
+    <app-presets-modal
+      (close)="isPresetsOpen.set(false)"
+      (applyPreset)="onSelectPreset($event)"
+    ></app-presets-modal>
   }
 </div>

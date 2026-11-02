@@ -45,6 +45,21 @@ export interface OrchestratorResponse {
   metrics?: ExecutionMetrics;
 }
 
+export interface PresetExpectedError {
+  path: string;
+  code: string;
+  reason: string;
+}
+
+export interface PresetExpected {
+  status: OrchestratorStatus;
+  detectedLabel: DocumentType;
+  summary: string;
+  expectedJson?: string;
+  errors?: PresetExpectedError[];
+  notes?: string[];
+}
+
 export interface RequestPreset {
   id: string;
   title: string;
@@ -52,6 +67,7 @@ export interface RequestPreset {
   routerType?: RouterType;
   description: string;
   payload: string;
+  expected: PresetExpected;
 }
 
 export interface HistoryEntry {

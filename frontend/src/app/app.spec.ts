@@ -4,6 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { App } from './app';
 import { OrchestratorService } from './core/services/orchestrator.service';
 import { ParameterDrawerComponent } from './components/parameter-drawer/parameter-drawer.component';
+import { PresetsModalComponent } from './components/presets-modal/presets-modal.component';
 
 describe('App', () => {
   let httpTesting: HttpTestingController;
@@ -47,7 +48,12 @@ describe('App', () => {
       docType: 'FATTURA',
       routerType: 'local-ollama',
       description: 'Test description',
-      payload: 'Fattura 123'
+      payload: 'Fattura 123',
+      expected: {
+        status: 'OK',
+        detectedLabel: 'FATTURA',
+        summary: 'Test summary'
+      }
     });
     expect(app.payload()).toBe('Fattura 123');
     expect(app.selectedDocType()).toBe('FATTURA');
@@ -85,5 +91,35 @@ describe('App', () => {
       actionErrors: [],
       latencyMs: 42
     });
+  });
+
+  it('should render presets modal with comparison and allow selection', () => {
+    const fixture = TestBed.createComponent(PresetsModalComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.presets.length).toBeGreaterThan(0);
+
+    // Default selection is the first preset
+    expect(component.selectedPresetId()).toBe(component.presets[0].id);
+
+    // Find the P.IVA checksum error preset
+    const pivaErrorPreset = component.presets.find((p) => p.id === 'fattura-piva-errata');
+    expect(pivaErrorPreset).toBeDefined();
+    expect(pivaErrorPreset?.expected.status).toBe('INDETERMINATE');
+    expect(pivaErrorPreset?.expected.errors?.[0].code).toBe('SOURCE_CHECKSUM_INVALID');
+
+    // Switch selection
+    component.selectPreset('fattura-piva-errata');
+    expect(component.selectedPresetId()).toBe('fattura-piva-errata');
+    expect(component.currentPreset()?.id).toBe('fattura-piva-errata');
+
+    // Test apply emission
+    let appliedPresetId: string | null = null;
+    component.applyPreset.subscribe((preset) => {
+      appliedPresetId = preset.id;
+    });
+    component.onApply();
+    expect(appliedPresetId).toBe('fattura-piva-errata');
   });
 });
