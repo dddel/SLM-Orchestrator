@@ -2,6 +2,9 @@ package com.tirocinioaltrama.slmorchestrator.core;
 
 import java.util.Locale;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Tipi di router selezionabili dinamicamente per la classificazione dei documenti.
  */
@@ -15,10 +18,12 @@ public enum RouterType {
         this.key = key;
     }
 
+    @JsonValue
     public String getKey() {
         return key;
     }
 
+    @JsonCreator
     public static RouterType fromString(String value) {
         if (value == null || value.isBlank()) {
             return null;
