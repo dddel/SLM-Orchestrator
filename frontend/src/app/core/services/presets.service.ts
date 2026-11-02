@@ -81,10 +81,10 @@ Email certificata: sofia.ferrari@pec.it`
     },
     {
       id: 'altro-verbale',
-      title: 'Verbale Riunione Interna (Altro)',
-      docType: 'ALTRO',
+      title: 'Testo Generico (Classificato come ALTRO)',
+      docType: null,
       routerType: 'reflex',
-      description: 'Testo non contabile per verificare la classificazione generica e router APUS reflex.',
+      description: 'Testo non catalogabile per verificare che il router server risponda autonomamente ALTRO.',
       payload: `VERBALE SPRINT REVIEW & RETROSPECTIVE - SPRINT 42
 Data: 02 Novembre 2026 - Ore 10:00
 Partecipanti: Lead Architect, Backend Engineer, QA Specialist.

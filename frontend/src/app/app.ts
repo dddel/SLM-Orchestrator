@@ -11,7 +11,6 @@ import { RequestPanelComponent } from './components/request-panel/request-panel.
 import { ResponseViewerComponent } from './components/response-viewer/response-viewer.component';
 import { HistoryModalComponent } from './components/history-modal/history-modal.component';
 import {
-  CustomParam,
   DocumentType,
   HistoryEntry,
   RequestPreset,
@@ -39,8 +38,6 @@ export class App {
   readonly payload = signal<string>('');
   readonly selectedDocType = signal<DocumentType | null>(null);
   readonly selectedRouterType = signal<RouterType | null>(null);
-  readonly customParams = signal<CustomParam[]>([]);
-  readonly baseUrl = signal<string>('');
 
   readonly isHistoryOpen = signal<boolean>(false);
 
@@ -48,7 +45,7 @@ export class App {
 
   onSelectPreset(preset: RequestPreset): void {
     this.payload.set(preset.payload);
-    this.selectedDocType.set(preset.docType);
+    this.selectedDocType.set(preset.docType ?? null);
     if (preset.routerType) {
       this.selectedRouterType.set(preset.routerType);
     }

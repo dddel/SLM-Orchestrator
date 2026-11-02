@@ -31,7 +31,6 @@ export interface OrchestratorRequest {
   type?: DocumentType | null;
   payload: string;
   routerType?: RouterType | null;
-  [customParam: string]: unknown;
 }
 
 export interface OrchestratorResponse {
@@ -46,17 +45,10 @@ export interface OrchestratorResponse {
   metrics?: ExecutionMetrics;
 }
 
-export interface CustomParam {
-  id: string;
-  key: string;
-  value: string;
-  enabled: boolean;
-}
-
 export interface RequestPreset {
   id: string;
   title: string;
-  docType: DocumentType;
+  docType?: DocumentType | null;
   routerType?: RouterType;
   description: string;
   payload: string;

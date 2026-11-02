@@ -2,7 +2,6 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import {
-  CustomParam,
   HistoryEntry,
   OrchestratorRequest,
   OrchestratorResponse
@@ -14,6 +13,7 @@ import {
 export class OrchestratorService {
   private readonly http = inject(HttpClient);
   private readonly HISTORY_KEY = 'slm_orchestrator_history_v1';
+  private readonly ENDPOINT = '/api/orchestrator/process';
 
   readonly isLoading = signal<boolean>(false);
   readonly currentResponse = signal<OrchestratorResponse | null>(null);
@@ -24,27 +24,12 @@ export class OrchestratorService {
     this.loadHistory();
   }
 
-  process(
-    request: OrchestratorRequest,
-    customParams: CustomParam[] = [],
-    baseUrl: string = ''
-  ): Observable<OrchestratorResponse> {
+  process(request: OrchestratorRequest): Observable<OrchestratorResponse> {
     this.isLoading.set(true);
     this.currentError.set(null);
 
-    const cleanBaseUrl = baseUrl ? baseUrl.trim().replace(/\/+$/, '') : '';
-
-    // Validazione severa dell'endpoint: consentito solo vuoto (relativo /api) o loopback locale
-    if (cleanBaseUrl && !/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(cleanBaseUrl)) {
-      this.isLoading.set(false);
-      const securityError = 'Per motivi di sicurezza, sono consentiti esclusivamente endpoint locali (localhost o 127.0.0.1).';
-      this.currentError.set(securityError);
-      return throwError(() => new Error(securityError));
-    }
-
     const startTime = performance.now();
 
-    // Construct final payload object merging clean core request + enabled custom parameters
     const body: Record<string, unknown> = {
       payload: request.payload
     };
@@ -56,16 +41,7 @@ export class OrchestratorService {
       body['routerType'] = request.routerType;
     }
 
-    // Attach any enabled free custom parameters
-    for (const param of customParams) {
-      if (param.enabled && param.key.trim()) {
-        body[param.key.trim()] = param.value;
-      }
-    }
-
-    const endpoint = `${cleanBaseUrl}/api/orchestrator/process`;
-
-    return this.http.post<OrchestratorResponse>(endpoint, body).pipe(
+    return this.http.post<OrchestratorResponse>(this.ENDPOINT, body).pipe(
       map((response) => {
         const clientLatency = Math.round(performance.now() - startTime);
         this.isLoading.set(false);

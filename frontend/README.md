@@ -9,10 +9,8 @@ Interfaccia web moderna, modulare ed estremamente minimale ("easy on the eye") p
 - **Design Minimale & High-Readability**: Palette scura raffinata (Slate / Deep Blue) con accenti elettrici (Emerald, Indigo, Sky), tipografia studiata (Inter & Fira Code), contrasto ottimizzato e tema chiaro alternativo.
 - **Architettura a Componenti Modulari**: Standalone components Angular 21, Signals reattivi, Service Layer disaccoppiato e Type Safety rigorosa.
 - **Menu Parametri ad Espansione (Accordion)**:
-  - **Tipo Documento (`DocumentType`)**: Selezione discreta (`Auto-Detect`, `FATTURA`, `EMAIL`, `ANAGRAFICA`, `ALTRO`) con badge visivi.
+  - **Tipo Documento (`DocumentType`)**: Selezione per forzare l'instradamento (`Auto-Detect`, `FATTURA`, `EMAIL`, `ANAGRAFICA`). La tipologia `ALTRO` è riservata alla risposta del server per documenti non catalogati.
   - **Motore Router (`RouterType`)**: Selezione (`Predefinito`, `local-ollama`, `reflex`) con note prestazionali.
-  - **Parametri Liberi & Metadati (Stringhe)**: Campi testuali liberi per inserire coppie chiave/valore arbitrarie (es. `correlationId`, tag di debug, metadati di tracciamento).
-  - **Endpoint API & Host**: Campo testuale libero per sovrascrivere l'endpoint backend o puntare a cluster remoti.
 - **Viewer Risultati Multi-Scheda**:
   - **JSON Validato**: Output strutturato con formattazione automatica, copia negli appunti in 1-click ed esportazione.
   - **Metriche Neuro-Simboliche**: Schede KPI su latenza (ms), throughput token/s, token di prompt/eval e durata per ciascuna fase della pipeline.

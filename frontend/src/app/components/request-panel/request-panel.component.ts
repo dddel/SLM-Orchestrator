@@ -4,20 +4,15 @@ import {
   HostListener,
   computed,
   inject,
-  input,
-  model,
-  output,
-  signal
+  model
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ParameterDrawerComponent } from '../parameter-drawer/parameter-drawer.component';
 import { IconComponent } from '../common/icon/icon.component';
-import { BadgeComponent } from '../common/badge/badge.component';
 import { OrchestratorService } from '../../core/services/orchestrator.service';
 import { PresetsService } from '../../core/services/presets.service';
 import {
-  CustomParam,
   DocumentType,
   RequestPreset,
   RouterType
@@ -43,8 +38,6 @@ export class RequestPanelComponent {
   readonly payload = model<string>('');
   readonly selectedDocType = model<DocumentType | null>(null);
   readonly selectedRouterType = model<RouterType | null>(null);
-  readonly customParams = model<CustomParam[]>([]);
-  readonly baseUrl = model<string>('');
 
   readonly lineCount = computed(() => {
     const text = this.payload();
@@ -66,15 +59,11 @@ export class RequestPanelComponent {
     if (!text || this.orchestratorService.isLoading()) return;
 
     this.orchestratorService
-      .process(
-        {
-          type: this.selectedDocType(),
-          payload: text,
-          routerType: this.selectedRouterType()
-        },
-        this.customParams(),
-        this.baseUrl()
-      )
+      .process({
+        type: this.selectedDocType(),
+        payload: text,
+        routerType: this.selectedRouterType()
+      })
       .subscribe({
         next: () => {},
         error: () => {}
@@ -87,7 +76,7 @@ export class RequestPanelComponent {
 
   applyPreset(preset: RequestPreset): void {
     this.payload.set(preset.payload);
-    this.selectedDocType.set(preset.docType);
+    this.selectedDocType.set(preset.docType ?? null);
     if (preset.routerType) {
       this.selectedRouterType.set(preset.routerType);
     }
