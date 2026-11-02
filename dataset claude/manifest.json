@@ -1,0 +1,10 @@
+{
+ "seed": 20261030,
+ "sha256_dataset_all": "be1f22eca003d174aa13ee6bed336795dd99b41152cc8a14d817006fe46e86e6",
+ "n": 1470,
+ "counts": {
+  "router": 640,
+  "email_role": 800,
+  "neutral": 30
+ }
+}

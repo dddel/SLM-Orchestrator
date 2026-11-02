@@ -1,0 +1,21 @@
+
+ROUTER baseline regex (4 regole con regola sulle intestazioni): 414/480 = 86.2%  (Wilson sulle prove 82.9%-89.0%; le prove NON sono tutte indipendenti: template ripetuti)
+   breve                    77/  77 = 100.0%
+   conflitto_lessicale      87/ 151 = 57.6%
+   lungo_distrattori        70/  70 = 100.0%
+   standard                180/ 182 = 98.9%
+
+ROUTER baseline solo lessicale (senza regola sulle intestazioni): 336/480 = 70.0%  (Wilson sulle prove 65.8%-73.9%; le prove NON sono tutte indipendenti: template ripetuti)
+   breve                    77/  77 = 100.0%
+   conflitto_lessicale      87/ 151 = 57.6%
+   lungo_distrattori        30/  70 = 42.9%
+   standard                142/ 182 = 78.0%
+
+EMAIL baseline parole-spia (conta tutte le parole del testo): 231/600 = 38.5%  (Wilson sulle prove 34.7%-42.5%; le prove NON sono tutte indipendenti: template ripetuti)
+   breve                    67/ 100 = 67.0%
+   conflitto_contesto       44/ 200 = 22.0%
+   lungo_distrattori        15/ 100 = 15.0%
+   standard                 92/ 100 = 92.0%
+   thread                   13/ 100 = 13.0%
+
+attesa per scelta casuale: router 25%, email 20%
