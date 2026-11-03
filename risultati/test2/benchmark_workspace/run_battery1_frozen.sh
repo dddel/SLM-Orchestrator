@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd /home/del/Projects/slm-orchestrator
 
-CP="benchmark_workspace:target/classes:target/test-classes:$(cat benchmark_workspace/cp.txt)"
+CP="risultati/test2/benchmark_workspace:target/classes:target/test-classes:$(cat risultati/test2/benchmark_workspace/cp.txt 2>/dev/null || true)"
 OUT_DIR="risultati/test2/batteria1_3b_guardrail_ablation"
 DS_DIR="risultati/test2/datasets"
 
@@ -75,7 +75,7 @@ if [[ ! -f "$OUT_DIR/3B_CON_GUARDRAIL/heldout/summary.json" || \
       ! -f "$OUT_DIR/3B_CON_GUARDRAIL/heldout_adversarial/summary.json" || \
       ! -f "$OUT_DIR/3B_CON_GUARDRAIL/dev/summary.json" || \
       ! -f "$OUT_DIR/3B_CON_GUARDRAIL/dev_adversarial/summary.json" ]]; then
-    start_spring 18080 true true "benchmark_workspace/spring_3b_guards_true.log"
+    start_spring 18080 true true "risultati/test2/benchmark_workspace/spring_3b_guards_true.log"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL" "heldout" "$DS_DIR/heldout_dataset_v1.json" 18080 true true "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL" "heldout_adversarial" "$DS_DIR/heldout_adversarial_v1.json" 18080 true true "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL" "dev" "$DS_DIR/dataset_60_v2.json" 18080 true true "qwen2.5:3b-instruct-q8_0"
@@ -90,7 +90,7 @@ if [[ ! -f "$OUT_DIR/3B_ABLAZIONE_GUARDRAIL/heldout/summary.json" || \
       ! -f "$OUT_DIR/3B_ABLAZIONE_GUARDRAIL/heldout_adversarial/summary.json" || \
       ! -f "$OUT_DIR/3B_ABLAZIONE_GUARDRAIL/dev/summary.json" || \
       ! -f "$OUT_DIR/3B_ABLAZIONE_GUARDRAIL/dev_adversarial/summary.json" ]]; then
-    start_spring 18081 false false "benchmark_workspace/spring_3b_guards_false.log"
+    start_spring 18081 false false "risultati/test2/benchmark_workspace/spring_3b_guards_false.log"
     run_cell_if_missing orchestrator "3B_ABLAZIONE_GUARDRAIL" "heldout" "$DS_DIR/heldout_dataset_v1.json" 18081 false false "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_ABLAZIONE_GUARDRAIL" "heldout_adversarial" "$DS_DIR/heldout_adversarial_v1.json" 18081 false false "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_ABLAZIONE_GUARDRAIL" "dev" "$DS_DIR/dataset_60_v2.json" 18081 false false "qwen2.5:3b-instruct-q8_0"

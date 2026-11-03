@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd /home/del/Projects/slm-orchestrator
 
-CP="benchmark_workspace:target/classes:target/test-classes:$(cat benchmark_workspace/cp.txt)"
+CP="risultati/test2/benchmark_workspace:target/classes:target/test-classes:$(cat risultati/test2/benchmark_workspace/cp.txt 2>/dev/null || true)"
 OUT_DIR="risultati/test2/batteria4_smart_retry"
 DS_DIR="risultati/test2/datasets"
 
@@ -55,7 +55,7 @@ start_spring_no_retry() {
         --ollama.repeat-penalty=1.0 \
         --orchestrator.guards.enabled=true \
         --orchestrator.coherence.enabled=true \
-        --orchestrator.pipelines.dir=benchmark_workspace/pipelines_no_retry \
+        --orchestrator.pipelines.dir=risultati/test2/benchmark_workspace/pipelines_no_retry \
         > "$logfile" 2>&1 &
     SPRING_PID=$!
 
@@ -108,7 +108,7 @@ if [[ ! -f "$OUT_DIR/3B_CON_GUARDRAIL_SENZA_RETRY/heldout/summary.json" || \
       ! -f "$OUT_DIR/3B_CON_GUARDRAIL_SENZA_RETRY/dev/summary.json" || \
       ! -f "$OUT_DIR/3B_CON_GUARDRAIL_SENZA_RETRY/dev_adversarial/summary.json" ]]; then
     ensure_ollama
-    start_spring_no_retry 18084 "benchmark_workspace/spring_3b_no_retry.log"
+    start_spring_no_retry 18084 "risultati/test2/benchmark_workspace/spring_3b_no_retry.log"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL_SENZA_RETRY" "heldout" "$DS_DIR/heldout_dataset_v1.json" 18084 true true "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL_SENZA_RETRY" "heldout_adversarial" "$DS_DIR/heldout_adversarial_v1.json" 18084 true true "qwen2.5:3b-instruct-q8_0"
     run_cell_if_missing orchestrator "3B_CON_GUARDRAIL_SENZA_RETRY" "dev" "$DS_DIR/dataset_60_v2.json" 18084 true true "qwen2.5:3b-instruct-q8_0"
