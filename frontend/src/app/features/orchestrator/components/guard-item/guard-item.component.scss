@@ -1,0 +1,85 @@
+.guard-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-secondary);
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.guard-icon-box {
+  width: var(--guard-icon-size);
+  height: var(--guard-icon-size);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+
+  .status-passed & {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-success);
+  }
+
+  .status-warning & {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-warning);
+  }
+
+  .status-error & {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-error);
+  }
+}
+
+.guard-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+}
+
+.guard-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.guard-title {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  font-weight: var(--weight-medium);
+  color: var(--md-sys-color-on-surface);
+}
+
+.guard-badge {
+  font-size: var(--type-label-sm-size);
+  line-height: var(--type-label-sm-line);
+  font-weight: var(--weight-medium);
+  padding: var(--space-0-5) var(--space-2-5);
+  border-radius: var(--radius-pill);
+
+  &.passed {
+    background-color: var(--md-sys-color-success-container);
+    color: var(--md-sys-color-success);
+  }
+
+  &.warning {
+    background-color: var(--md-sys-color-warning-container);
+    color: var(--md-sys-color-warning);
+  }
+
+  &.error {
+    background-color: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-error);
+  }
+}
+
+.guard-detail {
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--md-sys-color-on-surface-variant);
+}

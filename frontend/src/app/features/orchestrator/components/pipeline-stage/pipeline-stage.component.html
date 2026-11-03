@@ -1,0 +1,28 @@
+<div class="stage-container" [class]="'status-' + stage().status + ' stage-' + stage().id">
+  <div class="stage-node-row">
+    <div
+      class="stage-indicator"
+      [attr.aria-label]="stage().label + ': ' + stage().status"
+      role="status"
+    >
+      <app-icon
+        [name]="getStageIcon()"
+        [size]="18"
+        [customClass]="stage().status === 'running' ? 'spin-icon' : ''"
+      ></app-icon>
+    </div>
+
+    @if (!isLast()) {
+      <div
+        class="connector-line"
+        [class.active]="stage().status === 'completed' || stage().status === 'warning'"
+        [class.progressing]="stage().status === 'running'"
+      ></div>
+    }
+  </div>
+
+  <div class="stage-meta">
+    <span class="stage-title">{{ stage().label }}</span>
+    <span class="stage-sublabel">{{ stage().sublabel }}</span>
+  </div>
+</div>

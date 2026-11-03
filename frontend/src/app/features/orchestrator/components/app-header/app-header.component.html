@@ -1,0 +1,35 @@
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand-group">
+      <div class="brand-icon-box">
+        <app-icon name="sparkles" [size]="16" customClass="brand-icon"></app-icon>
+      </div>
+      <div class="brand-text">
+        <h1 class="brand-title">SLM Orchestrator</h1>
+        <span class="brand-separator">&bull;</span>
+        <span class="brand-tagline">Qwen 2.5 3B · inferenza locale</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <app-demo-control
+        [isRunning]="isDemoRunning()"
+        [isPaused]="isDemoPaused()"
+        (start)="startDemo.emit()"
+        (pause)="pauseDemo.emit()"
+        (stop)="stopDemo.emit()"
+      ></app-demo-control>
+
+      <button
+        type="button"
+        class="info-action-btn"
+        (click)="openInfo.emit()"
+        title="Informazioni su autori, API e licenze"
+        aria-label="Informazioni sul progetto"
+      >
+        <app-icon name="info" [size]="15"></app-icon>
+        <span class="btn-text">Info</span>
+      </button>
+    </div>
+  </div>
+</header>

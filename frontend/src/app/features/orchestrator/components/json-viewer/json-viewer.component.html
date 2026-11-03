@@ -1,0 +1,41 @@
+<div class="json-viewer-card">
+  <div class="viewer-header">
+    <div class="header-title-box">
+      <app-icon name="file-text" [size]="13" customClass="title-icon"></app-icon>
+      <span class="viewer-title">{{ title() }}</span>
+    </div>
+
+    <div class="viewer-actions">
+      <button
+        type="button"
+        class="action-btn"
+        (click)="copyJson()"
+        [title]="isCopied() ? 'Copiato!' : 'Copia JSON negli appunti'"
+        [attr.aria-label]="isCopied() ? 'Copiato' : 'Copia JSON'"
+      >
+        @if (isCopied()) {
+          <app-icon name="check" [size]="13" customClass="text-success"></app-icon>
+          <span class="btn-text text-success">Copiato!</span>
+        } @else {
+          <app-icon name="copy" [size]="13"></app-icon>
+          <span class="btn-text">Copia</span>
+        }
+      </button>
+
+      <button
+        type="button"
+        class="action-btn"
+        (click)="downloadJson()"
+        title="Scarica file JSON"
+        aria-label="Scarica JSON"
+      >
+        <app-icon name="external-link" [size]="13"></app-icon>
+        <span class="btn-text">Esporta</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <pre class="json-pre"><code>@for (token of tokens(); track $index) {@if (token.type === 'plain') {{{ token.text }}} @else {<span [class]="'json-' + token.type">{{ token.text }}</span>}}</code></pre>
+  </div>
+</div>

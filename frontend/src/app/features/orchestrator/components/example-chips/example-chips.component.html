@@ -1,0 +1,24 @@
+<div class="chips-container" role="region" aria-label="Esempi di documenti predefiniti">
+  <div class="chips-track">
+    <span class="chips-label">Esempi:</span>
+    @for (preset of presets(); track preset.id) {
+      <button
+        type="button"
+        class="chip-item"
+        [class.active]="activePresetId() === preset.id"
+        [disabled]="disabled()"
+        [attr.aria-pressed]="activePresetId() === preset.id"
+        (click)="selectPreset.emit(preset)"
+        [title]="preset.title + ' (' + preset.expected.status + ')'"
+      >
+        <span
+          class="status-dot"
+          [class.dot-ok]="preset.expected.status === 'OK'"
+          [class.dot-warning]="preset.expected.status === 'INDETERMINATE'"
+          aria-hidden="true"
+        ></span>
+        <span class="chip-text">{{ getShortLabel(preset) }}</span>
+      </button>
+    }
+  </div>
+</div>

@@ -1,0 +1,100 @@
+.chips-container {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-0-5) 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.chips-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.chips-label {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--weight-medium);
+  color: var(--md-sys-color-on-surface-variant);
+  margin-right: var(--space-1);
+}
+
+.chip-item {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--space-2);
+  height: var(--chip-height);
+  padding: 0 var(--space-4);
+  background-color: var(--md-sys-color-surface-container-low);
+  border: var(--border-thin) solid var(--md-sys-color-outline-variant);
+  border-radius: var(--radius-pill);
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--weight-medium);
+  color: var(--md-sys-color-on-surface);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              opacity var(--duration-fast) var(--ease-standard);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--md-sys-color-on-surface);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  &:hover:not(:disabled)::after {
+    opacity: 0.08;
+  }
+
+  &:focus-visible:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    opacity: 0.10;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &.active {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-color: transparent;
+  }
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+}
+
+.status-dot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+
+  &.dot-ok {
+    background-color: var(--md-sys-color-success);
+  }
+
+  &.dot-warning {
+    background-color: var(--md-sys-color-warning);
+  }
+}
+
+.chip-text {
+  line-height: 1;
+}

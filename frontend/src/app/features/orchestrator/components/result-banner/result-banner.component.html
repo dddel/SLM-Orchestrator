@@ -1,0 +1,39 @@
+<div class="result-banner" [class]="'status-' + status()">
+  <div class="banner-left">
+    <div class="banner-status-icon">
+      @if (status() === 'OK') {
+        <app-icon name="check-circle" [size]="20"></app-icon>
+      } @else {
+        <app-icon name="alert-circle" [size]="20"></app-icon>
+      }
+    </div>
+
+    <div class="status-badge-wrap">
+      @if (status() === 'OK') {
+        <app-badge variant="success" [dot]="false">
+          OK · {{ label() || 'DOCUMENTO' }}
+        </app-badge>
+      } @else if (status() === 'INDETERMINATE') {
+        <app-badge variant="warning" [dot]="false">
+          INDETERMINATE · {{ label() || 'DOCUMENTO' }}
+        </app-badge>
+      } @else {
+        <app-badge variant="danger" [dot]="false">
+          ERRORE · {{ label() || 'ESECUZIONE' }}
+        </app-badge>
+      }
+    </div>
+
+    <span class="router-chip">
+      <app-icon name="cpu" [size]="15"></app-icon>
+      <span class="chip-text">{{ router() }}</span>
+    </span>
+  </div>
+
+  <div class="banner-right">
+    <span class="latency-chip">
+      <app-icon name="clock" [size]="15"></app-icon>
+      <span class="latency-val">{{ latencyMs() }} ms</span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="result-panel-container">
+  @if (errorMessage()) {
+    <div class="error-notice-card">
+      <div class="error-header">
+        <span class="error-badge">Errore Richiesta</span>
+        <span class="error-text">{{ errorMessage() }}</span>
+      </div>
+    </div>
+  } @else if (response()) {
+    <!-- 1. Top Outcome Banner -->
+    <app-result-banner
+      [status]="response()!.status"
+      [label]="response()!.label"
+      [router]="response()!.router"
+      [latencyMs]="response()!.latencyMs"
+    ></app-result-banner>
+
+    <!-- 2. Two-Column Layout: JSON on Left, Guards on Right -->
+    <div class="result-two-col">
+      <div class="col-left">
+        <app-json-viewer
+          [jsonContent]="displayJson()"
+          [title]="response()!.status === 'INDETERMINATE' ? 'JSON Rifiutato dalle Guardie' : 'JSON Estratto (Validato)'"
+        ></app-json-viewer>
+      </div>
+
+      <div class="col-right">
+        <app-guard-list [guards]="guards()"></app-guard-list>
+      </div>
+    </div>
+  }
+</div>

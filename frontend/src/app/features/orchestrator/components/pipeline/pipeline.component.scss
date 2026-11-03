@@ -1,0 +1,39 @@
+.pipeline-card {
+  width: 100%;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+}
+
+.pipeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.pipeline-title {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--type-label-track);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.pipeline-stages-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .pipeline-card {
+    padding: var(--space-5);
+  }
+
+  .pipeline-stages-row {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}

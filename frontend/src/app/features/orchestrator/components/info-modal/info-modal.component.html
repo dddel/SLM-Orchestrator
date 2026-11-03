@@ -1,0 +1,143 @@
+<div
+  class="modal-backdrop"
+  (click)="onBackdropClick($event)"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="info-modal-title"
+>
+  <div class="modal-card">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="title-group">
+        <div class="icon-box">
+          <app-icon name="info" [size]="18"></app-icon>
+        </div>
+        <h2 id="info-modal-title" class="modal-title">Informazioni SLM Orchestrator</h2>
+      </div>
+
+      <button
+        type="button"
+        class="close-btn"
+        (click)="close.emit()"
+        title="Chiudi modale (Esc)"
+        aria-label="Chiudi finestra"
+      >
+        <app-icon name="close" [size]="18"></app-icon>
+      </button>
+    </div>
+
+    <!-- Body Scrollable Content -->
+    <div class="modal-body">
+      <!-- 1. Autori -->
+      <section class="info-section">
+        <h3 class="section-title">Autori del Progetto</h3>
+        <div class="authors-grid">
+          <div class="author-card">
+            <span class="author-role">Laureando</span>
+            <span class="author-name">Giuseppe Preta</span>
+          </div>
+          <div class="author-card">
+            <span class="author-role">Responsabile Tecnico</span>
+            <span class="author-name">Stefano Vena</span>
+          </div>
+          <div class="author-card">
+            <span class="author-role">Relatore</span>
+            <span class="author-name">Carmine Dodaro</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Riassunto Applicazione -->
+      <section class="info-section">
+        <h3 class="section-title">Riassunto dell'Applicazione</h3>
+        <p class="section-desc">
+          Microservizio e Single Page Application di orchestrazione neuro-simbolica per Small Language
+          Models (1-4B) in esecuzione locale su Ollama. Il sistema combina instradamento intelligente
+          (routing dinamico), decoding vincolato guidato da JSON Schema e validatori formali deterministici
+          (Codice Fiscale con algoritmo di omocodia, Partita IVA con algoritmo di Luhn, IBAN e RFC 5322 Email)
+          per garantire l'assoluta conformità formale e semantica dell'output.
+        </p>
+      </section>
+
+      <!-- 3. Contratto API Swagger / OpenAPI -->
+      <section class="info-section">
+        <div class="section-header-row">
+          <h3 class="section-title">Contratto API (OpenAPI / Swagger)</h3>
+          <span class="endpoint-badge">POST /api/orchestrator/process</span>
+        </div>
+
+        <div class="contract-card">
+          <div class="contract-block">
+            <span class="contract-label">Request Body (OrchestratorRequest):</span>
+            <pre class="contract-code"><code>&#123;
+  "type"?: "EMAIL" | "FATTURA" | "ANAGRAFICA" | "ALTRO",
+  "payload": "string (testo documento non strutturato)",
+  "routerType"?: "local-ollama" | "reflex"
+&#125;</code></pre>
+          </div>
+
+          <div class="contract-block">
+            <span class="contract-label">Response 200 OK (OrchestratorResponse):</span>
+            <pre class="contract-code"><code>&#123;
+  "status": "OK" | "INDETERMINATE",
+  "label": "EMAIL" | "FATTURA" | "ANAGRAFICA" | "ALTRO",
+  "router": "string",
+  "result": "string (JSON validato e normalizzato)",
+  "unvalidatedResult": "string (output modello pre-validazione)",
+  "errors": [
+    &#123; "path": "string", "validatorName": "string", "code": "string", "message": "string" &#125;
+  ],
+  "actionErrors": [ "string" ],
+  "latencyMs": number,
+  "metrics": &#123;
+    "totalDurationMs": number,
+    "totalPromptTokens": number,
+    "totalCompletionTokens": number,
+    "steps": [ ... ]
+  &#125;
+&#125;</code></pre>
+          </div>
+
+          <div class="error-codes-row">
+            <span class="status-code"><strong>422 Unprocessable</strong>: Validazione input fallita o schema non conforme</span>
+            <span class="status-code"><strong>502 Bad Gateway</strong>: Errore di connessione a Ollama o timeout inferenza</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Licenze -->
+      <section class="info-section">
+        <h3 class="section-title">Licenze</h3>
+        <div class="licenses-grid">
+          <div class="license-pill">
+            <span class="license-item-name">SLM Orchestrator</span>
+            <span class="license-item-type">Apache 2.0</span>
+          </div>
+          <div class="license-pill">
+            <span class="license-item-name">Qwen 2.5 3B (Alibaba)</span>
+            <span class="license-item-type">Apache 2.0 / Qwen License</span>
+          </div>
+          <div class="license-pill">
+            <span class="license-item-name">APUS Reflex 4B GGUF</span>
+            <span class="license-item-type">Open Source AI Research</span>
+          </div>
+          <div class="license-pill">
+            <span class="license-item-name">Angular & Frameworks</span>
+            <span class="license-item-type">MIT & Apache 2.0</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="modal-close-action"
+        (click)="close.emit()"
+      >
+        Chiudi
+      </button>
+    </div>
+  </div>
+</div>

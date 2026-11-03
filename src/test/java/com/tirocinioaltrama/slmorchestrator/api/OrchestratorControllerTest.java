@@ -106,6 +106,36 @@ class OrchestratorControllerTest {
     }
 
     @Test
+    void processInviaPayloadConRouterKebabCaseLocalOllamaEReflex() throws Exception {
+        when(orchestrator.process(any(OrchestratorRequest.class)))
+                .thenReturn(new OrchestratorResponse(DocumentType.EMAIL, "Apus Reflex", "{}", 50));
+
+        String requestBodyKebab = """
+                {
+                    "routerType": "local-ollama",
+                    "payload": "Email di prova"
+                }
+                """;
+
+        mockMvc.perform(post("/api/orchestrator/process")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBodyKebab))
+                .andExpect(status().isOk());
+
+        String requestBodyReflex = """
+                {
+                    "routerType": "reflex",
+                    "payload": "Email di prova"
+                }
+                """;
+
+        mockMvc.perform(post("/api/orchestrator/process")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBodyReflex))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void processGestisceRispostaDiFallimentoPipeline() throws Exception {
         when(orchestrator.process(any(OrchestratorRequest.class)))
                 .thenReturn(OrchestratorResponse.failure(

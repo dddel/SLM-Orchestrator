@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Typography Partial — Material Design 3 Type Scale (Display, Title, Body, Label)
+   ========================================================================== */
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  font-weight: var(--weight-regular);
+  line-height: var(--type-body-line);
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--type-title-track);
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-regular);
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}

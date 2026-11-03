@@ -1,0 +1,21 @@
+<div
+  class="pipeline-card"
+  role="region"
+  aria-label="Pipeline neuro-simbolica di orchestrazione"
+>
+  <div class="pipeline-header">
+    <span class="pipeline-title">Pipeline Neuro-Simbolica</span>
+    <span class="pipeline-status-aria visually-hidden" aria-live="polite">
+      Pipeline in aggiornamento
+    </span>
+  </div>
+
+  <div class="pipeline-stages-row">
+    @for (stage of stages(); track stage.id; let idx = $index; let last = $last) {
+      <app-pipeline-stage
+        [stage]="stage"
+        [isLast]="last"
+      ></app-pipeline-stage>
+    }
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="param-select-wrap" [class.open]="isOpen()" [class.disabled]="disabled()">
+  <button
+    type="button"
+    class="param-pill-btn"
+    [disabled]="disabled()"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggleDropdown()"
+  >
+    <app-icon [name]="icon()" [size]="13" customClass="param-icon"></app-icon>
+    <span class="param-label">{{ label() }}:</span>
+    <span class="param-value">{{ getSelectedLabel() }}</span>
+    <app-icon name="chevron-down" [size]="12" customClass="chevron-icon"></app-icon>
+  </button>
+
+  @if (isOpen()) {
+    <div class="dropdown-menu" role="listbox">
+      @for (opt of options(); track opt.label) {
+        <button
+          type="button"
+          class="dropdown-item"
+          role="option"
+          [attr.aria-selected]="selectedValue() === opt.value"
+          [class.active]="selectedValue() === opt.value"
+          (click)="selectOption(opt.value)"
+        >
+          <span class="opt-label">{{ opt.label }}</span>
+          @if (opt.badge) {
+            <span class="opt-badge">{{ opt.badge }}</span>
+          }
+          @if (selectedValue() === opt.value) {
+            <app-icon name="check" [size]="12" customClass="check-icon"></app-icon>
+          }
+        </button>
+      }
+    </div>
+  }
+</div>

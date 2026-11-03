@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Design Tokens — SLM Orchestrator (Material Design 3 Dark Multi-Tonal System)
+   ==========================================================================
+   COME CAMBIARE I TOKEN DI COLORE:
+   Modifica i valori esadecimali nel blocco :root qui sotto (Neutri, Primary,
+   Secondary, Tertiary e Stati semantici). Tutti i componenti consumano
+   esclusivamente queste variabili CSS senza colori hardcoded.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ------------------------------------------------------------------------
+     Typography (M3 Type Scale ridotta: Display, Title, Body, Label)
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Inter', 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 500; /* M3 evita bold pesanti: max 500 */
+
+  /* M3 Scale Roles */
+  --type-display-size: 1.5rem;        /* 24px - Titolo principale / Stato vuoto */
+  --type-display-line: 2rem;          /* 32px */
+  --type-display-track: -0.01em;
+
+  --type-title-lg-size: 1.125rem;     /* 18px */
+  --type-title-lg-line: 1.5rem;       /* 24px */
+  --type-title-size: 0.9375rem;       /* 15px - Header sezioni / Card */
+  --type-title-line: 1.375rem;        /* 22px */
+  --type-title-track: 0em;
+
+  --type-body-lg-size: 0.9375rem;     /* 15px */
+  --type-body-lg-line: 1.5rem;        /* 24px */
+  --type-body-size: 0.875rem;         /* 14px - Contenuti e JSON */
+  --type-body-line: 1.375rem;         /* 22px */
+  --type-body-sm-size: 0.8125rem;     /* 13px */
+  --type-body-sm-line: 1.25rem;       /* 20px */
+
+  --type-label-lg-size: 0.875rem;     /* 14px - Pulsanti primari / Select */
+  --type-label-lg-line: 1.25rem;
+  --type-label-size: 0.8125rem;       /* 13px - Chip / Parametri */
+  --type-label-line: 1.125rem;
+  --type-label-sm-size: 0.75rem;      /* 12px - Metadati / Badge / Sublabel / Tooltip */
+  --type-label-sm-line: 1rem;
+  --type-label-track: 0.015em;
+
+  /* Alias compatibilità scala */
+  --text-xs: var(--type-label-sm-size);
+  --text-sm: var(--type-label-size);
+  --text-base: var(--type-body-size);
+  --text-md: var(--type-title-size);
+  --text-lg: var(--type-title-lg-size);
+  --text-xl: var(--type-display-size);
+
+  /* ------------------------------------------------------------------------
+     Spacing Grid (8px base + 4px sub-grid)
+     ------------------------------------------------------------------------ */
+  --space-0: 0px;
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ------------------------------------------------------------------------
+     Shape (Raggi M3 coerenti)
+     ------------------------------------------------------------------------ */
+  --radius-xs: 6px;
+  --radius-tooltip: 8px;              /* 8px per M3 plain tooltip */
+  --radius-input: 12px;               /* 12px per input e controlli */
+  --radius-secondary: 16px;           /* 16px per contenitori secondari / textarea */
+  --radius-card: 28px;                /* 28px per card principali */
+  --radius-pill: 999px;               /* Pill completo per chip e pulsanti */
+
+  /* Alias semantici forma */
+  --radius-control: var(--radius-input);
+  --radius-container: var(--radius-card);
+
+  /* ------------------------------------------------------------------------
+     Dimensioni & Layout
+     ------------------------------------------------------------------------ */
+  --max-width-content: 960px;
+  --header-height: 64px;
+  --btn-primary-height: 44px;
+  --btn-secondary-height: 36px;
+  --chip-height: 32px;
+  --stage-node-size: 36px;
+  --guard-icon-size: 28px;
+  --icon-btn-size: 40px;
+  --dot-size: 8px;
+  --border-thin: 1px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --dropdown-min-width: 240px;
+  --textarea-min-height: 184px;
+  --textarea-max-height: 480px;
+  --panel-max-height: 440px;
+  --empty-state-max-width: 560px;
+
+  /* ------------------------------------------------------------------------
+     Motion (M3 Easing & Durations: 150-300ms, solo opacity/transform)
+     ------------------------------------------------------------------------ */
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 220ms;
+  --duration-smooth: 300ms;
+
+  /* ------------------------------------------------------------------------
+     M3 Color Roles — Neutri (grigio antracite neutro, NON blu notte)
+     ------------------------------------------------------------------------ */
+  --md-sys-color-surface: #121316;
+  --md-sys-color-background: #121316;
+  --md-sys-color-surface-container-lowest: #0D0E11;
+  --md-sys-color-surface-container-low: #1A1B1F;
+  --md-sys-color-surface-container: #1E1F23;
+  --md-sys-color-surface-container-high: #282A2E;
+  --md-sys-color-surface-container-highest: #333539;
+  --md-sys-color-on-surface: #E3E2E6;
+  --md-sys-color-on-surface-variant: #C4C6D0;
+  --md-sys-color-outline: #8E9099;
+  --md-sys-color-outline-variant: #44474F;
+  --md-sys-color-inverse-surface: #E3E2E6;
+  --md-sys-color-inverse-on-surface: #2F3033;
+
+  /* ------------------------------------------------------------------------
+     M3 Color Roles — Primary (blu: azioni principali, focus, selezione, Router)
+     ------------------------------------------------------------------------ */
+  --md-sys-color-primary: #AAC7FF;
+  --md-sys-color-on-primary: #0A305F;
+  --md-sys-color-primary-container: #264777;
+  --md-sys-color-on-primary-container: #D6E3FF;
+
+  /* ------------------------------------------------------------------------
+     M3 Color Roles — Secondary (teal: livello simbolico / guardie)
+     ------------------------------------------------------------------------ */
+  --md-sys-color-secondary: #7DDAD0;
+  --md-sys-color-on-secondary: #00201E;
+  --md-sys-color-secondary-container: #00504B;
+  --md-sys-color-on-secondary-container: #A0F2E8;
+
+  /* ------------------------------------------------------------------------
+     M3 Color Roles — Tertiary (viola: livello neurale / SLM)
+     ------------------------------------------------------------------------ */
+  --md-sys-color-tertiary: #D3BCFD;
+  --md-sys-color-on-tertiary: #38265C;
+  --md-sys-color-tertiary-container: #4F3D74;
+  --md-sys-color-on-tertiary-container: #EBDDFF;
+
+  /* ------------------------------------------------------------------------
+     M3 Color Roles — Stati semantici (solo per esiti)
+     ------------------------------------------------------------------------ */
+  --md-sys-color-success: #8FD98A;
+  --md-sys-color-on-success: #00390A;
+  --md-sys-color-success-container: #1B4D21;
+  --md-sys-color-on-success-container: #ADF4A6;
+
+  --md-sys-color-warning: #F6C65B;
+  --md-sys-color-on-warning: #3F2E00;
+  --md-sys-color-warning-container: #4A3800;
+  --md-sys-color-on-warning-container: #FFDF9A;
+
+  --md-sys-color-error: #FFB4AB;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-error-container: #93000A;
+  --md-sys-color-on-error-container: #FFDAD6;
+
+  /* ------------------------------------------------------------------------
+     Alias diretti ai nomi della specifica
+     ------------------------------------------------------------------------ */
+  --surface: var(--md-sys-color-surface);
+  --background: var(--md-sys-color-background);
+  --surface-container-lowest: var(--md-sys-color-surface-container-lowest);
+  --surface-container-low: var(--md-sys-color-surface-container-low);
+  --surface-container: var(--md-sys-color-surface-container);
+  --surface-container-high: var(--md-sys-color-surface-container-high);
+  --surface-container-highest: var(--md-sys-color-surface-container-highest);
+  --on-surface: var(--md-sys-color-on-surface);
+  --on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --outline: var(--md-sys-color-outline);
+  --outline-variant: var(--md-sys-color-outline-variant);
+  --inverse-surface: var(--md-sys-color-inverse-surface);
+  --inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+
+  --primary: var(--md-sys-color-primary);
+  --on-primary: var(--md-sys-color-on-primary);
+  --primary-container: var(--md-sys-color-primary-container);
+  --on-primary-container: var(--md-sys-color-on-primary-container);
+
+  --secondary: var(--md-sys-color-secondary);
+  --on-secondary: var(--md-sys-color-on-secondary);
+  --secondary-container: var(--md-sys-color-secondary-container);
+  --on-secondary-container: var(--md-sys-color-on-secondary-container);
+
+  --tertiary: var(--md-sys-color-tertiary);
+  --on-tertiary: var(--md-sys-color-on-tertiary);
+  --tertiary-container: var(--md-sys-color-tertiary-container);
+  --on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+
+  --success: var(--md-sys-color-success);
+  --on-success: var(--md-sys-color-on-success);
+  --success-container: var(--md-sys-color-success-container);
+  --on-success-container: var(--md-sys-color-on-success-container);
+
+  --warning: var(--md-sys-color-warning);
+  --on-warning: var(--md-sys-color-on-warning);
+  --warning-container: var(--md-sys-color-warning-container);
+  --on-warning-container: var(--md-sys-color-on-warning-container);
+
+  --error: var(--md-sys-color-error);
+  --on-error: var(--md-sys-color-on-error);
+  --error-container: var(--md-sys-color-error-container);
+  --on-error-container: var(--md-sys-color-on-error-container);
+
+  /* State Layers (Hover 8%, Focus 10%, Pressed 10%) */
+  --state-hover-on-surface: rgba(227, 226, 230, 0.08);
+  --state-focus-on-surface: rgba(227, 226, 230, 0.10);
+  --state-pressed-on-surface: rgba(227, 226, 230, 0.10);
+
+  --state-hover-on-primary: rgba(10, 48, 95, 0.08);
+  --state-focus-on-primary: rgba(10, 48, 95, 0.10);
+  --state-pressed-on-primary: rgba(10, 48, 95, 0.10);
+
+  /* Elevation (Solo per menu dropdown aperti; nessuna ombra sull'header sticky) */
+  --elevation-none: none;
+  --elevation-sticky-header: none;
+  --elevation-menu: 0 8px 24px rgba(0, 0, 0, 0.48);
+
+  /* Mapping semantico unificato per i componenti */
+  --color-canvas: var(--md-sys-color-surface);
+  --color-surface: var(--md-sys-color-surface-container);
+  --color-surface-lowest: var(--md-sys-color-surface-container-lowest);
+  --color-surface-low: var(--md-sys-color-surface-container-low);
+  --color-surface-elevated: var(--md-sys-color-surface-container-high);
+  --color-surface-highest: var(--md-sys-color-surface-container-highest);
+  --color-surface-hover: var(--state-hover-on-surface);
+  --color-surface-subtle: var(--md-sys-color-surface-container-low);
+
+  --color-border-subtle: var(--md-sys-color-outline-variant);
+  --color-border-medium: var(--md-sys-color-outline);
+  --color-border-strong: var(--md-sys-color-outline);
+  --color-border-focus: var(--md-sys-color-primary);
+
+  --color-text-primary: var(--md-sys-color-on-surface);
+  --color-text-secondary: var(--md-sys-color-on-surface-variant);
+  --color-text-tertiary: var(--md-sys-color-on-surface-variant);
+  --color-text-disabled: var(--md-sys-color-outline);
+
+  --color-accent: var(--md-sys-color-primary);
+  --color-accent-on: var(--md-sys-color-on-primary);
+  --color-accent-subtle: var(--md-sys-color-primary-container);
+  --color-accent-text: var(--md-sys-color-on-primary-container);
+
+  --color-secondary: var(--md-sys-color-secondary);
+  --color-on-secondary: var(--md-sys-color-on-secondary);
+  --color-secondary-container: var(--md-sys-color-secondary-container);
+  --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+
+  --color-tertiary: var(--md-sys-color-tertiary);
+  --color-on-tertiary: var(--md-sys-color-on-tertiary);
+  --color-tertiary-container: var(--md-sys-color-tertiary-container);
+  --color-on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+
+  --color-success: var(--md-sys-color-success);
+  --color-success-subtle: var(--md-sys-color-success-container);
+  --color-success-text: var(--md-sys-color-on-success-container);
+  --color-on-success: var(--md-sys-color-on-success);
+
+  --color-warning: var(--md-sys-color-warning);
+  --color-warning-subtle: var(--md-sys-color-warning-container);
+  --color-warning-text: var(--md-sys-color-on-warning-container);
+  --color-on-warning: var(--md-sys-color-on-warning);
+
+  --color-danger: var(--md-sys-color-error);
+  --color-danger-subtle: var(--md-sys-color-error-container);
+  --color-danger-text: var(--md-sys-color-on-error-container);
+  --color-on-danger: var(--md-sys-color-on-error);
+
+  --shadow-subtle: var(--elevation-none);
+  --shadow-card: var(--elevation-none);
+  --shadow-dropdown: var(--elevation-menu);
+}
