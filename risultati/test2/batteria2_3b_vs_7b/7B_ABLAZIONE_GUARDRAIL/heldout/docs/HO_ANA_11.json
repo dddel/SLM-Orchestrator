@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_11",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSEGNA_BADGE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Monica",
+      "normalized_extracted" : "Monica",
+      "ground_truth" : "Monica",
+      "normalized_ground_truth" : "Monica",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Trevisan",
+      "normalized_extracted" : "Trevisan",
+      "ground_truth" : "Trevisan",
+      "normalized_ground_truth" : "Trevisan",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TRVMNC86T54L736S",
+      "normalized_extracted" : "TRVMNC86T54L736S",
+      "ground_truth" : "TRVMNC86T54L736S",
+      "normalized_ground_truth" : "TRVMNC86T54L736S",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/12/1986",
+      "normalized_extracted" : "1986-12-14",
+      "ground_truth" : "14/12/1986",
+      "normalized_ground_truth" : "1986-12-14",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Venezia (VE)",
+      "normalized_extracted" : "Venezia (VE)",
+      "ground_truth" : "Venezia (VE)",
+      "normalized_ground_truth" : "Venezia (VE)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001492817293841",
+      "normalized_extracted" : "80380001492817293841",
+      "ground_truth" : "80380001492817293841",
+      "normalized_ground_truth" : "80380001492817293841",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"TESSERA_SANITARIA\",\n  \"nome\": \"Monica\",\n  \"cognome\": \"Trevisan\",\n  \"codiceFiscale\": \"TRVMNC86T54L736S\",\n  \"dataNascita\": \"14/12/1986\",\n  \"luogoNascita\": \"Venezia (VE)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"80380001492817293841\",\n  \"dataRilascio\": null,\n  \"dataScadenza\": null,\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 14366,
+    "metrics" : {
+      "totalDurationMs" : 13296,
+      "totalPromptTokens" : 745,
+      "totalCompletionTokens" : 156,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13295,
+        "promptTokens" : 745,
+        "completionTokens" : 156,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 14372
+}

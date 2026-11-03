@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_03",
+  "type" : "EMAIL",
+  "template" : "EML_QUESITO_GARA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Cristina Valli",
+      "normalized_extracted" : "Cristina Valli",
+      "ground_truth" : "Cristina Valli",
+      "normalized_ground_truth" : "Cristina Valli",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "c.valli@vigilanza-lombarda.it",
+      "normalized_extracted" : "c.valli@vigilanza-lombarda.it",
+      "ground_truth" : "c.valli@vigilanza-lombarda.it",
+      "normalized_ground_truth" : "c.valli@vigilanza-lombarda.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 87192044",
+      "normalized_extracted" : "0287192044",
+      "ground_truth" : "+39 02 87192044",
+      "normalized_ground_truth" : "0287192044",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "normalized_extracted" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "ground_truth" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "normalized_ground_truth" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "normalized_extracted" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "ground_truth" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "normalized_ground_truth" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano",
+      "normalized_extracted" : "Milano",
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott.ssa Cristina Valli\",\"email\":\"c.valli@vigilanza-lombarda.it\",\"telefono\":\"+39 02 87192044\",\"azienda\":\"Vigilanza Lombarda Sicurezza S.r.l.\",\"oggetto\":\"Chiarimento gara europea vigilanza armata sedi municipali Milano\",\"citta\":\"Milano\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Chiarimento su gara europea per servizi di vigilanza armata, ambito di competenza della direzione generale\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 38464,
+    "metrics" : {
+      "totalDurationMs" : 37467,
+      "totalPromptTokens" : 2077,
+      "totalCompletionTokens" : 197,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 22689,
+        "promptTokens" : 648,
+        "completionTokens" : 129,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14776,
+        "promptTokens" : 1429,
+        "completionTokens" : 68,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 38467
+}

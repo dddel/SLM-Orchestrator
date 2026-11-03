@@ -1,0 +1,121 @@
+{
+  "id" : "HO_ADV_02",
+  "type" : "FATTURA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GM-2026/088",
+      "normalized_extracted" : "GM-2026/088",
+      "ground_truth" : "GM-2026/088",
+      "normalized_ground_truth" : "GM-2026/088",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/02/2026",
+      "normalized_extracted" : "2026-02-25",
+      "ground_truth" : "25/02/2026",
+      "normalized_ground_truth" : "2026-02-25",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+      "normalized_extracted" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+      "ground_truth" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+      "normalized_ground_truth" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08524170394",
+      "normalized_extracted" : "08524170394",
+      "ground_truth" : "08524170394",
+      "normalized_ground_truth" : "08524170394",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VETRERIA ARTISTICA VENETA S.P.A.",
+      "normalized_extracted" : "VETRERIA ARTISTICA VENETA S.P.A.",
+      "ground_truth" : "VETRERIA ARTISTICA VENETA S.P.A.",
+      "normalized_ground_truth" : "VETRERIA ARTISTICA VENETA S.P.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2806.0,
+      "normalized_extracted" : 2806.0,
+      "ground_truth" : 2806.0,
+      "normalized_ground_truth" : 2806.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT21Y0306909606100000047281",
+      "normalized_extracted" : "IT21Y0306909606100000047281",
+      "ground_truth" : "IT21Y0306909606100000047281",
+      "normalized_ground_truth" : "IT21Y0306909606100000047281",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\": \"GM-2026/088\", \"dataFattura\": \"25/02/2026\", \"fornitore\": {\"denominazione\": \"GRAFICHE MECCANICHE PADOVANE S.R.L.\", \"partitaIva\": \"08524170394\"}, \"cliente\": {\"denominazione\": \"VETRERIA ARTISTICA VENETA S.P.A.\",\"codiceFiscale\": null}, \"importoTotale\": 2806.0, \"iban\": \"IT21Y0306909606100000047281\"}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '08524170394'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6639,
+    "metrics" : {
+      "totalDurationMs" : 6113,
+      "totalPromptTokens" : 657,
+      "totalCompletionTokens" : 162,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6112,
+        "promptTokens" : 657,
+        "completionTokens" : 162,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6644
+}

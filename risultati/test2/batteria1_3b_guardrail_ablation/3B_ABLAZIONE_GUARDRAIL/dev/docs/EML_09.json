@@ -1,0 +1,133 @@
+{
+  "id" : "EML_09",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Paolo Rossi",
+      "normalized_extracted" : "Paolo Rossi",
+      "ground_truth" : "Paolo Rossi",
+      "normalized_ground_truth" : "Paolo Rossi",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "p.rossi@automotive-nord.it",
+      "normalized_extracted" : "p.rossi@automotive-nord.it",
+      "ground_truth" : "p.rossi@automotive-nord.it",
+      "normalized_ground_truth" : "p.rossi@automotive-nord.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Automotive Nord S.p.A.",
+      "normalized_extracted" : "Automotive Nord S.p.A.",
+      "ground_truth" : "Automotive Nord S.p.A.",
+      "normalized_ground_truth" : "Automotive Nord S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sessione tecnica R&D virtuale",
+      "normalized_extracted" : "Sessione tecnica R&D virtuale",
+      "ground_truth" : "Sessione tecnica R&D virtuale",
+      "normalized_ground_truth" : "Sessione tecnica R&D virtuale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/11/2026",
+      "normalized_extracted" : "2026-11-18",
+      "ground_truth" : "18/11/2026",
+      "normalized_ground_truth" : "2026-11-18",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 12,
+      "normalized_extracted" : 12.0,
+      "ground_truth" : 12,
+      "normalized_ground_truth" : 12.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1200,
+      "normalized_extracted" : 1200.0,
+      "ground_truth" : 1200.0,
+      "normalized_ground_truth" : 1200.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Paolo Rossi\",\"email\":\"p.rossi@automotive-nord.it\",\"telefono\":null,\"azienda\":\"Automotive Nord S.p.A.\",\"oggetto\":\"Sessione tecnica R&D virtuale\",\"citta\":null,\"numeroPartecipanti\":12,\"budgetEuro\":1200,\"dataEvento\":\"18/11/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6972,
+    "metrics" : {
+      "totalDurationMs" : 6505,
+      "totalPromptTokens" : 1867,
+      "totalCompletionTokens" : 144,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3804,
+        "promptTokens" : 558,
+        "completionTokens" : 99,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2698,
+        "promptTokens" : 1309,
+        "completionTokens" : 45,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6976
+}

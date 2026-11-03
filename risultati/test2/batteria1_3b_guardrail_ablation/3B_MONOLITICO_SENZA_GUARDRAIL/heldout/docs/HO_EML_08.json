@@ -1,0 +1,155 @@
+{
+  "id" : "HO_EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_RECLAMO_COMMERCIALE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 4,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Federica Neri",
+      "normalized_ground_truth" : "Federica Neri",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 045 8920148",
+      "normalized_ground_truth" : "+39 045 8920148",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Federica Neri",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Federica Neri",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 045 8920148",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 045 8920148",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta emissione nota di credito\",\n    \"argomentoPrincipale\": \"Schiacciamento di un pallet di farina\",\n    \"motivoEsclusione\": \"Non rispetta i pattern specifici di una FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Distribuzione Alimentare Nord S.r.l.\",\n      \"contabilita@pastificio-emiliano-dop.it\",\n      \"acquisti@distribuzione-alimentare-nord.it\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta emissione nota di credito\",\n    \"argomentoPrincipale\": \"Schiacciamento di un pallet di farina\",\n    \"motivoEsclusione\": \"Non rispetta i pattern specifici di una FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Distribuzione Alimentare Nord S.r.l.\",\n      \"contabilita@pastificio-emiliano-dop.it\",\n      \"acquisti@distribuzione-alimentare-nord.it\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 6576,
+      "totalDurationMs" : 6574,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 6243,
+      "promptEvalCount" : 477,
+      "evalCount" : 172,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 6576
+}

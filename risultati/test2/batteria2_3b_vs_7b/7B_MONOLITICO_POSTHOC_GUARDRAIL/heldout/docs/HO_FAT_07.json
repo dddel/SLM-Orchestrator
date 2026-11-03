@@ -1,0 +1,138 @@
+{
+  "id" : "HO_FAT_07",
+  "type" : "FATTURA",
+  "template" : "FAT_ARREDI_COMMERCIALI",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/AR-045",
+      "normalized_extracted" : "2026/AR-045",
+      "ground_truth" : "2026/AR-045",
+      "normalized_ground_truth" : "2026/AR-045",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20/02/2026",
+      "normalized_extracted" : "2026-02-20",
+      "ground_truth" : "20/02/2026",
+      "normalized_ground_truth" : "2026-02-20",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DESIGN UFFICIO & CONTRACT VERONA S.R.L.",
+      "normalized_extracted" : "DESIGN UFFICIO & CONTRACT VERONA S.R.L.",
+      "ground_truth" : "DESIGN UFFICIO & CONTRACT VERONA S.R.L.",
+      "normalized_ground_truth" : "DESIGN UFFICIO & CONTRACT VERONA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02948170234",
+      "normalized_extracted" : "02948170234",
+      "ground_truth" : "02948170234",
+      "normalized_ground_truth" : "02948170234",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LOGISTICA SCALIGERA S.R.L.",
+      "normalized_extracted" : "LOGISTICA SCALIGERA S.R.L.",
+      "ground_truth" : "LOGISTICA SCALIGERA S.R.L.",
+      "normalized_ground_truth" : "LOGISTICA SCALIGERA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 5124.0,
+      "normalized_extracted" : 5124.0,
+      "ground_truth" : 5124.0,
+      "normalized_ground_truth" : 5124.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT04B0503411701000000091847",
+      "normalized_extracted" : "IT04B0503411701000000091847",
+      "ground_truth" : "IT04B0503411701000000091847",
+      "normalized_ground_truth" : "IT04B0503411701000000091847",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/AR-045\",\n    \"dataFattura\": \"20/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"DESIGN UFFICIO & CONTRACT VERONA S.R.L.\",\n      \"partitaIva\": \"02948170234\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"LOGISTICA SCALIGERA S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 5124.0,\n    \"iban\": \"IT04B0503411701000000091847\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/AR-045\",\n    \"dataFattura\": \"20/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"DESIGN UFFICIO & CONTRACT VERONA S.R.L.\",\n      \"partitaIva\": \"02948170234\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"LOGISTICA SCALIGERA S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 5124.0,\n    \"iban\": \"IT04B0503411701000000091847\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 32956,
+        "totalDurationMs" : 32954,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 32703,
+        "promptEvalCount" : 511,
+        "evalCount" : 216,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

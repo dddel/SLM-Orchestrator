@@ -1,0 +1,171 @@
+{
+  "id" : "EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Chiara Moretti",
+      "normalized_ground_truth" : "Chiara Moretti",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "chiara.moretti@medialab.it",
+      "normalized_ground_truth" : "chiara.moretti@medialab.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "055998877",
+      "normalized_ground_truth" : "055998877",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "MediaLab Group",
+      "normalized_ground_truth" : "MediaLab Group",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Conferenza stampa Firenze",
+      "normalized_ground_truth" : "Conferenza stampa Firenze",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "05/11/2026",
+      "normalized_ground_truth" : "05/11/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Firenze",
+      "normalized_ground_truth" : "Firenze",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Chiara Moretti",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Chiara Moretti",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "chiara.moretti@medialab.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "chiara.moretti@medialab.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "055998877",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "055998877",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "MediaLab Group",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "MediaLab Group",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Conferenza stampa Firenze",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Conferenza stampa Firenze",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "05/11/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "05/11/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Firenze",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Firenze",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di disponibilità di sede per conferenza stampa\",\n    \"argomentoPrincipale\": \"Conferenza stampa Firenze\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\"Dott.ssa Chiara Moretti\", \"MediaLab Group\"]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di disponibilità di sede per conferenza stampa\",\n    \"argomentoPrincipale\": \"Conferenza stampa Firenze\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\"Dott.ssa Chiara Moretti\", \"MediaLab Group\"]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 5558,
+      "totalDurationMs" : 5556,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5363,
+      "promptEvalCount" : 394,
+      "evalCount" : 143,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 5558
+}

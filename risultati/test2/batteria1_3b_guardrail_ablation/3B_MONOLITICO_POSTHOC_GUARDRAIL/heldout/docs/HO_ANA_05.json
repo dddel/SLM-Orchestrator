@@ -1,0 +1,189 @@
+{
+  "id" : "HO_ANA_05",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_AUTOCERTIFICAZIONE_RESIDENZA",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Caruso",
+      "normalized_extracted" : "Caruso",
+      "ground_truth" : "Vincenzo",
+      "normalized_ground_truth" : "Vincenzo",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Vincenzo",
+      "normalized_extracted" : "Vincenzo",
+      "ground_truth" : "Caruso",
+      "normalized_ground_truth" : "Caruso",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CRSVCN68C03G273D",
+      "normalized_extracted" : "CRSVCN68C03G273D",
+      "ground_truth" : "CRSVCN68C03G273D",
+      "normalized_ground_truth" : "CRSVCN68C03G273D",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1968-03-03",
+      "normalized_extracted" : "1968-03-03",
+      "ground_truth" : "03/03/1968",
+      "normalized_ground_truth" : "1968-03-03",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PALERMO (PA)",
+      "normalized_extracted" : "PALERMO (PA)",
+      "ground_truth" : "Palermo (PA)",
+      "normalized_ground_truth" : "Palermo (PA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "CARTA_IDENTITA",
+    "ground_truth" : "NON_SPECIFICATO",
+    "normalized_extracted" : "CARTA_IDENTITA",
+    "normalized_ground_truth" : "NON_SPECIFICATO",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "Caruso",
+    "ground_truth" : "Vincenzo",
+    "normalized_extracted" : "Caruso",
+    "normalized_ground_truth" : "Vincenzo",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "Vincenzo",
+    "ground_truth" : "Caruso",
+    "normalized_extracted" : "Vincenzo",
+    "normalized_ground_truth" : "Caruso",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 3,
+    "errors" : [ "codiceFiscale: Rilevata incoerenza o inversione nome/cognome rispetto alla struttura dei primi 6 caratteri del Codice Fiscale." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Caruso\",\n    \"cognome\": \"Vincenzo\",\n    \"codiceFiscale\": \"CRSVCN68C03G273D\",\n    \"dataNascita\": \"1968-03-03\",\n    \"luogoNascita\": \"PALERMO\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Caruso\",\n    \"cognome\": \"Vincenzo\",\n    \"codiceFiscale\": \"CRSVCN68C03G273D\",\n    \"dataNascita\": \"1968-03-03\",\n    \"luogoNascita\": \"PALERMO\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 6920,
+        "totalDurationMs" : 6918,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 6588,
+        "promptEvalCount" : 452,
+        "evalCount" : 179,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

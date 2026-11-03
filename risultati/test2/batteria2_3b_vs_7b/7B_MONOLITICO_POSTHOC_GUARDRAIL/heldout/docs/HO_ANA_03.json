@@ -1,0 +1,165 @@
+{
+  "id" : "HO_ANA_03",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_PATENTE_GUIDA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Davide",
+      "normalized_extracted" : "Davide",
+      "ground_truth" : "Davide",
+      "normalized_ground_truth" : "Davide",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Lombardi",
+      "normalized_extracted" : "Lombardi",
+      "ground_truth" : "Lombardi",
+      "normalized_ground_truth" : "Lombardi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LMBDVD76L25L219I",
+      "normalized_extracted" : "LMBDVD76L25L219I",
+      "ground_truth" : "LMBDVD76L25L219I",
+      "normalized_ground_truth" : "LMBDVD76L25L219I",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/07/1976",
+      "normalized_extracted" : "1976-07-25",
+      "ground_truth" : "25/07/1976",
+      "normalized_ground_truth" : "1976-07-25",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Torino (TO)",
+      "normalized_extracted" : "Torino (TO)",
+      "ground_truth" : "Torino (TO)",
+      "normalized_ground_truth" : "Torino (TO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1928401X",
+      "normalized_extracted" : "U1928401X",
+      "ground_truth" : "U1928401X",
+      "normalized_ground_truth" : "U1928401X",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/09/2019",
+      "normalized_extracted" : "2019-09-05",
+      "ground_truth" : "05/09/2019",
+      "normalized_ground_truth" : "2019-09-05",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/07/2029",
+      "normalized_extracted" : "2029-07-25",
+      "ground_truth" : "25/07/2029",
+      "normalized_ground_truth" : "2029-07-25",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MIT-UCO",
+      "normalized_extracted" : "MIT-UCO",
+      "ground_truth" : "MIT-UCO",
+      "normalized_ground_truth" : "MIT-UCO",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"Davide\",\n    \"cognome\": \"Lombardi\",\n    \"codiceFiscale\": \"LMBDVD76L25L219I\",\n    \"dataNascita\": \"25/07/1976\",\n    \"luogoNascita\": \"Torino (TO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1928401X\",\n    \"dataRilascio\": \"05/09/2019\",\n    \"dataScadenza\": \"25/07/2029\",\n    \"enteRilascio\": \"MIT-UCO\"\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"Davide\",\n    \"cognome\": \"Lombardi\",\n    \"codiceFiscale\": \"LMBDVD76L25L219I\",\n    \"dataNascita\": \"25/07/1976\",\n    \"luogoNascita\": \"Torino (TO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1928401X\",\n    \"dataRilascio\": \"05/09/2019\",\n    \"dataScadenza\": \"25/07/2029\",\n    \"enteRilascio\": \"MIT-UCO\"\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 31789,
+        "totalDurationMs" : 31786,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 31152,
+        "promptEvalCount" : 399,
+        "evalCount" : 208,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

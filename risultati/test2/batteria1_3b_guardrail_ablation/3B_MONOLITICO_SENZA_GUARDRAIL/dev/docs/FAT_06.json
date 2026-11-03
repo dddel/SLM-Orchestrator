@@ -1,0 +1,106 @@
+{
+  "id" : "FAT_06",
+  "type" : "FATTURA",
+  "template" : "FAT_T2_TABELLARE_COMPATTO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/056",
+      "normalized_extracted" : "2026/056",
+      "ground_truth" : "2026/056",
+      "normalized_ground_truth" : "2026/056",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Delta Impianti S.r.l.",
+      "normalized_extracted" : "Delta Impianti S.r.l.",
+      "ground_truth" : "Delta Impianti S.r.l.",
+      "normalized_ground_truth" : "Delta Impianti S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000002740",
+      "normalized_extracted" : "10000002740",
+      "ground_truth" : "10000002740",
+      "normalized_ground_truth" : "10000002740",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Spettabile Gamma Servizi S.r.l.",
+      "normalized_extracted" : "Gamma Servizi S.r.l.",
+      "ground_truth" : "Gamma Servizi S.r.l.",
+      "normalized_ground_truth" : "Gamma Servizi S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 420.0,
+      "normalized_extracted" : 420.0,
+      "ground_truth" : 420.0,
+      "normalized_ground_truth" : 420.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\"tipoDocumento\": \"FATTURA\", \"fattura\": {\"numeroFattura\": \"2026/056\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"Delta Impianti S.r.l.\", \"partitaIva\": \"10000002740\"}, \"cliente\": {\"denominazione\": \"Spettabile Gamma Servizi S.r.l.\",\"codiceFiscale\": null}, \"importoTotale\": 420.0, \"iban\": null}, \"email\": null, \"anagrafica\": null, \"altro\": null}",
+    "result" : "{\"tipoDocumento\": \"FATTURA\", \"fattura\": {\"numeroFattura\": \"2026/056\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"Delta Impianti S.r.l.\", \"partitaIva\": \"10000002740\"}, \"cliente\": {\"denominazione\": \"Spettabile Gamma Servizi S.r.l.\",\"codiceFiscale\": null}, \"importoTotale\": 420.0, \"iban\": null}, \"email\": null, \"anagrafica\": null, \"altro\": null}",
+    "metrics" : {
+      "clientLatencyMs" : 5691,
+      "totalDurationMs" : 5689,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5501,
+      "promptEvalCount" : 372,
+      "evalCount" : 145,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 5691
+}

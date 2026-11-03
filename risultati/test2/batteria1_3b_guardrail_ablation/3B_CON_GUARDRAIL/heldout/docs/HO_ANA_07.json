@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_07",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_FONDO_PENSIONE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Silvia",
+      "normalized_extracted" : "Silvia",
+      "ground_truth" : "Silvia",
+      "normalized_ground_truth" : "Silvia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bernardi",
+      "normalized_extracted" : "Bernardi",
+      "ground_truth" : "Bernardi",
+      "normalized_ground_truth" : "Bernardi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BRNSLV88P57D612A",
+      "normalized_extracted" : "BRNSLV88P57D612A",
+      "ground_truth" : "BRNSLV88P57D612A",
+      "normalized_ground_truth" : "BRNSLV88P57D612A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "17/09/1988",
+      "normalized_extracted" : "1988-09-17",
+      "ground_truth" : "17/09/1988",
+      "normalized_ground_truth" : "1988-09-17",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze (FI)",
+      "normalized_extracted" : "Firenze (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CD3829104",
+      "normalized_extracted" : "CD3829104",
+      "ground_truth" : "CD3829104",
+      "normalized_ground_truth" : "CD3829104",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/10/2020",
+      "normalized_extracted" : "2020-10-01",
+      "ground_truth" : "01/10/2020",
+      "normalized_ground_truth" : "2020-10-01",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "17/09/2030",
+      "normalized_extracted" : "2030-09-17",
+      "ground_truth" : "17/09/2030",
+      "normalized_ground_truth" : "2030-09-17",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Firenze",
+      "normalized_extracted" : "Comune di Firenze",
+      "ground_truth" : "Comune di Firenze",
+      "normalized_ground_truth" : "Comune di Firenze",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"CARTA_IDENTITA\", \"nome\": \"Silvia\", \"cognome\": \"Bernardi\", \"codiceFiscale\": \"BRNSLV88P57D612A\", \"dataNascita\": \"17/09/1988\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": null, \"numeroDocumento\": \"CD3829104\", \"dataRilascio\": \"01/10/2020\", \"dataScadenza\": \"17/09/2030\", \"enteRilascio\": \"Comune di Firenze\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6311,
+    "metrics" : {
+      "totalDurationMs" : 5730,
+      "totalPromptTokens" : 773,
+      "totalCompletionTokens" : 152,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5727,
+        "promptTokens" : 773,
+        "completionTokens" : 152,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6317
+}

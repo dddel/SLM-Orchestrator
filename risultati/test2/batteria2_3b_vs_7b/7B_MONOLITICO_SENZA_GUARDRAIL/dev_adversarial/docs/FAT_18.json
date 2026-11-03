@@ -1,0 +1,114 @@
+{
+  "id" : "FAT_18",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev_adversarial",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/2026",
+      "normalized_extracted" : "18/2026",
+      "ground_truth" : "18/2026",
+      "normalized_ground_truth" : "18/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12 dicembre 2026",
+      "normalized_extracted" : "2026-12-12",
+      "ground_truth" : "2026-12-12",
+      "normalized_ground_truth" : "2026-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Architetto Giulia Monti",
+      "normalized_extracted" : "Architetto Giulia Monti",
+      "ground_truth" : "Giulia Monti",
+      "normalized_ground_truth" : "Giulia Monti",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000007221",
+      "normalized_extracted" : "10000007221",
+      "ground_truth" : "10000007221",
+      "normalized_ground_truth" : "10000007221",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Egr. Dott. Franco Riva",
+      "normalized_extracted" : "Franco Riva",
+      "ground_truth" : "Franco Riva",
+      "normalized_ground_truth" : "Franco Riva",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1150,
+      "normalized_extracted" : 1150.0,
+      "ground_truth" : 1150.0,
+      "normalized_ground_truth" : 1150.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "fornitore.denominazione",
+    "key_present" : true,
+    "extracted" : "Architetto Giulia Monti",
+    "ground_truth" : "Giulia Monti",
+    "normalized_extracted" : "Architetto Giulia Monti",
+    "normalized_ground_truth" : "Giulia Monti",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"18/2026\",\n    \"dataFattura\": \"12 dicembre 2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Architetto Giulia Monti\",\n      \"partitaIva\": \"10000007221\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Egr. Dott. Franco Riva\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 1150,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"18/2026\",\n    \"dataFattura\": \"12 dicembre 2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Architetto Giulia Monti\",\n      \"partitaIva\": \"10000007221\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Egr. Dott. Franco Riva\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 1150,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 25650,
+      "totalDurationMs" : 25648,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 24711,
+      "promptEvalCount" : 383,
+      "evalCount" : 176,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 25650
+}

@@ -1,0 +1,133 @@
+{
+  "id" : "EML_14",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Giorgio Bassi",
+      "normalized_extracted" : "Giorgio Bassi",
+      "ground_truth" : "Giorgio Bassi",
+      "normalized_ground_truth" : "Giorgio Bassi",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "giorgio.bassi@studiobassi.it",
+      "normalized_extracted" : "giorgio.bassi@studiobassi.it",
+      "ground_truth" : "giorgio.bassi@studiobassi.it",
+      "normalized_ground_truth" : "giorgio.bassi@studiobassi.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39-051-990011",
+      "normalized_extracted" : "051990011",
+      "ground_truth" : "+39051990011",
+      "normalized_ground_truth" : "051990011",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Legale Bassi",
+      "normalized_extracted" : "Studio Legale Bassi",
+      "ground_truth" : "Studio Legale Bassi",
+      "normalized_ground_truth" : "Studio Legale Bassi",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Incontro fiscale telematico",
+      "normalized_extracted" : "Incontro fiscale telematico",
+      "ground_truth" : "Incontro fiscale telematico",
+      "normalized_ground_truth" : "Incontro fiscale telematico",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/12/2026",
+      "normalized_extracted" : "2026-12-18",
+      "ground_truth" : "18/12/2026",
+      "normalized_ground_truth" : "2026-12-18",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 15,
+      "normalized_extracted" : 15.0,
+      "ground_truth" : 15,
+      "normalized_ground_truth" : 15.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Giorgio Bassi\",\"email\":\"giorgio.bassi@studiobassi.it\",\"telefono\":\"+39-051-990011\",\"azienda\":\"Studio Legale Bassi\",\"oggetto\":\"Incontro fiscale telematico\",\"citta\":null,\"numeroPartecipanti\":15,\"budgetEuro\":null,\"dataEvento\":\"18/12/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 9033,
+    "metrics" : {
+      "totalDurationMs" : 8139,
+      "totalPromptTokens" : 1930,
+      "totalCompletionTokens" : 155,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4987,
+        "promptTokens" : 584,
+        "completionTokens" : 110,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3150,
+        "promptTokens" : 1346,
+        "completionTokens" : 45,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 9045
+}

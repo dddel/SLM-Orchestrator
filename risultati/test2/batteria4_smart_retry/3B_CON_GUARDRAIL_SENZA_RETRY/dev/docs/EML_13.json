@@ -1,0 +1,133 @@
+{
+  "id" : "EML_13",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Marta Ferri",
+      "normalized_extracted" : "Marta Ferri",
+      "ground_truth" : "Marta Ferri",
+      "normalized_ground_truth" : "Marta Ferri",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "marta.ferri@agritech.it",
+      "normalized_extracted" : "marta.ferri@agritech.it",
+      "ground_truth" : "marta.ferri@agritech.it",
+      "normalized_ground_truth" : "marta.ferri@agritech.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AgriTech S.r.l.",
+      "normalized_extracted" : "AgriTech S.r.l.",
+      "ground_truth" : "AgriTech S.r.l.",
+      "normalized_ground_truth" : "AgriTech S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Convegno Bari",
+      "normalized_extracted" : "Convegno Bari",
+      "ground_truth" : "Convegno Bari",
+      "normalized_ground_truth" : "Convegno Bari",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "16/12/2026",
+      "normalized_extracted" : "2026-12-16",
+      "ground_truth" : "16/12/2026",
+      "normalized_ground_truth" : "2026-12-16",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bari",
+      "normalized_extracted" : "Bari",
+      "ground_truth" : "Bari",
+      "normalized_ground_truth" : "Bari",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 80,
+      "normalized_extracted" : 80.0,
+      "ground_truth" : 80,
+      "normalized_ground_truth" : 80.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Marta Ferri\",\"email\":\"marta.ferri@agritech.it\",\"telefono\":null,\"azienda\":\"AgriTech S.r.l.\",\"oggetto\":\"Convegno Bari\",\"citta\":\"Bari\",\"numeroPartecipanti\":80,\"budgetEuro\":null,\"dataEvento\":\"16/12/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 12136,
+    "metrics" : {
+      "totalDurationMs" : 11195,
+      "totalPromptTokens" : 1893,
+      "totalCompletionTokens" : 152,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6975,
+        "promptTokens" : 567,
+        "completionTokens" : 107,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4216,
+        "promptTokens" : 1326,
+        "completionTokens" : 45,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 12146
+}

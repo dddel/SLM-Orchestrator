@@ -1,0 +1,213 @@
+{
+  "id" : "HO_ANA_12",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_ISCRIZIONE_ALBO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 1,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Simone",
+      "normalized_ground_truth" : "Simone",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Rastelli",
+      "normalized_ground_truth" : "Rastelli",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "RSTSMN80M28G478G",
+      "normalized_ground_truth" : "RSTSMN80M28G478G",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "28/08/1980",
+      "normalized_ground_truth" : "28/08/1980",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Perugia (PG)",
+      "normalized_ground_truth" : "Perugia (PG)",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "AS8291042",
+      "normalized_ground_truth" : "AS8291042",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "19/09/2021",
+      "normalized_ground_truth" : "19/09/2021",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataScadenza" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "28/08/2031",
+      "normalized_ground_truth" : "28/08/2031",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Comune di Perugia",
+      "normalized_ground_truth" : "Comune di Perugia",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "CARTA_IDENTITA",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CARTA_IDENTITA",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "nome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Simone",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Simone",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "cognome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Rastelli",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Rastelli",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "codiceFiscale",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "RSTSMN80M28G478G",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "RSTSMN80M28G478G",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "28/08/1980",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "28/08/1980",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Perugia (PG)",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Perugia (PG)",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "AS8291042",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "AS8291042",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataRilascio",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "19/09/2021",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "19/09/2021",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataScadenza",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "28/08/2031",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "28/08/2031",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Comune di Perugia",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Comune di Perugia",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Rastelli\",\n    \"cognome\": \"Simone\",\n    \"codiceFiscale\": \"RSTSMN80M28G478G\",\n    \"dataNascita\": \"1980-08-28\",\n    \"luogoNascita\": \"Perugia (PG)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AS8291042\",\n    \"dataRilascio\": \"2021-09-19\",\n    \"dataScadenza\": \"2031-08-28\",\n    \"enteRilascio\": \"Comune di Perugia\"\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Rastelli\",\n    \"cognome\": \"Simone\",\n    \"codiceFiscale\": \"RSTSMN80M28G478G\",\n    \"dataNascita\": \"1980-08-28\",\n    \"luogoNascita\": \"Perugia (PG)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AS8291042\",\n    \"dataRilascio\": \"2021-09-19\",\n    \"dataScadenza\": \"2031-08-28\",\n    \"enteRilascio\": \"Comune di Perugia\"\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 7941,
+      "totalDurationMs" : 7938,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 7614,
+      "promptEvalCount" : 449,
+      "evalCount" : 213,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 7941
+}

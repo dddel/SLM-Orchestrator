@@ -1,0 +1,155 @@
+{
+  "id" : "EML_01",
+  "type" : "EMAIL",
+  "template" : "EML_T1_EVENTO_RICHIESTA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Persona Nome 1 (utente.1@innovazione-tech.it)",
+      "normalized_extracted" : "Persona Nome 1 (utente.1@innovazione-tech.it)",
+      "ground_truth" : "Persona Nome 1",
+      "normalized_ground_truth" : "Persona Nome 1",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "utente.1@innovazione-tech.it",
+      "normalized_extracted" : "utente.1@innovazione-tech.it",
+      "ground_truth" : "utente.1@innovazione-tech.it",
+      "normalized_ground_truth" : "utente.1@innovazione-tech.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 9000111",
+      "normalized_extracted" : "029000111",
+      "ground_truth" : "+39 02 9000111",
+      "normalized_ground_truth" : "029000111",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Azienda Partner 1 S.r.l.",
+      "normalized_extracted" : "Azienda Partner 1 S.r.l.",
+      "ground_truth" : "Azienda Partner 1 S.r.l.",
+      "normalized_ground_truth" : "Azienda Partner 1 S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta preventivo e allineamento progetto 1",
+      "normalized_extracted" : "Richiesta preventivo e allineamento progetto 1",
+      "ground_truth" : "Richiesta preventivo e allineamento progetto 1",
+      "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 1",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 12,
+      "normalized_extracted" : 12.0,
+      "ground_truth" : 12,
+      "normalized_ground_truth" : 12.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03/11/2026",
+      "normalized_extracted" : "2026-11-03",
+      "ground_truth" : "03/11/2026",
+      "normalized_ground_truth" : "2026-11-03",
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1250,
+      "normalized_extracted" : 1250.0,
+      "ground_truth" : 1250.0,
+      "normalized_ground_truth" : 1250.0,
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma",
+      "normalized_extracted" : "Roma",
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Persona Nome 1 (utente.1@innovazione-tech.it)",
+    "ground_truth" : "Persona Nome 1",
+    "normalized_extracted" : "Persona Nome 1 (utente.1@innovazione-tech.it)",
+    "normalized_ground_truth" : "Persona Nome 1",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Persona Nome 1 (utente.1@innovazione-tech.it)\",\n    \"email\": \"utente.1@innovazione-tech.it\",\n    \"telefono\": \"+39 02 9000111\",\n    \"azienda\": \"Azienda Partner 1 S.r.l.\",\n    \"oggetto\": \"Richiesta preventivo e allineamento progetto 1\",\n    \"citta\": \"Roma\",\n    \"numeroPartecipanti\": 12,\n    \"budgetEuro\": 1250,\n    \"dataEvento\": \"03/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Persona Nome 1 (utente.1@innovazione-tech.it)\",\n    \"email\": \"utente.1@innovazione-tech.it\",\n    \"telefono\": \"+39 02 9000111\",\n    \"azienda\": \"Azienda Partner 1 S.r.l.\",\n    \"oggetto\": \"Richiesta preventivo e allineamento progetto 1\",\n    \"citta\": \"Roma\",\n    \"numeroPartecipanti\": 12,\n    \"budgetEuro\": 1250,\n    \"dataEvento\": \"03/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 29432,
+        "totalDurationMs" : 29430,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 28692,
+        "promptEvalCount" : 414,
+        "evalCount" : 188,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "id" : "HO_FAT_04",
+  "type" : "FATTURA",
+  "template" : "FAT_LOCAZIONE_IMMOBILE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LOC-2026/03",
+      "normalized_extracted" : "LOC-2026/03",
+      "ground_truth" : "LOC-2026/03",
+      "normalized_ground_truth" : "LOC-2026/03",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/03/2026",
+      "normalized_extracted" : "2026-03-01",
+      "ground_truth" : "01/03/2026",
+      "normalized_ground_truth" : "2026-03-01",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "normalized_extracted" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "ground_truth" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "normalized_ground_truth" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03194820373",
+      "normalized_extracted" : "03194820373",
+      "ground_truth" : "03194820373",
+      "normalized_ground_truth" : "03194820373",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Elena Ferri",
+      "normalized_extracted" : "Elena Ferri",
+      "ground_truth" : "Dott.ssa Elena Ferri",
+      "normalized_ground_truth" : "Elena Ferri",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2440.0,
+      "normalized_extracted" : 2440.0,
+      "ground_truth" : 2440.0,
+      "normalized_ground_truth" : 2440.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"LOC-2026/03\",\n    \"dataFattura\": \"01/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.\",\n      \"partitaIva\": \"03194820373\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Dott.ssa Elena Ferri\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2440.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"LOC-2026/03\",\n    \"dataFattura\": \"01/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.\",\n      \"partitaIva\": \"03194820373\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Dott.ssa Elena Ferri\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2440.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 29652,
+        "totalDurationMs" : 29650,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 29411,
+        "promptEvalCount" : 491,
+        "evalCount" : 194,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

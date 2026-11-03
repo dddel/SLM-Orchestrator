@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_02",
+  "type" : "FATTURA",
+  "template" : "FAT_T1_STANDARD_LINEARE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/002",
+      "normalized_extracted" : "2026/002",
+      "ground_truth" : "2026/002",
+      "normalized_ground_truth" : "2026/002",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07/03/2026",
+      "normalized_extracted" : "2026-03-07",
+      "ground_truth" : "07/03/2026",
+      "normalized_ground_truth" : "2026-03-07",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Fornitore Aziendale 2 S.r.l.",
+      "normalized_extracted" : "Fornitore Aziendale 2 S.r.l.",
+      "ground_truth" : "Fornitore Aziendale 2 S.r.l.",
+      "normalized_ground_truth" : "Fornitore Aziendale 2 S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000002740",
+      "normalized_extracted" : "10000002740",
+      "ground_truth" : "10000002740",
+      "normalized_ground_truth" : "10000002740",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cliente Spettabile 2 S.p.A.",
+      "normalized_extracted" : "Cliente Spettabile 2 S.p.A.",
+      "ground_truth" : "Cliente Spettabile 2 S.p.A.",
+      "normalized_ground_truth" : "Cliente Spettabile 2 S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CFXUSR72A05H501H",
+      "normalized_extracted" : "CFXUSR72A05H501H",
+      "ground_truth" : "CFXUSR72A05H501H",
+      "normalized_ground_truth" : "CFXUSR72A05H501H",
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 245.5,
+      "normalized_extracted" : 245.5,
+      "ground_truth" : 245.5,
+      "normalized_ground_truth" : 245.5,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT60X0542811101000000123456",
+      "normalized_extracted" : "IT60X0542811101000000123456",
+      "ground_truth" : "IT60X0542811101000000123456",
+      "normalized_ground_truth" : "IT60X0542811101000000123456",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"2026/002\",\n  \"dataFattura\": \"07/03/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"Fornitore Aziendale 2 S.r.l.\",\n    \"partitaIva\": \"10000002740\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Cliente Spettabile 2 S.p.A.\",\n    \"codiceFiscale\": \"CFXUSR72A05H501H\"\n  },\n  \"importoTotale\": 245.50,\n  \"iban\": \"IT60X0542811101000000123456\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 33621,
+    "metrics" : {
+      "totalDurationMs" : 32272,
+      "totalPromptTokens" : 595,
+      "totalCompletionTokens" : 182,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 32271,
+        "promptTokens" : 595,
+        "completionTokens" : 182,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 33625
+}

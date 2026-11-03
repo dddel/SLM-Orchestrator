@@ -1,0 +1,155 @@
+{
+  "id" : "EML_10",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Federica Rinaldi <f.rinaldi@greencell.eu>",
+      "normalized_extracted" : "Federica Rinaldi <f.rinaldi@greencell.eu>",
+      "ground_truth" : "Federica Rinaldi",
+      "normalized_ground_truth" : "Federica Rinaldi",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "f.rinaldi@greencell.eu",
+      "normalized_extracted" : "f.rinaldi@greencell.eu",
+      "ground_truth" : "f.rinaldi@greencell.eu",
+      "normalized_ground_truth" : "f.rinaldi@greencell.eu",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GreenCell Ltd",
+      "normalized_extracted" : "GreenCell Ltd",
+      "ground_truth" : "GreenCell Ltd",
+      "normalized_ground_truth" : "GreenCell Ltd",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Seminario sostenibilità aziendale",
+      "normalized_extracted" : "Seminario sostenibilità aziendale",
+      "ground_truth" : "Seminario sostenibilità aziendale",
+      "normalized_ground_truth" : "Seminario sostenibilità aziendale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/11/2026",
+      "normalized_extracted" : "2026-11-25",
+      "ground_truth" : "2026-11-25",
+      "normalized_ground_truth" : "2026-11-25",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Genova",
+      "normalized_extracted" : "Genova",
+      "ground_truth" : "Genova",
+      "normalized_ground_truth" : "Genova",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 45,
+      "normalized_extracted" : 45.0,
+      "ground_truth" : 45,
+      "normalized_ground_truth" : 45.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Federica Rinaldi <f.rinaldi@greencell.eu>",
+    "ground_truth" : "Federica Rinaldi",
+    "normalized_extracted" : "Federica Rinaldi <f.rinaldi@greencell.eu>",
+    "normalized_ground_truth" : "Federica Rinaldi",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Federica Rinaldi <f.rinaldi@greencell.eu>\",\n    \"email\": \"f.rinaldi@greencell.eu\",\n    \"telefono\": null,\n    \"azienda\": \"GreenCell Ltd\",\n    \"oggetto\": \"Seminario sostenibilità aziendale\",\n    \"citta\": \"Genova\",\n    \"numeroPartecipanti\": 45,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"25/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Federica Rinaldi <f.rinaldi@greencell.eu>\",\n    \"email\": \"f.rinaldi@greencell.eu\",\n    \"telefono\": null,\n    \"azienda\": \"GreenCell Ltd\",\n    \"oggetto\": \"Seminario sostenibilità aziendale\",\n    \"citta\": \"Genova\",\n    \"numeroPartecipanti\": 45,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"25/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 25604,
+        "totalDurationMs" : 25601,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 24852,
+        "promptEvalCount" : 389,
+        "evalCount" : 163,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id" : "EML_10",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Federica Rinaldi",
+      "normalized_extracted" : "Federica Rinaldi",
+      "ground_truth" : "Federica Rinaldi",
+      "normalized_ground_truth" : "Federica Rinaldi",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "f.rinaldi@greencell.eu",
+      "normalized_extracted" : "f.rinaldi@greencell.eu",
+      "ground_truth" : "f.rinaldi@greencell.eu",
+      "normalized_ground_truth" : "f.rinaldi@greencell.eu",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GreenCell Ltd",
+      "normalized_extracted" : "GreenCell Ltd",
+      "ground_truth" : "GreenCell Ltd",
+      "normalized_ground_truth" : "GreenCell Ltd",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Seminario sostenibilità aziendale",
+      "normalized_extracted" : "Seminario sostenibilità aziendale",
+      "ground_truth" : "Seminario sostenibilità aziendale",
+      "normalized_ground_truth" : "Seminario sostenibilità aziendale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25 novembre 2026",
+      "normalized_extracted" : "2026-11-25",
+      "ground_truth" : "2026-11-25",
+      "normalized_ground_truth" : "2026-11-25",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Genova",
+      "normalized_extracted" : "Genova",
+      "ground_truth" : "Genova",
+      "normalized_ground_truth" : "Genova",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 45,
+      "normalized_extracted" : 45.0,
+      "ground_truth" : 45,
+      "normalized_ground_truth" : 45.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Federica Rinaldi\",\"email\":\"f.rinaldi@greencell.eu\",\"telefono\":null,\"azienda\":\"GreenCell Ltd\",\"oggetto\":\"Seminario sostenibilità aziendale\",\"citta\":\"Genova\",\"numeroPartecipanti\":45,\"budgetEuro\":null,\"dataEvento\":\"25 novembre 2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6747,
+    "metrics" : {
+      "totalDurationMs" : 6296,
+      "totalPromptTokens" : 1849,
+      "totalCompletionTokens" : 140,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3637,
+        "promptTokens" : 551,
+        "completionTokens" : 95,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2656,
+        "promptTokens" : 1298,
+        "completionTokens" : 45,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6750
+}

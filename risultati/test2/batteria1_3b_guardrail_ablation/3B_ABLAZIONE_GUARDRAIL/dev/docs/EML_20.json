@@ -1,0 +1,133 @@
+{
+  "id" : "EML_20",
+  "type" : "EMAIL",
+  "template" : "EML_T5_THREAD_RECAPITO_FIRMA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Beatrice Leone",
+      "normalized_extracted" : "Beatrice Leone",
+      "ground_truth" : "Beatrice Leone",
+      "normalized_ground_truth" : "Beatrice Leone",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "b.leone@designlab.it",
+      "normalized_extracted" : "b.leone@designlab.it",
+      "ground_truth" : "b.leone@designlab.it",
+      "normalized_ground_truth" : "b.leone@designlab.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DesignLab S.r.l.",
+      "normalized_extracted" : "DesignLab S.r.l.",
+      "ground_truth" : "DesignLab S.r.l.",
+      "normalized_ground_truth" : "DesignLab S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Mostra design 2027",
+      "normalized_extracted" : "Mostra design 2027",
+      "ground_truth" : "Mostra design 2027",
+      "normalized_ground_truth" : "Mostra design 2027",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/01/2027",
+      "normalized_extracted" : "2027-01-25",
+      "ground_truth" : "25/01/2027",
+      "normalized_ground_truth" : "2027-01-25",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Beatrice Leone\",\"email\":\"b.leone@designlab.it\",\"telefono\":null,\"azienda\":\"DesignLab S.r.l.\",\"oggetto\":\"Mostra design 2027\",\"citta\":null,\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"25/01/2027\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6755,
+    "metrics" : {
+      "totalDurationMs" : 6297,
+      "totalPromptTokens" : 1816,
+      "totalCompletionTokens" : 140,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3811,
+        "promptTokens" : 532,
+        "completionTokens" : 100,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2483,
+        "promptTokens" : 1284,
+        "completionTokens" : 40,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6758
+}

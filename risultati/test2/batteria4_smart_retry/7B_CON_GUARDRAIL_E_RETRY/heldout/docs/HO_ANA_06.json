@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_06",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_VERBALE_TESTIMONE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Andrea",
+      "normalized_extracted" : "Andrea",
+      "ground_truth" : "Andrea",
+      "normalized_ground_truth" : "Andrea",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Venturi",
+      "normalized_extracted" : "Venturi",
+      "ground_truth" : "Venturi",
+      "normalized_ground_truth" : "Venturi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VNTNDR85S30A944S",
+      "normalized_extracted" : "VNTNDR85S30A944S",
+      "ground_truth" : "VNTNDR85S30A944S",
+      "normalized_ground_truth" : "VNTNDR85S30A944S",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "30/11/1985",
+      "normalized_extracted" : "1985-11-30",
+      "ground_truth" : "30/11/1985",
+      "normalized_ground_truth" : "1985-11-30",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bologna (BO)",
+      "normalized_extracted" : "Bologna (BO)",
+      "ground_truth" : "Bologna (BO)",
+      "normalized_ground_truth" : "Bologna (BO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AT9182371",
+      "normalized_extracted" : "AT9182371",
+      "ground_truth" : "AT9182371",
+      "normalized_ground_truth" : "AT9182371",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2018",
+      "normalized_extracted" : "2018-01-10",
+      "ground_truth" : "10/01/2018",
+      "normalized_ground_truth" : "2018-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "30/11/2028",
+      "normalized_extracted" : "2028-11-30",
+      "ground_truth" : "30/11/2028",
+      "normalized_ground_truth" : "2028-11-30",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Bologna",
+      "normalized_extracted" : "Comune di Bologna",
+      "ground_truth" : "Comune di Bologna",
+      "normalized_ground_truth" : "Comune di Bologna",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\":\"CARTA_IDENTITA\",\"nome\":\"Andrea\",\"cognome\":\"Venturi\",\"codiceFiscale\":\"VNTNDR85S30A944S\",\"dataNascita\":\"30/11/1985\",\"luogoNascita\":\"Bologna (BO)\",\"sesso\":null,\"numeroDocumento\":\"AT9182371\",\"dataRilascio\":\"10/01/2018\",\"dataScadenza\":\"30/11/2028\",\"enteRilascio\":\"Comune di Bologna\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 30898,
+    "metrics" : {
+      "totalDurationMs" : 29185,
+      "totalPromptTokens" : 785,
+      "totalCompletionTokens" : 164,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 29182,
+        "promptTokens" : 785,
+        "completionTokens" : 164,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 30903
+}

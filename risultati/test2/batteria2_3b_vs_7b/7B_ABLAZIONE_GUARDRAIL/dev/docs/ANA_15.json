@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_15",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PAOLO",
+      "normalized_extracted" : "PAOLO",
+      "ground_truth" : "Paolo",
+      "normalized_ground_truth" : "Paolo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RIZZO",
+      "normalized_extracted" : "RIZZO",
+      "ground_truth" : "Rizzo",
+      "normalized_ground_truth" : "Rizzo",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RZZPLA70E10H501T",
+      "normalized_extracted" : "RZZPLA70E10H501T",
+      "ground_truth" : "RZZPLA70E10H501T",
+      "normalized_ground_truth" : "RZZPLA70E10H501T",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/05/1970",
+      "normalized_extracted" : "1970-05-10",
+      "ground_truth" : "10/05/1970",
+      "normalized_ground_truth" : "1970-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ROMA",
+      "normalized_extracted" : "ROMA",
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TS-77665544",
+      "normalized_extracted" : "TS-77665544",
+      "ground_truth" : "TS-77665544",
+      "normalized_ground_truth" : "TS-77665544",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/05/2026",
+      "normalized_extracted" : "2026-05-10",
+      "ground_truth" : "10/05/2026",
+      "normalized_ground_truth" : "2026-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"TESSERA_SANITARIA\",\n  \"nome\": \"PAOLO\",\n  \"cognome\": \"RIZZO\",\n  \"codiceFiscale\": \"RZZPLA70E10H501T\",\n  \"dataNascita\": \"10/05/1970\",\n  \"luogoNascita\": \"ROMA\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"TS-77665544\",\n  \"dataRilascio\": null,\n  \"dataScadenza\": \"10/05/2026\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 14173,
+    "metrics" : {
+      "totalDurationMs" : 13116,
+      "totalPromptTokens" : 711,
+      "totalCompletionTokens" : 155,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13114,
+        "promptTokens" : 711,
+        "completionTokens" : 155,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 14177
+}

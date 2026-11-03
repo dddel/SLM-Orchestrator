@@ -1,0 +1,129 @@
+{
+  "id" : "FAT_20",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev_adversarial",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "AVVISO FATTURA n. 20",
+      "normalized_extracted" : "AVVISO FATTURA n. 20",
+      "ground_truth" : "20",
+      "normalized_ground_truth" : "20",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Geologico Terrae",
+      "normalized_extracted" : "Studio Geologico Terrae",
+      "ground_truth" : "Studio Geologico Terrae",
+      "normalized_ground_truth" : "Studio Geologico Terrae",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000009963",
+      "normalized_extracted" : "10000009963",
+      "ground_truth" : "10000009963",
+      "normalized_ground_truth" : "10000009963",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Consorzio Bonifica Nord",
+      "normalized_extracted" : "Consorzio Bonifica Nord",
+      "ground_truth" : "Consorzio Bonifica Nord",
+      "normalized_ground_truth" : "Consorzio Bonifica Nord",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2100.0,
+      "normalized_extracted" : 2100.0,
+      "ground_truth" : 2100.0,
+      "normalized_ground_truth" : 2100.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "numeroFattura",
+    "key_present" : true,
+    "extracted" : "AVVISO FATTURA n. 20",
+    "ground_truth" : "20",
+    "normalized_extracted" : "AVVISO FATTURA n. 20",
+    "normalized_ground_truth" : "20",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\": \"AVVISO FATTURA n. 20\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"Studio Geologico Terrae\", \"partitaIva\": \"10000009963\"}, \"cliente\": {\"denominazione\": \"Consorzio Bonifica Nord\", \"codiceFiscale\": null}, \"importoTotale\": 2100.0, \"iban\": null}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000009963'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4548,
+    "metrics" : {
+      "totalDurationMs" : 4133,
+      "totalPromptTokens" : 530,
+      "totalCompletionTokens" : 109,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4132,
+        "promptTokens" : 530,
+        "completionTokens" : 109,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 4554
+}

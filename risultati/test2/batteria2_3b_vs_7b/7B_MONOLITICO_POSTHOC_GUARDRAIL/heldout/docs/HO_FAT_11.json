@@ -1,0 +1,138 @@
+{
+  "id" : "HO_FAT_11",
+  "type" : "FATTURA",
+  "template" : "FAT_TRASPORTI_RIBA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TR-2026-033",
+      "normalized_extracted" : "TR-2026-033",
+      "ground_truth" : "TR-2026-033",
+      "normalized_ground_truth" : "TR-2026-033",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/02/2026",
+      "normalized_extracted" : "2026-02-28",
+      "ground_truth" : "28/02/2026",
+      "normalized_ground_truth" : "2026-02-28",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.",
+      "normalized_extracted" : "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.",
+      "ground_truth" : "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.",
+      "normalized_ground_truth" : "AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01928370368",
+      "normalized_extracted" : "01928370368",
+      "ground_truth" : "01928370368",
+      "normalized_ground_truth" : "01928370368",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CERAMICHE MODERNE DEL DISTRETTO S.P.A.",
+      "normalized_extracted" : "CERAMICHE MODERNE DEL DISTRETTO S.P.A.",
+      "ground_truth" : "CERAMICHE MODERNE DEL DISTRETTO S.P.A.",
+      "normalized_ground_truth" : "CERAMICHE MODERNE DEL DISTRETTO S.P.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2196.0,
+      "normalized_extracted" : 2196.0,
+      "ground_truth" : 2196.0,
+      "normalized_ground_truth" : 2196.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"TR-2026-033\",\n    \"dataFattura\": \"28/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.\",\n      \"partitaIva\": \"01928370368\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"CERAMICHE MODERNE DEL DISTRETTO S.P.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2196.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"TR-2026-033\",\n    \"dataFattura\": \"28/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"AUTOTRASPORTI EMILIANI DI FERRARI LUCA S.R.L.\",\n      \"partitaIva\": \"01928370368\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"CERAMICHE MODERNE DEL DISTRETTO S.P.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2196.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 31658,
+        "totalDurationMs" : 31655,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 30462,
+        "promptEvalCount" : 501,
+        "evalCount" : 201,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

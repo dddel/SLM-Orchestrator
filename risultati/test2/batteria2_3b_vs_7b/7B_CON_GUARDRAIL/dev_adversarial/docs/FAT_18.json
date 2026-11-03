@@ -1,0 +1,121 @@
+{
+  "id" : "FAT_18",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/2026",
+      "normalized_extracted" : "18/2026",
+      "ground_truth" : "18/2026",
+      "normalized_ground_truth" : "18/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12 dicembre 2026",
+      "normalized_extracted" : "2026-12-12",
+      "ground_truth" : "2026-12-12",
+      "normalized_ground_truth" : "2026-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Giulia Monti",
+      "normalized_extracted" : "Giulia Monti",
+      "ground_truth" : "Giulia Monti",
+      "normalized_ground_truth" : "Giulia Monti",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000007221",
+      "normalized_extracted" : "10000007221",
+      "ground_truth" : "10000007221",
+      "normalized_ground_truth" : "10000007221",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Franco Riva",
+      "normalized_extracted" : "Franco Riva",
+      "ground_truth" : "Franco Riva",
+      "normalized_ground_truth" : "Franco Riva",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1150.0,
+      "normalized_extracted" : 1150.0,
+      "ground_truth" : 1150.0,
+      "normalized_ground_truth" : 1150.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\":\"18/2026\",\"dataFattura\":\"12 dicembre 2026\",\"fornitore\":{\"denominazione\":\"Giulia Monti\",\"partitaIva\":\"10000007221\"},\"cliente\":{\"denominazione\":\"Franco Riva\",\"codiceFiscale\":null},\"importoTotale\":1150.0,\"iban\":null}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000007221'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 19838,
+    "metrics" : {
+      "totalDurationMs" : 18591,
+      "totalPromptTokens" : 552,
+      "totalCompletionTokens" : 104,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 18589,
+        "promptTokens" : 552,
+        "completionTokens" : 104,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 19841
+}

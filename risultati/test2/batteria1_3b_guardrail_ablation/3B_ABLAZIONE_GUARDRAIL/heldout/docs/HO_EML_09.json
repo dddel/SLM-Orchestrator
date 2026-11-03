@@ -1,0 +1,149 @@
+{
+  "id" : "HO_EML_09",
+  "type" : "EMAIL",
+  "template" : "EML_SOLLECITO_CONSEGNA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Gianluca Riva",
+      "normalized_extracted" : "Gianluca Riva",
+      "ground_truth" : "Gianluca Riva",
+      "normalized_ground_truth" : "Gianluca Riva",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_extracted" : "gianluca.riva@studio-associato-riva.it",
+      "ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Studio Associato Riva",
+      "normalized_extracted" : "Studio Associato Riva",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Padova",
+      "normalized_extracted" : "Padova",
+      "ground_truth" : "Padova",
+      "normalized_ground_truth" : "Padova",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "06/03/2026",
+      "normalized_extracted" : "06/03/2026",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "azienda",
+    "key_present" : true,
+    "extracted" : "Studio Associato Riva",
+    "ground_truth" : null,
+    "normalized_extracted" : "Studio Associato Riva",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : true,
+    "extracted" : "06/03/2026",
+    "ground_truth" : null,
+    "normalized_extracted" : "06/03/2026",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Gianluca Riva\",\"email\":\"gianluca.riva@studio-associato-riva.it\",\"telefono\":null,\"azienda\":\"Studio Associato Riva\",\"oggetto\":\"Sollecito consegna ordine cancelleria ORD-2026-9921\",\"citta\":\"Padova\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"06/03/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 8329,
+    "metrics" : {
+      "totalDurationMs" : 7803,
+      "totalPromptTokens" : 1986,
+      "totalCompletionTokens" : 164,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4995,
+        "promptTokens" : 605,
+        "completionTokens" : 124,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2804,
+        "promptTokens" : 1381,
+        "completionTokens" : 40,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 8333
+}

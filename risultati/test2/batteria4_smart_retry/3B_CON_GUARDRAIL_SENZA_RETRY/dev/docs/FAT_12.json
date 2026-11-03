@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_12",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "88/B",
+      "normalized_extracted" : "88/B",
+      "ground_truth" : "88/B",
+      "normalized_ground_truth" : "88/B",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "EcoServices S.r.l.",
+      "normalized_extracted" : "EcoServices S.r.l.",
+      "ground_truth" : "EcoServices S.r.l.",
+      "normalized_ground_truth" : "EcoServices S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000009968",
+      "normalized_extracted" : "10000009968",
+      "ground_truth" : "10000009968",
+      "normalized_ground_truth" : "10000009968",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verde S.p.A.",
+      "normalized_extracted" : "Verde S.p.A.",
+      "ground_truth" : "Verde S.p.A.",
+      "normalized_ground_truth" : "Verde S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 120.5,
+      "normalized_extracted" : 120.5,
+      "ground_truth" : 120.5,
+      "normalized_ground_truth" : 120.5,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"88/B\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"EcoServices S.r.l.\", \"partitaIva\": \"10000009968\"}, \"cliente\": {\"denominazione\": \"Verde S.p.A.\",\"codiceFiscale\": null}, \"importoTotale\": 120.5, \"iban\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4905,
+    "metrics" : {
+      "totalDurationMs" : 4312,
+      "totalPromptTokens" : 534,
+      "totalCompletionTokens" : 99,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4311,
+        "promptTokens" : 534,
+        "completionTokens" : 99,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 4914
+}

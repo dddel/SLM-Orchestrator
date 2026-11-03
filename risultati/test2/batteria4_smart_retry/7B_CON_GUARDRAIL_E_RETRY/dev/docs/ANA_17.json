@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_17",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T5_DOCUMENTO_OCR_NOISY",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "STEFANO",
+      "normalized_extracted" : "STEFANO",
+      "ground_truth" : "Stefano",
+      "normalized_ground_truth" : "Stefano",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LOMBARDI",
+      "normalized_extracted" : "LOMBARDI",
+      "ground_truth" : "Lombardi",
+      "normalized_ground_truth" : "Lombardi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02/02/1981",
+      "normalized_extracted" : "1981-02-02",
+      "ground_truth" : "02/02/1981",
+      "normalized_ground_truth" : "1981-02-02",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BARI (BA)",
+      "normalized_extracted" : "BARI (BA)",
+      "ground_truth" : "Bari (BA)",
+      "normalized_ground_truth" : "Bari (BA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CA-998877",
+      "normalized_extracted" : "CA-998877",
+      "ground_truth" : "CA-998877",
+      "normalized_ground_truth" : "CA-998877",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/03/2021",
+      "normalized_extracted" : "2021-03-15",
+      "ground_truth" : "15/03/2021",
+      "normalized_ground_truth" : "2021-03-15",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02/02/2031",
+      "normalized_extracted" : "2031-02-02",
+      "ground_truth" : "02/02/2031",
+      "normalized_ground_truth" : "2031-02-02",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"STEFANO\",\n  \"cognome\": \"LOMBARDI\",\n  \"codiceFiscale\": null,\n  \"dataNascita\": \"02/02/1981\",\n  \"luogoNascita\": \"BARI (BA)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"CA-998877\",\n  \"dataRilascio\": \"15/03/2021\",\n  \"dataScadenza\": \"02/02/2031\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 28366,
+    "metrics" : {
+      "totalDurationMs" : 26811,
+      "totalPromptTokens" : 721,
+      "totalCompletionTokens" : 150,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 26810,
+        "promptTokens" : 721,
+        "completionTokens" : 150,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 28371
+}

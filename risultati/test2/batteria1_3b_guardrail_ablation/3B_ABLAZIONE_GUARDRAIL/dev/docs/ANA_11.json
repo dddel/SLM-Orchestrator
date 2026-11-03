@@ -1,0 +1,167 @@
+{
+  "id" : "ANA_11",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T3_PASSAPORTO_MINISTERO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MARCO",
+      "normalized_extracted" : "MARCO",
+      "ground_truth" : "Marco Aurelio",
+      "normalized_ground_truth" : "Marco Aurelio",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "AURELIO",
+      "normalized_extracted" : "AURELIO",
+      "ground_truth" : "Mancini",
+      "normalized_ground_truth" : "Mancini",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07/07/1975",
+      "normalized_extracted" : "1975-07-07",
+      "ground_truth" : "07/07/1975",
+      "normalized_ground_truth" : "1975-07-07",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "ROMA",
+      "normalized_extracted" : "ROMA",
+      "ground_truth" : "Roma (RM)",
+      "normalized_ground_truth" : "Roma (RM)",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YC1239876",
+      "normalized_extracted" : "YC1239876",
+      "ground_truth" : "YC1239876",
+      "normalized_ground_truth" : "YC1239876",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20/03/2023",
+      "normalized_extracted" : "2023-03-20",
+      "ground_truth" : "20/03/2023",
+      "normalized_ground_truth" : "2023-03-20",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20/03/2033",
+      "normalized_extracted" : "2033-03-20",
+      "ground_truth" : "20/03/2033",
+      "normalized_ground_truth" : "2033-03-20",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "MARCO",
+    "ground_truth" : "Marco Aurelio",
+    "normalized_extracted" : "MARCO",
+    "normalized_ground_truth" : "Marco Aurelio",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "AURELIO",
+    "ground_truth" : "Mancini",
+    "normalized_extracted" : "AURELIO",
+    "normalized_ground_truth" : "Mancini",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : true,
+    "extracted" : "ROMA",
+    "ground_truth" : "Roma (RM)",
+    "normalized_extracted" : "ROMA",
+    "normalized_ground_truth" : "Roma (RM)",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"MARCO\", \"cognome\": \"AURELIO\", \"codiceFiscale\": null, \"dataNascita\": \"07/07/1975\", \"luogoNascita\": \"ROMA\", \"sesso\": null, \"numeroDocumento\": \"YC1239876\", \"dataRilascio\": \"20/03/2023\", \"dataScadenza\": \"20/03/2033\", \"enteRilascio\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5497,
+    "metrics" : {
+      "totalDurationMs" : 4994,
+      "totalPromptTokens" : 707,
+      "totalCompletionTokens" : 133,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4993,
+        "promptTokens" : 707,
+        "completionTokens" : 133,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5500
+}

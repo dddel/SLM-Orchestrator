@@ -1,0 +1,181 @@
+{
+  "id" : "ANA_19",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T5_DOCUMENTO_OCR_NOISY",
+  "split" : "test",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MATTEO",
+      "normalized_extracted" : "MATTEO",
+      "ground_truth" : "Matteo",
+      "normalized_ground_truth" : "Matteo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FONTANA",
+      "normalized_extracted" : "FONTANA",
+      "ground_truth" : "Fontana",
+      "normalized_ground_truth" : "Fontana",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CD112233AA",
+      "normalized_extracted" : "CD112233AA",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/1988",
+      "normalized_extracted" : "1988-11-11",
+      "ground_truth" : "11/11/1988",
+      "normalized_ground_truth" : "1988-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VERONA (VR)",
+      "normalized_extracted" : "VERONA (VR)",
+      "ground_truth" : "Verona (VR)",
+      "normalized_ground_truth" : "Verona (VR)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CD112233AA",
+      "normalized_ground_truth" : "CD112233AA",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/2021",
+      "normalized_extracted" : "2021-11-11",
+      "ground_truth" : "11/11/2021",
+      "normalized_ground_truth" : "2021-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/2031",
+      "normalized_extracted" : "2031-11-11",
+      "ground_truth" : "11/11/2031",
+      "normalized_ground_truth" : "2031-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "codiceFiscale",
+    "key_present" : true,
+    "extracted" : "CD112233AA",
+    "ground_truth" : null,
+    "normalized_extracted" : "CD112233AA",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "CD112233AA",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CD112233AA",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ "Il codice fiscale deve essere lungo esattamente 16 caratteri (trovati: 10)." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"MATTEO\",\n    \"cognome\": \"FONTANA\",\n    \"codiceFiscale\": \"CD112233AA\",\n    \"dataNascita\": \"11/11/1988\",\n    \"luogoNascita\": \"VERONA (VR)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": \"11/11/2021\",\n    \"dataScadenza\": \"11/11/2031\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"MATTEO\",\n    \"cognome\": \"FONTANA\",\n    \"codiceFiscale\": \"CD112233AA\",\n    \"dataNascita\": \"11/11/1988\",\n    \"luogoNascita\": \"VERONA (VR)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": \"11/11/2021\",\n    \"dataScadenza\": \"11/11/2031\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 28602,
+        "totalDurationMs" : 28598,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 27913,
+        "promptEvalCount" : 362,
+        "evalCount" : 197,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

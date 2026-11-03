@@ -1,0 +1,151 @@
+{
+  "id" : "ANA_10",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T3_PASSAPORTO_MINISTERO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VALENTINA",
+      "normalized_extracted" : "VALENTINA",
+      "ground_truth" : "Valentina",
+      "normalized_ground_truth" : "Valentina",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FERRARI",
+      "normalized_extracted" : "FERRARI",
+      "ground_truth" : "Ferrari",
+      "normalized_ground_truth" : "Ferrari",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/11/1992",
+      "normalized_extracted" : "1992-11-18",
+      "ground_truth" : "18/11/1992",
+      "normalized_ground_truth" : "1992-11-18",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FIRENZE (FI)",
+      "normalized_extracted" : "FIRENZE (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YB9988771",
+      "normalized_extracted" : "YB9988771",
+      "ground_truth" : "YB9988771",
+      "normalized_ground_truth" : "YB9988771",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "12/12/2022",
+      "normalized_ground_truth" : "12/12/2022",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/12/2032",
+      "normalized_extracted" : "2032-12-12",
+      "ground_truth" : "12/12/2032",
+      "normalized_ground_truth" : "2032-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "dataRilascio",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "12/12/2022",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "12/12/2022",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"VALENTINA\", \"cognome\": \"FERRARI\", \"codiceFiscale\": null, \"dataNascita\": \"18/11/1992\", \"luogoNascita\": \"FIRENZE (FI)\", \"sesso\": null, \"numeroDocumento\": \"YB9988771\", \"dataRilascio\": null, \"dataScadenza\": \"12/12/2032\", \"enteRilascio\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5349,
+    "metrics" : {
+      "totalDurationMs" : 4854,
+      "totalPromptTokens" : 703,
+      "totalCompletionTokens" : 129,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4853,
+        "promptTokens" : 703,
+        "completionTokens" : 129,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5354
+}

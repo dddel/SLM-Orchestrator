@@ -1,0 +1,133 @@
+{
+  "id" : "ANA_10",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T3_PASSAPORTO_MINISTERO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VALENTINA",
+      "normalized_extracted" : "VALENTINA",
+      "ground_truth" : "Valentina",
+      "normalized_ground_truth" : "Valentina",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FERRARI",
+      "normalized_extracted" : "FERRARI",
+      "ground_truth" : "Ferrari",
+      "normalized_ground_truth" : "Ferrari",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/11/1992",
+      "normalized_extracted" : "1992-11-18",
+      "ground_truth" : "18/11/1992",
+      "normalized_ground_truth" : "1992-11-18",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FIRENZE (FI)",
+      "normalized_extracted" : "FIRENZE (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YB9988771",
+      "normalized_extracted" : "YB9988771",
+      "ground_truth" : "YB9988771",
+      "normalized_ground_truth" : "YB9988771",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/12/2022",
+      "normalized_extracted" : "2022-12-12",
+      "ground_truth" : "12/12/2022",
+      "normalized_ground_truth" : "2022-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/12/2032",
+      "normalized_extracted" : "2032-12-12",
+      "ground_truth" : "12/12/2032",
+      "normalized_ground_truth" : "2032-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"VALENTINA\",\n    \"cognome\": \"FERRARI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"18/11/1992\",\n    \"luogoNascita\": \"FIRENZE (FI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YB9988771\",\n    \"dataRilascio\": \"12/12/2022\",\n    \"dataScadenza\": \"12/12/2032\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"VALENTINA\",\n    \"cognome\": \"FERRARI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"18/11/1992\",\n    \"luogoNascita\": \"FIRENZE (FI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YB9988771\",\n    \"dataRilascio\": \"12/12/2022\",\n    \"dataScadenza\": \"12/12/2032\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 28767,
+      "totalDurationMs" : 28763,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 28177,
+      "promptEvalCount" : 362,
+      "evalCount" : 200,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 28767
+}

@@ -1,0 +1,141 @@
+{
+  "id" : "ANA_06",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GIULIA",
+      "normalized_extracted" : "GIULIA",
+      "ground_truth" : "Giulia",
+      "normalized_ground_truth" : "Giulia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VERDI",
+      "normalized_extracted" : "VERDI",
+      "ground_truth" : "Verdi",
+      "normalized_ground_truth" : "Verdi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1990-09-24",
+      "normalized_extracted" : "1990-09-24",
+      "ground_truth" : "24/09/1990",
+      "normalized_ground_truth" : "1990-09-24",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MILANO",
+      "normalized_extracted" : "MILANO",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1Y112233K",
+      "normalized_extracted" : "U1Y112233K",
+      "ground_truth" : "U1Y112233K",
+      "normalized_ground_truth" : "U1Y112233K",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2021-10-10",
+      "normalized_extracted" : "2021-10-10",
+      "ground_truth" : "10/10/2021",
+      "normalized_ground_truth" : "2021-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2031-10-10",
+      "normalized_extracted" : "2031-10-10",
+      "ground_truth" : "10/10/2031",
+      "normalized_ground_truth" : "2031-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "luogoNascita",
+    "key_present" : true,
+    "extracted" : "MILANO",
+    "ground_truth" : "Milano (MI)",
+    "normalized_extracted" : "MILANO",
+    "normalized_ground_truth" : "Milano (MI)",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"GIULIA\",\n    \"cognome\": \"VERDI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1990-09-24\",\n    \"luogoNascita\": \"MILANO\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1Y112233K\",\n    \"dataRilascio\": \"2021-10-10\",\n    \"dataScadenza\": \"2031-10-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"GIULIA\",\n    \"cognome\": \"VERDI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1990-09-24\",\n    \"luogoNascita\": \"MILANO\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1Y112233K\",\n    \"dataRilascio\": \"2021-10-10\",\n    \"dataScadenza\": \"2031-10-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 8144,
+      "totalDurationMs" : 8142,
+      "loadDurationMs" : 3,
+      "evalDurationMs" : 7938,
+      "promptEvalCount" : 369,
+      "evalCount" : 191,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 8144
+}

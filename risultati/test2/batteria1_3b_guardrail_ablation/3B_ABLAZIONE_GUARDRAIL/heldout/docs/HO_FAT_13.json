@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_13",
+  "type" : "FATTURA",
+  "template" : "FAT_NOLEGGIO_MACCHINARI",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NOL-2026/102",
+      "normalized_extracted" : "NOL-2026/102",
+      "ground_truth" : "NOL-2026/102",
+      "normalized_ground_truth" : "NOL-2026/102",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "09/03/2026",
+      "normalized_extracted" : "2026-03-09",
+      "ground_truth" : "09/03/2026",
+      "normalized_ground_truth" : "2026-03-09",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.",
+      "normalized_extracted" : "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.",
+      "ground_truth" : "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.",
+      "normalized_ground_truth" : "LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07192840135",
+      "normalized_extracted" : "07192840135",
+      "ground_truth" : "07192840135",
+      "normalized_ground_truth" : "07192840135",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CANTIERE NAVALE DEL LARIO S.R.L.",
+      "normalized_extracted" : "CANTIERE NAVALE DEL LARIO S.R.L.",
+      "ground_truth" : "CANTIERE NAVALE DEL LARIO S.R.L.",
+      "normalized_ground_truth" : "CANTIERE NAVALE DEL LARIO S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 4270.0,
+      "normalized_extracted" : 4270.0,
+      "ground_truth" : 4270.0,
+      "normalized_ground_truth" : 4270.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT91H0306909606100000062839",
+      "normalized_extracted" : "IT91H0306909606100000062839",
+      "ground_truth" : "IT91H0306909606100000062839",
+      "normalized_ground_truth" : "IT91H0306909606100000062839",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"NOL-2026/102\", \"dataFattura\": \"09/03/2026\", \"fornitore\": {\"denominazione\": \"LARIO NOLEGGI & MACCHINE MOVIMENTO TERRA S.R.L.\", \"partitaIva\": \"07192840135\"}, \"cliente\": {\"denominazione\": \"CANTIERE NAVALE DEL LARIO S.R.L.\",\"codiceFiscale\": null}, \"importoTotale\": 4270.0, \"iban\": \"IT91H0306909606100000062839\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6733,
+    "metrics" : {
+      "totalDurationMs" : 6220,
+      "totalPromptTokens" : 659,
+      "totalCompletionTokens" : 164,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6218,
+        "promptTokens" : 659,
+        "completionTokens" : 164,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6736
+}

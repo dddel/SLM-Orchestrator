@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_16",
+  "type" : "FATTURA",
+  "template" : "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/X16",
+      "normalized_extracted" : "2026/X16",
+      "ground_truth" : "2026/X16",
+      "normalized_ground_truth" : "2026/X16",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Telecom Soluzioni S.p.A.",
+      "normalized_extracted" : "Telecom Soluzioni S.p.A.",
+      "ground_truth" : "Telecom Soluzioni S.p.A.",
+      "normalized_ground_truth" : "Telecom Soluzioni S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000005487",
+      "normalized_extracted" : "10000005487",
+      "ground_truth" : "10000005487",
+      "normalized_ground_truth" : "10000005487",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Ufficio Servizi S.r.l.",
+      "normalized_extracted" : "Ufficio Servizi S.r.l.",
+      "ground_truth" : "Ufficio Servizi S.r.l.",
+      "normalized_ground_truth" : "Ufficio Servizi S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 89.9,
+      "normalized_extracted" : 89.9,
+      "ground_truth" : 89.9,
+      "normalized_ground_truth" : 89.9,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"2026/X16\",\n  \"dataFattura\": null,\n  \"fornitore\": {\n    \"denominazione\": \"Telecom Soluzioni S.p.A.\",\n    \"partitaIva\": \"10000005487\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Ufficio Servizi S.r.l.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 89.9,\n  \"iban\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 23458,
+    "metrics" : {
+      "totalDurationMs" : 22038,
+      "totalPromptTokens" : 603,
+      "totalCompletionTokens" : 125,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 22037,
+        "promptTokens" : 603,
+        "completionTokens" : 125,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 23462
+}

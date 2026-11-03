@@ -1,0 +1,221 @@
+{
+  "id" : "HO_ANA_11",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSEGNA_BADGE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 4,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Monica",
+      "normalized_ground_truth" : "Monica",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Trevisan",
+      "normalized_ground_truth" : "Trevisan",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "TRVMNC86T54L736S",
+      "normalized_ground_truth" : "TRVMNC86T54L736S",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "14/12/1986",
+      "normalized_ground_truth" : "14/12/1986",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Venezia (VE)",
+      "normalized_ground_truth" : "Venezia (VE)",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "80380001492817293841",
+      "normalized_ground_truth" : "80380001492817293841",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "TESSERA_SANITARIA",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "TESSERA_SANITARIA",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "nome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Monica",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Monica",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "cognome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Trevisan",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Trevisan",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "codiceFiscale",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "TRVMNC86T54L736S",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "TRVMNC86T54L736S",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "14/12/1986",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "14/12/1986",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Venezia (VE)",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Venezia (VE)",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "80380001492817293841",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "80380001492817293841",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ALTRO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\"tipoDocumento\": \"ALTRO\", \"fattura\": null, \"email\": null, \"anagrafica\": null, \"altro\": {\"categoriaRilevata\": \"MODULO ASSEGNAZIONE CHIAVI E TESSERA DI ACCESSO SEDE\", \"argomentoPrincipale\": \"Assegnazione chiavi e tessera sanitaria\", \"motivoEsclusione\": \"Il documento non contiene dati strutturati specifici di tipo fattura, email o anagrafica\", \"entitaRilevate\": [\"Trevisan Monica\", \"Tessera Sanitaria n. 80380001492817293841\", \"Codice Fiscale: TRVMNC86T54L736S\", \"Nata a Venezia (VE) il 14/12/1986\"]}}",
+      "result" : "{\"tipoDocumento\": \"ALTRO\", \"fattura\": null, \"email\": null, \"anagrafica\": null, \"altro\": {\"categoriaRilevata\": \"MODULO ASSEGNAZIONE CHIAVI E TESSERA DI ACCESSO SEDE\", \"argomentoPrincipale\": \"Assegnazione chiavi e tessera sanitaria\", \"motivoEsclusione\": \"Il documento non contiene dati strutturati specifici di tipo fattura, email o anagrafica\", \"entitaRilevate\": [\"Trevisan Monica\", \"Tessera Sanitaria n. 80380001492817293841\", \"Codice Fiscale: TRVMNC86T54L736S\", \"Nata a Venezia (VE) il 14/12/1986\"]}}",
+      "metrics" : {
+        "clientLatencyMs" : 7948,
+        "totalDurationMs" : 7946,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 7661,
+        "promptEvalCount" : 405,
+        "evalCount" : 210,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

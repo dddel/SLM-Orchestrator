@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_11",
+  "type" : "EMAIL",
+  "template" : "EML_PREVENTIVO_FLOTTA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott. Fabio Manzoni",
+      "normalized_extracted" : "Fabio Manzoni",
+      "ground_truth" : "Fabio Manzoni",
+      "normalized_ground_truth" : "Fabio Manzoni",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "f.manzoni@manzoni-commerciale.it",
+      "normalized_extracted" : "f.manzoni@manzoni-commerciale.it",
+      "ground_truth" : "f.manzoni@manzoni-commerciale.it",
+      "normalized_ground_truth" : "f.manzoni@manzoni-commerciale.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 67194012",
+      "normalized_extracted" : "0267194012",
+      "ground_truth" : "+39 02 67194012",
+      "normalized_ground_truth" : "0267194012",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "normalized_extracted" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "normalized_ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "normalized_extracted" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "normalized_ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano",
+      "normalized_extracted" : "Milano",
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 30000,
+      "normalized_extracted" : 30000.0,
+      "ground_truth" : 30000.0,
+      "normalized_ground_truth" : 30000.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott. Fabio Manzoni\",\"email\":\"f.manzoni@manzoni-commerciale.it\",\"telefono\":\"+39 02 67194012\",\"azienda\":\"Manzoni Soluzioni Commerciali S.p.A.\",\"oggetto\":\"Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric\",\"citta\":\"Milano\",\"numeroPartecipanti\":null,\"budgetEuro\":30000,\"dataEvento\":null,\"destinatario\":\"corporate-sales@lease-plan-italia.it\",\"ruoloDestinatario\":\"Sales\",\"motivoInstradamento\":\"Richiesta di quotazione per noleggio a lungo termine di flotta di auto full-electric\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 20816,
+    "metrics" : {
+      "totalDurationMs" : 19788,
+      "totalPromptTokens" : 2086,
+      "totalCompletionTokens" : 206,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 12026,
+        "promptTokens" : 647,
+        "completionTokens" : 140,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 7760,
+        "promptTokens" : 1439,
+        "completionTokens" : 66,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 20819
+}

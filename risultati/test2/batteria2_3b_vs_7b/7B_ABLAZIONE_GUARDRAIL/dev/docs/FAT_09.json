@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_09",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NP-101",
+      "normalized_extracted" : "NP-101",
+      "ground_truth" : "NP-101",
+      "normalized_ground_truth" : "NP-101",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03/08/2026",
+      "normalized_extracted" : "2026-08-03",
+      "ground_truth" : "03/08/2026",
+      "normalized_ground_truth" : "2026-08-03",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Legale Giuris",
+      "normalized_extracted" : "Studio Legale Giuris",
+      "ground_truth" : "Studio Legale Giuris",
+      "normalized_ground_truth" : "Studio Legale Giuris",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000006857",
+      "normalized_extracted" : "10000006857",
+      "ground_truth" : "10000006857",
+      "normalized_ground_truth" : "10000006857",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Gent.le Mario Bianchi",
+      "normalized_extracted" : "Mario Bianchi",
+      "ground_truth" : "Mario Bianchi",
+      "normalized_ground_truth" : "Mario Bianchi",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1500.0,
+      "normalized_extracted" : 1500.0,
+      "ground_truth" : 1500.0,
+      "normalized_ground_truth" : 1500.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\":\"NP-101\",\"dataFattura\":\"03/08/2026\",\"fornitore\":{\"denominazione\":\"Studio Legale Giuris\",\"partitaIva\":\"10000006857\"},\"cliente\":{\"denominazione\":\"Gent.le Mario Bianchi\",\"codiceFiscale\":null},\"importoTotale\":1500.00,\"iban\":null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 9420,
+    "metrics" : {
+      "totalDurationMs" : 8579,
+      "totalPromptTokens" : 543,
+      "totalCompletionTokens" : 99,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 8578,
+        "promptTokens" : 543,
+        "completionTokens" : 99,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 9424
+}

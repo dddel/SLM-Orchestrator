@@ -1,0 +1,131 @@
+{
+  "id" : "HO_EML_12",
+  "type" : "EMAIL",
+  "template" : "EML_CIRCOLARE_ORARI",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>",
+      "normalized_extracted" : "Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>",
+      "ground_truth" : "Simona Ruggiero",
+      "normalized_ground_truth" : "Simona Ruggiero",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "normalized_extracted" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "ground_truth" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "normalized_ground_truth" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "normalized_extracted" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "ground_truth" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "normalized_ground_truth" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "normalized_extracted" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "ground_truth" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "normalized_ground_truth" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Bari",
+      "normalized_ground_truth" : "Bari",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Dott.ssa Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>",
+    "ground_truth" : "Simona Ruggiero",
+    "normalized_extracted" : "Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>",
+    "normalized_ground_truth" : "Simona Ruggiero",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "citta",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Bari",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Bari",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>\",\n    \"email\": \"amministrazione@studio-ruggiero-commercialisti.it\",\n    \"telefono\": null,\n    \"azienda\": \"Studio Ruggiero Dottori Commercialisti Associati\",\n    \"oggetto\": \"Comunicazione orari estivi di apertura al pubblico sede di Bari\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Simona Ruggiero <amministrazione@studio-ruggiero-commercialisti.it>\",\n    \"email\": \"amministrazione@studio-ruggiero-commercialisti.it\",\n    \"telefono\": null,\n    \"azienda\": \"Studio Ruggiero Dottori Commercialisti Associati\",\n    \"oggetto\": \"Comunicazione orari estivi di apertura al pubblico sede di Bari\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 27831,
+      "totalDurationMs" : 27830,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 27065,
+      "promptEvalCount" : 454,
+      "evalCount" : 178,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 27831
+}

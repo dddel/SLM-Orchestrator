@@ -1,0 +1,157 @@
+{
+  "id" : "ANA_08",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "RIVA",
+      "normalized_extracted" : "RIVA",
+      "ground_truth" : "Andrea",
+      "normalized_ground_truth" : "Andrea",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "ANDREA",
+      "normalized_extracted" : "ANDREA",
+      "ground_truth" : "Riva",
+      "normalized_ground_truth" : "Riva",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1986-02-04",
+      "normalized_extracted" : "1986-02-04",
+      "ground_truth" : "1986-02-04",
+      "normalized_ground_truth" : "1986-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BOLOGNA (BO)",
+      "normalized_extracted" : "BOLOGNA (BO)",
+      "ground_truth" : "Bologna (BO)",
+      "normalized_ground_truth" : "Bologna (BO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AB9876543",
+      "normalized_extracted" : "AB9876543",
+      "ground_truth" : "AB9876543",
+      "normalized_ground_truth" : "AB9876543",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2019-05-10",
+      "normalized_extracted" : "2019-05-10",
+      "ground_truth" : "10/05/2019",
+      "normalized_ground_truth" : "2019-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2029-02-04",
+      "normalized_extracted" : "2029-02-04",
+      "ground_truth" : "04/02/2029",
+      "normalized_ground_truth" : "2029-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PASSAPORTO",
+    "ground_truth" : "CARTA_IDENTITA",
+    "normalized_extracted" : "PASSAPORTO",
+    "normalized_ground_truth" : "CARTA_IDENTITA",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "RIVA",
+    "ground_truth" : "Andrea",
+    "normalized_extracted" : "RIVA",
+    "normalized_ground_truth" : "Andrea",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "ANDREA",
+    "ground_truth" : "Riva",
+    "normalized_extracted" : "ANDREA",
+    "normalized_ground_truth" : "Riva",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"RIVA\",\n    \"cognome\": \"ANDREA\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1986-02-04\",\n    \"luogoNascita\": \"BOLOGNA (BO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AB9876543\",\n    \"dataRilascio\": \"2019-05-10\",\n    \"dataScadenza\": \"2029-02-04\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"RIVA\",\n    \"cognome\": \"ANDREA\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1986-02-04\",\n    \"luogoNascita\": \"BOLOGNA (BO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AB9876543\",\n    \"dataRilascio\": \"2019-05-10\",\n    \"dataScadenza\": \"2029-02-04\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 7788,
+      "totalDurationMs" : 7786,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 7589,
+      "promptEvalCount" : 365,
+      "evalCount" : 192,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 7788
+}

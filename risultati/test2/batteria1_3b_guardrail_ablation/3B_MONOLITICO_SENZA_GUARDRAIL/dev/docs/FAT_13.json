@@ -1,0 +1,106 @@
+{
+  "id" : "FAT_13",
+  "type" : "FATTURA",
+  "template" : "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-FE-013",
+      "normalized_extracted" : "2026-FE-013",
+      "ground_truth" : "2026-FE-013",
+      "normalized_ground_truth" : "2026-FE-013",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-10-15",
+      "normalized_extracted" : "2026-10-15",
+      "ground_truth" : "2026-10-15",
+      "normalized_ground_truth" : "2026-10-15",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CloudHub S.r.l.",
+      "normalized_extracted" : "CloudHub S.r.l.",
+      "ground_truth" : "CloudHub S.r.l.",
+      "normalized_ground_truth" : "CloudHub S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000001379",
+      "normalized_extracted" : "10000001379",
+      "ground_truth" : "10000001379",
+      "normalized_ground_truth" : "10000001379",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Retail Group S.p.A.",
+      "normalized_extracted" : "Retail Group S.p.A.",
+      "ground_truth" : "Retail Group S.p.A.",
+      "normalized_ground_truth" : "Retail Group S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 5400.0,
+      "normalized_extracted" : 5400.0,
+      "ground_truth" : 5400.0,
+      "normalized_ground_truth" : 5400.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\"tipoDocumento\": \"FATTURA\", \"fattura\": {\"numeroFattura\": \"2026-FE-013\", \"dataFattura\": \"2026-10-15\", \"fornitore\": {\"denominazione\": \"CloudHub S.r.l.\", \"partitaIva\": \"10000001379\"}, \"cliente\": {\"denominazione\": \"Retail Group S.p.A.\",\"codiceFiscale\": null}, \"importoTotale\": 5400.00, \"iban\": null},\"email\": null, \"anagrafica\": null, \"altro\": null}",
+    "result" : "{\"tipoDocumento\": \"FATTURA\", \"fattura\": {\"numeroFattura\": \"2026-FE-013\", \"dataFattura\": \"2026-10-15\", \"fornitore\": {\"denominazione\": \"CloudHub S.r.l.\", \"partitaIva\": \"10000001379\"}, \"cliente\": {\"denominazione\": \"Retail Group S.p.A.\",\"codiceFiscale\": null}, \"importoTotale\": 5400.00, \"iban\": null},\"email\": null, \"anagrafica\": null, \"altro\": null}",
+    "metrics" : {
+      "clientLatencyMs" : 5750,
+      "totalDurationMs" : 5747,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5512,
+      "promptEvalCount" : 448,
+      "evalCount" : 151,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 5750
+}

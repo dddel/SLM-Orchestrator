@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_12",
+  "type" : "EMAIL",
+  "template" : "EML_CIRCOLARE_ORARI",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Simona Ruggiero",
+      "normalized_extracted" : "Simona Ruggiero",
+      "ground_truth" : "Simona Ruggiero",
+      "normalized_ground_truth" : "Simona Ruggiero",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "normalized_extracted" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "ground_truth" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "normalized_ground_truth" : "amministrazione@studio-ruggiero-commercialisti.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "normalized_extracted" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "ground_truth" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "normalized_ground_truth" : "Studio Ruggiero Dottori Commercialisti Associati",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "normalized_extracted" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "ground_truth" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "normalized_ground_truth" : "Comunicazione orari estivi di apertura al pubblico sede di Bari",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bari",
+      "normalized_extracted" : "Bari",
+      "ground_truth" : "Bari",
+      "normalized_ground_truth" : "Bari",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott.ssa Simona Ruggiero\",\"email\":\"amministrazione@studio-ruggiero-commercialisti.it\",\"telefono\":null,\"azienda\":\"Studio Ruggiero Dottori Commercialisti Associati\",\"oggetto\":\"Comunicazione orari estivi di apertura al pubblico sede di Bari\",\"citta\":\"Bari\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 8892,
+    "metrics" : {
+      "totalDurationMs" : 7918,
+      "totalPromptTokens" : 2002,
+      "totalCompletionTokens" : 158,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4813,
+        "promptTokens" : 616,
+        "completionTokens" : 118,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3102,
+        "promptTokens" : 1386,
+        "completionTokens" : 40,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 8904
+}

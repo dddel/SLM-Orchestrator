@@ -1,0 +1,138 @@
+{
+  "id" : "HO_ADV_05",
+  "type" : "FATTURA",
+  "template" : null,
+  "split" : "heldout",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AGR-2026-074",
+      "normalized_extracted" : "AGR-2026-074",
+      "ground_truth" : "AGR-2026-074",
+      "normalized_ground_truth" : "AGR-2026-074",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "16/02/2026",
+      "normalized_extracted" : "2026-02-16",
+      "ground_truth" : "16/02/2026",
+      "normalized_ground_truth" : "2026-02-16",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+      "normalized_extracted" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+      "ground_truth" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+      "normalized_ground_truth" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06283940168",
+      "normalized_extracted" : "06283940168",
+      "ground_truth" : "06283940168",
+      "normalized_ground_truth" : "06283940168",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CANTINE DEL TUSCAN SUN S.R.L.",
+      "normalized_extracted" : "CANTINE DEL TUSCAN SUN S.R.L.",
+      "ground_truth" : "CANTINE DEL TUSCAN SUN S.R.L.",
+      "normalized_ground_truth" : "CANTINE DEL TUSCAN SUN S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2035.0,
+      "normalized_extracted" : 2035.0,
+      "ground_truth" : 2035.0,
+      "normalized_ground_truth" : 2035.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT48B0306909606100000029584",
+      "normalized_extracted" : "IT48B0306909606100000029584",
+      "ground_truth" : "IT48B0306909606100000029584",
+      "normalized_ground_truth" : "IT48B0306909606100000029584",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ "Checksum IBAN (MOD-97) non valido per 'IT48B0306909606100000029584'" ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"AGR-2026-074\",\n    \"dataFattura\": \"16/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.\",\n      \"partitaIva\": \"06283940168\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"CANTINE DEL TUSCAN SUN S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2035.0,\n    \"iban\": \"IT48B0306909606100000029584\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"AGR-2026-074\",\n    \"dataFattura\": \"16/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.\",\n      \"partitaIva\": \"06283940168\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"CANTINE DEL TUSCAN SUN S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2035.0,\n    \"iban\": \"IT48B0306909606100000029584\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 35835,
+        "totalDurationMs" : 35833,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 34591,
+        "promptEvalCount" : 486,
+        "evalCount" : 222,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

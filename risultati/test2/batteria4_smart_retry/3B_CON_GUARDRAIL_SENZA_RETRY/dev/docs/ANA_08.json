@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_08",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ANDREA",
+      "normalized_extracted" : "ANDREA",
+      "ground_truth" : "Andrea",
+      "normalized_ground_truth" : "Andrea",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RIVA",
+      "normalized_extracted" : "RIVA",
+      "ground_truth" : "Riva",
+      "normalized_ground_truth" : "Riva",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/02/1986",
+      "normalized_extracted" : "1986-02-04",
+      "ground_truth" : "1986-02-04",
+      "normalized_ground_truth" : "1986-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BOLOGNA (BO)",
+      "normalized_extracted" : "BOLOGNA (BO)",
+      "ground_truth" : "Bologna (BO)",
+      "normalized_ground_truth" : "Bologna (BO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AB9876543",
+      "normalized_extracted" : "AB9876543",
+      "ground_truth" : "AB9876543",
+      "normalized_ground_truth" : "AB9876543",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/05/2019",
+      "normalized_extracted" : "2019-05-10",
+      "ground_truth" : "10/05/2019",
+      "normalized_ground_truth" : "2019-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/02/2029",
+      "normalized_extracted" : "2029-02-04",
+      "ground_truth" : "04/02/2029",
+      "normalized_ground_truth" : "2029-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\":\"CARTA_IDENTITA\",\"nome\":\"ANDREA\",\"cognome\":\"RIVA\",\"codiceFiscale\":null,\"dataNascita\":\"04/02/1986\",\"luogoNascita\":\"BOLOGNA (BO)\",\"sesso\":null,\"numeroDocumento\":\"AB9876543\",\"dataRilascio\":\"10/05/2019\",\"dataScadenza\":\"04/02/2029\",\"enteRilascio\":null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 7300,
+    "metrics" : {
+      "totalDurationMs" : 6495,
+      "totalPromptTokens" : 706,
+      "totalCompletionTokens" : 133,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6493,
+        "promptTokens" : 706,
+        "completionTokens" : 133,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 7308
+}

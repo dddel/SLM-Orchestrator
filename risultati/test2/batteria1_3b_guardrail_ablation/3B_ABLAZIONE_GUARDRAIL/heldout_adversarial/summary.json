@@ -1,0 +1,828 @@
+{
+  "metadata" : {
+    "cella" : "3B_ABLAZIONE_GUARDRAIL",
+    "split" : "heldout_adversarial",
+    "ordine" : "naturale",
+    "model_id" : "qwen2.5:3b-instruct-q8_0",
+    "endpoint" : "http://localhost:18081/api/orchestrator/process",
+    "git_commit" : "8854c9e5e5e96f4d97033c21fcb87f26a3739637",
+    "evaluated_at" : "2026-11-02T10:12:55.683306967Z",
+    "parameters" : {
+      "keep_alive" : "60m",
+      "num_ctx" : 2048,
+      "seed" : 42,
+      "router_type" : "local-ollama",
+      "repeat_penalty" : 1.0,
+      "guards_enabled" : false,
+      "coherence_enabled" : false,
+      "temperature" : 0.0,
+      "num_predict" : 400
+    }
+  },
+  "classification_counts" : {
+    "C1" : 0,
+    "C2" : 0,
+    "C3" : 6,
+    "C4" : 0,
+    "C5" : 0
+  },
+  "c2_subcode_counts" : {
+    "C2a" : 0,
+    "C2b" : 0,
+    "C2c" : 0
+  },
+  "classification_wilson" : {
+    "C1" : "0/6 (n < 10, percentuale non riportata)",
+    "C2" : "0/6 (n < 10, percentuale non riportata)",
+    "C3" : "6/6 (n < 10, percentuale non riportata)",
+    "C4" : "0/6 (n < 10, percentuale non riportata)",
+    "C5" : "0/6 (n < 10, percentuale non riportata)"
+  },
+  "fields_summary" : {
+    "total_fields" : 54,
+    "correct_fields" : 54,
+    "accuracy_wilson" : "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+  },
+  "documents" : {
+    "HO_ADV_01" : {
+      "id" : "HO_ADV_01",
+      "type" : "FATTURA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "FAT-2026-049",
+          "normalized_extracted" : "FAT-2026-049",
+          "ground_truth" : "FAT-2026-049",
+          "normalized_ground_truth" : "FAT-2026-049",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "02/03/2026",
+          "normalized_extracted" : "2026-03-02",
+          "ground_truth" : "02/03/2026",
+          "normalized_ground_truth" : "2026-03-02",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+          "normalized_extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+          "ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+          "normalized_ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "07319450284",
+          "normalized_extracted" : "07319450284",
+          "ground_truth" : "07319450284",
+          "normalized_ground_truth" : "07319450284",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+          "normalized_extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+          "ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+          "normalized_ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 1342.0,
+          "normalized_extracted" : 1342.0,
+          "ground_truth" : 1342.0,
+          "normalized_ground_truth" : 1342.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "IT36K0503411701000000038472",
+          "normalized_extracted" : "IT36K0503411701000000038472",
+          "ground_truth" : "IT36K0503411701000000038472",
+          "normalized_ground_truth" : "IT36K0503411701000000038472",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\": \"FAT-2026-049\", \"dataFattura\": \"02/03/2026\", \"fornitore\": {\"denominazione\": \"TERMOIDRAULICA F.LLI SARTORI S.N.C.\", \"partitaIva\": \"07319450284\"}, \"cliente\": {\"denominazione\": \"HOTEL DOLOMITI RESORT S.R.L.\",\"codiceFiscale\": null}, \"importoTotale\": 1342.0, \"iban\": \"IT36K0503411701000000038472\"}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '07319450284'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 6819,
+        "metrics" : {
+          "totalDurationMs" : 6220,
+          "totalPromptTokens" : 657,
+          "totalCompletionTokens" : 161,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 6214,
+            "promptTokens" : 657,
+            "completionTokens" : 161,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 6826
+    },
+    "HO_ADV_02" : {
+      "id" : "HO_ADV_02",
+      "type" : "FATTURA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "GM-2026/088",
+          "normalized_extracted" : "GM-2026/088",
+          "ground_truth" : "GM-2026/088",
+          "normalized_ground_truth" : "GM-2026/088",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "25/02/2026",
+          "normalized_extracted" : "2026-02-25",
+          "ground_truth" : "25/02/2026",
+          "normalized_ground_truth" : "2026-02-25",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+          "normalized_extracted" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+          "ground_truth" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+          "normalized_ground_truth" : "GRAFICHE MECCANICHE PADOVANE S.R.L.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "08524170394",
+          "normalized_extracted" : "08524170394",
+          "ground_truth" : "08524170394",
+          "normalized_ground_truth" : "08524170394",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "VETRERIA ARTISTICA VENETA S.P.A.",
+          "normalized_extracted" : "VETRERIA ARTISTICA VENETA S.P.A.",
+          "ground_truth" : "VETRERIA ARTISTICA VENETA S.P.A.",
+          "normalized_ground_truth" : "VETRERIA ARTISTICA VENETA S.P.A.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 2806.0,
+          "normalized_extracted" : 2806.0,
+          "ground_truth" : 2806.0,
+          "normalized_ground_truth" : 2806.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "IT21Y0306909606100000047281",
+          "normalized_extracted" : "IT21Y0306909606100000047281",
+          "ground_truth" : "IT21Y0306909606100000047281",
+          "normalized_ground_truth" : "IT21Y0306909606100000047281",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\": \"GM-2026/088\", \"dataFattura\": \"25/02/2026\", \"fornitore\": {\"denominazione\": \"GRAFICHE MECCANICHE PADOVANE S.R.L.\", \"partitaIva\": \"08524170394\"}, \"cliente\": {\"denominazione\": \"VETRERIA ARTISTICA VENETA S.P.A.\",\"codiceFiscale\": null}, \"importoTotale\": 2806.0, \"iban\": \"IT21Y0306909606100000047281\"}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '08524170394'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 7174,
+        "metrics" : {
+          "totalDurationMs" : 6632,
+          "totalPromptTokens" : 657,
+          "totalCompletionTokens" : 162,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 6630,
+            "promptTokens" : 657,
+            "completionTokens" : 162,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 7176
+    },
+    "HO_ADV_03" : {
+      "id" : "HO_ADV_03",
+      "type" : "ANAGRAFICA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 11,
+      "correct_fields" : 11,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "tipoDocumento" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "CARTA_IDENTITA",
+          "normalized_extracted" : "CARTA_IDENTITA",
+          "ground_truth" : "CARTA_IDENTITA",
+          "normalized_ground_truth" : "CARTA_IDENTITA",
+          "field_class" : "CORRETTO"
+        },
+        "nome" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Lorenzo",
+          "normalized_extracted" : "Lorenzo",
+          "ground_truth" : "Lorenzo",
+          "normalized_ground_truth" : "Lorenzo",
+          "field_class" : "CORRETTO"
+        },
+        "cognome" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Gentile",
+          "normalized_extracted" : "Gentile",
+          "ground_truth" : "Gentile",
+          "normalized_ground_truth" : "Gentile",
+          "field_class" : "CORRETTO"
+        },
+        "codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "GNTLNZ84D15L781X",
+          "normalized_extracted" : "GNTLNZ84D15L781X",
+          "ground_truth" : "GNTLNZ84D15L781X",
+          "normalized_ground_truth" : "GNTLNZ84D15L781X",
+          "field_class" : "CORRETTO"
+        },
+        "dataNascita" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "15/04/1984",
+          "normalized_extracted" : "1984-04-15",
+          "ground_truth" : "15/04/1984",
+          "normalized_ground_truth" : "1984-04-15",
+          "field_class" : "CORRETTO"
+        },
+        "luogoNascita" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Verona (VR)",
+          "normalized_extracted" : "Verona (VR)",
+          "ground_truth" : "Verona (VR)",
+          "normalized_ground_truth" : "Verona (VR)",
+          "field_class" : "CORRETTO"
+        },
+        "sesso" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "M",
+          "normalized_extracted" : "M",
+          "ground_truth" : "M",
+          "normalized_ground_truth" : "M",
+          "field_class" : "CORRETTO"
+        },
+        "numeroDocumento" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "AX8492019",
+          "normalized_extracted" : "AX8492019",
+          "ground_truth" : "AX8492019",
+          "normalized_ground_truth" : "AX8492019",
+          "field_class" : "CORRETTO"
+        },
+        "dataRilascio" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10/05/2020",
+          "normalized_extracted" : "2020-05-10",
+          "ground_truth" : "10/05/2020",
+          "normalized_ground_truth" : "2020-05-10",
+          "field_class" : "CORRETTO"
+        },
+        "dataScadenza" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "15/04/2030",
+          "normalized_extracted" : "2030-04-15",
+          "ground_truth" : "15/04/2030",
+          "normalized_ground_truth" : "2030-04-15",
+          "field_class" : "CORRETTO"
+        },
+        "enteRilascio" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Comune di Verona",
+          "normalized_extracted" : "Comune di Verona",
+          "ground_truth" : "Comune di Verona",
+          "normalized_ground_truth" : "Comune di Verona",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "ANAGRAFICA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"tipoDocumento\": \"CARTA_IDENTITA\", \"nome\": \"Lorenzo\", \"cognome\": \"Gentile\", \"codiceFiscale\": \"GNTLNZ84D15L781X\", \"dataNascita\": \"15/04/1984\", \"luogoNascita\": \"Verona (VR)\", \"sesso\": \"M\", \"numeroDocumento\": \"AX8492019\", \"dataRilascio\": \"10/05/2020\", \"dataScadenza\": \"15/04/2030\", \"enteRilascio\": \"Comune di Verona\"}",
+        "errors" : [ {
+          "path" : "codiceFiscale",
+          "validatorName" : "codice_fiscale",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Carattere di controllo del codice fiscale non valido (atteso: 'W', trovato: 'X'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 6734,
+        "metrics" : {
+          "totalDurationMs" : 6182,
+          "totalPromptTokens" : 762,
+          "totalCompletionTokens" : 156,
+          "steps" : [ {
+            "stepId" : "anagrafica_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 6181,
+            "promptTokens" : 762,
+            "completionTokens" : 156,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 6738
+    },
+    "HO_ADV_04" : {
+      "id" : "HO_ADV_04",
+      "type" : "ANAGRAFICA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 11,
+      "correct_fields" : 11,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "tipoDocumento" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "PASSAPORTO",
+          "normalized_extracted" : "PASSAPORTO",
+          "ground_truth" : "PASSAPORTO",
+          "normalized_ground_truth" : "PASSAPORTO",
+          "field_class" : "CORRETTO"
+        },
+        "nome" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Martina",
+          "normalized_extracted" : "Martina",
+          "ground_truth" : "Martina",
+          "normalized_ground_truth" : "Martina",
+          "field_class" : "CORRETTO"
+        },
+        "cognome" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Verdi",
+          "normalized_extracted" : "Verdi",
+          "ground_truth" : "Verdi",
+          "normalized_ground_truth" : "Verdi",
+          "field_class" : "CORRETTO"
+        },
+        "codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "VRDMTN91P52D612K",
+          "normalized_extracted" : "VRDMTN91P52D612K",
+          "ground_truth" : "VRDMTN91P52D612K",
+          "normalized_ground_truth" : "VRDMTN91P52D612K",
+          "field_class" : "CORRETTO"
+        },
+        "dataNascita" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "12/09/1991",
+          "normalized_extracted" : "1991-09-12",
+          "ground_truth" : "12/09/1991",
+          "normalized_ground_truth" : "1991-09-12",
+          "field_class" : "CORRETTO"
+        },
+        "luogoNascita" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Firenze (FI)",
+          "normalized_extracted" : "Firenze (FI)",
+          "ground_truth" : "Firenze (FI)",
+          "normalized_ground_truth" : "Firenze (FI)",
+          "field_class" : "CORRETTO"
+        },
+        "sesso" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "F",
+          "normalized_extracted" : "F",
+          "ground_truth" : "F",
+          "normalized_ground_truth" : "F",
+          "field_class" : "CORRETTO"
+        },
+        "numeroDocumento" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "08BB49281",
+          "normalized_extracted" : "08BB49281",
+          "ground_truth" : "08BB49281",
+          "normalized_ground_truth" : "08BB49281",
+          "field_class" : "CORRETTO"
+        },
+        "dataRilascio" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "18/06/2019",
+          "normalized_extracted" : "2019-06-18",
+          "ground_truth" : "18/06/2019",
+          "normalized_ground_truth" : "2019-06-18",
+          "field_class" : "CORRETTO"
+        },
+        "dataScadenza" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "18/06/2029",
+          "normalized_extracted" : "2029-06-18",
+          "ground_truth" : "18/06/2029",
+          "normalized_ground_truth" : "2029-06-18",
+          "field_class" : "CORRETTO"
+        },
+        "enteRilascio" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Questura di Firenze",
+          "normalized_extracted" : "Questura di Firenze",
+          "ground_truth" : "Questura di Firenze",
+          "normalized_ground_truth" : "Questura di Firenze",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "ANAGRAFICA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Martina\", \"cognome\": \"Verdi\", \"codiceFiscale\": \"VRDMTN91P52D612K\", \"dataNascita\": \"12/09/1991\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": \"F\", \"numeroDocumento\": \"08BB49281\", \"dataRilascio\": \"18/06/2019\", \"dataScadenza\": \"18/06/2029\", \"enteRilascio\": \"Questura di Firenze\"}",
+        "errors" : [ {
+          "path" : "codiceFiscale",
+          "validatorName" : "codice_fiscale",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Carattere di controllo del codice fiscale non valido (atteso: 'C', trovato: 'K'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 6363,
+        "metrics" : {
+          "totalDurationMs" : 5801,
+          "totalPromptTokens" : 769,
+          "totalCompletionTokens" : 152,
+          "steps" : [ {
+            "stepId" : "anagrafica_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 5801,
+            "promptTokens" : 769,
+            "completionTokens" : 152,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 6367
+    },
+    "HO_ADV_05" : {
+      "id" : "HO_ADV_05",
+      "type" : "FATTURA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "AGR-2026-074",
+          "normalized_extracted" : "AGR-2026-074",
+          "ground_truth" : "AGR-2026-074",
+          "normalized_ground_truth" : "AGR-2026-074",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "16/02/2026",
+          "normalized_extracted" : "2026-02-16",
+          "ground_truth" : "16/02/2026",
+          "normalized_ground_truth" : "2026-02-16",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+          "normalized_extracted" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+          "ground_truth" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+          "normalized_ground_truth" : "CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "06283940168",
+          "normalized_extracted" : "06283940168",
+          "ground_truth" : "06283940168",
+          "normalized_ground_truth" : "06283940168",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "CANTINE DEL TUSCAN SUN S.R.L.",
+          "normalized_extracted" : "CANTINE DEL TUSCAN SUN S.R.L.",
+          "ground_truth" : "CANTINE DEL TUSCAN SUN S.R.L.",
+          "normalized_ground_truth" : "CANTINE DEL TUSCAN SUN S.R.L.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 2035.0,
+          "normalized_extracted" : 2035.0,
+          "ground_truth" : 2035.0,
+          "normalized_ground_truth" : 2035.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "IT48B0306909606100000029584",
+          "normalized_extracted" : "IT48B0306909606100000029584",
+          "ground_truth" : "IT48B0306909606100000029584",
+          "normalized_ground_truth" : "IT48B0306909606100000029584",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\": \"AGR-2026-074\", \"dataFattura\": \"16/02/2026\", \"fornitore\": {\"denominazione\": \"CONSORZIO AGRICOLO COLLINE SENESI SOC. COOP.\", \"partitaIva\": \"06283940168\"}, \"cliente\": {\"denominazione\": \"CANTINE DEL TUSCAN SUN S.R.L.\",\"codiceFiscale\": null}, \"importoTotale\": 2035.0, \"iban\": \"IT48B0306909606100000029584\"}",
+        "errors" : [ {
+          "path" : "iban",
+          "validatorName" : "iban",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Checksum IBAN (MOD-97) non valido per 'IT48B0306909606100000029584' [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 6891,
+        "metrics" : {
+          "totalDurationMs" : 6362,
+          "totalPromptTokens" : 656,
+          "totalCompletionTokens" : 160,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 6360,
+            "promptTokens" : 656,
+            "completionTokens" : 160,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 6895
+    },
+    "HO_ADV_06" : {
+      "id" : "HO_ADV_06",
+      "type" : "FATTURA",
+      "template" : null,
+      "split" : "heldout_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "ELE-2026/031",
+          "normalized_extracted" : "ELE-2026/031",
+          "ground_truth" : "ELE-2026/031",
+          "normalized_ground_truth" : "ELE-2026/031",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "05/03/2026",
+          "normalized_extracted" : "2026-03-05",
+          "ground_truth" : "05/03/2026",
+          "normalized_ground_truth" : "2026-03-05",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "ELETTROIMPIANTI RIVIERA S.R.L.",
+          "normalized_extracted" : "ELETTROIMPIANTI RIVIERA S.R.L.",
+          "ground_truth" : "ELETTROIMPIANTI RIVIERA S.R.L.",
+          "normalized_ground_truth" : "ELETTROIMPIANTI RIVIERA S.R.L.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "09172830540",
+          "normalized_extracted" : "09172830540",
+          "ground_truth" : "09172830540",
+          "normalized_ground_truth" : "09172830540",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "MARINA TURISTICA DEL PONENTE S.P.A.",
+          "normalized_extracted" : "MARINA TURISTICA DEL PONENTE S.P.A.",
+          "ground_truth" : "MARINA TURISTICA DEL PONENTE S.P.A.",
+          "normalized_ground_truth" : "MARINA TURISTICA DEL PONENTE S.P.A.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 3782.0,
+          "normalized_extracted" : 3782.0,
+          "ground_truth" : 3782.0,
+          "normalized_ground_truth" : 3782.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "IT81V0503411701000000073921",
+          "normalized_extracted" : "IT81V0503411701000000073921",
+          "ground_truth" : "IT81V0503411701000000073921",
+          "normalized_ground_truth" : "IT81V0503411701000000073921",
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\": \"ELE-2026/031\", \"dataFattura\": \"05/03/2026\", \"fornitore\": {\"denominazione\": \"ELETTROIMPIANTI RIVIERA S.R.L.\", \"partitaIva\": \"09172830540\"}, \"cliente\": {\"denominazione\": \"MARINA TURISTICA DEL PONENTE S.P.A.\", \"codiceFiscale\": null}, \"importoTotale\": 3782.0, \"iban\": \"IT81V0503411701000000073921\"}",
+        "errors" : [ {
+          "path" : "iban",
+          "validatorName" : "iban",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Checksum IBAN (MOD-97) non valido per 'IT81V0503411701000000073921' [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 6678,
+        "metrics" : {
+          "totalDurationMs" : 6146,
+          "totalPromptTokens" : 663,
+          "totalCompletionTokens" : 160,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:3b-instruct-q8_0",
+            "latencyMs" : 6145,
+            "promptTokens" : 663,
+            "completionTokens" : 160,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 6684
+    }
+  }
+}

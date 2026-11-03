@@ -1,0 +1,131 @@
+{
+  "id" : "EML_13",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Marta Ferri <marta.ferri@agritech.it>",
+      "normalized_extracted" : "Marta Ferri <marta.ferri@agritech.it>",
+      "ground_truth" : "Marta Ferri",
+      "normalized_ground_truth" : "Marta Ferri",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "marta.ferri@agritech.it",
+      "normalized_extracted" : "marta.ferri@agritech.it",
+      "ground_truth" : "marta.ferri@agritech.it",
+      "normalized_ground_truth" : "marta.ferri@agritech.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AgriTech S.r.l.",
+      "normalized_extracted" : "AgriTech S.r.l.",
+      "ground_truth" : "AgriTech S.r.l.",
+      "normalized_ground_truth" : "AgriTech S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Convegno Bari",
+      "normalized_extracted" : "Convegno Bari",
+      "ground_truth" : "Convegno Bari",
+      "normalized_ground_truth" : "Convegno Bari",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "16/12/2026",
+      "normalized_extracted" : "2026-12-16",
+      "ground_truth" : "16/12/2026",
+      "normalized_ground_truth" : "2026-12-16",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Bari",
+      "normalized_ground_truth" : "Bari",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 80,
+      "normalized_extracted" : 80.0,
+      "ground_truth" : 80,
+      "normalized_ground_truth" : 80.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Marta Ferri <marta.ferri@agritech.it>",
+    "ground_truth" : "Marta Ferri",
+    "normalized_extracted" : "Marta Ferri <marta.ferri@agritech.it>",
+    "normalized_ground_truth" : "Marta Ferri",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "citta",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Bari",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Bari",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Marta Ferri <marta.ferri@agritech.it>\",\n    \"email\": \"marta.ferri@agritech.it\",\n    \"telefono\": null,\n    \"azienda\": \"AgriTech S.r.l.\",\n    \"oggetto\": \"Convegno Bari\",\n    \"citta\": null,\n    \"numeroPartecipanti\": 80,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"16/12/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Marta Ferri <marta.ferri@agritech.it>\",\n    \"email\": \"marta.ferri@agritech.it\",\n    \"telefono\": null,\n    \"azienda\": \"AgriTech S.r.l.\",\n    \"oggetto\": \"Convegno Bari\",\n    \"citta\": null,\n    \"numeroPartecipanti\": 80,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"16/12/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 30300,
+      "totalDurationMs" : 30294,
+      "loadDurationMs" : 6674,
+      "evalDurationMs" : 21939,
+      "promptEvalCount" : 406,
+      "evalCount" : 165,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 30300
+}

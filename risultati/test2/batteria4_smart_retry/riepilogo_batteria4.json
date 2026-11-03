@@ -1,0 +1,1402 @@
+{
+  "heldout": {
+    "3B_CON_GUARDRAIL_SENZA_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL_SENZA_RETRY",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18084/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-03T07:49:32.661399641Z",
+        "parameters": {
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42
+        }
+      },
+      "classification_counts": {
+        "C1": 31,
+        "C2": 10,
+        "C3": 1,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 2,
+        "C2c": 8
+      },
+      "classification_wilson": {
+        "C1": "31/42 (73.8%, IC 95%: 58.9–84.7%)",
+        "C2": "10/42 (23.8%, IC 95%: 13.5–38.5%)",
+        "C3": "1/42 (2.4%, IC 95%: 0.4–12.3%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 373,
+        "accuracy_wilson": "373/392 (95.2%, IC 95%: 92.6–96.9%)"
+      },
+      "valore_su_null_atteso": 11,
+      "latency_ms": {
+        "mean_ms": 7767.7,
+        "median_ms": 7234.5,
+        "min_ms": 5607,
+        "max_ms": 10938
+      },
+      "retry_metrics": {
+        "total_docs": 42,
+        "total_inference_steps": 56,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 10,
+          "c2": 4,
+          "c3": 0,
+          "c4": 0,
+          "cf": 146,
+          "tf": 154
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 5,
+          "c3": 0,
+          "c4": 0,
+          "cf": 118,
+          "tf": 126
+        },
+        "FATTURA": {
+          "docs": 14,
+          "c1": 12,
+          "c2": 1,
+          "c3": 1,
+          "c4": 0,
+          "cf": 109,
+          "tf": 112
+        }
+      }
+    },
+    "3B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "254ae10d695e3160596026be7294cb2e9589c8f7",
+        "evaluated_at": "2026-11-02T09:53:51.977687608Z",
+        "parameters": {
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 32,
+        "C2": 10,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 2,
+        "C2c": 8
+      },
+      "classification_wilson": {
+        "C1": "32/42 (76.2%, IC 95%: 61.5–86.5%)",
+        "C2": "10/42 (23.8%, IC 95%: 13.5–38.5%)",
+        "C3": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 373,
+        "accuracy_wilson": "373/392 (95.2%, IC 95%: 92.6–96.9%)"
+      },
+      "valore_su_null_atteso": 11,
+      "latency_ms": {
+        "mean_ms": 7173.8,
+        "median_ms": 6723.0,
+        "min_ms": 5026,
+        "max_ms": 11289
+      },
+      "retry_metrics": {
+        "total_docs": 42,
+        "total_inference_steps": 57,
+        "docs_with_retries": 1,
+        "extra_inference_steps": 1,
+        "retries_resolved_to_c1": 1,
+        "retries_resolved_to_ok": 1,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": [
+          {
+            "doc_id": "HO_FAT_06",
+            "type": "FATTURA",
+            "retried_step_id": "fattura_inference",
+            "step_attempts": 2,
+            "total_doc_inference_steps": 2,
+            "final_status": "OK",
+            "final_category": "C1",
+            "correct_fields": 8,
+            "total_fields": 8,
+            "total_latency_ms": 11289,
+            "initial_errors_if_3b": [
+              "iban: FORMAT_INVALID (iban)"
+            ],
+            "final_errors": [],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "fattura_inference",
+                "latency_ms": 5306,
+                "prompt_tokens": 669,
+                "completion_tokens": 138
+              },
+              {
+                "attempt": 2,
+                "stepId": "fattura_inference",
+                "latency_ms": 5442,
+                "prompt_tokens": 789,
+                "completion_tokens": 137
+              }
+            ]
+          }
+        ]
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 10,
+          "c2": 4,
+          "c3": 0,
+          "c4": 0,
+          "cf": 146,
+          "tf": 154
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 5,
+          "c3": 0,
+          "c4": 0,
+          "cf": 118,
+          "tf": 126
+        },
+        "FATTURA": {
+          "docs": 14,
+          "c1": 13,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 109,
+          "tf": 112
+        }
+      }
+    },
+    "7B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "7B_CON_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:7b-instruct-q8_0",
+        "endpoint": "http://localhost:18083/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-02T15:55:40.485038391Z",
+        "parameters": {
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true
+        }
+      },
+      "classification_counts": {
+        "C1": 36,
+        "C2": 3,
+        "C3": 3,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 3,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "36/42 (85.7%, IC 95%: 72.2–93.3%)",
+        "C2": "3/42 (7.1%, IC 95%: 2.5–19.0%)",
+        "C3": "3/42 (7.1%, IC 95%: 2.5–19.0%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 389,
+        "accuracy_wilson": "389/392 (99.2%, IC 95%: 97.8–99.7%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 33816.2,
+        "median_ms": 32032.5,
+        "min_ms": 23050,
+        "max_ms": 56481
+      },
+      "retry_metrics": {
+        "total_docs": 42,
+        "total_inference_steps": 65,
+        "docs_with_retries": 5,
+        "extra_inference_steps": 9,
+        "retries_resolved_to_c1": 2,
+        "retries_resolved_to_ok": 2,
+        "retries_ended_indeterminate": 3,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": [
+          {
+            "doc_id": "HO_EML_01",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "OK",
+            "final_category": "C1",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 45736,
+            "initial_errors_if_3b": [],
+            "final_errors": [],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 10637,
+                "prompt_tokens": 1479,
+                "completion_tokens": 68
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 9596,
+                "prompt_tokens": 1611,
+                "completion_tokens": 58
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 8269,
+                "prompt_tokens": 1639,
+                "completion_tokens": 50
+              }
+            ]
+          },
+          {
+            "doc_id": "HO_EML_08",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "INDETERMINATE",
+            "final_category": "C3",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 45534,
+            "initial_errors_if_3b": [],
+            "final_errors": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 10550,
+                "prompt_tokens": 1424,
+                "completion_tokens": 74
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 9531,
+                "prompt_tokens": 1556,
+                "completion_tokens": 65
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 9816,
+                "prompt_tokens": 1565,
+                "completion_tokens": 65
+              }
+            ]
+          },
+          {
+            "doc_id": "HO_EML_09",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "INDETERMINATE",
+            "final_category": "C3",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 40817,
+            "initial_errors_if_3b": [],
+            "final_errors": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)",
+              "ruoloDestinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 9040,
+                "prompt_tokens": 1366,
+                "completion_tokens": 61
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 9262,
+                "prompt_tokens": 1526,
+                "completion_tokens": 64
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 9339,
+                "prompt_tokens": 1535,
+                "completion_tokens": 63
+              }
+            ]
+          },
+          {
+            "doc_id": "HO_EML_11",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 2,
+            "total_doc_inference_steps": 3,
+            "final_status": "OK",
+            "final_category": "C1",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 56481,
+            "initial_errors_if_3b": [],
+            "final_errors": [],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 16492,
+                "prompt_tokens": 1439,
+                "completion_tokens": 78
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 14230,
+                "prompt_tokens": 1571,
+                "completion_tokens": 63
+              }
+            ]
+          },
+          {
+            "doc_id": "HO_EML_12",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "INDETERMINATE",
+            "final_category": "C3",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 42525,
+            "initial_errors_if_3b": [],
+            "final_errors": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)",
+              "ruoloDestinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 9170,
+                "prompt_tokens": 1386,
+                "completion_tokens": 64
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 9717,
+                "prompt_tokens": 1546,
+                "completion_tokens": 66
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 9831,
+                "prompt_tokens": 1555,
+                "completion_tokens": 64
+              }
+            ]
+          }
+        ]
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 13,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 153,
+          "tf": 154
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 10,
+          "c2": 1,
+          "c3": 3,
+          "c4": 0,
+          "cf": 125,
+          "tf": 126
+        },
+        "FATTURA": {
+          "docs": 14,
+          "c1": 13,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 111,
+          "tf": 112
+        }
+      }
+    }
+  },
+  "heldout_adversarial": {
+    "3B_CON_GUARDRAIL_SENZA_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL_SENZA_RETRY",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18084/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-03T07:55:11.092068354Z",
+        "parameters": {
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 6,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "6/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 54,
+        "accuracy_wilson": "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 7976.8,
+        "median_ms": 7291.5,
+        "min_ms": 6892,
+        "max_ms": 11002
+      },
+      "retry_metrics": {
+        "total_docs": 6,
+        "total_inference_steps": 6,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 6,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 0,
+          "cf": 32,
+          "tf": 32
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 0,
+          "cf": 22,
+          "tf": 22
+        }
+      }
+    },
+    "3B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "254ae10d695e3160596026be7294cb2e9589c8f7",
+        "evaluated_at": "2026-11-02T09:59:07.007766992Z",
+        "parameters": {
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 6,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "6/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 54,
+        "accuracy_wilson": "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 6505.3,
+        "median_ms": 6551.5,
+        "min_ms": 6295,
+        "max_ms": 6639
+      },
+      "retry_metrics": {
+        "total_docs": 6,
+        "total_inference_steps": 6,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 6,
+        "saved_retry_inferences_by_short_circuit": 12,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 0,
+          "cf": 32,
+          "tf": 32
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 0,
+          "cf": 22,
+          "tf": 22
+        }
+      }
+    },
+    "7B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "7B_CON_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:7b-instruct-q8_0",
+        "endpoint": "http://localhost:18083/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-02T14:59:57.749295920Z",
+        "parameters": {
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 6,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "6/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 54,
+        "accuracy_wilson": "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 32561.5,
+        "median_ms": 32982.5,
+        "min_ms": 30965,
+        "max_ms": 33332
+      },
+      "retry_metrics": {
+        "total_docs": 6,
+        "total_inference_steps": 6,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 6,
+        "saved_retry_inferences_by_short_circuit": 12,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 0,
+          "cf": 32,
+          "tf": 32
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 0,
+          "cf": 22,
+          "tf": 22
+        }
+      }
+    }
+  },
+  "dev": {
+    "3B_CON_GUARDRAIL_SENZA_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL_SENZA_RETRY",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18084/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-03T07:56:04.993201461Z",
+        "parameters": {
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true
+        }
+      },
+      "classification_counts": {
+        "C1": 49,
+        "C2": 8,
+        "C3": 2,
+        "C4": 1,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 8,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "49/60 (81.7%, IC 95%: 70.1–89.4%)",
+        "C2": "8/60 (13.3%, IC 95%: 6.9–24.2%)",
+        "C3": "2/60 (3.3%, IC 95%: 0.9–11.4%)",
+        "C4": "1/60 (1.7%, IC 95%: 0.3–8.9%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 549,
+        "accuracy_wilson": "549/560 (98.0%, IC 95%: 96.5–98.9%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 7405.9,
+        "median_ms": 7125.5,
+        "min_ms": 4773,
+        "max_ms": 12136
+      },
+      "retry_metrics": {
+        "total_docs": 60,
+        "total_inference_steps": 80,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 3,
+          "c3": 0,
+          "c4": 0,
+          "cf": 215,
+          "tf": 220
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 1,
+          "c3": 2,
+          "c4": 0,
+          "cf": 179,
+          "tf": 180
+        },
+        "FATTURA": {
+          "docs": 20,
+          "c1": 15,
+          "c2": 4,
+          "c3": 0,
+          "c4": 1,
+          "cf": 155,
+          "tf": 160
+        }
+      }
+    },
+    "3B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "edbd8f85ad1e1a0827a7b8251cffb192f9de1da9",
+        "evaluated_at": "2026-11-02T09:59:55.655001362Z",
+        "parameters": {
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 49,
+        "C2": 8,
+        "C3": 2,
+        "C4": 1,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 8,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "49/60 (81.7%, IC 95%: 70.1–89.4%)",
+        "C2": "8/60 (13.3%, IC 95%: 6.9–24.2%)",
+        "C3": "2/60 (3.3%, IC 95%: 0.9–11.4%)",
+        "C4": "1/60 (1.7%, IC 95%: 0.3–8.9%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 549,
+        "accuracy_wilson": "549/560 (98.0%, IC 95%: 96.5–98.9%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 6417.8,
+        "median_ms": 6197.5,
+        "min_ms": 4197,
+        "max_ms": 13950
+      },
+      "retry_metrics": {
+        "total_docs": 60,
+        "total_inference_steps": 86,
+        "docs_with_retries": 3,
+        "extra_inference_steps": 6,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 3,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": [
+          {
+            "doc_id": "EML_12",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "INDETERMINATE",
+            "final_category": "C3",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 12851,
+            "initial_errors_if_3b": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "final_errors": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 2536,
+                "prompt_tokens": 1310,
+                "completion_tokens": 41
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 2853,
+                "prompt_tokens": 1442,
+                "completion_tokens": 41
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 3059,
+                "prompt_tokens": 1451,
+                "completion_tokens": 46
+              }
+            ]
+          },
+          {
+            "doc_id": "EML_15",
+            "type": "EMAIL",
+            "retried_step_id": "recipient_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 4,
+            "final_status": "INDETERMINATE",
+            "final_category": "C3",
+            "correct_fields": 9,
+            "total_fields": 9,
+            "total_latency_ms": 12983,
+            "initial_errors_if_3b": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "final_errors": [
+              "destinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)",
+              "ruoloDestinatario: VALUE_NOT_IN_CATALOG (CatalogMembershipGuard)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "recipient_inference",
+                "latency_ms": 2478,
+                "prompt_tokens": 1326,
+                "completion_tokens": 39
+              },
+              {
+                "attempt": 2,
+                "stepId": "recipient_inference",
+                "latency_ms": 2612,
+                "prompt_tokens": 1458,
+                "completion_tokens": 39
+              },
+              {
+                "attempt": 3,
+                "stepId": "recipient_inference",
+                "latency_ms": 2841,
+                "prompt_tokens": 1467,
+                "completion_tokens": 39
+              }
+            ]
+          },
+          {
+            "doc_id": "FAT_17",
+            "type": "FATTURA",
+            "retried_step_id": "fattura_inference",
+            "step_attempts": 3,
+            "total_doc_inference_steps": 3,
+            "final_status": "INDETERMINATE",
+            "final_category": "C4",
+            "correct_fields": 7,
+            "total_fields": 8,
+            "total_latency_ms": 13950,
+            "initial_errors_if_3b": [
+              "numeroFattura: REQUIRED_EMPTY (required)"
+            ],
+            "final_errors": [
+              "numeroFattura: REQUIRED_EMPTY (required)"
+            ],
+            "attempts": [
+              {
+                "attempt": 1,
+                "stepId": "fattura_inference",
+                "latency_ms": 4515,
+                "prompt_tokens": 561,
+                "completion_tokens": 119
+              },
+              {
+                "attempt": 2,
+                "stepId": "fattura_inference",
+                "latency_ms": 4492,
+                "prompt_tokens": 685,
+                "completion_tokens": 119
+              },
+              {
+                "attempt": 3,
+                "stepId": "fattura_inference",
+                "latency_ms": 4499,
+                "prompt_tokens": 694,
+                "completion_tokens": 119
+              }
+            ]
+          }
+        ]
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 3,
+          "c3": 0,
+          "c4": 0,
+          "cf": 215,
+          "tf": 220
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 1,
+          "c3": 2,
+          "c4": 0,
+          "cf": 179,
+          "tf": 180
+        },
+        "FATTURA": {
+          "docs": 20,
+          "c1": 15,
+          "c2": 4,
+          "c3": 0,
+          "c4": 1,
+          "cf": 155,
+          "tf": 160
+        }
+      }
+    },
+    "7B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "7B_CON_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:7b-instruct-q8_0",
+        "endpoint": "http://localhost:18083/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-02T15:04:08.328721306Z",
+        "parameters": {
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0,
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048
+        }
+      },
+      "classification_counts": {
+        "C1": 54,
+        "C2": 6,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 2,
+        "C2b": 4,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "54/60 (90.0%, IC 95%: 79.9–95.3%)",
+        "C2": "6/60 (10.0%, IC 95%: 4.7–20.1%)",
+        "C3": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C4": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 541,
+        "accuracy_wilson": "541/560 (96.6%, IC 95%: 94.8–97.8%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 29007.1,
+        "median_ms": 29736.0,
+        "min_ms": 16862,
+        "max_ms": 38974
+      },
+      "retry_metrics": {
+        "total_docs": 60,
+        "total_inference_steps": 78,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 0,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 18,
+          "c2": 2,
+          "c3": 0,
+          "c4": 0,
+          "cf": 217,
+          "tf": 220
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 3,
+          "c3": 0,
+          "c4": 0,
+          "cf": 165,
+          "tf": 180
+        },
+        "FATTURA": {
+          "docs": 20,
+          "c1": 19,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 159,
+          "tf": 160
+        }
+      }
+    }
+  },
+  "dev_adversarial": {
+    "3B_CON_GUARDRAIL_SENZA_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL_SENZA_RETRY",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18084/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-03T08:03:35.669133386Z",
+        "parameters": {
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0,
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 7,
+        "C4": 2,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "0/9 (n < 10, percentuale non riportata)",
+        "C3": "7/9 (n < 10, percentuale non riportata)",
+        "C4": "2/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 70,
+        "accuracy_wilson": "70/72 (97.2%, IC 95%: 90.4–99.2%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 6190.2,
+        "median_ms": 6258,
+        "min_ms": 4659,
+        "max_ms": 8016
+      },
+      "retry_metrics": {
+        "total_docs": 9,
+        "total_inference_steps": 9,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 9,
+        "saved_retry_inferences_by_short_circuit": 0,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 0,
+          "c3": 7,
+          "c4": 2,
+          "cf": 70,
+          "tf": 72
+        }
+      }
+    },
+    "3B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "edbd8f85ad1e1a0827a7b8251cffb192f9de1da9",
+        "evaluated_at": "2026-11-02T10:06:30.585456861Z",
+        "parameters": {
+          "repeat_penalty": 1.0,
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama"
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 7,
+        "C4": 2,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "0/9 (n < 10, percentuale non riportata)",
+        "C3": "7/9 (n < 10, percentuale non riportata)",
+        "C4": "2/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 70,
+        "accuracy_wilson": "70/72 (97.2%, IC 95%: 90.4–99.2%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 4763.1,
+        "median_ms": 4721,
+        "min_ms": 4182,
+        "max_ms": 5324
+      },
+      "retry_metrics": {
+        "total_docs": 9,
+        "total_inference_steps": 9,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 9,
+        "saved_retry_inferences_by_short_circuit": 18,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 0,
+          "c3": 7,
+          "c4": 2,
+          "cf": 70,
+          "tf": 72
+        }
+      }
+    },
+    "7B_CON_GUARDRAIL_E_RETRY": {
+      "metadata": {
+        "cella": "7B_CON_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:7b-instruct-q8_0",
+        "endpoint": "http://localhost:18083/api/orchestrator/process",
+        "git_commit": "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+        "evaluated_at": "2026-11-02T15:34:04.459862561Z",
+        "parameters": {
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 8,
+        "C4": 1,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "0/9 (n < 10, percentuale non riportata)",
+        "C3": "8/9 (n < 10, percentuale non riportata)",
+        "C4": "1/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 71,
+        "accuracy_wilson": "71/72 (98.6%, IC 95%: 92.5–99.8%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "mean_ms": 21123.6,
+        "median_ms": 20044,
+        "min_ms": 16863,
+        "max_ms": 25543
+      },
+      "retry_metrics": {
+        "total_docs": 9,
+        "total_inference_steps": 9,
+        "docs_with_retries": 0,
+        "extra_inference_steps": 0,
+        "retries_resolved_to_c1": 0,
+        "retries_resolved_to_ok": 0,
+        "retries_ended_indeterminate": 0,
+        "short_circuited_source_checksum_docs": 9,
+        "saved_retry_inferences_by_short_circuit": 18,
+        "retry_trajectories": []
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 0,
+          "c3": 8,
+          "c4": 1,
+          "cf": 71,
+          "tf": 72
+        }
+      }
+    }
+  }
+}

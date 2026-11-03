@@ -1,0 +1,106 @@
+{
+  "id" : "HO_FAT_14",
+  "type" : "FATTURA",
+  "template" : "FAT_PROVVIGIONE_AGENZIA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/PROV-015",
+      "normalized_extracted" : "2026/PROV-015",
+      "ground_truth" : "2026/PROV-015",
+      "normalized_ground_truth" : "2026/PROV-015",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/03/2026",
+      "normalized_extracted" : "2026-03-04",
+      "ground_truth" : "04/03/2026",
+      "normalized_ground_truth" : "2026-03-04",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LIGURIA REAL ESTATE BROKERAGE S.R.L.",
+      "normalized_extracted" : "LIGURIA REAL ESTATE BROKERAGE S.R.L.",
+      "ground_truth" : "LIGURIA REAL ESTATE BROKERAGE S.R.L.",
+      "normalized_ground_truth" : "LIGURIA REAL ESTATE BROKERAGE S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08291830100",
+      "normalized_extracted" : "08291830100",
+      "ground_truth" : "08291830100",
+      "normalized_ground_truth" : "08291830100",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "INVESTIMENTI PORTUALI GENOVESI S.P.A.",
+      "normalized_extracted" : "INVESTIMENTI PORTUALI GENOVESI S.P.A.",
+      "ground_truth" : "INVESTIMENTI PORTUALI GENOVESI S.P.A.",
+      "normalized_ground_truth" : "INVESTIMENTI PORTUALI GENOVESI S.P.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 7320.0,
+      "normalized_extracted" : 7320.0,
+      "ground_truth" : 7320.0,
+      "normalized_ground_truth" : 7320.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT54E0200801400000105928371",
+      "normalized_extracted" : "IT54E0200801400000105928371",
+      "ground_truth" : "IT54E0200801400000105928371",
+      "normalized_ground_truth" : "IT54E0200801400000105928371",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/PROV-015\",\n    \"dataFattura\": \"04/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"LIGURIA REAL ESTATE BROKERAGE S.R.L.\",\n      \"partitaIva\": \"08291830100\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"INVESTIMENTI PORTUALI GENOVESI S.P.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 7320.0,\n    \"iban\": \"IT54E0200801400000105928371\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/PROV-015\",\n    \"dataFattura\": \"04/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"LIGURIA REAL ESTATE BROKERAGE S.R.L.\",\n      \"partitaIva\": \"08291830100\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"INVESTIMENTI PORTUALI GENOVESI S.P.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 7320.0,\n    \"iban\": \"IT54E0200801400000105928371\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 35446,
+      "totalDurationMs" : 35440,
+      "loadDurationMs" : 4,
+      "evalDurationMs" : 34635,
+      "promptEvalCount" : 519,
+      "evalCount" : 221,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 35446
+}

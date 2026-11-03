@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_12",
+  "type" : "FATTURA",
+  "template" : "FAT_GRAFICA_STAMPA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/077",
+      "normalized_extracted" : "2026/077",
+      "ground_truth" : "2026/077",
+      "normalized_ground_truth" : "2026/077",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/03/2026",
+      "normalized_extracted" : "2026-03-11",
+      "ground_truth" : "11/03/2026",
+      "normalized_ground_truth" : "2026-03-11",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "normalized_extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "normalized_ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03847290198",
+      "normalized_extracted" : "03847290198",
+      "ground_truth" : "03847290198",
+      "normalized_ground_truth" : "03847290198",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "normalized_extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "normalized_ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1586.0,
+      "normalized_extracted" : 1586.0,
+      "ground_truth" : 1586.0,
+      "normalized_ground_truth" : 1586.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT29G0503411701000000082736",
+      "normalized_extracted" : "IT29G0503411701000000082736",
+      "ground_truth" : "IT29G0503411701000000082736",
+      "normalized_ground_truth" : "IT29G0503411701000000082736",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"2026/077\",\n  \"dataFattura\": \"11/03/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.\",\n    \"partitaIva\": \"03847290198\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"CASEIFICIO TIPICO DEL PO S.R.L.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 1586.00,\n  \"iban\": \"IT29G0503411701000000082736\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 16331,
+    "metrics" : {
+      "totalDurationMs" : 15324,
+      "totalPromptTokens" : 676,
+      "totalCompletionTokens" : 180,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 15322,
+        "promptTokens" : 676,
+        "completionTokens" : 180,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 16335
+}

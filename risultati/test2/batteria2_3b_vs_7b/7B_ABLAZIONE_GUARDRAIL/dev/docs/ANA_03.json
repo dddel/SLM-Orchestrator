@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_03",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T1_CARTA_IDENTITA_CARTACEA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Nome3",
+      "normalized_extracted" : "Nome3",
+      "ground_truth" : "Nome3",
+      "normalized_ground_truth" : "Nome3",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cognome3",
+      "normalized_extracted" : "Cognome3",
+      "ground_truth" : "Cognome3",
+      "normalized_ground_truth" : "Cognome3",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "COGNOM83M07H501R",
+      "normalized_extracted" : "COGNOM83M07H501R",
+      "ground_truth" : "COGNOM83M07H501R",
+      "normalized_ground_truth" : "COGNOM83M07H501R",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07/05/1983",
+      "normalized_extracted" : "1983-05-07",
+      "ground_truth" : "07/05/1983",
+      "normalized_ground_truth" : "1983-05-07",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano (MI)",
+      "normalized_extracted" : "Milano (MI)",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CA80039AA",
+      "normalized_extracted" : "CA80039AA",
+      "ground_truth" : "CA80039AA",
+      "normalized_ground_truth" : "CA80039AA",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2023",
+      "normalized_extracted" : "2023-01-10",
+      "ground_truth" : "10/01/2023",
+      "normalized_ground_truth" : "2023-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2033",
+      "normalized_extracted" : "2033-01-10",
+      "ground_truth" : "10/01/2033",
+      "normalized_ground_truth" : "2033-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Milano",
+      "normalized_extracted" : "Comune di Milano",
+      "ground_truth" : "Comune di Milano",
+      "normalized_ground_truth" : "Comune di Milano",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"Nome3\",\n  \"cognome\": \"Cognome3\",\n  \"codiceFiscale\": \"COGNOM83M07H501R\",\n  \"dataNascita\": \"07/05/1983\",\n  \"luogoNascita\": \"Milano (MI)\",\n  \"sesso\": \"F\",\n  \"numeroDocumento\": \"CA80039AA\",\n  \"dataRilascio\": \"10/01/2023\",\n  \"dataScadenza\": \"10/01/2033\",\n  \"enteRilascio\": \"Comune di Milano\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 15213,
+    "metrics" : {
+      "totalDurationMs" : 14130,
+      "totalPromptTokens" : 753,
+      "totalCompletionTokens" : 166,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14129,
+        "promptTokens" : 753,
+        "completionTokens" : 166,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 15217
+}

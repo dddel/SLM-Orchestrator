@@ -1,0 +1,151 @@
+{
+  "id" : "HO_ANA_08",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONTO_TITOLI",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Michele",
+      "normalized_extracted" : "Michele",
+      "ground_truth" : "Michele",
+      "normalized_ground_truth" : "Michele",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Santoro",
+      "normalized_extracted" : "Santoro",
+      "ground_truth" : "Santoro",
+      "normalized_ground_truth" : "Santoro",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SNTMHL74E21A662H",
+      "normalized_extracted" : "SNTMHL74E21A662H",
+      "ground_truth" : "SNTMHL74E21A662H",
+      "normalized_ground_truth" : "SNTMHL74E21A662H",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "21/05/1974",
+      "normalized_extracted" : "1974-05-21",
+      "ground_truth" : "21/05/1974",
+      "normalized_ground_truth" : "1974-05-21",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bari (BA)",
+      "normalized_extracted" : "Bari (BA)",
+      "ground_truth" : "Bari (BA)",
+      "normalized_ground_truth" : "Bari (BA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14AB92810",
+      "normalized_extracted" : "14AB92810",
+      "ground_truth" : "14AB92810",
+      "normalized_ground_truth" : "14AB92810",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "04/06/2021",
+      "normalized_extracted" : "04/06/2021",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/06/2028",
+      "normalized_extracted" : "2028-06-04",
+      "ground_truth" : "04/06/2028",
+      "normalized_ground_truth" : "2028-06-04",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Questura di Bari",
+      "normalized_extracted" : "Questura di Bari",
+      "ground_truth" : "Questura di Bari",
+      "normalized_ground_truth" : "Questura di Bari",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "dataRilascio",
+    "key_present" : true,
+    "extracted" : "04/06/2021",
+    "ground_truth" : null,
+    "normalized_extracted" : "04/06/2021",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Michele\", \"cognome\": \"Santoro\", \"codiceFiscale\": \"SNTMHL74E21A662H\", \"dataNascita\": \"21/05/1974\", \"luogoNascita\": \"Bari (BA)\", \"sesso\": null, \"numeroDocumento\": \"14AB92810\", \"dataRilascio\": \"04/06/2021\", \"dataScadenza\": \"04/06/2028\", \"enteRilascio\": \"Questura di Bari\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6444,
+    "metrics" : {
+      "totalDurationMs" : 5884,
+      "totalPromptTokens" : 756,
+      "totalCompletionTokens" : 154,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5882,
+        "promptTokens" : 756,
+        "completionTokens" : 154,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6449
+}

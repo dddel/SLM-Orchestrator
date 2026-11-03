@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_07",
+  "type" : "FATTURA",
+  "template" : "FAT_T2_TABELLARE_COMPATTO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "789",
+      "normalized_extracted" : "789",
+      "ground_truth" : "789",
+      "normalized_ground_truth" : "789",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Epsilon Logistica S.r.l.",
+      "normalized_extracted" : "Epsilon Logistica S.r.l.",
+      "ground_truth" : "Epsilon Logistica S.r.l.",
+      "normalized_ground_truth" : "Epsilon Logistica S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000004118",
+      "normalized_extracted" : "10000004118",
+      "ground_truth" : "10000004118",
+      "normalized_ground_truth" : "10000004118",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Zenith Log S.p.A.",
+      "normalized_extracted" : "Zenith Log S.p.A.",
+      "ground_truth" : "Zenith Log S.p.A.",
+      "normalized_ground_truth" : "Zenith Log S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2450.0,
+      "normalized_extracted" : 2450.0,
+      "ground_truth" : 2450.0,
+      "normalized_ground_truth" : 2450.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"789\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"Epsilon Logistica S.r.l.\", \"partitaIva\": \"10000004118\"}, \"cliente\": {\"denominazione\": \"Zenith Log S.p.A.\", \"codiceFiscale\": null}, \"importoTotale\": 2450.0, \"iban\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4301,
+    "metrics" : {
+      "totalDurationMs" : 3899,
+      "totalPromptTokens" : 528,
+      "totalCompletionTokens" : 102,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3898,
+        "promptTokens" : 528,
+        "completionTokens" : 102,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 4305
+}

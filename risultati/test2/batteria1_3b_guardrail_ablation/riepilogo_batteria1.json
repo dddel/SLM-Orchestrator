@@ -1,0 +1,1262 @@
+{
+  "heldout": {
+    "3B_CON_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "254ae10d695e3160596026be7294cb2e9589c8f7",
+        "evaluated_at": "2026-11-02T09:53:51.977687608Z",
+        "parameters": {
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400,
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 32,
+        "C2": 10,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 2,
+        "C2c": 8
+      },
+      "classification_wilson": {
+        "C1": "32/42 (76.2%, IC 95%: 61.5–86.5%)",
+        "C2": "10/42 (23.8%, IC 95%: 13.5–38.5%)",
+        "C3": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 373,
+        "accuracy_wilson": "373/392 (95.2%, IC 95%: 92.6–96.9%)"
+      },
+      "valore_su_null_atteso": 11,
+      "latency_ms": {
+        "median": 6727.0,
+        "mean": 7178.6,
+        "p95": 9360
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 14,
+          "c1": 13,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 109,
+          "tf": 112,
+          "median_ms": 6271.5,
+          "mean_ms": 6623.6
+        },
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 10,
+          "c2": 4,
+          "c3": 0,
+          "c4": 0,
+          "cf": 146,
+          "tf": 154,
+          "median_ms": 6276,
+          "mean_ms": 6188.5
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 5,
+          "c3": 0,
+          "c4": 0,
+          "cf": 118,
+          "tf": 126,
+          "median_ms": 8808,
+          "mean_ms": 8723.8
+        }
+      }
+    },
+    "3B_ABLAZIONE_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_ABLAZIONE_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18081/api/orchestrator/process",
+        "git_commit": "edbd8f85ad1e1a0827a7b8251cffb192f9de1da9",
+        "evaluated_at": "2026-11-02T10:07:25.342752590Z",
+        "parameters": {
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0,
+          "guards_enabled": false,
+          "coherence_enabled": false,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42
+        }
+      },
+      "classification_counts": {
+        "C1": 32,
+        "C2": 10,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 2,
+        "C2c": 8
+      },
+      "classification_wilson": {
+        "C1": "32/42 (76.2%, IC 95%: 61.5–86.5%)",
+        "C2": "10/42 (23.8%, IC 95%: 13.5–38.5%)",
+        "C3": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 372,
+        "accuracy_wilson": "372/392 (94.9%, IC 95%: 92.3–96.7%)"
+      },
+      "valore_su_null_atteso": 12,
+      "latency_ms": {
+        "median": 6727.5,
+        "mean": 7505.0,
+        "p95": 10062
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 14,
+          "c1": 13,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 109,
+          "tf": 112,
+          "median_ms": 6293,
+          "mean_ms": 6634.1
+        },
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 10,
+          "c2": 4,
+          "c3": 0,
+          "c4": 0,
+          "cf": 145,
+          "tf": 154,
+          "median_ms": 6331,
+          "mean_ms": 6246.9
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 5,
+          "c3": 0,
+          "c4": 0,
+          "cf": 118,
+          "tf": 126,
+          "median_ms": 8974,
+          "mean_ms": 9633.9
+        }
+      }
+    },
+    "3B_MONOLITICO_SENZA_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "a0cdb91239213109dfad1d28d34e9647cb8e397b",
+        "evaluated_at": "2026-11-02T10:21:23.291066114Z",
+        "parameters": {
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 9,
+        "C2": 33,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 20,
+        "C2b": 11,
+        "C2c": 2
+      },
+      "classification_wilson": {
+        "C1": "9/42 (21.4%, IC 95%: 11.7–35.9%)",
+        "C2": "33/42 (78.6%, IC 95%: 64.1–88.3%)",
+        "C3": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C4": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 231,
+        "accuracy_wilson": "231/392 (58.9%, IC 95%: 54.0–63.7%)"
+      },
+      "valore_su_null_atteso": 3,
+      "latency_ms": {
+        "median": 7334.0,
+        "mean": 7435.9,
+        "p95": 9188
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 5,
+          "c3": 0,
+          "c4": 0,
+          "cf": 104,
+          "tf": 112,
+          "median_ms": 8025.5,
+          "mean_ms": 7839.6
+        },
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 0,
+          "c2": 14,
+          "c3": 0,
+          "c4": 0,
+          "cf": 91,
+          "tf": 154,
+          "median_ms": 7881.5,
+          "mean_ms": 8418.9
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 0,
+          "c2": 14,
+          "c3": 0,
+          "c4": 0,
+          "cf": 36,
+          "tf": 126,
+          "median_ms": 6095.5,
+          "mean_ms": 6049.0
+        }
+      }
+    },
+    "3B_MONOLITICO_POSTHOC_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_POSTHOC_GUARDRAIL",
+        "split": "heldout",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "a0cdb91239213109dfad1d28d34e9647cb8e397b",
+        "evaluated_at": "2026-11-02T10:21:23.291066114Z",
+        "parameters": {
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400
+        },
+        "derived_from_cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "derived_at": "2026-11-03T07:46:25.102119297Z",
+        "post_processing_guards_enabled": true,
+        "coherence_enabled": true,
+        "formal_validators_enabled": true,
+        "type_classification_accuracy": "27/42 (64.3%)"
+      },
+      "classification_counts": {
+        "C1": 9,
+        "C2": 21,
+        "C3": 0,
+        "C4": 12,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 14,
+        "C2b": 7,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "9/42 (21.4%, IC 95%: 11.7–35.9%)",
+        "C2": "21/42 (50.0%, IC 95%: 35.5–64.5%)",
+        "C3": "0/42 (0.0%, IC 95%: 0.0–8.4%)",
+        "C4": "12/42 (28.6%, IC 95%: 17.2–43.6%)",
+        "C5": "0/42 (0.0%, IC 95%: 0.0–8.4%)"
+      },
+      "fields_summary": {
+        "total_fields": 392,
+        "correct_fields": 232,
+        "accuracy_wilson": "232/392 (59.2%, IC 95%: 54.3–63.9%)"
+      },
+      "valore_su_null_atteso": 3,
+      "latency_ms": {
+        "median": 7334.0,
+        "mean": 7435.9,
+        "p95": 9188
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 14,
+          "c1": 9,
+          "c2": 4,
+          "c3": 0,
+          "c4": 1,
+          "cf": 104,
+          "tf": 112,
+          "median_ms": 8025.5,
+          "mean_ms": 7839.6
+        },
+        "ANAGRAFICA": {
+          "docs": 14,
+          "c1": 0,
+          "c2": 7,
+          "c3": 0,
+          "c4": 7,
+          "cf": 92,
+          "tf": 154,
+          "median_ms": 7881.5,
+          "mean_ms": 8418.9
+        },
+        "EMAIL": {
+          "docs": 14,
+          "c1": 0,
+          "c2": 10,
+          "c3": 0,
+          "c4": 4,
+          "cf": 36,
+          "tf": 126,
+          "median_ms": 6095.5,
+          "mean_ms": 6049.0
+        }
+      }
+    }
+  },
+  "heldout_adversarial": {
+    "3B_CON_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "254ae10d695e3160596026be7294cb2e9589c8f7",
+        "evaluated_at": "2026-11-02T09:59:07.007766992Z",
+        "parameters": {
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 6,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "6/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 54,
+        "accuracy_wilson": "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6555.5,
+        "mean": 6510.7,
+        "p95": 6644
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 0,
+          "cf": 32,
+          "tf": 32,
+          "median_ms": 6578,
+          "mean_ms": 6586.2
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 0,
+          "cf": 22,
+          "tf": 22,
+          "median_ms": 6359.5,
+          "mean_ms": 6359.5
+        }
+      }
+    },
+    "3B_ABLAZIONE_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_ABLAZIONE_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18081/api/orchestrator/process",
+        "git_commit": "8854c9e5e5e96f4d97033c21fcb87f26a3739637",
+        "evaluated_at": "2026-11-02T10:12:55.683306967Z",
+        "parameters": {
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0,
+          "guards_enabled": false,
+          "coherence_enabled": false,
+          "temperature": 0.0,
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 6,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "6/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 54,
+        "accuracy_wilson": "54/54 (100.0%, IC 95%: 93.4–100.0%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6782.0,
+        "mean": 6781.0,
+        "p95": 7176
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 0,
+          "cf": 32,
+          "tf": 32,
+          "median_ms": 6860.5,
+          "mean_ms": 6895.2
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 0,
+          "cf": 22,
+          "tf": 22,
+          "median_ms": 6552.5,
+          "mean_ms": 6552.5
+        }
+      }
+    },
+    "3B_MONOLITICO_SENZA_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:26:38.097713853Z",
+        "parameters": {
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400,
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 2,
+        "C2": 4,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 4,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "2/6 (n < 10, percentuale non riportata)",
+        "C2": "4/6 (n < 10, percentuale non riportata)",
+        "C3": "0/6 (n < 10, percentuale non riportata)",
+        "C4": "0/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 48,
+        "accuracy_wilson": "48/54 (88.9%, IC 95%: 77.8–94.8%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 7945.0,
+        "mean": 7919.0,
+        "p95": 8314
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 2,
+          "c2": 2,
+          "c3": 0,
+          "c4": 0,
+          "cf": 28,
+          "tf": 32,
+          "median_ms": 8120.5,
+          "mean_ms": 8109.0
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 2,
+          "c3": 0,
+          "c4": 0,
+          "cf": 20,
+          "tf": 22,
+          "median_ms": 7539,
+          "mean_ms": 7539.0
+        }
+      }
+    },
+    "3B_MONOLITICO_POSTHOC_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_POSTHOC_GUARDRAIL",
+        "split": "heldout_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:26:38.097713853Z",
+        "parameters": {
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400,
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0
+        },
+        "derived_from_cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "derived_at": "2026-11-03T07:46:26.484337435Z",
+        "post_processing_guards_enabled": true,
+        "coherence_enabled": true,
+        "formal_validators_enabled": true,
+        "type_classification_accuracy": "6/6 (100.0%)"
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 2,
+        "C4": 4,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/6 (n < 10, percentuale non riportata)",
+        "C2": "0/6 (n < 10, percentuale non riportata)",
+        "C3": "2/6 (n < 10, percentuale non riportata)",
+        "C4": "4/6 (n < 10, percentuale non riportata)",
+        "C5": "0/6 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 54,
+        "correct_fields": 48,
+        "accuracy_wilson": "48/54 (88.9%, IC 95%: 77.8–94.8%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 7945.0,
+        "mean": 7919.0,
+        "p95": 8314
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 4,
+          "c1": 0,
+          "c2": 0,
+          "c3": 2,
+          "c4": 2,
+          "cf": 28,
+          "tf": 32,
+          "median_ms": 8120.5,
+          "mean_ms": 8109.0
+        },
+        "ANAGRAFICA": {
+          "docs": 2,
+          "c1": 0,
+          "c2": 0,
+          "c3": 0,
+          "c4": 2,
+          "cf": 20,
+          "tf": 22,
+          "median_ms": 7539,
+          "mean_ms": 7539.0
+        }
+      }
+    }
+  },
+  "dev": {
+    "3B_CON_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "edbd8f85ad1e1a0827a7b8251cffb192f9de1da9",
+        "evaluated_at": "2026-11-02T09:59:55.655001362Z",
+        "parameters": {
+          "temperature": 0.0,
+          "coherence_enabled": true,
+          "guards_enabled": true,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 49,
+        "C2": 8,
+        "C3": 2,
+        "C4": 1,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 8,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "49/60 (81.7%, IC 95%: 70.1–89.4%)",
+        "C2": "8/60 (13.3%, IC 95%: 6.9–24.2%)",
+        "C3": "2/60 (3.3%, IC 95%: 0.9–11.4%)",
+        "C4": "1/60 (1.7%, IC 95%: 0.3–8.9%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 549,
+        "accuracy_wilson": "549/560 (98.0%, IC 95%: 96.5–98.9%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6203.5,
+        "mean": 6421.9,
+        "p95": 8521
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 20,
+          "c1": 15,
+          "c2": 4,
+          "c3": 0,
+          "c4": 1,
+          "cf": 155,
+          "tf": 160,
+          "median_ms": 4806.5,
+          "mean_ms": 5498.6
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 1,
+          "c3": 2,
+          "c4": 0,
+          "cf": 179,
+          "tf": 180,
+          "median_ms": 7290.5,
+          "mean_ms": 7925.9
+        },
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 17,
+          "c2": 3,
+          "c3": 0,
+          "c4": 0,
+          "cf": 215,
+          "tf": 220,
+          "median_ms": 5732,
+          "mean_ms": 5841.1
+        }
+      }
+    },
+    "3B_ABLAZIONE_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_ABLAZIONE_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18081/api/orchestrator/process",
+        "git_commit": "8854c9e5e5e96f4d97033c21fcb87f26a3739637",
+        "evaluated_at": "2026-11-02T10:13:46.265374288Z",
+        "parameters": {
+          "temperature": 0.0,
+          "coherence_enabled": false,
+          "guards_enabled": false,
+          "repeat_penalty": 1.0,
+          "router_type": "local-ollama",
+          "seed": 42,
+          "num_ctx": 2048,
+          "keep_alive": "60m",
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 46,
+        "C2": 13,
+        "C3": 0,
+        "C4": 1,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 13,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "46/60 (76.7%, IC 95%: 64.6–85.6%)",
+        "C2": "13/60 (21.7%, IC 95%: 13.1–33.6%)",
+        "C3": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C4": "1/60 (1.7%, IC 95%: 0.3–8.9%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 540,
+        "accuracy_wilson": "540/560 (96.4%, IC 95%: 94.5–97.7%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6245.0,
+        "mean": 6539.3,
+        "p95": 8658
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 20,
+          "c1": 13,
+          "c2": 6,
+          "c3": 0,
+          "c4": 1,
+          "cf": 150,
+          "tf": 160,
+          "median_ms": 4979,
+          "mean_ms": 5613.6
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 19,
+          "c2": 1,
+          "c3": 0,
+          "c4": 0,
+          "cf": 179,
+          "tf": 180,
+          "median_ms": 7356.5,
+          "mean_ms": 8118.9
+        },
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 14,
+          "c2": 6,
+          "c3": 0,
+          "c4": 0,
+          "cf": 211,
+          "tf": 220,
+          "median_ms": 5781.5,
+          "mean_ms": 5885.4
+        }
+      }
+    },
+    "3B_MONOLITICO_SENZA_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:27:27.915769487Z",
+        "parameters": {
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400
+        }
+      },
+      "classification_counts": {
+        "C1": 20,
+        "C2": 40,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 22,
+        "C2b": 17,
+        "C2c": 1
+      },
+      "classification_wilson": {
+        "C1": "20/60 (33.3%, IC 95%: 22.7–45.9%)",
+        "C2": "40/60 (66.7%, IC 95%: 54.1–77.3%)",
+        "C3": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C4": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 369,
+        "accuracy_wilson": "369/560 (65.9%, IC 95%: 61.9–69.7%)"
+      },
+      "valore_su_null_atteso": 1,
+      "latency_ms": {
+        "median": 6344.0,
+        "mean": 6587.1,
+        "p95": 8211
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 20,
+          "c1": 14,
+          "c2": 6,
+          "c3": 0,
+          "c4": 0,
+          "cf": 139,
+          "tf": 160,
+          "median_ms": 6065.5,
+          "mean_ms": 6390.6
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 0,
+          "c2": 20,
+          "c3": 0,
+          "c4": 0,
+          "cf": 39,
+          "tf": 180,
+          "median_ms": 5764.5,
+          "mean_ms": 5762.0
+        },
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 6,
+          "c2": 14,
+          "c3": 0,
+          "c4": 0,
+          "cf": 191,
+          "tf": 220,
+          "median_ms": 7631.5,
+          "mean_ms": 7608.7
+        }
+      }
+    },
+    "3B_MONOLITICO_POSTHOC_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_POSTHOC_GUARDRAIL",
+        "split": "dev",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:27:27.915769487Z",
+        "parameters": {
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048,
+          "seed": 42,
+          "num_predict": 400
+        },
+        "derived_from_cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "derived_at": "2026-11-03T07:46:27.686677072Z",
+        "post_processing_guards_enabled": true,
+        "coherence_enabled": true,
+        "formal_validators_enabled": true,
+        "type_classification_accuracy": "40/60 (66.7%)"
+      },
+      "classification_counts": {
+        "C1": 21,
+        "C2": 35,
+        "C3": 0,
+        "C4": 4,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 20,
+        "C2b": 15,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "21/60 (35.0%, IC 95%: 24.2–47.6%)",
+        "C2": "35/60 (58.3%, IC 95%: 45.7–69.9%)",
+        "C3": "0/60 (0.0%, IC 95%: 0.0–6.0%)",
+        "C4": "4/60 (6.7%, IC 95%: 2.6–15.9%)",
+        "C5": "0/60 (0.0%, IC 95%: 0.0–6.0%)"
+      },
+      "fields_summary": {
+        "total_fields": 560,
+        "correct_fields": 374,
+        "accuracy_wilson": "374/560 (66.8%, IC 95%: 62.8–70.6%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6344.0,
+        "mean": 6587.1,
+        "p95": 8211
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 20,
+          "c1": 14,
+          "c2": 6,
+          "c3": 0,
+          "c4": 0,
+          "cf": 140,
+          "tf": 160,
+          "median_ms": 6065.5,
+          "mean_ms": 6390.6
+        },
+        "EMAIL": {
+          "docs": 20,
+          "c1": 0,
+          "c2": 18,
+          "c3": 0,
+          "c4": 2,
+          "cf": 39,
+          "tf": 180,
+          "median_ms": 5764.5,
+          "mean_ms": 5762.0
+        },
+        "ANAGRAFICA": {
+          "docs": 20,
+          "c1": 7,
+          "c2": 11,
+          "c3": 0,
+          "c4": 2,
+          "cf": 195,
+          "tf": 220,
+          "median_ms": 7631.5,
+          "mean_ms": 7608.7
+        }
+      }
+    }
+  },
+  "dev_adversarial": {
+    "3B_CON_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_CON_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18080/api/orchestrator/process",
+        "git_commit": "edbd8f85ad1e1a0827a7b8251cffb192f9de1da9",
+        "evaluated_at": "2026-11-02T10:06:30.585456861Z",
+        "parameters": {
+          "repeat_penalty": 1.0,
+          "guards_enabled": true,
+          "coherence_enabled": true,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama"
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 7,
+        "C4": 2,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "0/9 (n < 10, percentuale non riportata)",
+        "C3": "7/9 (n < 10, percentuale non riportata)",
+        "C4": "2/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 70,
+        "accuracy_wilson": "70/72 (97.2%, IC 95%: 90.4–99.2%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 4725.0,
+        "mean": 4766.3,
+        "p95": 5328
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 0,
+          "c3": 7,
+          "c4": 2,
+          "cf": 70,
+          "tf": 72,
+          "median_ms": 4725,
+          "mean_ms": 4766.3
+        }
+      }
+    },
+    "3B_ABLAZIONE_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_ABLAZIONE_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "endpoint": "http://localhost:18081/api/orchestrator/process",
+        "git_commit": "a0cdb91239213109dfad1d28d34e9647cb8e397b",
+        "evaluated_at": "2026-11-02T10:20:28.224916397Z",
+        "parameters": {
+          "guards_enabled": false,
+          "coherence_enabled": false,
+          "temperature": 0.0,
+          "num_predict": 400,
+          "keep_alive": "60m",
+          "num_ctx": 2048,
+          "seed": 42,
+          "router_type": "local-ollama",
+          "repeat_penalty": 1.0
+        }
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 4,
+        "C4": 5,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 0,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "0/9 (n < 10, percentuale non riportata)",
+        "C3": "4/9 (n < 10, percentuale non riportata)",
+        "C4": "5/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 65,
+        "accuracy_wilson": "65/72 (90.3%, IC 95%: 81.3–95.2%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 4717.0,
+        "mean": 4787.0,
+        "p95": 5371
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 0,
+          "c3": 4,
+          "c4": 5,
+          "cf": 65,
+          "tf": 72,
+          "median_ms": 4717,
+          "mean_ms": 4787.0
+        }
+      }
+    },
+    "3B_MONOLITICO_SENZA_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:34:18.065439525Z",
+        "parameters": {
+          "seed": 42,
+          "num_predict": 400,
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048
+        }
+      },
+      "classification_counts": {
+        "C1": 3,
+        "C2": 6,
+        "C3": 0,
+        "C4": 0,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 3,
+        "C2b": 3,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "3/9 (n < 10, percentuale non riportata)",
+        "C2": "6/9 (n < 10, percentuale non riportata)",
+        "C3": "0/9 (n < 10, percentuale non riportata)",
+        "C4": "0/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 51,
+        "accuracy_wilson": "51/72 (70.8%, IC 95%: 59.5–80.1%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6275.0,
+        "mean": 6041.6,
+        "p95": 6708
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 3,
+          "c2": 6,
+          "c3": 0,
+          "c4": 0,
+          "cf": 51,
+          "tf": 72,
+          "median_ms": 6275,
+          "mean_ms": 6041.6
+        }
+      }
+    },
+    "3B_MONOLITICO_POSTHOC_GUARDRAIL": {
+      "metadata": {
+        "cella": "3B_MONOLITICO_POSTHOC_GUARDRAIL",
+        "split": "dev_adversarial",
+        "ordine": "naturale",
+        "model_id": "qwen2.5:3b-instruct-q8_0",
+        "git_commit": "c22bec0e7e236cd85f5e043cbf8ce3de4dd182ee",
+        "evaluated_at": "2026-11-02T10:34:18.065439525Z",
+        "parameters": {
+          "seed": 42,
+          "num_predict": 400,
+          "temperature": 0.0,
+          "keep_alive": "60m",
+          "repeat_penalty": 1.0,
+          "num_ctx": 2048
+        },
+        "derived_from_cella": "3B_MONOLITICO_SENZA_GUARDRAIL",
+        "derived_at": "2026-11-03T07:46:28.925401515Z",
+        "post_processing_guards_enabled": true,
+        "coherence_enabled": true,
+        "formal_validators_enabled": true,
+        "type_classification_accuracy": "6/9 (66.7%)"
+      },
+      "classification_counts": {
+        "C1": 0,
+        "C2": 3,
+        "C3": 3,
+        "C4": 3,
+        "C5": 0
+      },
+      "c2_subcode_counts": {
+        "C2a": 3,
+        "C2b": 0,
+        "C2c": 0
+      },
+      "classification_wilson": {
+        "C1": "0/9 (n < 10, percentuale non riportata)",
+        "C2": "3/9 (n < 10, percentuale non riportata)",
+        "C3": "3/9 (n < 10, percentuale non riportata)",
+        "C4": "3/9 (n < 10, percentuale non riportata)",
+        "C5": "0/9 (n < 10, percentuale non riportata)"
+      },
+      "fields_summary": {
+        "total_fields": 72,
+        "correct_fields": 52,
+        "accuracy_wilson": "52/72 (72.2%, IC 95%: 61.0–81.2%)"
+      },
+      "valore_su_null_atteso": 0,
+      "latency_ms": {
+        "median": 6275.0,
+        "mean": 6041.6,
+        "p95": 6708
+      },
+      "by_type": {
+        "FATTURA": {
+          "docs": 9,
+          "c1": 0,
+          "c2": 3,
+          "c3": 3,
+          "c4": 3,
+          "cf": 52,
+          "tf": 72,
+          "median_ms": 6275,
+          "mean_ms": 6041.6
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id" : "HO_FAT_06",
+  "type" : "FATTURA",
+  "template" : "FAT_SAAS_CLOUD",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SAAS-2026-1104",
+      "normalized_extracted" : "SAAS-2026-1104",
+      "ground_truth" : "SAAS-2026-1104",
+      "normalized_ground_truth" : "SAAS-2026-1104",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/01/2026",
+      "normalized_extracted" : "2026-01-15",
+      "ground_truth" : "15/01/2026",
+      "normalized_ground_truth" : "2026-01-15",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NUVOLA DIGITALE SOLUTIONS S.R.L.",
+      "normalized_extracted" : "NUVOLA DIGITALE SOLUTIONS S.R.L.",
+      "ground_truth" : "NUVOLA DIGITALE SOLUTIONS S.R.L.",
+      "normalized_ground_truth" : "NUVOLA DIGITALE SOLUTIONS S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07823940965",
+      "normalized_extracted" : "07823940965",
+      "ground_truth" : "07823940965",
+      "normalized_ground_truth" : "07823940965",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI",
+      "normalized_extracted" : "STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI",
+      "ground_truth" : "STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI",
+      "normalized_ground_truth" : "STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 854,
+      "normalized_extracted" : 854.0,
+      "ground_truth" : 854.0,
+      "normalized_ground_truth" : 854.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"SAAS-2026-1104\",\n    \"dataFattura\": \"15/01/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"NUVOLA DIGITALE SOLUTIONS S.R.L.\",\n      \"partitaIva\": \"07823940965\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 854,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"SAAS-2026-1104\",\n    \"dataFattura\": \"15/01/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"NUVOLA DIGITALE SOLUTIONS S.R.L.\",\n      \"partitaIva\": \"07823940965\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"STUDIO ARCHITETTURA ASSOCIATI BIANCHI E NERI\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 854,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 29654,
+      "totalDurationMs" : 29651,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 29401,
+      "promptEvalCount" : 500,
+      "evalCount" : 195,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 29654
+}

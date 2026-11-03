@@ -1,0 +1,173 @@
+{
+  "id" : "HO_ANA_02",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_PASSAPORTO_COMPLETO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Pellegrini Chiara",
+      "normalized_extracted" : "Pellegrini Chiara",
+      "ground_truth" : "Chiara",
+      "normalized_ground_truth" : "Chiara",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Pellegrini",
+      "normalized_extracted" : "Pellegrini",
+      "ground_truth" : "Pellegrini",
+      "normalized_ground_truth" : "Pellegrini",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PLLCHR90R49F205B",
+      "normalized_extracted" : "PLLCHR90R49F205B",
+      "ground_truth" : "PLLCHR90R49F205B",
+      "normalized_ground_truth" : "PLLCHR90R49F205B",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1990-10-09",
+      "normalized_extracted" : "1990-10-09",
+      "ground_truth" : "09/10/1990",
+      "normalized_ground_truth" : "1990-10-09",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano (MI)",
+      "normalized_extracted" : "Milano (MI)",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YA8192031",
+      "normalized_extracted" : "YA8192031",
+      "ground_truth" : "YA8192031",
+      "normalized_ground_truth" : "YA8192031",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2021-01-22",
+      "normalized_extracted" : "2021-01-22",
+      "ground_truth" : "22/01/2021",
+      "normalized_ground_truth" : "2021-01-22",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2031-01-22",
+      "normalized_extracted" : "2031-01-22",
+      "ground_truth" : "22/01/2031",
+      "normalized_ground_truth" : "2031-01-22",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Questura di Milano",
+      "normalized_extracted" : "Questura di Milano",
+      "ground_truth" : "Questura di Milano",
+      "normalized_ground_truth" : "Questura di Milano",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "Pellegrini Chiara",
+    "ground_truth" : "Chiara",
+    "normalized_extracted" : "Pellegrini Chiara",
+    "normalized_ground_truth" : "Chiara",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 4,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Pellegrini Chiara\",\n    \"cognome\": \"Pellegrini\",\n    \"codiceFiscale\": \"PLLCHR90R49F205B\",\n    \"dataNascita\": \"1990-10-09\",\n    \"luogoNascita\": \"Milano (MI)\",\n    \"sesso\": \"F\",\n    \"numeroDocumento\": \"YA8192031\",\n    \"dataRilascio\": \"2021-01-22\",\n    \"dataScadenza\": \"2031-01-22\",\n    \"enteRilascio\": \"Questura di Milano\"\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Pellegrini Chiara\",\n    \"cognome\": \"Pellegrini\",\n    \"codiceFiscale\": \"PLLCHR90R49F205B\",\n    \"dataNascita\": \"1990-10-09\",\n    \"luogoNascita\": \"Milano (MI)\",\n    \"sesso\": \"F\",\n    \"numeroDocumento\": \"YA8192031\",\n    \"dataRilascio\": \"2021-01-22\",\n    \"dataScadenza\": \"2031-01-22\",\n    \"enteRilascio\": \"Questura di Milano\"\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 7936,
+        "totalDurationMs" : 7931,
+        "loadDurationMs" : 2,
+        "evalDurationMs" : 7612,
+        "promptEvalCount" : 455,
+        "evalCount" : 214,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}
