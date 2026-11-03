@@ -2,7 +2,7 @@
 
 - **Commit Git (`freeze-1`)**: `254ae10d695e3160596026be7294cb2e9589c8f7`
 - **Configurazioni a confronto**:
-  1. `3B_CON_GUARDRAIL_SENZA_RETRY`: `qwen2.5:3b-instruct-q8_0`, Guardrail deterministico attivo, Cross-Field Coherence attiva, `max_retries=0` (pipeline caricate da `benchmark_workspace/pipelines_no_retry` senza blocchi `on_failure`).
+  1. `3B_CON_GUARDRAIL_SENZA_RETRY`: `qwen2.5:3b-instruct-q8_0`, Guardrail deterministico attivo, Cross-Field Coherence attiva, `max_retries=0` (pipeline caricate da `risultati/test2/benchmark_workspace/pipelines_no_retry` senza blocchi `on_failure`).
   2. `3B_CON_GUARDRAIL_E_RETRY`: `qwen2.5:3b-instruct-q8_0`, Guardrail deterministico attivo, Cross-Field Coherence attiva, `max_retries=2` con iniezione feedback errori tipizzati (`RF7`, senza valore rifiutato) e incremento temperatura `0.0 -> 0.2`.
   3. `7B_CON_GUARDRAIL_E_RETRY`: `qwen2.5:7b-instruct-q8_0`, Guardrail deterministico attivo, Cross-Field Coherence attiva, `max_retries=2` con `RF7` e incremento temperatura `0.0 -> 0.2`.
 - **Nota sugli Step di Inferenza**: I documenti `FATTURA` e `ANAGRAFICA` prevedono **1 step base** (`fattura_inference` / `anagrafica_inference`), mentre i documenti `EMAIL` prevedono **2 step sequenziali distinti** (`email_inference` per i 9 campi di estrazione + `recipient_inference` per l'instradamento verso il catalogo `recipients_catalog.json`). Pertanto, su `heldout` (14 FATTURA + 14 ANAGRAFICA + 14 EMAIL) il numero minimo fisiologico di chiamate LLM senza alcun retry è `14 + 14 + 28 = 56`; su `dev` (20 FATTURA + 20 ANAGRAFICA + 20 EMAIL) è `20 + 20 + 40 = 80`. Un retry si attiva esclusivamente quando uno stesso `stepId` viene invocato `> 1` volta.

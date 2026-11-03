@@ -3,6 +3,7 @@
 ## Parametri e Configurazione del Protocollo
 
 - **Codebase e Valutatore**: Classi Java congelate al tag/branch `freeze-1` (`ComparisonRunner`, `GroundTruthComparator`, `PostHocGuardrails`, `WilsonScore`, `OllamaMonolithicClient`, `LocalOllamaRouter`). Nessuna modifica a `src/main` o `src/test`.
+- **Workspace e Script di Benchmark**: I runner Java dedicati (`Battery1FrozenRunner.java`, `RouterFrozenRunner.java`, `PostHocDeriveRunner.java`), gli script di esecuzione bash (`run_battery1_frozen.sh`, `run_battery2_frozen.sh`, `run_battery4_frozen.sh`), gli aggregatori di metriche (`aggregate_battery*.py`) e le configurazioni di pipeline per l'ablazione risiedono nella sottocartella dedicata [`benchmark_workspace/`](file:///home/del/Projects/slm-orchestrator/risultati/test2/benchmark_workspace).
 - **Modelli Testati**:
   - `qwen2.5:3b-instruct-q8_0` (inferenza su iGPU AMD via Vulkan)
   - `qwen2.5:7b-instruct-q8_0` (inferenza in split GPU/CPU; per questo motivo i tempi di risposta del 7B non sono confrontati con quelli del 3B)

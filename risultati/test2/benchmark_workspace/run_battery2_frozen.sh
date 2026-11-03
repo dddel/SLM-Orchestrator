@@ -4,7 +4,7 @@ set -euo pipefail
 cd /home/del/Projects/slm-orchestrator
 
 MODE="${1:-b_and_c}" # "b_and_c" (default) oppure "all" (include anche 7B orchestrator)
-CP="benchmark_workspace:target/classes:target/test-classes:$(cat benchmark_workspace/cp.txt)"
+CP="risultati/test2/benchmark_workspace:target/classes:target/test-classes:$(cat risultati/test2/benchmark_workspace/cp.txt 2>/dev/null || true)"
 OUT_DIR="risultati/test2/batteria2_3b_vs_7b"
 DS_DIR="risultati/test2/datasets"
 
@@ -114,7 +114,7 @@ if [[ "$MODE" == "all" ]]; then
           ! -f "$OUT_DIR/7B_ABLAZIONE_GUARDRAIL/heldout_adversarial/summary.json" || \
           ! -f "$OUT_DIR/7B_ABLAZIONE_GUARDRAIL/dev/summary.json" || \
           ! -f "$OUT_DIR/7B_ABLAZIONE_GUARDRAIL/dev_adversarial/summary.json" ]]; then
-        start_spring_7b 18082 false false "benchmark_workspace/spring_7b_guards_false.log"
+        start_spring_7b 18082 false false "risultati/test2/benchmark_workspace/spring_7b_guards_false.log"
         run_cell_if_missing orchestrator "7B_ABLAZIONE_GUARDRAIL" "heldout" "$DS_DIR/heldout_dataset_v1.json" 18082 false false "qwen2.5:7b-instruct-q8_0"
         run_cell_if_missing orchestrator "7B_ABLAZIONE_GUARDRAIL" "heldout_adversarial" "$DS_DIR/heldout_adversarial_v1.json" 18082 false false "qwen2.5:7b-instruct-q8_0"
         run_cell_if_missing orchestrator "7B_ABLAZIONE_GUARDRAIL" "dev" "$DS_DIR/dataset_60_v2.json" 18082 false false "qwen2.5:7b-instruct-q8_0"
@@ -129,7 +129,7 @@ if [[ "$MODE" == "all" ]]; then
           ! -f "$OUT_DIR/7B_CON_GUARDRAIL/heldout_adversarial/summary.json" || \
           ! -f "$OUT_DIR/7B_CON_GUARDRAIL/dev/summary.json" || \
           ! -f "$OUT_DIR/7B_CON_GUARDRAIL/dev_adversarial/summary.json" ]]; then
-        start_spring_7b 18083 true true "benchmark_workspace/spring_7b_guards_true.log"
+        start_spring_7b 18083 true true "risultati/test2/benchmark_workspace/spring_7b_guards_true.log"
         run_cell_if_missing orchestrator "7B_CON_GUARDRAIL" "heldout" "$DS_DIR/heldout_dataset_v1.json" 18083 true true "qwen2.5:7b-instruct-q8_0"
         run_cell_if_missing orchestrator "7B_CON_GUARDRAIL" "heldout_adversarial" "$DS_DIR/heldout_adversarial_v1.json" 18083 true true "qwen2.5:7b-instruct-q8_0"
         run_cell_if_missing orchestrator "7B_CON_GUARDRAIL" "dev" "$DS_DIR/dataset_60_v2.json" 18083 true true "qwen2.5:7b-instruct-q8_0"
@@ -138,6 +138,6 @@ if [[ "$MODE" == "all" ]]; then
     fi
 fi
 
-python3 benchmark_workspace/aggregate_battery2.py
+python3 risultati/test2/benchmark_workspace/aggregate_battery2.py
 
 echo "=== ESECUZIONE BATTERIA 2 (MODE=$MODE) COMPLETATA CON SUCCESSO ==="
