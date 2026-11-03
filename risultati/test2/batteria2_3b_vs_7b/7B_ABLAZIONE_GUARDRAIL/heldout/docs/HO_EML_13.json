@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_13",
+  "type" : "EMAIL",
+  "template" : "EML_CYBERSECURITY_AUDIT",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott. Lorenzo Gatti",
+      "normalized_extracted" : "Lorenzo Gatti",
+      "ground_truth" : "Lorenzo Gatti",
+      "normalized_ground_truth" : "Lorenzo Gatti",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "l.gatti@finanza-veneta-holding.it",
+      "normalized_extracted" : "l.gatti@finanza-veneta-holding.it",
+      "ground_truth" : "l.gatti@finanza-veneta-holding.it",
+      "normalized_ground_truth" : "l.gatti@finanza-veneta-holding.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 045 4920194",
+      "normalized_extracted" : "0454920194",
+      "ground_truth" : "+39 045 4920194",
+      "normalized_ground_truth" : "0454920194",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Finanza Veneta Holding S.p.A.",
+      "normalized_extracted" : "Finanza Veneta Holding S.p.A.",
+      "ground_truth" : "Finanza Veneta Holding S.p.A.",
+      "normalized_ground_truth" : "Finanza Veneta Holding S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Incarico per vulnerability assessment e penetration test infrastruttura cloud",
+      "normalized_extracted" : "Incarico per vulnerability assessment e penetration test infrastruttura cloud",
+      "ground_truth" : "Incarico per vulnerability assessment e penetration test infrastruttura cloud",
+      "normalized_ground_truth" : "Incarico per vulnerability assessment e penetration test infrastruttura cloud",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verona",
+      "normalized_extracted" : "Verona",
+      "ground_truth" : "Verona",
+      "normalized_ground_truth" : "Verona",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 6500,
+      "normalized_extracted" : 6500.0,
+      "ground_truth" : 6500.0,
+      "normalized_ground_truth" : 6500.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/05/2026",
+      "normalized_extracted" : "2026-05-15",
+      "ground_truth" : "15/05/2026",
+      "normalized_ground_truth" : "2026-05-15",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott. Lorenzo Gatti\",\"email\":\"l.gatti@finanza-veneta-holding.it\",\"telefono\":\"+39 045 4920194\",\"azienda\":\"Finanza Veneta Holding S.p.A.\",\"oggetto\":\"Incarico per vulnerability assessment e penetration test infrastruttura cloud\",\"citta\":\"Verona\",\"numeroPartecipanti\":null,\"budgetEuro\":6500,\"dataEvento\":\"15/05/2026\",\"destinatario\":\"Marco Rossi\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Segnalazione anomalia software o bug relativamente alla sicurezza informatica e alla gestione dell'infrastruttura cloud\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 20591,
+    "metrics" : {
+      "totalDurationMs" : 19625,
+      "totalPromptTokens" : 2087,
+      "totalCompletionTokens" : 204,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 11771,
+        "promptTokens" : 649,
+        "completionTokens" : 137,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 7850,
+        "promptTokens" : 1438,
+        "completionTokens" : 67,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 20594
+}

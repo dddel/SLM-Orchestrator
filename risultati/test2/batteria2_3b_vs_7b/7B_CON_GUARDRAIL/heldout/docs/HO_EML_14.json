@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_14",
+  "type" : "EMAIL",
+  "template" : "EML_CANDIDATURA_LAVORO",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Ing. Matteo Salvi",
+      "normalized_extracted" : "Matteo Salvi",
+      "ground_truth" : "Matteo Salvi",
+      "normalized_ground_truth" : "Matteo Salvi",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "matteo.salvi.dev@libero-mail.it",
+      "normalized_extracted" : "matteo.salvi.dev@libero-mail.it",
+      "ground_truth" : "matteo.salvi.dev@libero-mail.it",
+      "normalized_ground_truth" : "matteo.salvi.dev@libero-mail.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 347 8920145",
+      "normalized_extracted" : "3478920145",
+      "ground_truth" : "+39 347 8920145",
+      "normalized_ground_truth" : "3478920145",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "normalized_extracted" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "normalized_ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Torino",
+      "normalized_extracted" : "Torino",
+      "ground_truth" : "Torino",
+      "normalized_ground_truth" : "Torino",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Ing. Matteo Salvi\",\"email\":\"matteo.salvi.dev@libero-mail.it\",\"telefono\":\"+39 347 8920145\",\"azienda\":null,\"oggetto\":\"Candidatura per posizione Senior Data Platform Engineer - Sede Torino\",\"citta\":\"Torino\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 32722,
+    "metrics" : {
+      "totalDurationMs" : 31672,
+      "totalPromptTokens" : 2047,
+      "totalCompletionTokens" : 165,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 20208,
+        "promptTokens" : 640,
+        "completionTokens" : 115,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 11461,
+        "promptTokens" : 1407,
+        "completionTokens" : 50,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 32726
+}

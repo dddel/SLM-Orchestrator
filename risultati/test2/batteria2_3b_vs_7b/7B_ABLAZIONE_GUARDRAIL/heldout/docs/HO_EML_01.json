@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_01",
+  "type" : "EMAIL",
+  "template" : "EML_CATERING_CONVENTION",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Stefano Brambilla",
+      "normalized_extracted" : "Stefano Brambilla",
+      "ground_truth" : "Stefano Brambilla",
+      "normalized_ground_truth" : "Stefano Brambilla",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "s.brambilla@eventi-aziendali-roma.it",
+      "normalized_extracted" : "s.brambilla@eventi-aziendali-roma.it",
+      "ground_truth" : "s.brambilla@eventi-aziendali-roma.it",
+      "normalized_ground_truth" : "s.brambilla@eventi-aziendali-roma.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 06 48920145",
+      "normalized_extracted" : "0648920145",
+      "ground_truth" : "+39 06 48920145",
+      "normalized_ground_truth" : "0648920145",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Eventi Aziendali Roma S.r.l.",
+      "normalized_extracted" : "Eventi Aziendali Roma S.r.l.",
+      "ground_truth" : "Eventi Aziendali Roma S.r.l.",
+      "normalized_ground_truth" : "Eventi Aziendali Roma S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta preventivo catering convention aziendale annuale",
+      "normalized_extracted" : "Richiesta preventivo catering convention aziendale annuale",
+      "ground_truth" : "Richiesta preventivo catering convention aziendale annuale",
+      "normalized_ground_truth" : "Richiesta preventivo catering convention aziendale annuale",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma",
+      "normalized_extracted" : "Roma",
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 150,
+      "normalized_extracted" : 150.0,
+      "ground_truth" : 150,
+      "normalized_ground_truth" : 150.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 12000,
+      "normalized_extracted" : 12000.0,
+      "ground_truth" : 12000.0,
+      "normalized_ground_truth" : 12000.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/05/2026",
+      "normalized_extracted" : "2026-05-28",
+      "ground_truth" : "28/05/2026",
+      "normalized_ground_truth" : "2026-05-28",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Stefano Brambilla\",\"email\":\"s.brambilla@eventi-aziendali-roma.it\",\"telefono\":\"+39 06 48920145\",\"azienda\":\"Eventi Aziendali Roma S.r.l.\",\"oggetto\":\"Richiesta preventivo catering convention aziendale annuale\",\"citta\":\"Roma\",\"numeroPartecipanti\":150,\"budgetEuro\":12000,\"dataEvento\":\"28/05/2026\",\"destinatario\":\"preventivi@banqueting-excellence.it\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Richiesta preventivo catering per evento aziendale, ambito di competenza del reparto tecnico\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 22767,
+    "metrics" : {
+      "totalDurationMs" : 21880,
+      "totalPromptTokens" : 2164,
+      "totalCompletionTokens" : 210,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13012,
+        "promptTokens" : 685,
+        "completionTokens" : 142,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 8864,
+        "promptTokens" : 1479,
+        "completionTokens" : 68,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 22772
+}

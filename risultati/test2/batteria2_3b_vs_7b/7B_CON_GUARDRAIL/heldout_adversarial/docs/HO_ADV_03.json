@@ -1,0 +1,148 @@
+{
+  "id" : "HO_ADV_03",
+  "type" : "ANAGRAFICA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Lorenzo",
+      "normalized_extracted" : "Lorenzo",
+      "ground_truth" : "Lorenzo",
+      "normalized_ground_truth" : "Lorenzo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Gentile",
+      "normalized_extracted" : "Gentile",
+      "ground_truth" : "Gentile",
+      "normalized_ground_truth" : "Gentile",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GNTLNZ84D15L781X",
+      "normalized_extracted" : "GNTLNZ84D15L781X",
+      "ground_truth" : "GNTLNZ84D15L781X",
+      "normalized_ground_truth" : "GNTLNZ84D15L781X",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/04/1984",
+      "normalized_extracted" : "1984-04-15",
+      "ground_truth" : "15/04/1984",
+      "normalized_ground_truth" : "1984-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verona (VR)",
+      "normalized_extracted" : "Verona (VR)",
+      "ground_truth" : "Verona (VR)",
+      "normalized_ground_truth" : "Verona (VR)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AX8492019",
+      "normalized_extracted" : "AX8492019",
+      "ground_truth" : "AX8492019",
+      "normalized_ground_truth" : "AX8492019",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/05/2020",
+      "normalized_extracted" : "2020-05-10",
+      "ground_truth" : "10/05/2020",
+      "normalized_ground_truth" : "2020-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/04/2030",
+      "normalized_extracted" : "2030-04-15",
+      "ground_truth" : "15/04/2030",
+      "normalized_ground_truth" : "2030-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Verona",
+      "normalized_extracted" : "Comune di Verona",
+      "ground_truth" : "Comune di Verona",
+      "normalized_ground_truth" : "Comune di Verona",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"Lorenzo\",\n  \"cognome\": \"Gentile\",\n  \"codiceFiscale\": \"GNTLNZ84D15L781X\",\n  \"dataNascita\": \"15/04/1984\",\n  \"luogoNascita\": \"Verona (VR)\",\n  \"sesso\": \"M\",\n  \"numeroDocumento\": \"AX8492019\",\n  \"dataRilascio\": \"10/05/2020\",\n  \"dataScadenza\": \"15/04/2030\",\n  \"enteRilascio\": \"Comune di Verona\"\n}",
+    "errors" : [ {
+      "path" : "codiceFiscale",
+      "validatorName" : "codice_fiscale",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Carattere di controllo del codice fiscale non valido (atteso: 'W', trovato: 'X'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 31965,
+    "metrics" : {
+      "totalDurationMs" : 30288,
+      "totalPromptTokens" : 762,
+      "totalCompletionTokens" : 169,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 30286,
+        "promptTokens" : 762,
+        "completionTokens" : 169,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 31969
+}

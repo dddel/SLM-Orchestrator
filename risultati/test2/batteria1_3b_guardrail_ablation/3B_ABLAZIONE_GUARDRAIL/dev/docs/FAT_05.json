@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_05",
+  "type" : "FATTURA",
+  "template" : "FAT_T2_TABELLARE_COMPATTO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/055",
+      "normalized_extracted" : "2026/055",
+      "ground_truth" : "2026/055",
+      "normalized_ground_truth" : "2026/055",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/05/2026",
+      "normalized_extracted" : "2026-05-12",
+      "ground_truth" : "12/05/2026",
+      "normalized_ground_truth" : "2026-05-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Alpha Soluzioni S.r.l.",
+      "normalized_extracted" : "Alpha Soluzioni S.r.l.",
+      "ground_truth" : "Alpha Soluzioni S.r.l.",
+      "normalized_ground_truth" : "Alpha Soluzioni S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000001379",
+      "normalized_extracted" : "10000001379",
+      "ground_truth" : "10000001379",
+      "normalized_ground_truth" : "10000001379",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Beta Consulting S.p.A.",
+      "normalized_extracted" : "Beta Consulting S.p.A.",
+      "ground_truth" : "Beta Consulting S.p.A.",
+      "normalized_ground_truth" : "Beta Consulting S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1850.5,
+      "normalized_extracted" : 1850.5,
+      "ground_truth" : 1850.5,
+      "normalized_ground_truth" : 1850.5,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"2026/055\", \"dataFattura\": \"12/05/2026\", \"fornitore\": {\"denominazione\": \"Alpha Soluzioni S.r.l.\", \"partitaIva\": \"10000001379\"}, \"cliente\": {\"denominazione\": \"Beta Consulting S.p.A.\", \"codiceFiscale\": null}, \"importoTotale\": 1850.5, \"iban\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4999,
+    "metrics" : {
+      "totalDurationMs" : 4536,
+      "totalPromptTokens" : 553,
+      "totalCompletionTokens" : 116,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4535,
+        "promptTokens" : 553,
+        "completionTokens" : 116,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5004
+}

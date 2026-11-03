@@ -1,0 +1,148 @@
+{
+  "id" : "HO_ADV_04",
+  "type" : "ANAGRAFICA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Martina",
+      "normalized_extracted" : "Martina",
+      "ground_truth" : "Martina",
+      "normalized_ground_truth" : "Martina",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verdi",
+      "normalized_extracted" : "Verdi",
+      "ground_truth" : "Verdi",
+      "normalized_ground_truth" : "Verdi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VRDMTN91P52D612K",
+      "normalized_extracted" : "VRDMTN91P52D612K",
+      "ground_truth" : "VRDMTN91P52D612K",
+      "normalized_ground_truth" : "VRDMTN91P52D612K",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/09/1991",
+      "normalized_extracted" : "1991-09-12",
+      "ground_truth" : "12/09/1991",
+      "normalized_ground_truth" : "1991-09-12",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze (FI)",
+      "normalized_extracted" : "Firenze (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08BB49281",
+      "normalized_extracted" : "08BB49281",
+      "ground_truth" : "08BB49281",
+      "normalized_ground_truth" : "08BB49281",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/06/2019",
+      "normalized_extracted" : "2019-06-18",
+      "ground_truth" : "18/06/2019",
+      "normalized_ground_truth" : "2019-06-18",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/06/2029",
+      "normalized_extracted" : "2029-06-18",
+      "ground_truth" : "18/06/2029",
+      "normalized_ground_truth" : "2029-06-18",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Questura di Firenze",
+      "normalized_extracted" : "Questura di Firenze",
+      "ground_truth" : "Questura di Firenze",
+      "normalized_ground_truth" : "Questura di Firenze",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Martina\", \"cognome\": \"Verdi\", \"codiceFiscale\": \"VRDMTN91P52D612K\", \"dataNascita\": \"12/09/1991\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": \"F\", \"numeroDocumento\": \"08BB49281\", \"dataRilascio\": \"18/06/2019\", \"dataScadenza\": \"18/06/2029\", \"enteRilascio\": \"Questura di Firenze\"}",
+    "errors" : [ {
+      "path" : "codiceFiscale",
+      "validatorName" : "codice_fiscale",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Carattere di controllo del codice fiscale non valido (atteso: 'C', trovato: 'K'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 7408,
+    "metrics" : {
+      "totalDurationMs" : 6615,
+      "totalPromptTokens" : 769,
+      "totalCompletionTokens" : 152,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6612,
+        "promptTokens" : 769,
+        "completionTokens" : 152,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 7418
+}

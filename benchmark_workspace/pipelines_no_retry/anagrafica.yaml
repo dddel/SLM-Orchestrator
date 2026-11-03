@@ -1,0 +1,14 @@
+id: anagrafica_pipeline
+documentType: ANAGRAFICA
+steps:
+  - id: anagrafica_inference
+    type: model_inference
+    model: "${ollama.anagrafica-model}"
+    schema: schemas/anagrafica_documento.json
+    system_prompt: prompts/anagrafica-system.txt
+
+  - id: anagrafica_validation
+    type: field_validation
+    validators:
+      - field: codiceFiscale
+        validator: codice_fiscale

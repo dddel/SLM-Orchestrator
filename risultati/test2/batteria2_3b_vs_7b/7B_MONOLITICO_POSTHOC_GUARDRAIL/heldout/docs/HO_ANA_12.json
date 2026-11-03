@@ -1,0 +1,165 @@
+{
+  "id" : "HO_ANA_12",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_ISCRIZIONE_ALBO",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Simone",
+      "normalized_extracted" : "Simone",
+      "ground_truth" : "Simone",
+      "normalized_ground_truth" : "Simone",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Rastelli",
+      "normalized_extracted" : "Rastelli",
+      "ground_truth" : "Rastelli",
+      "normalized_ground_truth" : "Rastelli",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RSTSMN80M28G478G",
+      "normalized_extracted" : "RSTSMN80M28G478G",
+      "ground_truth" : "RSTSMN80M28G478G",
+      "normalized_ground_truth" : "RSTSMN80M28G478G",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/08/1980",
+      "normalized_extracted" : "1980-08-28",
+      "ground_truth" : "28/08/1980",
+      "normalized_ground_truth" : "1980-08-28",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Perugia (PG)",
+      "normalized_extracted" : "Perugia (PG)",
+      "ground_truth" : "Perugia (PG)",
+      "normalized_ground_truth" : "Perugia (PG)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AS8291042",
+      "normalized_extracted" : "AS8291042",
+      "ground_truth" : "AS8291042",
+      "normalized_ground_truth" : "AS8291042",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "19/09/2021",
+      "normalized_extracted" : "2021-09-19",
+      "ground_truth" : "19/09/2021",
+      "normalized_ground_truth" : "2021-09-19",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/08/2031",
+      "normalized_extracted" : "2031-08-28",
+      "ground_truth" : "28/08/2031",
+      "normalized_ground_truth" : "2031-08-28",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Perugia",
+      "normalized_extracted" : "Comune di Perugia",
+      "ground_truth" : "Comune di Perugia",
+      "normalized_ground_truth" : "Comune di Perugia",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Simone\",\n    \"cognome\": \"Rastelli\",\n    \"codiceFiscale\": \"RSTSMN80M28G478G\",\n    \"dataNascita\": \"28/08/1980\",\n    \"luogoNascita\": \"Perugia (PG)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AS8291042\",\n    \"dataRilascio\": \"19/09/2021\",\n    \"dataScadenza\": \"28/08/2031\",\n    \"enteRilascio\": \"Comune di Perugia\"\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Simone\",\n    \"cognome\": \"Rastelli\",\n    \"codiceFiscale\": \"RSTSMN80M28G478G\",\n    \"dataNascita\": \"28/08/1980\",\n    \"luogoNascita\": \"Perugia (PG)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AS8291042\",\n    \"dataRilascio\": \"19/09/2021\",\n    \"dataScadenza\": \"28/08/2031\",\n    \"enteRilascio\": \"Comune di Perugia\"\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 33189,
+        "totalDurationMs" : 33184,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 32275,
+        "promptEvalCount" : 449,
+        "evalCount" : 212,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

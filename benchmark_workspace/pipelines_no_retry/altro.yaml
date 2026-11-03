@@ -1,0 +1,12 @@
+id: altro_pipeline
+documentType: ALTRO
+steps:
+  - id: altro_inference
+    type: model_inference
+    model: "${ollama.model}"
+    schema: schemas/altro_info.json
+    system_prompt: prompts/altro-system.txt
+
+  - id: altro_validation
+    type: field_validation
+    validators: []

@@ -1,0 +1,187 @@
+{
+  "id" : "EML_04",
+  "type" : "EMAIL",
+  "template" : "EML_T1_EVENTO_RICHIESTA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 0,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Persona Nome 4",
+      "normalized_ground_truth" : "Persona Nome 4",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "utente.4@innovazione-tech.it",
+      "normalized_ground_truth" : "utente.4@innovazione-tech.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 02 9000444",
+      "normalized_ground_truth" : "+39 02 9000444",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Azienda Partner 4 S.r.l.",
+      "normalized_ground_truth" : "Azienda Partner 4 S.r.l.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+      "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 18,
+      "normalized_ground_truth" : 18,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "09/11/2026",
+      "normalized_ground_truth" : "09/11/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 2000.0,
+      "normalized_ground_truth" : 2000.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Persona Nome 4",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Persona Nome 4",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "utente.4@innovazione-tech.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "utente.4@innovazione-tech.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 02 9000444",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 02 9000444",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Azienda Partner 4 S.r.l.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Azienda Partner 4 S.r.l.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 18,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 18,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "09/11/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "09/11/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 2000.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 2000.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Roma",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Roma",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di conferenza\",\n    \"argomentoPrincipale\": \"Conferenza tecnica\",\n    \"motivoEsclusione\": \"Non contiene dati fatturabili\",\n    \"entitaRilevate\": [\n      \"Persona Nome 4\",\n      \"Azienda Partner 4 S.r.l.\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di conferenza\",\n    \"argomentoPrincipale\": \"Conferenza tecnica\",\n    \"motivoEsclusione\": \"Non contiene dati fatturabili\",\n    \"entitaRilevate\": [\n      \"Persona Nome 4\",\n      \"Azienda Partner 4 S.r.l.\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 20811,
+      "totalDurationMs" : 20808,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 20105,
+      "promptEvalCount" : 422,
+      "evalCount" : 130,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 20811
+}

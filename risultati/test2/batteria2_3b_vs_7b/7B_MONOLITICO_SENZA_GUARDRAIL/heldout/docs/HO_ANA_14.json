@@ -1,0 +1,141 @@
+{
+  "id" : "HO_ANA_14",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSENSO_PRIVACY",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Elena",
+      "normalized_extracted" : "Elena",
+      "ground_truth" : "Elena",
+      "normalized_ground_truth" : "Elena",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Kovacs",
+      "normalized_extracted" : "Kovacs",
+      "ground_truth" : "Kovacs",
+      "normalized_ground_truth" : "Kovacs",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "KVCLNE87H46L424A",
+      "normalized_extracted" : "KVCLNE87H46L424A",
+      "ground_truth" : "KVCLNE87H46L424A",
+      "normalized_ground_truth" : "KVCLNE87H46L424A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06/06/1987",
+      "normalized_extracted" : "1987-06-06",
+      "ground_truth" : "06/06/1987",
+      "normalized_ground_truth" : "1987-06-06",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Trieste (TS)",
+      "normalized_extracted" : "Trieste (TS)",
+      "ground_truth" : "Trieste (TS)",
+      "normalized_ground_truth" : "Trieste (TS)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PASSAPORTO",
+    "ground_truth" : "NON_SPECIFICATO",
+    "normalized_extracted" : "PASSAPORTO",
+    "normalized_ground_truth" : "NON_SPECIFICATO",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Elena\",\n    \"cognome\": \"Kovacs\",\n    \"codiceFiscale\": \"KVCLNE87H46L424A\",\n    \"dataNascita\": \"06/06/1987\",\n    \"luogoNascita\": \"Trieste (TS)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Elena\",\n    \"cognome\": \"Kovacs\",\n    \"codiceFiscale\": \"KVCLNE87H46L424A\",\n    \"dataNascita\": \"06/06/1987\",\n    \"luogoNascita\": \"Trieste (TS)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 28044,
+      "totalDurationMs" : 28042,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 27162,
+      "promptEvalCount" : 391,
+      "evalCount" : 179,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 28044
+}

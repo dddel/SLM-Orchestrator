@@ -1,0 +1,212 @@
+{
+  "id" : "HO_ANA_08",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONTO_TITOLI",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Michele",
+      "normalized_ground_truth" : "Michele",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Santoro",
+      "normalized_ground_truth" : "Santoro",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "SNTMHL74E21A662H",
+      "normalized_ground_truth" : "SNTMHL74E21A662H",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "21/05/1974",
+      "normalized_ground_truth" : "21/05/1974",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Bari (BA)",
+      "normalized_ground_truth" : "Bari (BA)",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "14AB92810",
+      "normalized_ground_truth" : "14AB92810",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "04/06/2028",
+      "normalized_ground_truth" : "04/06/2028",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Questura di Bari",
+      "normalized_ground_truth" : "Questura di Bari",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "PASSAPORTO",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "PASSAPORTO",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "nome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Michele",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Michele",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "cognome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Santoro",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Santoro",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "codiceFiscale",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "SNTMHL74E21A662H",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "SNTMHL74E21A662H",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "21/05/1974",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "21/05/1974",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Bari (BA)",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Bari (BA)",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "14AB92810",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "14AB92810",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataScadenza",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "04/06/2028",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "04/06/2028",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Questura di Bari",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Questura di Bari",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "SCONOSCIUTO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 2,
+    "errors" : [ "JSON non valido sintatticamente: Unexpected end-of-input: was expecting closing quote for a string value\n at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); byte offset: #UNKNOWN]" ],
+    "processedOutput" : null,
+    "originalRawResponse" : {
+      "raw_output" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"CARTA_IDENTITA\", \"nome\": \"SANTORO\", \"cognome\": \"MICHELE\", \"codiceFiscale\": \"SNTMHL74E21A662H\", \"dataNascita\": \"21/05/1974\", \"luogoNascita\": \"BARI (BA)\", \"sesso\": null, \"numeroDocumento\": \"14AB92810\", \"dataRilascio\": \"04/06/2028\", \"dataScadenza\": \"04/06/2028\", \"enteRilascio\": \"QUESTURA DI BARI (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA",
+      "result" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"CARTA_IDENTITA\", \"nome\": \"SANTORO\", \"cognome\": \"MICHELE\", \"codiceFiscale\": \"SNTMHL74E21A662H\", \"dataNascita\": \"21/05/1974\", \"luogoNascita\": \"BARI (BA)\", \"sesso\": null, \"numeroDocumento\": \"14AB92810\", \"dataRilascio\": \"04/06/2028\", \"dataScadenza\": \"04/06/2028\", \"enteRilascio\": \"QUESTURA DI BARI (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA) (BA",
+      "metrics" : {
+        "clientLatencyMs" : 14788,
+        "totalDurationMs" : 14786,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 14481,
+        "promptEvalCount" : 415,
+        "evalCount" : 400,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

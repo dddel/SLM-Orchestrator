@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_14",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSENSO_PRIVACY",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NON_SPECIFICATO",
+      "normalized_extracted" : "NON_SPECIFICATO",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Elena",
+      "normalized_extracted" : "Elena",
+      "ground_truth" : "Elena",
+      "normalized_ground_truth" : "Elena",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Kovacs",
+      "normalized_extracted" : "Kovacs",
+      "ground_truth" : "Kovacs",
+      "normalized_ground_truth" : "Kovacs",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "KVCLNE87H46L424A",
+      "normalized_extracted" : "KVCLNE87H46L424A",
+      "ground_truth" : "KVCLNE87H46L424A",
+      "normalized_ground_truth" : "KVCLNE87H46L424A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06/06/1987",
+      "normalized_extracted" : "1987-06-06",
+      "ground_truth" : "06/06/1987",
+      "normalized_ground_truth" : "1987-06-06",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Trieste (TS)",
+      "normalized_extracted" : "Trieste (TS)",
+      "ground_truth" : "Trieste (TS)",
+      "normalized_ground_truth" : "Trieste (TS)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"NON_SPECIFICATO\",\n  \"nome\": \"Elena\",\n  \"cognome\": \"Kovacs\",\n  \"codiceFiscale\": \"KVCLNE87H46L424A\",\n  \"dataNascita\": \"06/06/1987\",\n  \"luogoNascita\": \"Trieste (TS)\",\n  \"sesso\": null,\n  \"numeroDocumento\": null,\n  \"dataRilascio\": null,\n  \"dataScadenza\": null,\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 12391,
+    "metrics" : {
+      "totalDurationMs" : 11319,
+      "totalPromptTokens" : 731,
+      "totalCompletionTokens" : 132,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 11317,
+        "promptTokens" : 731,
+        "completionTokens" : 132,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 12395
+}

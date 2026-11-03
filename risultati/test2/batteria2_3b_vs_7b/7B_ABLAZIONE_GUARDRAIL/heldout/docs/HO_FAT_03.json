@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_03",
+  "type" : "FATTURA",
+  "template" : "FAT_B2B_CONSULENZA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FT-2026-099",
+      "normalized_extracted" : "FT-2026-099",
+      "ground_truth" : "FT-2026-099",
+      "normalized_ground_truth" : "FT-2026-099",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/03/2026",
+      "normalized_extracted" : "2026-03-05",
+      "ground_truth" : "05/03/2026",
+      "normalized_ground_truth" : "2026-03-05",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.",
+      "normalized_extracted" : "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.",
+      "ground_truth" : "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.",
+      "normalized_ground_truth" : "STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "09234810159",
+      "normalized_extracted" : "09234810159",
+      "ground_truth" : "09234810159",
+      "normalized_ground_truth" : "09234810159",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "OROLOGERIE MILANESI S.P.A.",
+      "normalized_extracted" : "OROLOGERIE MILANESI S.P.A.",
+      "ground_truth" : "OROLOGERIE MILANESI S.P.A.",
+      "normalized_ground_truth" : "OROLOGERIE MILANESI S.P.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 4880.0,
+      "normalized_extracted" : 4880.0,
+      "ground_truth" : 4880.0,
+      "normalized_ground_truth" : 4880.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"FT-2026-099\",\n  \"dataFattura\": \"05/03/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"STRATEGIA & SVILUPPO MANAGEMENT CONSULTING S.R.L.\",\n    \"partitaIva\": \"09234810159\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"OROLOGERIE MILANESI S.P.A.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 4880.00,\n  \"iban\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 14102,
+    "metrics" : {
+      "totalDurationMs" : 13060,
+      "totalPromptTokens" : 683,
+      "totalCompletionTokens" : 152,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13058,
+        "promptTokens" : 683,
+        "completionTokens" : 152,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 14107
+}

@@ -1,0 +1,181 @@
+{
+  "id" : "ANA_16",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ALESSANDRA",
+      "normalized_extracted" : "ALESSANDRA",
+      "ground_truth" : "Alessandra",
+      "normalized_ground_truth" : "Alessandra",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GRECO",
+      "normalized_extracted" : "GRECO",
+      "ground_truth" : "Greco",
+      "normalized_ground_truth" : "Greco",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GRCSSN82A50F839A",
+      "normalized_extracted" : "GRCSSN82A50F839A",
+      "ground_truth" : "GRCSSN82A50F839A",
+      "normalized_ground_truth" : "GRCSSN82A50F839A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1982-01-10",
+      "normalized_extracted" : "1982-01-10",
+      "ground_truth" : "10/01/1982",
+      "normalized_ground_truth" : "1982-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NAPOLI (NA)",
+      "normalized_extracted" : "NAPOLI (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "TS99001122",
+      "normalized_ground_truth" : "TS99001122",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2027-01-10",
+      "normalized_extracted" : "2027-01-10",
+      "ground_truth" : "10/01/2027",
+      "normalized_ground_truth" : "2027-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PATENTE",
+    "ground_truth" : "TESSERA_SANITARIA",
+    "normalized_extracted" : "PATENTE",
+    "normalized_ground_truth" : "TESSERA_SANITARIA",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "TS99001122",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "TS99001122",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 1,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"ALESSANDRA\",\n    \"cognome\": \"GRECO\",\n    \"codiceFiscale\": \"GRCSSN82A50F839A\",\n    \"dataNascita\": \"1982-01-10\",\n    \"luogoNascita\": \"NAPOLI (NA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": \"2027-01-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"ALESSANDRA\",\n    \"cognome\": \"GRECO\",\n    \"codiceFiscale\": \"GRCSSN82A50F839A\",\n    \"dataNascita\": \"1982-01-10\",\n    \"luogoNascita\": \"NAPOLI (NA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": \"2027-01-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 7158,
+        "totalDurationMs" : 7155,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 6876,
+        "promptEvalCount" : 377,
+        "evalCount" : 189,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

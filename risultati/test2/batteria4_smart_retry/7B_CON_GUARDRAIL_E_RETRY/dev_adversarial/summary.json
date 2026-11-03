@@ -1,0 +1,1145 @@
+{
+  "metadata" : {
+    "cella" : "7B_CON_GUARDRAIL",
+    "split" : "dev_adversarial",
+    "ordine" : "naturale",
+    "model_id" : "qwen2.5:7b-instruct-q8_0",
+    "endpoint" : "http://localhost:18083/api/orchestrator/process",
+    "git_commit" : "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+    "evaluated_at" : "2026-11-02T15:34:04.459862561Z",
+    "parameters" : {
+      "guards_enabled" : true,
+      "coherence_enabled" : true,
+      "temperature" : 0.0,
+      "num_predict" : 400,
+      "keep_alive" : "60m",
+      "num_ctx" : 2048,
+      "seed" : 42,
+      "router_type" : "local-ollama",
+      "repeat_penalty" : 1.0
+    }
+  },
+  "classification_counts" : {
+    "C1" : 0,
+    "C2" : 0,
+    "C3" : 8,
+    "C4" : 1,
+    "C5" : 0
+  },
+  "c2_subcode_counts" : {
+    "C2a" : 0,
+    "C2b" : 0,
+    "C2c" : 0
+  },
+  "classification_wilson" : {
+    "C1" : "0/9 (n < 10, percentuale non riportata)",
+    "C2" : "0/9 (n < 10, percentuale non riportata)",
+    "C3" : "8/9 (n < 10, percentuale non riportata)",
+    "C4" : "1/9 (n < 10, percentuale non riportata)",
+    "C5" : "0/9 (n < 10, percentuale non riportata)"
+  },
+  "fields_summary" : {
+    "total_fields" : 72,
+    "correct_fields" : 71,
+    "accuracy_wilson" : "71/72 (98.6%, IC 95%: 92.5–99.8%)"
+  },
+  "documents" : {
+    "FAT_08" : {
+      "id" : "FAT_08",
+      "type" : "FATTURA",
+      "template" : "FAT_T2_TABELLARE_COMPATTO",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "FT-2026-088",
+          "normalized_extracted" : "FT-2026-088",
+          "ground_truth" : "FT-2026-088",
+          "normalized_ground_truth" : "FT-2026-088",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "20 luglio 2026",
+          "normalized_extracted" : "2026-07-20",
+          "ground_truth" : "2026-07-20",
+          "normalized_ground_truth" : "2026-07-20",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Kronos Energy S.r.l.",
+          "normalized_extracted" : "Kronos Energy S.r.l.",
+          "ground_truth" : "Kronos Energy S.r.l.",
+          "normalized_ground_truth" : "Kronos Energy S.r.l.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000005489",
+          "normalized_extracted" : "10000005489",
+          "ground_truth" : "10000005489",
+          "normalized_ground_truth" : "10000005489",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Studio Associato Rossi",
+          "normalized_extracted" : "Studio Associato Rossi",
+          "ground_truth" : "Studio Associato Rossi",
+          "normalized_ground_truth" : "Studio Associato Rossi",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 980.0,
+          "normalized_extracted" : 980.0,
+          "ground_truth" : 980.0,
+          "normalized_ground_truth" : 980.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"FT-2026-088\",\"dataFattura\":\"20 luglio 2026\",\"fornitore\":{\"denominazione\":\"Kronos Energy S.r.l.\",\"partitaIva\":\"10000005489\"},\"cliente\":{\"denominazione\":\"Studio Associato Rossi\",\"codiceFiscale\":null},\"importoTotale\":980.0,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000005489'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 20044,
+        "metrics" : {
+          "totalDurationMs" : 18821,
+          "totalPromptTokens" : 551,
+          "totalCompletionTokens" : 104,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 18820,
+            "promptTokens" : 551,
+            "completionTokens" : 104,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 20048
+    },
+    "FAT_09" : {
+      "id" : "FAT_09",
+      "type" : "FATTURA",
+      "template" : "FAT_T3_DISCORSIVO_NOTULA",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "NP-101",
+          "normalized_extracted" : "NP-101",
+          "ground_truth" : "NP-101",
+          "normalized_ground_truth" : "NP-101",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "03/08/2026",
+          "normalized_extracted" : "2026-08-03",
+          "ground_truth" : "03/08/2026",
+          "normalized_ground_truth" : "2026-08-03",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Studio Legale Giuris",
+          "normalized_extracted" : "Studio Legale Giuris",
+          "ground_truth" : "Studio Legale Giuris",
+          "normalized_ground_truth" : "Studio Legale Giuris",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000006850",
+          "normalized_extracted" : "10000006850",
+          "ground_truth" : "10000006850",
+          "normalized_ground_truth" : "10000006850",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Mario Bianchi",
+          "normalized_extracted" : "Mario Bianchi",
+          "ground_truth" : "Mario Bianchi",
+          "normalized_ground_truth" : "Mario Bianchi",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 1500.0,
+          "normalized_extracted" : 1500.0,
+          "ground_truth" : 1500.0,
+          "normalized_ground_truth" : 1500.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"NP-101\",\"dataFattura\":\"03/08/2026\",\"fornitore\":{\"denominazione\":\"Studio Legale Giuris\",\"partitaIva\":\"10000006850\"},\"cliente\":{\"denominazione\":\"Mario Bianchi\",\"codiceFiscale\":null},\"importoTotale\":1500.0,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000006850'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 19206,
+        "metrics" : {
+          "totalDurationMs" : 17910,
+          "totalPromptTokens" : 543,
+          "totalCompletionTokens" : 99,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 17909,
+            "promptTokens" : 543,
+            "completionTokens" : 99,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 19210
+    },
+    "FAT_10" : {
+      "id" : "FAT_10",
+      "type" : "FATTURA",
+      "template" : "FAT_T3_DISCORSIVO_NOTULA",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "102/2026",
+          "normalized_extracted" : "102/2026",
+          "ground_truth" : "102/2026",
+          "normalized_ground_truth" : "102/2026",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Elena Neri Consulenze",
+          "normalized_extracted" : "Elena Neri Consulenze",
+          "ground_truth" : "Elena Neri Consulenze",
+          "normalized_ground_truth" : "Elena Neri Consulenze",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000007221",
+          "normalized_extracted" : "10000007221",
+          "ground_truth" : "10000007221",
+          "normalized_ground_truth" : "10000007221",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Astra Holding S.p.A.",
+          "normalized_extracted" : "Astra Holding S.p.A.",
+          "ground_truth" : "Astra Holding S.p.A.",
+          "normalized_ground_truth" : "Astra Holding S.p.A.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 3500.0,
+          "normalized_extracted" : 3500.0,
+          "ground_truth" : 3500.0,
+          "normalized_ground_truth" : 3500.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"102/2026\",\"dataFattura\":null,\"fornitore\":{\"denominazione\":\"Elena Neri Consulenze\",\"partitaIva\":\"10000007221\"},\"cliente\":{\"denominazione\":\"Astra Holding S.p.A.\",\"codiceFiscale\":null},\"importoTotale\":3500.0,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000007221'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 24707,
+        "metrics" : {
+          "totalDurationMs" : 23495,
+          "totalPromptTokens" : 548,
+          "totalCompletionTokens" : 132,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 23494,
+            "promptTokens" : 548,
+            "completionTokens" : 132,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 24711
+    },
+    "FAT_11" : {
+      "id" : "FAT_11",
+      "type" : "FATTURA",
+      "template" : "FAT_T3_DISCORSIVO_NOTULA",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "LC-2026-9",
+          "normalized_extracted" : "LC-2026-9",
+          "ground_truth" : "LC-2026-9",
+          "normalized_ground_truth" : "LC-2026-9",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "2026-09-14",
+          "normalized_extracted" : "2026-09-14",
+          "ground_truth" : "2026-09-14",
+          "normalized_ground_truth" : "2026-09-14",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "WebCraft Studio",
+          "normalized_extracted" : "WebCraft Studio",
+          "ground_truth" : "WebCraft Studio",
+          "normalized_ground_truth" : "WebCraft Studio",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000008592",
+          "normalized_extracted" : "10000008592",
+          "ground_truth" : "10000008592",
+          "normalized_ground_truth" : "10000008592",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Nexa Digital S.r.l.",
+          "normalized_extracted" : "Nexa Digital S.r.l.",
+          "ground_truth" : "Nexa Digital S.r.l.",
+          "normalized_ground_truth" : "Nexa Digital S.r.l.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 750.0,
+          "normalized_extracted" : 750.0,
+          "ground_truth" : 750.0,
+          "normalized_ground_truth" : 750.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\n  \"numeroFattura\": \"LC-2026-9\",\n  \"dataFattura\": \"2026-09-14\",\n  \"fornitore\": {\n    \"denominazione\": \"WebCraft Studio\",\n    \"partitaIva\": \"10000008592\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Nexa Digital S.r.l.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 750.00,\n  \"iban\": null\n}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000008592'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 24560,
+        "metrics" : {
+          "totalDurationMs" : 23374,
+          "totalPromptTokens" : 548,
+          "totalCompletionTokens" : 132,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 23374,
+            "promptTokens" : 548,
+            "completionTokens" : 132,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 24564
+    },
+    "FAT_12" : {
+      "id" : "FAT_12",
+      "type" : "FATTURA",
+      "template" : "FAT_T3_DISCORSIVO_NOTULA",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "88/B",
+          "normalized_extracted" : "88/B",
+          "ground_truth" : "88/B",
+          "normalized_ground_truth" : "88/B",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "EcoServices S.r.l.",
+          "normalized_extracted" : "EcoServices S.r.l.",
+          "ground_truth" : "EcoServices S.r.l.",
+          "normalized_ground_truth" : "EcoServices S.r.l.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000009963",
+          "normalized_extracted" : "10000009963",
+          "ground_truth" : "10000009963",
+          "normalized_ground_truth" : "10000009963",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Verde S.p.A.",
+          "normalized_extracted" : "Verde S.p.A.",
+          "ground_truth" : "Verde S.p.A.",
+          "normalized_ground_truth" : "Verde S.p.A.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 120.5,
+          "normalized_extracted" : 120.5,
+          "ground_truth" : 120.5,
+          "normalized_ground_truth" : 120.5,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\n  \"numeroFattura\": \"88/B\",\n  \"dataFattura\": null,\n  \"fornitore\": {\n    \"denominazione\": \"EcoServices S.r.l.\",\n    \"partitaIva\": \"10000009963\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Verde S.p.A.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 120.50,\n  \"iban\": null\n}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000009963'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 22184,
+        "metrics" : {
+          "totalDurationMs" : 20940,
+          "totalPromptTokens" : 534,
+          "totalCompletionTokens" : 118,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 20939,
+            "promptTokens" : 534,
+            "completionTokens" : 118,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 22188
+    },
+    "FAT_17" : {
+      "id" : "FAT_17",
+      "type" : "FATTURA",
+      "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "PAR-2026-17",
+          "normalized_extracted" : "PAR-2026-17",
+          "ground_truth" : "PAR-2026-17",
+          "normalized_ground_truth" : "PAR-2026-17",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "05/12/2026",
+          "normalized_extracted" : "2026-12-05",
+          "ground_truth" : "05/12/2026",
+          "normalized_ground_truth" : "2026-12-05",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Roberto Ferri",
+          "normalized_extracted" : "Roberto Ferri",
+          "ground_truth" : "Roberto Ferri",
+          "normalized_ground_truth" : "Roberto Ferri",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000006850",
+          "normalized_extracted" : "10000006850",
+          "ground_truth" : "10000006850",
+          "normalized_ground_truth" : "10000006850",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Impianti Solari S.p.A.",
+          "normalized_extracted" : "Impianti Solari S.p.A.",
+          "ground_truth" : "Impianti Solari S.p.A.",
+          "normalized_ground_truth" : "Impianti Solari S.p.A.",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 4200.0,
+          "normalized_extracted" : 4200.0,
+          "ground_truth" : 4200.0,
+          "normalized_ground_truth" : 4200.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"PAR-2026-17\",\"dataFattura\":\"05/12/2026\",\"fornitore\":{\"denominazione\":\"Roberto Ferri\",\"partitaIva\":\"10000006850\"},\"cliente\":{\"denominazione\":\"Impianti Solari S.p.A.\",\"codiceFiscale\":null},\"importoTotale\":4200.0,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000006850'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 25543,
+        "metrics" : {
+          "totalDurationMs" : 24292,
+          "totalPromptTokens" : 561,
+          "totalCompletionTokens" : 137,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 24290,
+            "promptTokens" : 561,
+            "completionTokens" : 137,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 25553
+    },
+    "FAT_18" : {
+      "id" : "FAT_18",
+      "type" : "FATTURA",
+      "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "18/2026",
+          "normalized_extracted" : "18/2026",
+          "ground_truth" : "18/2026",
+          "normalized_ground_truth" : "18/2026",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "12 dicembre 2026",
+          "normalized_extracted" : "2026-12-12",
+          "ground_truth" : "2026-12-12",
+          "normalized_ground_truth" : "2026-12-12",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Giulia Monti",
+          "normalized_extracted" : "Giulia Monti",
+          "ground_truth" : "Giulia Monti",
+          "normalized_ground_truth" : "Giulia Monti",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000007221",
+          "normalized_extracted" : "10000007221",
+          "ground_truth" : "10000007221",
+          "normalized_ground_truth" : "10000007221",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Franco Riva",
+          "normalized_extracted" : "Franco Riva",
+          "ground_truth" : "Franco Riva",
+          "normalized_ground_truth" : "Franco Riva",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 1150.0,
+          "normalized_extracted" : 1150.0,
+          "ground_truth" : 1150.0,
+          "normalized_ground_truth" : 1150.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"18/2026\",\"dataFattura\":\"12 dicembre 2026\",\"fornitore\":{\"denominazione\":\"Giulia Monti\",\"partitaIva\":\"10000007221\"},\"cliente\":{\"denominazione\":\"Franco Riva\",\"codiceFiscale\":null},\"importoTotale\":1150.0,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000007221'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 19838,
+        "metrics" : {
+          "totalDurationMs" : 18591,
+          "totalPromptTokens" : 552,
+          "totalCompletionTokens" : 104,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 18589,
+            "promptTokens" : 552,
+            "completionTokens" : 104,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 19841
+    },
+    "FAT_19" : {
+      "id" : "FAT_19",
+      "type" : "FATTURA",
+      "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+      "split" : "dev_adversarial",
+      "category" : "C4",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : false,
+      "total_fields" : 8,
+      "correct_fields" : 7,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "2026/019",
+          "normalized_extracted" : "2026/019",
+          "ground_truth" : "2026/019",
+          "normalized_ground_truth" : "2026/019",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Sanitas Lab S.r.l.",
+          "normalized_extracted" : "Sanitas Lab S.r.l.",
+          "ground_truth" : "Sanitas Lab S.r.l.",
+          "normalized_ground_truth" : "Sanitas Lab S.r.l.",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000008592",
+          "normalized_extracted" : "10000008592",
+          "ground_truth" : "10000008592",
+          "normalized_ground_truth" : "10000008592",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : false,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : "Azienda Ospedaliera Centro",
+          "normalized_ground_truth" : "Azienda Ospedaliera Centro",
+          "field_class" : "NULL_SU_VALORE_PRESENTE"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 650.0,
+          "normalized_extracted" : 650.0,
+          "ground_truth" : 650.0,
+          "normalized_ground_truth" : 650.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ {
+        "field" : "cliente.denominazione",
+        "key_present" : true,
+        "extracted" : null,
+        "ground_truth" : "Azienda Ospedaliera Centro",
+        "normalized_extracted" : null,
+        "normalized_ground_truth" : "Azienda Ospedaliera Centro",
+        "field_class" : "NULL_SU_VALORE_PRESENTE"
+      } ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"2026/019\",\"dataFattura\":null,\"fornitore\":{\"denominazione\":\"Sanitas Lab S.r.l.\",\"partitaIva\":\"10000008592\"},\"cliente\":{\"denominazione\":null,\"codiceFiscale\":null},\"importoTotale\":650.00,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000008592'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 16863,
+        "metrics" : {
+          "totalDurationMs" : 15596,
+          "totalPromptTokens" : 547,
+          "totalCompletionTokens" : 87,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 15595,
+            "promptTokens" : 547,
+            "completionTokens" : 87,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 16865
+    },
+    "FAT_20" : {
+      "id" : "FAT_20",
+      "type" : "FATTURA",
+      "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+      "split" : "dev_adversarial",
+      "category" : "C3",
+      "c2_subcode" : null,
+      "c5_subcode" : null,
+      "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+      "status" : "INDETERMINATE",
+      "http_status" : 200,
+      "all_fields_match" : true,
+      "total_fields" : 8,
+      "correct_fields" : 8,
+      "n_inference_steps" : 1,
+      "field_matches" : {
+        "numeroFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "20",
+          "normalized_extracted" : "20",
+          "ground_truth" : "20",
+          "normalized_ground_truth" : "20",
+          "field_class" : "CORRETTO"
+        },
+        "dataFattura" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Studio Geologico Terrae",
+          "normalized_extracted" : "Studio Geologico Terrae",
+          "ground_truth" : "Studio Geologico Terrae",
+          "normalized_ground_truth" : "Studio Geologico Terrae",
+          "field_class" : "CORRETTO"
+        },
+        "fornitore.partitaIva" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "10000009963",
+          "normalized_extracted" : "10000009963",
+          "ground_truth" : "10000009963",
+          "normalized_ground_truth" : "10000009963",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.denominazione" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : "Consorzio Bonifica Nord",
+          "normalized_extracted" : "Consorzio Bonifica Nord",
+          "ground_truth" : "Consorzio Bonifica Nord",
+          "normalized_ground_truth" : "Consorzio Bonifica Nord",
+          "field_class" : "CORRETTO"
+        },
+        "cliente.codiceFiscale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        },
+        "importoTotale" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : 2100.0,
+          "normalized_extracted" : 2100.0,
+          "ground_truth" : 2100.0,
+          "normalized_ground_truth" : 2100.0,
+          "field_class" : "CORRETTO"
+        },
+        "iban" : {
+          "match" : true,
+          "key_present" : true,
+          "extracted" : null,
+          "normalized_extracted" : null,
+          "ground_truth" : null,
+          "normalized_ground_truth" : null,
+          "field_class" : "CORRETTO"
+        }
+      },
+      "mismatches" : [ ],
+      "raw_response" : {
+        "status" : "INDETERMINATE",
+        "label" : "FATTURA",
+        "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+        "result" : null,
+        "unvalidatedResult" : "{\"numeroFattura\":\"20\",\"dataFattura\":null,\"fornitore\":{\"denominazione\":\"Studio Geologico Terrae\",\"partitaIva\":\"10000009963\"},\"cliente\":{\"denominazione\":\"Consorzio Bonifica Nord\",\"codiceFiscale\":null},\"importoTotale\":2100.00,\"iban\":null}",
+        "errors" : [ {
+          "path" : "fornitore.partitaIva",
+          "validatorName" : "partita_iva",
+          "code" : "SOURCE_CHECKSUM_INVALID",
+          "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000009963'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+        } ],
+        "actionErrors" : [ ],
+        "latencyMs" : 17167,
+        "metrics" : {
+          "totalDurationMs" : 15572,
+          "totalPromptTokens" : 530,
+          "totalCompletionTokens" : 87,
+          "steps" : [ {
+            "stepId" : "fattura_inference",
+            "type" : "MODEL_INFERENCE",
+            "model" : "qwen2.5:7b-instruct-q8_0",
+            "latencyMs" : 15571,
+            "promptTokens" : 530,
+            "completionTokens" : 87,
+            "doneReason" : "stop"
+          } ]
+        }
+      },
+      "client_latency_ms" : 17170
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "id" : "HO_ANA_07",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_FONDO_PENSIONE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Silvia",
+      "normalized_extracted" : "Silvia",
+      "ground_truth" : "Silvia",
+      "normalized_ground_truth" : "Silvia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bernardi",
+      "normalized_extracted" : "Bernardi",
+      "ground_truth" : "Bernardi",
+      "normalized_ground_truth" : "Bernardi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BRNSLV88P57D612A",
+      "normalized_extracted" : "BRNSLV88P57D612A",
+      "ground_truth" : "BRNSLV88P57D612A",
+      "normalized_ground_truth" : "BRNSLV88P57D612A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1988-09-17",
+      "normalized_extracted" : "1988-09-17",
+      "ground_truth" : "17/09/1988",
+      "normalized_ground_truth" : "1988-09-17",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze (FI)",
+      "normalized_extracted" : "Firenze (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CD3829104",
+      "normalized_extracted" : "CD3829104",
+      "ground_truth" : "CD3829104",
+      "normalized_ground_truth" : "CD3829104",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2020-10-01",
+      "normalized_extracted" : "2020-10-01",
+      "ground_truth" : "01/10/2020",
+      "normalized_ground_truth" : "2020-10-01",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2030-09-17",
+      "normalized_extracted" : "2030-09-17",
+      "ground_truth" : "17/09/2030",
+      "normalized_ground_truth" : "2030-09-17",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)",
+      "normalized_extracted" : "Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)",
+      "ground_truth" : "Comune di Firenze",
+      "normalized_ground_truth" : "Comune di Firenze",
+      "field_class" : "VALORE_ERRATO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PASSAPORTO",
+    "ground_truth" : "CARTA_IDENTITA",
+    "normalized_extracted" : "PASSAPORTO",
+    "normalized_ground_truth" : "CARTA_IDENTITA",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : true,
+    "extracted" : "Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)",
+    "ground_truth" : "Comune di Firenze",
+    "normalized_extracted" : "Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)",
+    "normalized_ground_truth" : "Comune di Firenze",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Silvia\", \"cognome\": \"Bernardi\", \"codiceFiscale\": \"BRNSLV88P57D612A\", \"dataNascita\": \"1988-09-17\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": null, \"numeroDocumento\": \"CD3829104\", \"dataRilascio\": \"2020-10-01\", \"dataScadenza\": \"2030-09-17\", \"enteRilascio\": \"Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)\"}, \"altro\": null}",
+    "result" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Silvia\", \"cognome\": \"Bernardi\", \"codiceFiscale\": \"BRNSLV88P57D612A\", \"dataNascita\": \"1988-09-17\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": null, \"numeroDocumento\": \"CD3829104\", \"dataRilascio\": \"2020-10-01\", \"dataScadenza\": \"2030-09-17\", \"enteRilascio\": \"Comune di Firenze (FI) - Dipartimento della Pubblica Amministrazione (DPA) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI) - Ufficio Pubblica Istruzione (UPI)\"}, \"altro\": null}",
+    "metrics" : {
+      "clientLatencyMs" : 9188,
+      "totalDurationMs" : 9186,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 8879,
+      "promptEvalCount" : 432,
+      "evalCount" : 247,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 9188
+}

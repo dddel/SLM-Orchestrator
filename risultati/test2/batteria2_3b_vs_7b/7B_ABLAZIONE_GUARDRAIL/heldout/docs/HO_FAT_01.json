@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_01",
+  "type" : "FATTURA",
+  "template" : "FAT_PARCELLA_DISCORSIVA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/PAR-084",
+      "normalized_extracted" : "2026/PAR-084",
+      "ground_truth" : "2026/PAR-084",
+      "normalized_ground_truth" : "2026/PAR-084",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/03/2026",
+      "normalized_extracted" : "2026-03-12",
+      "ground_truth" : "12/03/2026",
+      "normalized_ground_truth" : "2026-03-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "normalized_extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "normalized_ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04128930486",
+      "normalized_extracted" : "04128930486",
+      "ground_truth" : "04128930486",
+      "normalized_ground_truth" : "04128930486",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "normalized_extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "normalized_ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3552.64,
+      "normalized_extracted" : 3552.64,
+      "ground_truth" : 3552.64,
+      "normalized_ground_truth" : 3552.64,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT81S0306909606100000019482",
+      "normalized_extracted" : "IT81S0306909606100000019482",
+      "ground_truth" : "IT81S0306909606100000019482",
+      "normalized_ground_truth" : "IT81S0306909606100000019482",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"2026/PAR-084\",\n  \"dataFattura\": \"12/03/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI\",\n    \"partitaIva\": \"04128930486\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Impresa Costruzioni Generali Edilizia Moderna S.p.A.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 3552.64,\n  \"iban\": \"IT81S0306909606100000019482\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 17846,
+    "metrics" : {
+      "totalDurationMs" : 16479,
+      "totalPromptTokens" : 787,
+      "totalCompletionTokens" : 188,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 16477,
+        "promptTokens" : 787,
+        "completionTokens" : 188,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 17855
+}

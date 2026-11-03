@@ -1,0 +1,139 @@
+{
+  "id" : "HO_EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_SEGNALAZIONE_GUASTO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 6,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Roberto Maran <roberto.maran@telecom-fibra-net.org>",
+      "normalized_extracted" : "Roberto Maran <roberto.maran@telecom-fibra-net.org>",
+      "ground_truth" : "Roberto Maran",
+      "normalized_ground_truth" : "Roberto Maran",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "noc-operazioni@retelombardia.it",
+      "normalized_extracted" : "noc-operazioni@retelombardia.it",
+      "ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "normalized_ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Brescia",
+      "normalized_ground_truth" : "Brescia",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Roberto Maran <roberto.maran@telecom-fibra-net.org>",
+    "ground_truth" : "Roberto Maran",
+    "normalized_extracted" : "Roberto Maran <roberto.maran@telecom-fibra-net.org>",
+    "normalized_ground_truth" : "Roberto Maran",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "email",
+    "key_present" : true,
+    "extracted" : "noc-operazioni@retelombardia.it",
+    "ground_truth" : "roberto.maran@telecom-fibra-net.org",
+    "normalized_extracted" : "noc-operazioni@retelombardia.it",
+    "normalized_ground_truth" : "roberto.maran@telecom-fibra-net.org",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "citta",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Brescia",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Brescia",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Roberto Maran <roberto.maran@telecom-fibra-net.org>\",\n    \"email\": \"noc-operazioni@retelombardia.it\",\n    \"telefono\": null,\n    \"azienda\": null,\n    \"oggetto\": \"Segnalazione trancio cavo ottico dorsale Brescia - Bergamo\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Roberto Maran <roberto.maran@telecom-fibra-net.org>\",\n    \"email\": \"noc-operazioni@retelombardia.it\",\n    \"telefono\": null,\n    \"azienda\": null,\n    \"oggetto\": \"Segnalazione trancio cavo ottico dorsale Brescia - Bergamo\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 25889,
+      "totalDurationMs" : 25887,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 25101,
+      "promptEvalCount" : 430,
+      "evalCount" : 161,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 25889
+}

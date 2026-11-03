@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_18",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T5_DOCUMENTO_OCR_NOISY",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CLAUDIA",
+      "normalized_extracted" : "CLAUDIA",
+      "ground_truth" : "Claudia",
+      "normalized_ground_truth" : "Claudia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BARBIERI",
+      "normalized_extracted" : "BARBIERI",
+      "ground_truth" : "Barbieri",
+      "normalized_ground_truth" : "Barbieri",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/06/1993",
+      "normalized_extracted" : "1993-06-18",
+      "ground_truth" : "18/06/1993",
+      "normalized_ground_truth" : "1993-06-18",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GENOVA (GE)",
+      "normalized_extracted" : "GENOVA (GE)",
+      "ground_truth" : "Genova (GE)",
+      "normalized_ground_truth" : "Genova (GE)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1Z334455W",
+      "normalized_extracted" : "U1Z334455W",
+      "ground_truth" : "U1Z334455W",
+      "normalized_ground_truth" : "U1Z334455W",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/07/2023",
+      "normalized_extracted" : "2023-07-01",
+      "ground_truth" : "01/07/2023",
+      "normalized_ground_truth" : "2023-07-01",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/07/2033",
+      "normalized_extracted" : "2033-07-01",
+      "ground_truth" : "01/07/2033",
+      "normalized_ground_truth" : "2033-07-01",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"PATENTE\",\n  \"nome\": \"CLAUDIA\",\n  \"cognome\": \"BARBIERI\",\n  \"codiceFiscale\": null,\n  \"dataNascita\": \"18/06/1993\",\n  \"luogoNascita\": \"GENOVA (GE)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"U1Z334455W\",\n  \"dataRilascio\": \"01/07/2023\",\n  \"dataScadenza\": \"01/07/2033\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 28684,
+    "metrics" : {
+      "totalDurationMs" : 26819,
+      "totalPromptTokens" : 715,
+      "totalCompletionTokens" : 150,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 26818,
+        "promptTokens" : 715,
+        "completionTokens" : 150,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 28688
+}

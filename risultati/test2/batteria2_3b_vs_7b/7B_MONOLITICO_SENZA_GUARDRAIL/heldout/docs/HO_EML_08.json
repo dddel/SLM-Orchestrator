@@ -1,0 +1,123 @@
+{
+  "id" : "HO_EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_RECLAMO_COMMERCIALE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Federica Neri <acquisti@distribuzione-alimentare-nord.it>",
+      "normalized_extracted" : "Federica Neri <acquisti@distribuzione-alimentare-nord.it>",
+      "ground_truth" : "Federica Neri",
+      "normalized_ground_truth" : "Federica Neri",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 045 8920148",
+      "normalized_extracted" : "0458920148",
+      "ground_truth" : "+39 045 8920148",
+      "normalized_ground_truth" : "0458920148",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Federica Neri <acquisti@distribuzione-alimentare-nord.it>",
+    "ground_truth" : "Federica Neri",
+    "normalized_extracted" : "Federica Neri <acquisti@distribuzione-alimentare-nord.it>",
+    "normalized_ground_truth" : "Federica Neri",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Federica Neri <acquisti@distribuzione-alimentare-nord.it>\",\n    \"email\": \"acquisti@distribuzione-alimentare-nord.it\",\n    \"telefono\": \"+39 045 8920148\",\n    \"azienda\": \"Distribuzione Alimentare Nord S.r.l.\",\n    \"oggetto\": \"Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Federica Neri <acquisti@distribuzione-alimentare-nord.it>\",\n    \"email\": \"acquisti@distribuzione-alimentare-nord.it\",\n    \"telefono\": \"+39 045 8920148\",\n    \"azienda\": \"Distribuzione Alimentare Nord S.r.l.\",\n    \"oggetto\": \"Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 31046,
+      "totalDurationMs" : 31044,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 30160,
+      "promptEvalCount" : 477,
+      "evalCount" : 198,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 31046
+}

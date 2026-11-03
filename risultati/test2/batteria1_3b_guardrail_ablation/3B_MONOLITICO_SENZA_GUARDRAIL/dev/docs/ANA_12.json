@@ -1,0 +1,133 @@
+{
+  "id" : "ANA_12",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T3_PASSAPORTO_MINISTERO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BEATRICE",
+      "normalized_extracted" : "BEATRICE",
+      "ground_truth" : "Beatrice",
+      "normalized_ground_truth" : "Beatrice",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SERRA",
+      "normalized_extracted" : "SERRA",
+      "ground_truth" : "Serra",
+      "normalized_ground_truth" : "Serra",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1984-08-30",
+      "normalized_extracted" : "1984-08-30",
+      "ground_truth" : "30/08/1984",
+      "normalized_ground_truth" : "1984-08-30",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CAGLIARI (CA)",
+      "normalized_extracted" : "CAGLIARI (CA)",
+      "ground_truth" : "Cagliari (CA)",
+      "normalized_ground_truth" : "Cagliari (CA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YD4433221",
+      "normalized_extracted" : "YD4433221",
+      "ground_truth" : "YD4433221",
+      "normalized_ground_truth" : "YD4433221",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2020-04-15",
+      "normalized_extracted" : "2020-04-15",
+      "ground_truth" : "15/04/2020",
+      "normalized_ground_truth" : "2020-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2030-04-15",
+      "normalized_extracted" : "2030-04-15",
+      "ground_truth" : "15/04/2030",
+      "normalized_ground_truth" : "2030-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"BEATRICE\",\n    \"cognome\": \"SERRA\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1984-08-30\",\n    \"luogoNascita\": \"CAGLIARI (CA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YD4433221\",\n    \"dataRilascio\": \"2020-04-15\",\n    \"dataScadenza\": \"2030-04-15\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"BEATRICE\",\n    \"cognome\": \"SERRA\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1984-08-30\",\n    \"luogoNascita\": \"CAGLIARI (CA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YD4433221\",\n    \"dataRilascio\": \"2020-04-15\",\n    \"dataScadenza\": \"2030-04-15\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 8193,
+      "totalDurationMs" : 8190,
+      "loadDurationMs" : 2,
+      "evalDurationMs" : 7988,
+      "promptEvalCount" : 370,
+      "evalCount" : 199,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 8193
+}

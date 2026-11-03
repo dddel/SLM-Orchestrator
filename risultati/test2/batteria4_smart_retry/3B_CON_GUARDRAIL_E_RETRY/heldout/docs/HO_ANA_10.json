@@ -1,0 +1,175 @@
+{
+  "id" : "HO_ANA_10",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_DICHIARAZIONE_NOTORIETA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NON_SPECIFICATO",
+      "normalized_extracted" : "NON_SPECIFICATO",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Sartori",
+      "normalized_extracted" : "Sartori",
+      "ground_truth" : "Alberto",
+      "normalized_ground_truth" : "Alberto",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Alberto",
+      "normalized_extracted" : "Alberto",
+      "ground_truth" : "Sartori",
+      "normalized_ground_truth" : "Sartori",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1971-07-19",
+      "normalized_extracted" : "1971-07-19",
+      "ground_truth" : "19/07/1971",
+      "normalized_ground_truth" : "1971-07-19",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Verona, VR",
+      "normalized_extracted" : "Verona, VR",
+      "ground_truth" : "Verona (VR)",
+      "normalized_ground_truth" : "Verona (VR)",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "2026-02-26",
+      "normalized_extracted" : "2026-02-26",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "Sartori",
+    "ground_truth" : "Alberto",
+    "normalized_extracted" : "Sartori",
+    "normalized_ground_truth" : "Alberto",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "Alberto",
+    "ground_truth" : "Sartori",
+    "normalized_extracted" : "Alberto",
+    "normalized_ground_truth" : "Sartori",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : true,
+    "extracted" : "Verona, VR",
+    "ground_truth" : "Verona (VR)",
+    "normalized_extracted" : "Verona, VR",
+    "normalized_ground_truth" : "Verona (VR)",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "dataRilascio",
+    "key_present" : true,
+    "extracted" : "2026-02-26",
+    "ground_truth" : null,
+    "normalized_extracted" : "2026-02-26",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"NON_SPECIFICATO\", \"nome\": \"Sartori\", \"cognome\": \"Alberto\", \"codiceFiscale\": null, \"dataNascita\": \"1971-07-19\", \"luogoNascita\": \"Verona, VR\", \"sesso\": \"M\", \"numeroDocumento\": null, \"dataRilascio\": \"2026-02-26\", \"dataScadenza\": null, \"enteRilascio\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5026,
+    "metrics" : {
+      "totalDurationMs" : 4469,
+      "totalPromptTokens" : 732,
+      "totalCompletionTokens" : 117,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4467,
+        "promptTokens" : 732,
+        "completionTokens" : 117,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5032
+}

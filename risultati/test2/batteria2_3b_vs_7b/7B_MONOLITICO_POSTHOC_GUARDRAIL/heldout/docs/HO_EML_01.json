@@ -1,0 +1,155 @@
+{
+  "id" : "HO_EML_01",
+  "type" : "EMAIL",
+  "template" : "EML_CATERING_CONVENTION",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>",
+      "normalized_extracted" : "Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>",
+      "ground_truth" : "Stefano Brambilla",
+      "normalized_ground_truth" : "Stefano Brambilla",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "s.brambilla@eventi-aziendali-roma.it",
+      "normalized_extracted" : "s.brambilla@eventi-aziendali-roma.it",
+      "ground_truth" : "s.brambilla@eventi-aziendali-roma.it",
+      "normalized_ground_truth" : "s.brambilla@eventi-aziendali-roma.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 06 48920145",
+      "normalized_extracted" : "0648920145",
+      "ground_truth" : "+39 06 48920145",
+      "normalized_ground_truth" : "0648920145",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Eventi Aziendali Roma S.r.l.",
+      "normalized_extracted" : "Eventi Aziendali Roma S.r.l.",
+      "ground_truth" : "Eventi Aziendali Roma S.r.l.",
+      "normalized_ground_truth" : "Eventi Aziendali Roma S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta preventivo catering convention aziendale annuale",
+      "normalized_extracted" : "Richiesta preventivo catering convention aziendale annuale",
+      "ground_truth" : "Richiesta preventivo catering convention aziendale annuale",
+      "normalized_ground_truth" : "Richiesta preventivo catering convention aziendale annuale",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma",
+      "normalized_extracted" : "Roma",
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 150,
+      "normalized_extracted" : 150.0,
+      "ground_truth" : 150,
+      "normalized_ground_truth" : 150.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 12000.0,
+      "normalized_extracted" : 12000.0,
+      "ground_truth" : 12000.0,
+      "normalized_ground_truth" : 12000.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/05/2026",
+      "normalized_extracted" : "2026-05-28",
+      "ground_truth" : "28/05/2026",
+      "normalized_ground_truth" : "2026-05-28",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>",
+    "ground_truth" : "Stefano Brambilla",
+    "normalized_extracted" : "Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>",
+    "normalized_ground_truth" : "Stefano Brambilla",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>\",\n    \"email\": \"s.brambilla@eventi-aziendali-roma.it\",\n    \"telefono\": \"+39 06 48920145\",\n    \"azienda\": \"Eventi Aziendali Roma S.r.l.\",\n    \"oggetto\": \"Richiesta preventivo catering convention aziendale annuale\",\n    \"citta\": \"Roma\",\n    \"numeroPartecipanti\": 150,\n    \"budgetEuro\": 12000.0,\n    \"dataEvento\": \"28/05/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Stefano Brambilla <s.brambilla@eventi-aziendali-roma.it>\",\n    \"email\": \"s.brambilla@eventi-aziendali-roma.it\",\n    \"telefono\": \"+39 06 48920145\",\n    \"azienda\": \"Eventi Aziendali Roma S.r.l.\",\n    \"oggetto\": \"Richiesta preventivo catering convention aziendale annuale\",\n    \"citta\": \"Roma\",\n    \"numeroPartecipanti\": 150,\n    \"budgetEuro\": 12000.0,\n    \"dataEvento\": \"28/05/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 32729,
+        "totalDurationMs" : 32727,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 31404,
+        "promptEvalCount" : 523,
+        "evalCount" : 205,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

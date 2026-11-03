@@ -1,0 +1,124 @@
+{
+  "id" : "HO_FAT_04",
+  "type" : "FATTURA",
+  "template" : "FAT_LOCAZIONE_IMMOBILE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LOC-2026/03",
+      "normalized_extracted" : "LOC-2026/03",
+      "ground_truth" : "LOC-2026/03",
+      "normalized_ground_truth" : "LOC-2026/03",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/03/2026",
+      "normalized_extracted" : "2026-03-01",
+      "ground_truth" : "01/03/2026",
+      "normalized_ground_truth" : "2026-03-01",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "normalized_extracted" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "ground_truth" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "normalized_ground_truth" : "IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03194820373",
+      "normalized_extracted" : "03194820373",
+      "ground_truth" : "03194820373",
+      "normalized_ground_truth" : "03194820373",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14",
+      "normalized_extracted" : "Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14",
+      "ground_truth" : "Dott.ssa Elena Ferri",
+      "normalized_ground_truth" : "Elena Ferri",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2440.0,
+      "normalized_extracted" : 2440.0,
+      "ground_truth" : 2440.0,
+      "normalized_ground_truth" : 2440.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "cliente.denominazione",
+    "key_present" : true,
+    "extracted" : "Dott.ssa Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14",
+    "ground_truth" : "Dott.ssa Elena Ferri",
+    "normalized_extracted" : "Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14",
+    "normalized_ground_truth" : "Elena Ferri",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"LOC-2026/03\",\n  \"dataFattura\": \"01/03/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"IMMOBILIARE BOLOGNESE DI VALERIO SERENA & C. S.A.S.\",\n    \"partitaIva\": \"03194820373\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Dott.ssa Elena Ferri, conduttrice locali commerciali Via Ugo Bassi 14\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 2440.00,\n  \"iban\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 15406,
+    "metrics" : {
+      "totalDurationMs" : 14401,
+      "totalPromptTokens" : 660,
+      "totalCompletionTokens" : 169,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14399,
+        "promptTokens" : 660,
+        "completionTokens" : 169,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 15410
+}

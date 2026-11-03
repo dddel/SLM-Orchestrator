@@ -1,0 +1,195 @@
+{
+  "id" : "HO_EML_07",
+  "type" : "EMAIL",
+  "template" : "EML_PROPOSTA_WORKSHOP",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 3,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Paolo Vianello",
+      "normalized_ground_truth" : "Paolo Vianello",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "p.vianello@digital-hub-firenze.it",
+      "normalized_ground_truth" : "p.vianello@digital-hub-firenze.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Digital Hub Firenze Consorzio",
+      "normalized_ground_truth" : "Digital Hub Firenze Consorzio",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "normalized_ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Firenze",
+      "normalized_ground_truth" : "Firenze",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "24/09/2026",
+      "normalized_ground_truth" : "24/09/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Paolo Vianello",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Paolo Vianello",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "p.vianello@digital-hub-firenze.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "p.vianello@digital-hub-firenze.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Digital Hub Firenze Consorzio",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Digital Hub Firenze Consorzio",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Firenze",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Firenze",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "24/09/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "24/09/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ALTRO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Proposta collaborazione per workshop su Intelligenza Artificiale Generativa\",\n    \"argomentoPrincipale\": \"Co-organizzazione di una giornata di studio\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica.\",\n    \"entitaRilevate\": [\n      \"Dott. Paolo Vianello\",\n      \"Digital Hub Firenze Consorzio\"\n    ]\n  }\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Proposta collaborazione per workshop su Intelligenza Artificiale Generativa\",\n    \"argomentoPrincipale\": \"Co-organizzazione di una giornata di studio\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica.\",\n    \"entitaRilevate\": [\n      \"Dott. Paolo Vianello\",\n      \"Digital Hub Firenze Consorzio\"\n    ]\n  }\n}",
+      "metrics" : {
+        "clientLatencyMs" : 6145,
+        "totalDurationMs" : 6144,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 5819,
+        "promptEvalCount" : 467,
+        "evalCount" : 157,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

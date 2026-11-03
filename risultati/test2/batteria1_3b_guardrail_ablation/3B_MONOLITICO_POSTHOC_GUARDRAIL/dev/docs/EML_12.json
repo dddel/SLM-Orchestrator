@@ -1,0 +1,203 @@
+{
+  "id" : "EML_12",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Andrea Colombo",
+      "normalized_ground_truth" : "Andrea Colombo",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "andrea.colombo@biohealth.it",
+      "normalized_ground_truth" : "andrea.colombo@biohealth.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "0458001122",
+      "normalized_ground_truth" : "0458001122",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "BioHealth Corp",
+      "normalized_ground_truth" : "BioHealth Corp",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Riunione clinica a Verona",
+      "normalized_ground_truth" : "Riunione clinica a Verona",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "10/12/2026",
+      "normalized_ground_truth" : "10/12/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Verona",
+      "normalized_ground_truth" : "Verona",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Andrea Colombo",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Andrea Colombo",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "andrea.colombo@biohealth.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "andrea.colombo@biohealth.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "0458001122",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "0458001122",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "BioHealth Corp",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "BioHealth Corp",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Riunione clinica a Verona",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Riunione clinica a Verona",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "10/12/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "10/12/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Verona",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Verona",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ALTRO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di accesso a riunione clinica\",\n    \"argomentoPrincipale\": \"Sala riunione a Verona\",\n    \"motivoEsclusione\": \"Non specificato\",\n    \"entitaRilevate\": [\n      \"Dott. Andrea Colombo\",\n      \"BioHealth Corp\"\n    ]\n  }\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di accesso a riunione clinica\",\n    \"argomentoPrincipale\": \"Sala riunione a Verona\",\n    \"motivoEsclusione\": \"Non specificato\",\n    \"entitaRilevate\": [\n      \"Dott. Andrea Colombo\",\n      \"BioHealth Corp\"\n    ]\n  }\n}",
+      "metrics" : {
+        "clientLatencyMs" : 4938,
+        "totalDurationMs" : 4935,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 4743,
+        "promptEvalCount" : 394,
+        "evalCount" : 127,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

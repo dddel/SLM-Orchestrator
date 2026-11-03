@@ -1,0 +1,133 @@
+{
+  "id" : "EML_06",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sara Donati",
+      "normalized_extracted" : "Sara Donati",
+      "ground_truth" : "Sara Donati",
+      "normalized_ground_truth" : "Sara Donati",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "sara.donati@cloudtech.com",
+      "normalized_extracted" : "sara.donati@cloudtech.com",
+      "ground_truth" : "sara.donati@cloudtech.com",
+      "normalized_ground_truth" : "sara.donati@cloudtech.com",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CloudTech S.p.A.",
+      "normalized_extracted" : "CloudTech S.p.A.",
+      "ground_truth" : "CloudTech S.p.A.",
+      "normalized_ground_truth" : "CloudTech S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta quotazione convegno annuale",
+      "normalized_extracted" : "Richiesta quotazione convegno annuale",
+      "ground_truth" : "Richiesta quotazione convegno annuale",
+      "normalized_ground_truth" : "Richiesta quotazione convegno annuale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "22/11/2026",
+      "normalized_extracted" : "2026-11-22",
+      "ground_truth" : "22/11/2026",
+      "normalized_ground_truth" : "2026-11-22",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 50,
+      "normalized_extracted" : 50.0,
+      "ground_truth" : 50,
+      "normalized_ground_truth" : 50.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2000,
+      "normalized_extracted" : 2000.0,
+      "ground_truth" : 2000.0,
+      "normalized_ground_truth" : 2000.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Sara Donati\",\"email\":\"sara.donati@cloudtech.com\",\"telefono\":null,\"azienda\":\"CloudTech S.p.A.\",\"oggetto\":\"Richiesta quotazione convegno annuale\",\"citta\":null,\"numeroPartecipanti\":50,\"budgetEuro\":2000,\"dataEvento\":\"22/11/2026\",\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Richiesta quotazione per convegno annuale, ambito di responsabilità della direzione generale\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 34601,
+    "metrics" : {
+      "totalDurationMs" : 33563,
+      "totalPromptTokens" : 1923,
+      "totalCompletionTokens" : 175,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 19661,
+        "promptTokens" : 580,
+        "completionTokens" : 111,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13900,
+        "promptTokens" : 1343,
+        "completionTokens" : 64,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 34606
+}

@@ -1,0 +1,133 @@
+{
+  "id" : "EML_12",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Andrea Colombo",
+      "normalized_extracted" : "Andrea Colombo",
+      "ground_truth" : "Andrea Colombo",
+      "normalized_ground_truth" : "Andrea Colombo",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "andrea.colombo@biohealth.it",
+      "normalized_extracted" : "andrea.colombo@biohealth.it",
+      "ground_truth" : "andrea.colombo@biohealth.it",
+      "normalized_ground_truth" : "andrea.colombo@biohealth.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "045-8001122",
+      "normalized_extracted" : "0458001122",
+      "ground_truth" : "0458001122",
+      "normalized_ground_truth" : "0458001122",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BioHealth Corp",
+      "normalized_extracted" : "BioHealth Corp",
+      "ground_truth" : "BioHealth Corp",
+      "normalized_ground_truth" : "BioHealth Corp",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Riunione clinica a Verona",
+      "normalized_extracted" : "Riunione clinica a Verona",
+      "ground_truth" : "Riunione clinica a Verona",
+      "normalized_ground_truth" : "Riunione clinica a Verona",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/12/2026",
+      "normalized_extracted" : "2026-12-10",
+      "ground_truth" : "10/12/2026",
+      "normalized_ground_truth" : "2026-12-10",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verona",
+      "normalized_extracted" : "Verona",
+      "ground_truth" : "Verona",
+      "normalized_ground_truth" : "Verona",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Andrea Colombo\",\"email\":\"andrea.colombo@biohealth.it\",\"telefono\":\"045-8001122\",\"azienda\":\"BioHealth Corp\",\"oggetto\":\"Riunione clinica a Verona\",\"citta\":\"Verona\",\"dataEvento\":\"10/12/2026\",\"destinatario\":\"Andrea Colombo\",\"ruoloDestinatario\":\"Developers\",\"motivoInstradamento\":\"Richiesta riunione clinica\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 7029,
+    "metrics" : {
+      "totalDurationMs" : 6567,
+      "totalPromptTokens" : 1866,
+      "totalCompletionTokens" : 144,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3991,
+        "promptTokens" : 556,
+        "completionTokens" : 103,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2575,
+        "promptTokens" : 1310,
+        "completionTokens" : 41,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 7033
+}

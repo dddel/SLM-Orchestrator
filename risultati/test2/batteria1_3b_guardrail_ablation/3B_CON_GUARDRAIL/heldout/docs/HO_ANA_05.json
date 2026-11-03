@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_05",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_AUTOCERTIFICAZIONE_RESIDENZA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NON_SPECIFICATO",
+      "normalized_extracted" : "NON_SPECIFICATO",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Vincenzo",
+      "normalized_extracted" : "Vincenzo",
+      "ground_truth" : "Vincenzo",
+      "normalized_ground_truth" : "Vincenzo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Caruso",
+      "normalized_extracted" : "Caruso",
+      "ground_truth" : "Caruso",
+      "normalized_ground_truth" : "Caruso",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CRSVCN68C03G273D",
+      "normalized_extracted" : "CRSVCN68C03G273D",
+      "ground_truth" : "CRSVCN68C03G273D",
+      "normalized_ground_truth" : "CRSVCN68C03G273D",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03/03/1968",
+      "normalized_extracted" : "1968-03-03",
+      "ground_truth" : "03/03/1968",
+      "normalized_ground_truth" : "1968-03-03",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Palermo (PA)",
+      "normalized_extracted" : "Palermo (PA)",
+      "ground_truth" : "Palermo (PA)",
+      "normalized_ground_truth" : "Palermo (PA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"NON_SPECIFICATO\",\n  \"nome\": \"Vincenzo\",\n  \"cognome\": \"Caruso\",\n  \"codiceFiscale\": \"CRSVCN68C03G273D\",\n  \"dataNascita\": \"03/03/1968\",\n  \"luogoNascita\": \"Palermo (PA)\",\n  \"sesso\": null,\n  \"numeroDocumento\": null,\n  \"dataRilascio\": null,\n  \"dataScadenza\": null,\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5665,
+    "metrics" : {
+      "totalDurationMs" : 5078,
+      "totalPromptTokens" : 793,
+      "totalCompletionTokens" : 134,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5076,
+        "promptTokens" : 793,
+        "completionTokens" : 134,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5670
+}

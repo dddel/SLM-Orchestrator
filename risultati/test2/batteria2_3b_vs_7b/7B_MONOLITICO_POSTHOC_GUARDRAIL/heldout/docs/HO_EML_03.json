@@ -1,0 +1,155 @@
+{
+  "id" : "HO_EML_03",
+  "type" : "EMAIL",
+  "template" : "EML_QUESITO_GARA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Cristina Valli <c.valli@vigilanza-lombarda.it>",
+      "normalized_extracted" : "Cristina Valli <c.valli@vigilanza-lombarda.it>",
+      "ground_truth" : "Cristina Valli",
+      "normalized_ground_truth" : "Cristina Valli",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "c.valli@vigilanza-lombarda.it",
+      "normalized_extracted" : "c.valli@vigilanza-lombarda.it",
+      "ground_truth" : "c.valli@vigilanza-lombarda.it",
+      "normalized_ground_truth" : "c.valli@vigilanza-lombarda.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 87192044",
+      "normalized_extracted" : "0287192044",
+      "ground_truth" : "+39 02 87192044",
+      "normalized_ground_truth" : "0287192044",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "normalized_extracted" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "ground_truth" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "normalized_ground_truth" : "Vigilanza Lombarda Sicurezza S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "normalized_extracted" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "ground_truth" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "normalized_ground_truth" : "Chiarimento gara europea vigilanza armata sedi municipali Milano",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano",
+      "normalized_extracted" : "Milano",
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Dott.ssa Cristina Valli <c.valli@vigilanza-lombarda.it>",
+    "ground_truth" : "Cristina Valli",
+    "normalized_extracted" : "Cristina Valli <c.valli@vigilanza-lombarda.it>",
+    "normalized_ground_truth" : "Cristina Valli",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Cristina Valli <c.valli@vigilanza-lombarda.it>\",\n    \"email\": \"c.valli@vigilanza-lombarda.it\",\n    \"telefono\": \"+39 02 87192044\",\n    \"azienda\": \"Vigilanza Lombarda Sicurezza S.r.l.\",\n    \"oggetto\": \"Chiarimento gara europea vigilanza armata sedi municipali Milano\",\n    \"citta\": \"Milano\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Cristina Valli <c.valli@vigilanza-lombarda.it>\",\n    \"email\": \"c.valli@vigilanza-lombarda.it\",\n    \"telefono\": \"+39 02 87192044\",\n    \"azienda\": \"Vigilanza Lombarda Sicurezza S.r.l.\",\n    \"oggetto\": \"Chiarimento gara europea vigilanza armata sedi municipali Milano\",\n    \"citta\": \"Milano\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 30089,
+        "totalDurationMs" : 30086,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 29219,
+        "promptEvalCount" : 486,
+        "evalCount" : 190,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

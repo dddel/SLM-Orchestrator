@@ -1,0 +1,133 @@
+{
+  "id" : "EML_04",
+  "type" : "EMAIL",
+  "template" : "EML_T1_EVENTO_RICHIESTA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Persona Nome 4",
+      "normalized_extracted" : "Persona Nome 4",
+      "ground_truth" : "Persona Nome 4",
+      "normalized_ground_truth" : "Persona Nome 4",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "utente.4@innovazione-tech.it",
+      "normalized_extracted" : "utente.4@innovazione-tech.it",
+      "ground_truth" : "utente.4@innovazione-tech.it",
+      "normalized_ground_truth" : "utente.4@innovazione-tech.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 9000444",
+      "normalized_extracted" : "029000444",
+      "ground_truth" : "+39 02 9000444",
+      "normalized_ground_truth" : "029000444",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Azienda Partner 4 S.r.l.",
+      "normalized_extracted" : "Azienda Partner 4 S.r.l.",
+      "ground_truth" : "Azienda Partner 4 S.r.l.",
+      "normalized_ground_truth" : "Azienda Partner 4 S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta preventivo e allineamento progetto 4",
+      "normalized_extracted" : "Richiesta preventivo e allineamento progetto 4",
+      "ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+      "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 4",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 18,
+      "normalized_extracted" : 18.0,
+      "ground_truth" : 18,
+      "normalized_ground_truth" : 18.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "09/11/2026",
+      "normalized_extracted" : "2026-11-09",
+      "ground_truth" : "09/11/2026",
+      "normalized_ground_truth" : "2026-11-09",
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2000,
+      "normalized_extracted" : 2000.0,
+      "ground_truth" : 2000.0,
+      "normalized_ground_truth" : 2000.0,
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma",
+      "normalized_extracted" : "Roma",
+      "ground_truth" : "Roma",
+      "normalized_ground_truth" : "Roma",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Persona Nome 4\",\"email\":\"utente.4@innovazione-tech.it\",\"telefono\":\"+39 02 9000444\",\"azienda\":\"Azienda Partner 4 S.r.l.\",\"oggetto\":\"Richiesta preventivo e allineamento progetto 4\",\"citta\":\"Roma\",\"numeroPartecipanti\":18,\"budgetEuro\":2000,\"dataEvento\":\"09/11/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Richiesta preventivo e allineamento progetto\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 8986,
+    "metrics" : {
+      "totalDurationMs" : 8023,
+      "totalPromptTokens" : 1942,
+      "totalCompletionTokens" : 168,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4905,
+        "promptTokens" : 584,
+        "completionTokens" : 122,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3113,
+        "promptTokens" : 1358,
+        "completionTokens" : 46,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 8997
+}

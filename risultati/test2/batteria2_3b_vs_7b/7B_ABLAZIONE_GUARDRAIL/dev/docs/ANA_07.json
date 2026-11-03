@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_07",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FRANCESCO PAOLO",
+      "normalized_extracted" : "FRANCESCO PAOLO",
+      "ground_truth" : "Francesco Paolo",
+      "normalized_ground_truth" : "Francesco Paolo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DE ROSSI",
+      "normalized_extracted" : "DE ROSSI",
+      "ground_truth" : "De Rossi",
+      "normalized_ground_truth" : "De Rossi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/07/1978",
+      "normalized_extracted" : "1978-07-15",
+      "ground_truth" : "15/07/1978",
+      "normalized_ground_truth" : "1978-07-15",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NAPOLI (NA)",
+      "normalized_extracted" : "NAPOLI (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CA12345XY",
+      "normalized_extracted" : "CA12345XY",
+      "ground_truth" : "CA12345XY",
+      "normalized_ground_truth" : "CA12345XY",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/02/2022",
+      "normalized_extracted" : "2022-02-01",
+      "ground_truth" : "01/02/2022",
+      "normalized_ground_truth" : "2022-02-01",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/07/2032",
+      "normalized_extracted" : "2032-07-15",
+      "ground_truth" : "15/07/2032",
+      "normalized_ground_truth" : "2032-07-15",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"FRANCESCO PAOLO\",\n  \"cognome\": \"DE ROSSI\",\n  \"codiceFiscale\": null,\n  \"dataNascita\": \"15/07/1978\",\n  \"luogoNascita\": \"NAPOLI (NA)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"CA12345XY\",\n  \"dataRilascio\": \"01/02/2022\",\n  \"dataScadenza\": \"15/07/2032\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 14028,
+    "metrics" : {
+      "totalDurationMs" : 13003,
+      "totalPromptTokens" : 710,
+      "totalCompletionTokens" : 153,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13002,
+        "promptTokens" : 710,
+        "completionTokens" : 153,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 14032
+}

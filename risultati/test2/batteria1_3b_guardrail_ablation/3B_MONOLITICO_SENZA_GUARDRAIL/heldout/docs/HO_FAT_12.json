@@ -1,0 +1,122 @@
+{
+  "id" : "HO_FAT_12",
+  "type" : "FATTURA",
+  "template" : "FAT_GRAFICA_STAMPA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 6,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/077",
+      "normalized_extracted" : "2026/077",
+      "ground_truth" : "2026/077",
+      "normalized_ground_truth" : "2026/077",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/03/2026",
+      "normalized_extracted" : "2026-03-11",
+      "ground_truth" : "11/03/2026",
+      "normalized_ground_truth" : "2026-03-11",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "normalized_extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "normalized_ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03847290198",
+      "normalized_extracted" : "03847290198",
+      "ground_truth" : "03847290198",
+      "normalized_ground_truth" : "03847290198",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "normalized_extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+      "ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "normalized_ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "null",
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1586,
+      "normalized_extracted" : 1586.0,
+      "ground_truth" : 1586.0,
+      "normalized_ground_truth" : 1586.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT29G0503411701000000082736",
+      "normalized_extracted" : "IT29G0503411701000000082736",
+      "ground_truth" : "IT29G0503411701000000082736",
+      "normalized_ground_truth" : "IT29G0503411701000000082736",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "fornitore.denominazione",
+    "key_present" : true,
+    "extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+    "ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+    "normalized_extracted" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+    "normalized_ground_truth" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cliente.denominazione",
+    "key_present" : true,
+    "extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+    "ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+    "normalized_extracted" : "ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.",
+    "normalized_ground_truth" : "CASEIFICIO TIPICO DEL PO S.R.L.",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/077\",\n    \"dataFattura\": \"11/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"CASEIFICIO TIPICO DEL PO S.R.L.\",\n      \"partitaIva\": \"03847290198\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.\",\n      \"codiceFiscale\": \"null\"\n    },\n    \"importoTotale\": 1586,\n    \"iban\": \"IT29G0503411701000000082736\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/077\",\n    \"dataFattura\": \"11/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"CASEIFICIO TIPICO DEL PO S.R.L.\",\n      \"partitaIva\": \"03847290198\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"ARTI GRAFICHE E COMUNICAZIONE CREMONESE S.N.C.\",\n      \"codiceFiscale\": \"null\"\n    },\n    \"importoTotale\": 1586,\n    \"iban\": \"IT29G0503411701000000082736\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 8324,
+      "totalDurationMs" : 8322,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 7956,
+      "promptEvalCount" : 506,
+      "evalCount" : 221,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 8324
+}

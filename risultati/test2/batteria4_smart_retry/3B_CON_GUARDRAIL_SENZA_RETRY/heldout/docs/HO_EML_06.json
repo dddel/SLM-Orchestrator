@@ -1,0 +1,141 @@
+{
+  "id" : "HO_EML_06",
+  "type" : "EMAIL",
+  "template" : "EML_CORSO_FORMAZIONE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Giorgia Bellini",
+      "normalized_extracted" : "Giorgia Bellini",
+      "ground_truth" : "Giorgia Bellini",
+      "normalized_ground_truth" : "Giorgia Bellini",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "formazione@sicur-academy-bo.it",
+      "normalized_extracted" : "formazione@sicur-academy-bo.it",
+      "ground_truth" : "formazione@sicur-academy-bo.it",
+      "normalized_ground_truth" : "formazione@sicur-academy-bo.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 051 4482910",
+      "normalized_extracted" : "0514482910",
+      "ground_truth" : "+39 051 4482910",
+      "normalized_ground_truth" : "0514482910",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Officine Meccaniche Re",
+      "normalized_extracted" : "Officine Meccaniche Re",
+      "ground_truth" : "Sicur Academy Bologna S.r.l.",
+      "normalized_ground_truth" : "Sicur Academy Bologna S.r.l.",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Iscrizione corso antincendio e primo soccorso D.Lgs 81/08",
+      "normalized_extracted" : "Iscrizione corso antincendio e primo soccorso D.Lgs 81/08",
+      "ground_truth" : "Iscrizione corso antincendio e primo soccorso D.Lgs 81/08",
+      "normalized_ground_truth" : "Iscrizione corso antincendio e primo soccorso D.Lgs 81/08",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bologna",
+      "normalized_extracted" : "Bologna",
+      "ground_truth" : "Bologna",
+      "normalized_ground_truth" : "Bologna",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 8,
+      "normalized_extracted" : 8.0,
+      "ground_truth" : 8,
+      "normalized_ground_truth" : 8.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1600,
+      "normalized_extracted" : 1600.0,
+      "ground_truth" : 1600.0,
+      "normalized_ground_truth" : 1600.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06/05/2026",
+      "normalized_extracted" : "2026-05-06",
+      "ground_truth" : "06/05/2026",
+      "normalized_ground_truth" : "2026-05-06",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "azienda",
+    "key_present" : true,
+    "extracted" : "Officine Meccaniche Re",
+    "ground_truth" : "Sicur Academy Bologna S.r.l.",
+    "normalized_extracted" : "Officine Meccaniche Re",
+    "normalized_ground_truth" : "Sicur Academy Bologna S.r.l.",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott.ssa Giorgia Bellini\",\"email\":\"formazione@sicur-academy-bo.it\",\"telefono\":\"+39 051 4482910\",\"azienda\":\"Officine Meccaniche Re\",\"oggetto\":\"Iscrizione corso antincendio e primo soccorso D.Lgs 81/08\",\"citta\":\"Bologna\",\"numeroPartecipanti\":8,\"budgetEuro\":1600,\"dataEvento\":\"06/05/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 10354,
+    "metrics" : {
+      "totalDurationMs" : 9387,
+      "totalPromptTokens" : 2139,
+      "totalCompletionTokens" : 197,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5935,
+        "promptTokens" : 670,
+        "completionTokens" : 147,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3448,
+        "promptTokens" : 1469,
+        "completionTokens" : 50,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 10360
+}

@@ -1,0 +1,149 @@
+{
+  "id" : "HO_ANA_04",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_TESSERA_SANITARIA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Serena",
+      "normalized_extracted" : "Serena",
+      "ground_truth" : "Serena",
+      "normalized_ground_truth" : "Serena",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "De Luca",
+      "normalized_extracted" : "De Luca",
+      "ground_truth" : "De Luca",
+      "normalized_ground_truth" : "De Luca",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DLCSRN94A52F839Q",
+      "normalized_extracted" : "DLCSRN94A52F839Q",
+      "ground_truth" : "DLCSRN94A52F839Q",
+      "normalized_ground_truth" : "DLCSRN94A52F839Q",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/01/1994",
+      "normalized_extracted" : "1994-01-12",
+      "ground_truth" : "12/01/1994",
+      "normalized_ground_truth" : "1994-01-12",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Napoli (NA)",
+      "normalized_extracted" : "Napoli (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001200394829102",
+      "normalized_extracted" : "80380001200394829102",
+      "ground_truth" : "80380001200394829102",
+      "normalized_ground_truth" : "80380001200394829102",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "12/01/2028",
+      "normalized_extracted" : "12/01/2028",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/01/2028",
+      "normalized_extracted" : "2028-01-12",
+      "ground_truth" : "12/01/2028",
+      "normalized_ground_truth" : "2028-01-12",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MINISTERO DELL'ECONOMIA E DELLE FINANZE",
+      "normalized_extracted" : "MINISTERO DELL'ECONOMIA E DELLE FINANZE",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "dataRilascio",
+    "key_present" : true,
+    "extracted" : "12/01/2028",
+    "ground_truth" : null,
+    "normalized_extracted" : "12/01/2028",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : true,
+    "extracted" : "MINISTERO DELL'ECONOMIA E DELLE FINANZE",
+    "ground_truth" : null,
+    "normalized_extracted" : "MINISTERO DELL'ECONOMIA E DELLE FINANZE",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"TESSERA_SANITARIA\",\n    \"nome\": \"Serena\",\n    \"cognome\": \"De Luca\",\n    \"codiceFiscale\": \"DLCSRN94A52F839Q\",\n    \"dataNascita\": \"12/01/1994\",\n    \"luogoNascita\": \"Napoli (NA)\",\n    \"sesso\": \"F\",\n    \"numeroDocumento\": \"80380001200394829102\",\n    \"dataRilascio\": \"12/01/2028\",\n    \"dataScadenza\": \"12/01/2028\",\n    \"enteRilascio\": \"MINISTERO DELL'ECONOMIA E DELLE FINANZE\"\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"TESSERA_SANITARIA\",\n    \"nome\": \"Serena\",\n    \"cognome\": \"De Luca\",\n    \"codiceFiscale\": \"DLCSRN94A52F839Q\",\n    \"dataNascita\": \"12/01/1994\",\n    \"luogoNascita\": \"Napoli (NA)\",\n    \"sesso\": \"F\",\n    \"numeroDocumento\": \"80380001200394829102\",\n    \"dataRilascio\": \"12/01/2028\",\n    \"dataScadenza\": \"12/01/2028\",\n    \"enteRilascio\": \"MINISTERO DELL'ECONOMIA E DELLE FINANZE\"\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 37300,
+      "totalDurationMs" : 37298,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 36519,
+      "promptEvalCount" : 433,
+      "evalCount" : 235,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 37300
+}

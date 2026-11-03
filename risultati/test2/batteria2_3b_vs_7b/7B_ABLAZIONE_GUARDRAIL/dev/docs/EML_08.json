@@ -1,0 +1,141 @@
+{
+  "id" : "EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Chiara Moretti",
+      "normalized_extracted" : "Chiara Moretti",
+      "ground_truth" : "Chiara Moretti",
+      "normalized_ground_truth" : "Chiara Moretti",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "chiara.moretti@medialab.it",
+      "normalized_extracted" : "chiara.moretti@medialab.it",
+      "ground_truth" : "chiara.moretti@medialab.it",
+      "normalized_ground_truth" : "chiara.moretti@medialab.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "055 998877",
+      "normalized_extracted" : "055998877",
+      "ground_truth" : "055998877",
+      "normalized_ground_truth" : "055998877",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MediaLab Group",
+      "normalized_extracted" : "MediaLab Group",
+      "ground_truth" : "MediaLab Group",
+      "normalized_ground_truth" : "MediaLab Group",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Conferenza stampa Firenze",
+      "normalized_ground_truth" : "Conferenza stampa Firenze",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/11/2026",
+      "normalized_extracted" : "2026-11-05",
+      "ground_truth" : "05/11/2026",
+      "normalized_ground_truth" : "2026-11-05",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze",
+      "normalized_extracted" : "Firenze",
+      "ground_truth" : "Firenze",
+      "normalized_ground_truth" : "Firenze",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "oggetto",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Conferenza stampa Firenze",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Conferenza stampa Firenze",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott.ssa Chiara Moretti\",\"email\":\"chiara.moretti@medialab.it\",\"telefono\":\"055 998877\",\"azienda\":\"MediaLab Group\",\"oggetto\":null,\"citta\":\"Firenze\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"05/11/2026\",\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Richiesta di approvazione per conferenza stampa in data 05/11/2026\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 16580,
+    "metrics" : {
+      "totalDurationMs" : 15732,
+      "totalPromptTokens" : 1873,
+      "totalCompletionTokens" : 164,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9359,
+        "promptTokens" : 556,
+        "completionTokens" : 109,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 6371,
+        "promptTokens" : 1317,
+        "completionTokens" : 55,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 16583
+}

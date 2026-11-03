@@ -1,0 +1,171 @@
+{
+  "id" : "EML_16",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Matteo Fontana",
+      "normalized_ground_truth" : "Matteo Fontana",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "m.fontana@solarenergia.it",
+      "normalized_ground_truth" : "m.fontana@solarenergia.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "SolarEnergia S.r.l.",
+      "normalized_ground_truth" : "SolarEnergia S.r.l.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Tavola rotonda transizione energetica",
+      "normalized_ground_truth" : "Tavola rotonda transizione energetica",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "28/12/2026",
+      "normalized_ground_truth" : "28/12/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 60,
+      "normalized_ground_truth" : 60,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 3000.0,
+      "normalized_ground_truth" : 3000.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Matteo Fontana",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Matteo Fontana",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "m.fontana@solarenergia.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "m.fontana@solarenergia.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "SolarEnergia S.r.l.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "SolarEnergia S.r.l.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Tavola rotonda transizione energetica",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Tavola rotonda transizione energetica",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "28/12/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "28/12/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 60,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 60,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 3000.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 3000.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Tavola rotonda transizione energetica\",\n    \"argomentoPrincipale\": \"Tavola rotonda online\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica.\",\n    \"entitaRilevate\": [\n      \"Matteo Fontana\",\n      \"SolarEnergia S.r.l.\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Tavola rotonda transizione energetica\",\n    \"argomentoPrincipale\": \"Tavola rotonda online\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica.\",\n    \"entitaRilevate\": [\n      \"Matteo Fontana\",\n      \"SolarEnergia S.r.l.\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 6483,
+      "totalDurationMs" : 6481,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 6268,
+      "promptEvalCount" : 385,
+      "evalCount" : 147,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 6483
+}

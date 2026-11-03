@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_06",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GIULIA",
+      "normalized_extracted" : "GIULIA",
+      "ground_truth" : "Giulia",
+      "normalized_ground_truth" : "Giulia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VERDI",
+      "normalized_extracted" : "VERDI",
+      "ground_truth" : "Verdi",
+      "normalized_ground_truth" : "Verdi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "24/09/1990",
+      "normalized_extracted" : "1990-09-24",
+      "ground_truth" : "24/09/1990",
+      "normalized_ground_truth" : "1990-09-24",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MILANO (MI)",
+      "normalized_extracted" : "MILANO (MI)",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1Y112233K",
+      "normalized_extracted" : "U1Y112233K",
+      "ground_truth" : "U1Y112233K",
+      "normalized_ground_truth" : "U1Y112233K",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/10/2021",
+      "normalized_extracted" : "2021-10-10",
+      "ground_truth" : "10/10/2021",
+      "normalized_ground_truth" : "2021-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/10/2031",
+      "normalized_extracted" : "2031-10-10",
+      "ground_truth" : "10/10/2031",
+      "normalized_ground_truth" : "2031-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"PATENTE\",\n  \"nome\": \"GIULIA\",\n  \"cognome\": \"VERDI\",\n  \"codiceFiscale\": null,\n  \"dataNascita\": \"24/09/1990\",\n  \"luogoNascita\": \"MILANO (MI)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"U1Y112233K\",\n  \"dataRilascio\": \"10/10/2021\",\n  \"dataScadenza\": \"10/10/2031\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 28122,
+    "metrics" : {
+      "totalDurationMs" : 26388,
+      "totalPromptTokens" : 710,
+      "totalCompletionTokens" : 148,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 26386,
+        "promptTokens" : 710,
+        "completionTokens" : 148,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 28126
+}

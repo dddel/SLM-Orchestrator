@@ -1,0 +1,171 @@
+{
+  "id" : "EML_15",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Simona De Luca",
+      "normalized_ground_truth" : "Simona De Luca",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "s.deluca@fashionbrand.it",
+      "normalized_ground_truth" : "s.deluca@fashionbrand.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 02 11223344",
+      "normalized_ground_truth" : "+39 02 11223344",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "FashionBrand S.p.A.",
+      "normalized_ground_truth" : "FashionBrand S.p.A.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Presentazione collezione Milano",
+      "normalized_ground_truth" : "Presentazione collezione Milano",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "22/12/2026",
+      "normalized_ground_truth" : "22/12/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Simona De Luca",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Simona De Luca",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "s.deluca@fashionbrand.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "s.deluca@fashionbrand.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 02 11223344",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 02 11223344",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "FashionBrand S.p.A.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "FashionBrand S.p.A.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Presentazione collezione Milano",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Presentazione collezione Milano",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "22/12/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "22/12/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Milano",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Milano",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Presentazione collezione\",\n    \"argomentoPrincipale\": \"Conferma evento\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\n      \"Simona De Luca\",\n      \"FashionBrand S.p.A.\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Presentazione collezione\",\n    \"argomentoPrincipale\": \"Conferma evento\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\n      \"Simona De Luca\",\n      \"FashionBrand S.p.A.\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 5465,
+      "totalDurationMs" : 5463,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5167,
+      "promptEvalCount" : 397,
+      "evalCount" : 134,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 5465
+}

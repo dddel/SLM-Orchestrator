@@ -1,0 +1,121 @@
+{
+  "id" : "HO_ADV_01",
+  "type" : "FATTURA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FAT-2026-049",
+      "normalized_extracted" : "FAT-2026-049",
+      "ground_truth" : "FAT-2026-049",
+      "normalized_ground_truth" : "FAT-2026-049",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02/03/2026",
+      "normalized_extracted" : "2026-03-02",
+      "ground_truth" : "02/03/2026",
+      "normalized_ground_truth" : "2026-03-02",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "normalized_extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "normalized_ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07319450284",
+      "normalized_extracted" : "07319450284",
+      "ground_truth" : "07319450284",
+      "normalized_ground_truth" : "07319450284",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "normalized_extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "normalized_ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1342.0,
+      "normalized_extracted" : 1342.0,
+      "ground_truth" : 1342.0,
+      "normalized_ground_truth" : 1342.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT36K0503411701000000038472",
+      "normalized_extracted" : "IT36K0503411701000000038472",
+      "ground_truth" : "IT36K0503411701000000038472",
+      "normalized_ground_truth" : "IT36K0503411701000000038472",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\": \"FAT-2026-049\", \"dataFattura\": \"02/03/2026\", \"fornitore\": {\"denominazione\": \"TERMOIDRAULICA F.LLI SARTORI S.N.C.\", \"partitaIva\": \"07319450284\"}, \"cliente\": {\"denominazione\": \"HOTEL DOLOMITI RESORT S.R.L.\",\"codiceFiscale\": null}, \"importoTotale\": 1342.0, \"iban\": \"IT36K0503411701000000038472\"}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '07319450284'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6998,
+    "metrics" : {
+      "totalDurationMs" : 6364,
+      "totalPromptTokens" : 657,
+      "totalCompletionTokens" : 161,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 6363,
+        "promptTokens" : 657,
+        "completionTokens" : 161,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 7006
+}

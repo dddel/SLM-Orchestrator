@@ -1,0 +1,106 @@
+{
+  "id" : "HO_FAT_09",
+  "type" : "FATTURA",
+  "template" : "FAT_DPI_CASSA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VEND-2026-081",
+      "normalized_extracted" : "VEND-2026-081",
+      "ground_truth" : "VEND-2026-081",
+      "normalized_ground_truth" : "VEND-2026-081",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/02/2026",
+      "normalized_extracted" : "2026-02-10",
+      "ground_truth" : "10/02/2026",
+      "normalized_ground_truth" : "2026-02-10",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SICUREZZA & LAVORO PIEMONTE S.A.S.",
+      "normalized_extracted" : "SICUREZZA & LAVORO PIEMONTE S.A.S.",
+      "ground_truth" : "SICUREZZA & LAVORO PIEMONTE S.A.S.",
+      "normalized_ground_truth" : "SICUREZZA & LAVORO PIEMONTE S.A.S.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06192840046",
+      "normalized_extracted" : "06192840046",
+      "ground_truth" : "06192840046",
+      "normalized_ground_truth" : "06192840046",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ALPES CONSTRUCTIONS SARL",
+      "normalized_extracted" : "ALPES CONSTRUCTIONS SARL",
+      "ground_truth" : "ALPES CONSTRUCTIONS SARL",
+      "normalized_ground_truth" : "ALPES CONSTRUCTIONS SARL",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 732.0,
+      "normalized_extracted" : 732.0,
+      "ground_truth" : 732.0,
+      "normalized_ground_truth" : 732.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"VEND-2026-081\",\n    \"dataFattura\": \"10/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"SICUREZZA & LAVORO PIEMONTE S.A.S.\",\n      \"partitaIva\": \"06192840046\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"ALPES CONSTRUCTIONS SARL\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 732.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"VEND-2026-081\",\n    \"dataFattura\": \"10/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"SICUREZZA & LAVORO PIEMONTE S.A.S.\",\n      \"partitaIva\": \"06192840046\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"ALPES CONSTRUCTIONS SARL\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 732.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 29682,
+      "totalDurationMs" : 29680,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 28453,
+      "promptEvalCount" : 478,
+      "evalCount" : 189,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 29682
+}

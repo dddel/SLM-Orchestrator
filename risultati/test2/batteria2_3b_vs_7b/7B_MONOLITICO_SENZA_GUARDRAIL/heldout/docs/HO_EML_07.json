@@ -1,0 +1,123 @@
+{
+  "id" : "HO_EML_07",
+  "type" : "EMAIL",
+  "template" : "EML_PROPOSTA_WORKSHOP",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Dott. Paolo Vianello <p.vianello@digital-hub-firenze.it>",
+      "normalized_extracted" : "Paolo Vianello <p.vianello@digital-hub-firenze.it>",
+      "ground_truth" : "Paolo Vianello",
+      "normalized_ground_truth" : "Paolo Vianello",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "p.vianello@digital-hub-firenze.it",
+      "normalized_extracted" : "p.vianello@digital-hub-firenze.it",
+      "ground_truth" : "p.vianello@digital-hub-firenze.it",
+      "normalized_ground_truth" : "p.vianello@digital-hub-firenze.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Digital Hub Firenze Consorzio",
+      "normalized_extracted" : "Digital Hub Firenze Consorzio",
+      "ground_truth" : "Digital Hub Firenze Consorzio",
+      "normalized_ground_truth" : "Digital Hub Firenze Consorzio",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "normalized_extracted" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "normalized_ground_truth" : "Proposta collaborazione per workshop su Intelligenza Artificiale Generativa",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze",
+      "normalized_extracted" : "Firenze",
+      "ground_truth" : "Firenze",
+      "normalized_ground_truth" : "Firenze",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "24/09/2026",
+      "normalized_extracted" : "2026-09-24",
+      "ground_truth" : "24/09/2026",
+      "normalized_ground_truth" : "2026-09-24",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Dott. Paolo Vianello <p.vianello@digital-hub-firenze.it>",
+    "ground_truth" : "Paolo Vianello",
+    "normalized_extracted" : "Paolo Vianello <p.vianello@digital-hub-firenze.it>",
+    "normalized_ground_truth" : "Paolo Vianello",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott. Paolo Vianello <p.vianello@digital-hub-firenze.it>\",\n    \"email\": \"p.vianello@digital-hub-firenze.it\",\n    \"telefono\": null,\n    \"azienda\": \"Digital Hub Firenze Consorzio\",\n    \"oggetto\": \"Proposta collaborazione per workshop su Intelligenza Artificiale Generativa\",\n    \"citta\": \"Firenze\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"24/09/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott. Paolo Vianello <p.vianello@digital-hub-firenze.it>\",\n    \"email\": \"p.vianello@digital-hub-firenze.it\",\n    \"telefono\": null,\n    \"azienda\": \"Digital Hub Firenze Consorzio\",\n    \"oggetto\": \"Proposta collaborazione per workshop su Intelligenza Artificiale Generativa\",\n    \"citta\": \"Firenze\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"24/09/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 28342,
+      "totalDurationMs" : 28340,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 27482,
+      "promptEvalCount" : 467,
+      "evalCount" : 182,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 28342
+}

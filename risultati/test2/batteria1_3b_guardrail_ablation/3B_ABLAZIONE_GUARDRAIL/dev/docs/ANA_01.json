@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_01",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T1_CARTA_IDENTITA_CARTACEA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Nome1",
+      "normalized_extracted" : "Nome1",
+      "ground_truth" : "Nome1",
+      "normalized_ground_truth" : "Nome1",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cognome1",
+      "normalized_extracted" : "Cognome1",
+      "ground_truth" : "Cognome1",
+      "normalized_ground_truth" : "Cognome1",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "COGNOM81M03H501F",
+      "normalized_extracted" : "COGNOM81M03H501F",
+      "ground_truth" : "COGNOM81M03H501F",
+      "normalized_ground_truth" : "COGNOM81M03H501F",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03/05/1981",
+      "normalized_extracted" : "1981-05-03",
+      "ground_truth" : "03/05/1981",
+      "normalized_ground_truth" : "1981-05-03",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma (RM)",
+      "normalized_extracted" : "Roma (RM)",
+      "ground_truth" : "Roma (RM)",
+      "normalized_ground_truth" : "Roma (RM)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1900023K",
+      "normalized_extracted" : "U1900023K",
+      "ground_truth" : "U1900023K",
+      "normalized_ground_truth" : "U1900023K",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2021",
+      "normalized_extracted" : "2021-01-10",
+      "ground_truth" : "10/01/2021",
+      "normalized_ground_truth" : "2021-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2031",
+      "normalized_extracted" : "2031-01-10",
+      "ground_truth" : "10/01/2031",
+      "normalized_ground_truth" : "2031-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MIT-UCO",
+      "normalized_extracted" : "MIT-UCO",
+      "ground_truth" : "MIT-UCO",
+      "normalized_ground_truth" : "MIT-UCO",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"PATENTE\", \"nome\": \"Nome1\", \"cognome\": \"Cognome1\", \"codiceFiscale\": \"COGNOM81M03H501F\", \"dataNascita\": \"03/05/1981\", \"luogoNascita\": \"Roma (RM)\", \"sesso\": null, \"numeroDocumento\": \"U1900023K\", \"dataRilascio\": \"10/01/2021\", \"dataScadenza\": \"10/01/2031\", \"enteRilascio\": \"MIT-UCO\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6475,
+    "metrics" : {
+      "totalDurationMs" : 5856,
+      "totalPromptTokens" : 742,
+      "totalCompletionTokens" : 151,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5854,
+        "promptTokens" : 742,
+        "completionTokens" : 151,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6480
+}

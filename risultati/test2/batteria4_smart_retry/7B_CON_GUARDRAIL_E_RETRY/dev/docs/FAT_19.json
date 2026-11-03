@@ -1,0 +1,124 @@
+{
+  "id" : "FAT_19",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/019",
+      "normalized_extracted" : "2026/019",
+      "ground_truth" : "2026/019",
+      "normalized_ground_truth" : "2026/019",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sanitas Lab S.r.l.",
+      "normalized_extracted" : "Sanitas Lab S.r.l.",
+      "ground_truth" : "Sanitas Lab S.r.l.",
+      "normalized_ground_truth" : "Sanitas Lab S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000008598",
+      "normalized_extracted" : "10000008598",
+      "ground_truth" : "10000008598",
+      "normalized_ground_truth" : "10000008598",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Azienda Ospedaliera Centro",
+      "normalized_ground_truth" : "Azienda Ospedaliera Centro",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 650.0,
+      "normalized_extracted" : 650.0,
+      "ground_truth" : 650.0,
+      "normalized_ground_truth" : 650.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "cliente.denominazione",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Azienda Ospedaliera Centro",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Azienda Ospedaliera Centro",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\":\"2026/019\",\"dataFattura\":null,\"fornitore\":{\"denominazione\":\"Sanitas Lab S.r.l.\",\"partitaIva\":\"10000008598\"},\"cliente\":{\"denominazione\":null,\"codiceFiscale\":null},\"importoTotale\":650.00,\"iban\":null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 17053,
+    "metrics" : {
+      "totalDurationMs" : 15834,
+      "totalPromptTokens" : 547,
+      "totalCompletionTokens" : 87,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 15833,
+        "promptTokens" : 547,
+        "completionTokens" : 87,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 17057
+}

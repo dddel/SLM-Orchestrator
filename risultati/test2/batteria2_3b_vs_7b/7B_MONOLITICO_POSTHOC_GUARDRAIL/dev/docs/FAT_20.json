@@ -1,0 +1,138 @@
+{
+  "id" : "FAT_20",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "test",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20",
+      "normalized_extracted" : "20",
+      "ground_truth" : "20",
+      "normalized_ground_truth" : "20",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Geologico Terrae",
+      "normalized_extracted" : "Studio Geologico Terrae",
+      "ground_truth" : "Studio Geologico Terrae",
+      "normalized_ground_truth" : "Studio Geologico Terrae",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000009968",
+      "normalized_extracted" : "10000009968",
+      "ground_truth" : "10000009968",
+      "normalized_ground_truth" : "10000009968",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Consorzio Bonifica Nord",
+      "normalized_extracted" : "Consorzio Bonifica Nord",
+      "ground_truth" : "Consorzio Bonifica Nord",
+      "normalized_ground_truth" : "Consorzio Bonifica Nord",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 2100,
+      "normalized_extracted" : 2100.0,
+      "ground_truth" : 2100.0,
+      "normalized_ground_truth" : 2100.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"20\",\n    \"dataFattura\": null,\n    \"fornitore\": {\n      \"denominazione\": \"Studio Geologico Terrae\",\n      \"partitaIva\": \"10000009968\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Consorzio Bonifica Nord\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2100,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"20\",\n    \"dataFattura\": null,\n    \"fornitore\": {\n      \"denominazione\": \"Studio Geologico Terrae\",\n      \"partitaIva\": \"10000009968\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Consorzio Bonifica Nord\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 2100,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 25801,
+        "totalDurationMs" : 25799,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 25127,
+        "promptEvalCount" : 361,
+        "evalCount" : 158,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

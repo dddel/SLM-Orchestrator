@@ -1,0 +1,154 @@
+{
+  "id" : "HO_EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_RECLAMO_COMMERCIALE",
+  "split" : "heldout",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 4,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Federica Neri",
+      "normalized_extracted" : "Federica Neri",
+      "ground_truth" : "Federica Neri",
+      "normalized_ground_truth" : "Federica Neri",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 045 8920148",
+      "normalized_extracted" : "0458920148",
+      "ground_truth" : "+39 045 8920148",
+      "normalized_ground_truth" : "0458920148",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"mittente\":\"Federica Neri\",\"email\":\"acquisti@distribuzione-alimentare-nord.it\",\"telefono\":\"+39 045 8920148\",\"azienda\":\"Distribuzione Alimentare Nord S.r.l.\",\"oggetto\":\"Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26\",\"citta\":null,\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"contabilita@pastificio-emiliano-dop.it\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Richiesta emissione nota di credito per bancale danneggiato\"}",
+    "errors" : [ {
+      "path" : "destinatario",
+      "validatorName" : "CatalogMembershipGuard",
+      "code" : "VALUE_NOT_IN_CATALOG",
+      "message" : "Il valore 'contabilita@pastificio-emiliano-dop.it' per il campo 'destinatario' non appartiene al catalogo autorizzato."
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 45534,
+    "metrics" : {
+      "totalDurationMs" : 44416,
+      "totalPromptTokens" : 5184,
+      "totalCompletionTokens" : 337,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14510,
+        "promptTokens" : 639,
+        "completionTokens" : 133,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 10550,
+        "promptTokens" : 1424,
+        "completionTokens" : 74,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9531,
+        "promptTokens" : 1556,
+        "completionTokens" : 65,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9816,
+        "promptTokens" : 1565,
+        "completionTokens" : 65,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 45540
+}

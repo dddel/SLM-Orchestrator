@@ -1,0 +1,181 @@
+{
+  "id" : "ANA_11",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T3_PASSAPORTO_MINISTERO",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MANCINI",
+      "normalized_extracted" : "MANCINI",
+      "ground_truth" : "Marco Aurelio",
+      "normalized_ground_truth" : "Marco Aurelio",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MARCO AURELIO",
+      "normalized_extracted" : "MARCO AURELIO",
+      "ground_truth" : "Mancini",
+      "normalized_ground_truth" : "Mancini",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1975-07-07",
+      "normalized_extracted" : "1975-07-07",
+      "ground_truth" : "07/07/1975",
+      "normalized_ground_truth" : "1975-07-07",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ROMA (RM)",
+      "normalized_extracted" : "ROMA (RM)",
+      "ground_truth" : "Roma (RM)",
+      "normalized_ground_truth" : "Roma (RM)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YC1239876",
+      "normalized_extracted" : "YC1239876",
+      "ground_truth" : "YC1239876",
+      "normalized_ground_truth" : "YC1239876",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2023-03-20",
+      "normalized_extracted" : "2023-03-20",
+      "ground_truth" : "20/03/2023",
+      "normalized_ground_truth" : "2023-03-20",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2033-03-20",
+      "normalized_extracted" : "2033-03-20",
+      "ground_truth" : "20/03/2033",
+      "normalized_ground_truth" : "2033-03-20",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "MANCINI",
+    "ground_truth" : "Marco Aurelio",
+    "normalized_extracted" : "MANCINI",
+    "normalized_ground_truth" : "Marco Aurelio",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "MARCO AURELIO",
+    "ground_truth" : "Mancini",
+    "normalized_extracted" : "MARCO AURELIO",
+    "normalized_ground_truth" : "Mancini",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"MANCINI\",\n    \"cognome\": \"MARCO AURELIO\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1975-07-07\",\n    \"luogoNascita\": \"ROMA (RM)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YC1239876\",\n    \"dataRilascio\": \"2023-03-20\",\n    \"dataScadenza\": \"2033-03-20\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"MANCINI\",\n    \"cognome\": \"MARCO AURELIO\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1975-07-07\",\n    \"luogoNascita\": \"ROMA (RM)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"YC1239876\",\n    \"dataRilascio\": \"2023-03-20\",\n    \"dataScadenza\": \"2033-03-20\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 7711,
+        "totalDurationMs" : 7708,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 7520,
+        "promptEvalCount" : 366,
+        "evalCount" : 198,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

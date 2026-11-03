@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_RECLAMO_COMMERCIALE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Federica Neri",
+      "normalized_extracted" : "Federica Neri",
+      "ground_truth" : "Federica Neri",
+      "normalized_ground_truth" : "Federica Neri",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_extracted" : "acquisti@distribuzione-alimentare-nord.it",
+      "ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "normalized_ground_truth" : "acquisti@distribuzione-alimentare-nord.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 045 8920148",
+      "normalized_extracted" : "0458920148",
+      "ground_truth" : "+39 045 8920148",
+      "normalized_ground_truth" : "0458920148",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_extracted" : "Distribuzione Alimentare Nord S.r.l.",
+      "ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "normalized_ground_truth" : "Distribuzione Alimentare Nord S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_extracted" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "normalized_ground_truth" : "Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Federica Neri\",\"email\":\"acquisti@distribuzione-alimentare-nord.it\",\"telefono\":\"+39 045 8920148\",\"azienda\":\"Distribuzione Alimentare Nord S.r.l.\",\"oggetto\":\"Richiesta emissione nota di credito per bancale danneggiato rif DDT 240/26\",\"citta\":null,\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidatura lavorativa o invio curriculum vitae\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 8342,
+    "metrics" : {
+      "totalDurationMs" : 7798,
+      "totalPromptTokens" : 2063,
+      "totalCompletionTokens" : 174,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5031,
+        "promptTokens" : 639,
+        "completionTokens" : 133,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 2764,
+        "promptTokens" : 1424,
+        "completionTokens" : 41,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 8346
+}

@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_SEGNALAZIONE_GUASTO",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roberto Maran",
+      "normalized_extracted" : "Roberto Maran",
+      "ground_truth" : "Roberto Maran",
+      "normalized_ground_truth" : "Roberto Maran",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "roberto.maran@telecom-fibra-net.org",
+      "normalized_extracted" : "roberto.maran@telecom-fibra-net.org",
+      "ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "normalized_ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Brescia",
+      "normalized_extracted" : "Brescia",
+      "ground_truth" : "Brescia",
+      "normalized_ground_truth" : "Brescia",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Roberto Maran\",\"email\":\"roberto.maran@telecom-fibra-net.org\",\"telefono\":null,\"azienda\":null,\"oggetto\":\"Segnalazione trancio cavo ottico dorsale Brescia - Bergamo\",\"citta\":\"Brescia\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"Marco Rossi\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Segnalazione disservizio infrastrutturale o problema hardware\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 31463,
+    "metrics" : {
+      "totalDurationMs" : 30374,
+      "totalPromptTokens" : 1939,
+      "totalCompletionTokens" : 157,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 18198,
+        "promptTokens" : 592,
+        "completionTokens" : 103,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 12172,
+        "promptTokens" : 1347,
+        "completionTokens" : 54,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 31468
+}

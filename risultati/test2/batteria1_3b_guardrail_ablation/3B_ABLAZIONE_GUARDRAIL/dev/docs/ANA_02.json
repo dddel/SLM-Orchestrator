@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_02",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T1_CARTA_IDENTITA_CARTACEA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Nome2",
+      "normalized_extracted" : "Nome2",
+      "ground_truth" : "Nome2",
+      "normalized_ground_truth" : "Nome2",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cognome2",
+      "normalized_extracted" : "Cognome2",
+      "ground_truth" : "Cognome2",
+      "normalized_ground_truth" : "Cognome2",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "COGNOM82M05H501M",
+      "normalized_extracted" : "COGNOM82M05H501M",
+      "ground_truth" : "COGNOM82M05H501M",
+      "normalized_ground_truth" : "COGNOM82M05H501M",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/05/1982",
+      "normalized_extracted" : "1982-05-05",
+      "ground_truth" : "05/05/1982",
+      "normalized_ground_truth" : "1982-05-05",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Napoli (NA)",
+      "normalized_extracted" : "Napoli (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "YA100014",
+      "normalized_extracted" : "YA100014",
+      "ground_truth" : "YA100014",
+      "normalized_ground_truth" : "YA100014",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2022",
+      "normalized_extracted" : "2022-01-10",
+      "ground_truth" : "10/01/2022",
+      "normalized_ground_truth" : "2022-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2032",
+      "normalized_extracted" : "2032-01-10",
+      "ground_truth" : "10/01/2032",
+      "normalized_ground_truth" : "2032-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Questura di Napoli",
+      "normalized_extracted" : "Questura di Napoli",
+      "ground_truth" : "Questura di Napoli",
+      "normalized_ground_truth" : "Questura di Napoli",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Nome2\", \"cognome\": \"Cognome2\", \"codiceFiscale\": \"COGNOM82M05H501M\", \"dataNascita\": \"05/05/1982\", \"luogoNascita\": \"Napoli (NA)\", \"sesso\": \"M\", \"numeroDocumento\": \"YA100014\", \"dataRilascio\": \"10/01/2022\", \"dataScadenza\": \"10/01/2032\", \"enteRilascio\": \"Questura di Napoli\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6394,
+    "metrics" : {
+      "totalDurationMs" : 5829,
+      "totalPromptTokens" : 767,
+      "totalCompletionTokens" : 153,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5829,
+        "promptTokens" : 767,
+        "completionTokens" : 153,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6399
+}

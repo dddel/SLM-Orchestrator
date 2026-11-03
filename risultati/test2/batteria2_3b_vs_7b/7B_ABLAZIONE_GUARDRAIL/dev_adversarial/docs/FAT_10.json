@@ -1,0 +1,121 @@
+{
+  "id" : "FAT_10",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "102/2026",
+      "normalized_extracted" : "102/2026",
+      "ground_truth" : "102/2026",
+      "normalized_ground_truth" : "102/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Elena Neri Consulenze",
+      "normalized_extracted" : "Elena Neri Consulenze",
+      "ground_truth" : "Elena Neri Consulenze",
+      "normalized_ground_truth" : "Elena Neri Consulenze",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000007221",
+      "normalized_extracted" : "10000007221",
+      "ground_truth" : "10000007221",
+      "normalized_ground_truth" : "10000007221",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Spett.le Astra Holding S.p.A.",
+      "normalized_extracted" : "Astra Holding S.p.A.",
+      "ground_truth" : "Astra Holding S.p.A.",
+      "normalized_ground_truth" : "Astra Holding S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3500.0,
+      "normalized_extracted" : 3500.0,
+      "ground_truth" : 3500.0,
+      "normalized_ground_truth" : 3500.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\n  \"numeroFattura\": \"102/2026\",\n  \"dataFattura\": null,\n  \"fornitore\": {\n    \"denominazione\": \"Dott.ssa Elena Neri Consulenze\",\n    \"partitaIva\": \"10000007221\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Spett.le Astra Holding S.p.A.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 3500.00,\n  \"iban\": null\n}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000007221'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 12079,
+    "metrics" : {
+      "totalDurationMs" : 11245,
+      "totalPromptTokens" : 548,
+      "totalCompletionTokens" : 132,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 11243,
+        "promptTokens" : 548,
+        "completionTokens" : 132,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 12084
+}

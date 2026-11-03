@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_10",
+  "type" : "EMAIL",
+  "template" : "EML_INVITO_CONVEGNO",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Beatrice Pozzi",
+      "normalized_extracted" : "Beatrice Pozzi",
+      "ground_truth" : "Beatrice Pozzi",
+      "normalized_ground_truth" : "Beatrice Pozzi",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "segreteria@confindustria-liguria.it",
+      "normalized_extracted" : "segreteria@confindustria-liguria.it",
+      "ground_truth" : "segreteria@confindustria-liguria.it",
+      "normalized_ground_truth" : "segreteria@confindustria-liguria.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 010 2498105",
+      "normalized_extracted" : "0102498105",
+      "ground_truth" : "+39 010 2498105",
+      "normalized_ground_truth" : "0102498105",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Confindustria Liguria Servizi S.c.a.r.l.",
+      "normalized_extracted" : "Confindustria Liguria Servizi S.c.a.r.l.",
+      "ground_truth" : "Confindustria Liguria Servizi S.c.a.r.l.",
+      "normalized_ground_truth" : "Confindustria Liguria Servizi S.c.a.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR",
+      "normalized_extracted" : "Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR",
+      "ground_truth" : "Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR",
+      "normalized_ground_truth" : "Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Genova",
+      "normalized_extracted" : "Genova",
+      "ground_truth" : "Genova",
+      "normalized_ground_truth" : "Genova",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 70,
+      "normalized_extracted" : 70.0,
+      "ground_truth" : 70,
+      "normalized_ground_truth" : 70.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/06/2026",
+      "normalized_extracted" : "2026-06-11",
+      "ground_truth" : "11/06/2026",
+      "normalized_ground_truth" : "2026-06-11",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott.ssa Beatrice Pozzi\",\"email\":\"segreteria@confindustria-liguria.it\",\"telefono\":\"+39 010 2498105\",\"azienda\":\"Confindustria Liguria Servizi S.c.a.r.l.\",\"oggetto\":\"Invito alla tavola rotonda su decarbonizzazione dei trasporti e PNRR\",\"citta\":\"Genova\",\"numeroPartecipanti\":70,\"budgetEuro\":null,\"dataEvento\":\"11/06/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 10122,
+    "metrics" : {
+      "totalDurationMs" : 9150,
+      "totalPromptTokens" : 2110,
+      "totalCompletionTokens" : 191,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5894,
+        "promptTokens" : 656,
+        "completionTokens" : 146,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3250,
+        "promptTokens" : 1454,
+        "completionTokens" : 45,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 10131
+}

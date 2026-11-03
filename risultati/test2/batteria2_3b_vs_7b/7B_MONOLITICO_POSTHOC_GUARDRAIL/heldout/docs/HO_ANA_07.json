@@ -1,0 +1,220 @@
+{
+  "id" : "HO_ANA_07",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_FONDO_PENSIONE",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 1,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Silvia",
+      "normalized_ground_truth" : "Silvia",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Bernardi",
+      "normalized_ground_truth" : "Bernardi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "BRNSLV88P57D612A",
+      "normalized_ground_truth" : "BRNSLV88P57D612A",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "17/09/1988",
+      "normalized_ground_truth" : "17/09/1988",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CD3829104",
+      "normalized_ground_truth" : "CD3829104",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "01/10/2020",
+      "normalized_ground_truth" : "01/10/2020",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataScadenza" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "17/09/2030",
+      "normalized_ground_truth" : "17/09/2030",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Comune di Firenze",
+      "normalized_ground_truth" : "Comune di Firenze",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "CARTA_IDENTITA",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CARTA_IDENTITA",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "nome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Silvia",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Silvia",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "cognome",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Bernardi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Bernardi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "codiceFiscale",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "BRNSLV88P57D612A",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "BRNSLV88P57D612A",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "17/09/1988",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "17/09/1988",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "luogoNascita",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Firenze (FI)",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Firenze (FI)",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "CD3829104",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CD3829104",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataRilascio",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "01/10/2020",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "01/10/2020",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataScadenza",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "17/09/2030",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "17/09/2030",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Comune di Firenze",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Comune di Firenze",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "ALTRO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ "Sotto-oggetto 'altro' assente o nullo nella busta" ],
+    "processedOutput" : null,
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Silvia\",\n    \"cognome\": \"Bernardi\",\n    \"codiceFiscale\": \"BRNSLV88P57D612A\",\n    \"dataNascita\": \"17/09/1988\",\n    \"luogoNascita\": \"Firenze (FI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"CD3829104\",\n    \"dataRilascio\": \"01/10/2020\",\n    \"dataScadenza\": \"17/09/2030\",\n    \"enteRilascio\": \"Comune di Firenze\"\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Silvia\",\n    \"cognome\": \"Bernardi\",\n    \"codiceFiscale\": \"BRNSLV88P57D612A\",\n    \"dataNascita\": \"17/09/1988\",\n    \"luogoNascita\": \"Firenze (FI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"CD3829104\",\n    \"dataRilascio\": \"01/10/2020\",\n    \"dataScadenza\": \"17/09/2030\",\n    \"enteRilascio\": \"Comune di Firenze\"\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 34737,
+        "totalDurationMs" : 34734,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 34050,
+        "promptEvalCount" : 432,
+        "evalCount" : 208,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

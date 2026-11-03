@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_01",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CIE_COMPLETA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Federico",
+      "normalized_extracted" : "Federico",
+      "ground_truth" : "Federico",
+      "normalized_ground_truth" : "Federico",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Galli",
+      "normalized_extracted" : "Galli",
+      "ground_truth" : "Galli",
+      "normalized_ground_truth" : "Galli",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GLLFRC83D18H501K",
+      "normalized_extracted" : "GLLFRC83D18H501K",
+      "ground_truth" : "GLLFRC83D18H501K",
+      "normalized_ground_truth" : "GLLFRC83D18H501K",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/04/1983",
+      "normalized_extracted" : "1983-04-18",
+      "ground_truth" : "18/04/1983",
+      "normalized_ground_truth" : "1983-04-18",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roma (RM)",
+      "normalized_extracted" : "Roma (RM)",
+      "ground_truth" : "Roma (RM)",
+      "normalized_ground_truth" : "Roma (RM)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CA72910AA",
+      "normalized_extracted" : "CA72910AA",
+      "ground_truth" : "CA72910AA",
+      "normalized_ground_truth" : "CA72910AA",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/05/2022",
+      "normalized_extracted" : "2022-05-14",
+      "ground_truth" : "14/05/2022",
+      "normalized_ground_truth" : "2022-05-14",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/04/2032",
+      "normalized_extracted" : "2032-04-18",
+      "ground_truth" : "18/04/2032",
+      "normalized_ground_truth" : "2032-04-18",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Roma",
+      "normalized_extracted" : "Comune di Roma",
+      "ground_truth" : "Comune di Roma",
+      "normalized_ground_truth" : "Comune di Roma",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"Federico\",\n  \"cognome\": \"Galli\",\n  \"codiceFiscale\": \"GLLFRC83D18H501K\",\n  \"dataNascita\": \"18/04/1983\",\n  \"luogoNascita\": \"Roma (RM)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"CA72910AA\",\n  \"dataRilascio\": \"14/05/2022\",\n  \"dataScadenza\": \"18/04/2032\",\n  \"enteRilascio\": \"Comune di Roma\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 16056,
+    "metrics" : {
+      "totalDurationMs" : 14952,
+      "totalPromptTokens" : 770,
+      "totalCompletionTokens" : 164,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14950,
+        "promptTokens" : 770,
+        "completionTokens" : 164,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 16062
+}

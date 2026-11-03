@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_13",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LUIGI",
+      "normalized_extracted" : "LUIGI",
+      "ground_truth" : "Luigi",
+      "normalized_ground_truth" : "Luigi",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "COSTA",
+      "normalized_extracted" : "COSTA",
+      "ground_truth" : "Costa",
+      "normalized_ground_truth" : "Costa",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CSTLGI88D14F205I",
+      "normalized_extracted" : "CSTLGI88D14F205I",
+      "ground_truth" : "CSTLGI88D14F205I",
+      "normalized_ground_truth" : "CSTLGI88D14F205I",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/04/1988",
+      "normalized_extracted" : "1988-04-14",
+      "ground_truth" : "14/04/1988",
+      "normalized_ground_truth" : "1988-04-14",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MILANO (MI)",
+      "normalized_extracted" : "MILANO (MI)",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001234567890123",
+      "normalized_extracted" : "80380001234567890123",
+      "ground_truth" : "80380001234567890123",
+      "normalized_ground_truth" : "80380001234567890123",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/04/2028",
+      "normalized_extracted" : "2028-04-14",
+      "ground_truth" : "14/04/2028",
+      "normalized_ground_truth" : "2028-04-14",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"TESSERA_SANITARIA\",\n  \"nome\": \"LUIGI\",\n  \"cognome\": \"COSTA\",\n  \"codiceFiscale\": \"CSTLGI88D14F205I\",\n  \"dataNascita\": \"14/04/1988\",\n  \"luogoNascita\": \"MILANO (MI)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"80380001234567890123\",\n  \"dataRilascio\": null,\n  \"dataScadenza\": \"14/04/2028\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 15298,
+    "metrics" : {
+      "totalDurationMs" : 14235,
+      "totalPromptTokens" : 725,
+      "totalCompletionTokens" : 168,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14234,
+        "promptTokens" : 725,
+        "completionTokens" : 168,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 15302
+}

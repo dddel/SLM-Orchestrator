@@ -1,0 +1,124 @@
+{
+  "id" : "FAT_01",
+  "type" : "FATTURA",
+  "template" : "FAT_T1_STANDARD_LINEARE",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/001",
+      "normalized_extracted" : "2026/001",
+      "ground_truth" : "2026/001",
+      "normalized_ground_truth" : "2026/001",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/02/2026",
+      "normalized_extracted" : "2026-02-04",
+      "ground_truth" : "04/02/2026",
+      "normalized_ground_truth" : "2026-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Fornitore Aziendale 1 S.r.l.",
+      "normalized_extracted" : "Fornitore Aziendale 1 S.r.l.",
+      "ground_truth" : "Fornitore Aziendale 1 S.r.l.",
+      "normalized_ground_truth" : "Fornitore Aziendale 1 S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000001379",
+      "normalized_extracted" : "10000001379",
+      "ground_truth" : "10000001379",
+      "normalized_ground_truth" : "10000001379",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cliente Spettabile 1 S.p.A.",
+      "normalized_extracted" : "Cliente Spettabile 1 S.p.A.",
+      "ground_truth" : "Cliente Spettabile 1 S.p.A.",
+      "normalized_ground_truth" : "Cliente Spettabile 1 S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CFXUSR71A03H501A",
+      "normalized_ground_truth" : "CFXUSR71A03H501A",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 145.5,
+      "normalized_extracted" : 145.5,
+      "ground_truth" : 145.5,
+      "normalized_ground_truth" : 145.5,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT42L1234512345123456789012",
+      "normalized_extracted" : "IT42L1234512345123456789012",
+      "ground_truth" : "IT42L1234512345123456789012",
+      "normalized_ground_truth" : "IT42L1234512345123456789012",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "cliente.codiceFiscale",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "CFXUSR71A03H501A",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CFXUSR71A03H501A",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\":\"2026/001\",\"dataFattura\":\"04/02/2026\",\"fornitore\":{\"denominazione\":\"Fornitore Aziendale 1 S.r.l.\",\"partitaIva\":\"10000001379\"},\"cliente\":{\"denominazione\":\"Cliente Spettabile 1 S.p.A.\",\"codiceFiscale\":null},\"importoTotale\":145.5,\"iban\":\"IT42L1234512345123456789012\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6345,
+    "metrics" : {
+      "totalDurationMs" : 5885,
+      "totalPromptTokens" : 606,
+      "totalCompletionTokens" : 153,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5883,
+        "promptTokens" : 606,
+        "completionTokens" : 153,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6349
+}

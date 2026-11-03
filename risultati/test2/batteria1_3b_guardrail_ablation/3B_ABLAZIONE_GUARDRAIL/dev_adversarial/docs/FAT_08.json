@@ -1,0 +1,137 @@
+{
+  "id" : "FAT_08",
+  "type" : "FATTURA",
+  "template" : "FAT_T2_TABELLARE_COMPATTO",
+  "split" : "dev_adversarial",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 6,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FT-2026-088",
+      "normalized_extracted" : "FT-2026-088",
+      "ground_truth" : "FT-2026-088",
+      "normalized_ground_truth" : "FT-2026-088",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-07-20",
+      "normalized_extracted" : "2026-07-20",
+      "ground_truth" : "2026-07-20",
+      "normalized_ground_truth" : "2026-07-20",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Società fornitrice: Kronos Energy S.r.l.",
+      "normalized_extracted" : "Società fornitrice: Kronos Energy S.r.l.",
+      "ground_truth" : "Kronos Energy S.r.l.",
+      "normalized_ground_truth" : "Kronos Energy S.r.l.",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000005489",
+      "normalized_extracted" : "10000005489",
+      "ground_truth" : "10000005489",
+      "normalized_ground_truth" : "10000005489",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Destinatario: Egr. Studio Associato Rossi",
+      "normalized_extracted" : "Destinatario: Egr. Studio Associato Rossi",
+      "ground_truth" : "Studio Associato Rossi",
+      "normalized_ground_truth" : "Studio Associato Rossi",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 980.0,
+      "normalized_extracted" : 980.0,
+      "ground_truth" : 980.0,
+      "normalized_ground_truth" : 980.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "fornitore.denominazione",
+    "key_present" : true,
+    "extracted" : "Società fornitrice: Kronos Energy S.r.l.",
+    "ground_truth" : "Kronos Energy S.r.l.",
+    "normalized_extracted" : "Società fornitrice: Kronos Energy S.r.l.",
+    "normalized_ground_truth" : "Kronos Energy S.r.l.",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cliente.denominazione",
+    "key_present" : true,
+    "extracted" : "Destinatario: Egr. Studio Associato Rossi",
+    "ground_truth" : "Studio Associato Rossi",
+    "normalized_extracted" : "Destinatario: Egr. Studio Associato Rossi",
+    "normalized_ground_truth" : "Studio Associato Rossi",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\": \"FT-2026-088\", \"dataFattura\": \"2026-07-20\", \"fornitore\": {\"denominazione\": \"Società fornitrice: Kronos Energy S.r.l.\", \"partitaIva\": \"10000005489\"}, \"cliente\": {\"denominazione\": \"Destinatario: Egr. Studio Associato Rossi\", \"codiceFiscale\": null}, \"importoTotale\": 980.0, \"iban\": null}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000005489'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5366,
+    "metrics" : {
+      "totalDurationMs" : 4936,
+      "totalPromptTokens" : 551,
+      "totalCompletionTokens" : 130,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4935,
+        "promptTokens" : 551,
+        "completionTokens" : 130,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5371
+}

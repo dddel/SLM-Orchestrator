@@ -1,0 +1,133 @@
+{
+  "id" : "EML_07",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Luca Brambilla",
+      "normalized_extracted" : "Luca Brambilla",
+      "ground_truth" : "Luca Brambilla",
+      "normalized_ground_truth" : "Luca Brambilla",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "l.brambilla@logistix.it",
+      "normalized_extracted" : "l.brambilla@logistix.it",
+      "ground_truth" : "l.brambilla@logistix.it",
+      "normalized_ground_truth" : "l.brambilla@logistix.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "051-223344",
+      "normalized_extracted" : "051223344",
+      "ground_truth" : "051223344",
+      "normalized_ground_truth" : "051223344",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Logistix S.r.l.",
+      "normalized_extracted" : "Logistix S.r.l.",
+      "ground_truth" : "Logistix S.r.l.",
+      "normalized_ground_truth" : "Logistix S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Incontro partner a Bologna",
+      "normalized_extracted" : "Incontro partner a Bologna",
+      "ground_truth" : "Incontro partner a Bologna",
+      "normalized_ground_truth" : "Incontro partner a Bologna",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/12/2026",
+      "normalized_extracted" : "2026-12-14",
+      "ground_truth" : "14/12/2026",
+      "normalized_ground_truth" : "2026-12-14",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Bologna",
+      "normalized_extracted" : "Bologna",
+      "ground_truth" : "Bologna",
+      "normalized_ground_truth" : "Bologna",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Luca Brambilla\",\"email\":\"l.brambilla@logistix.it\",\"telefono\":\"051-223344\",\"azienda\":\"Logistix S.r.l.\",\"oggetto\":\"Incontro partner a Bologna\",\"citta\":\"Bologna\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"14/12/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Recapito telefonico e conferma richiesta incontro partner\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 8147,
+    "metrics" : {
+      "totalDurationMs" : 7618,
+      "totalPromptTokens" : 1938,
+      "totalCompletionTokens" : 165,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4583,
+        "promptTokens" : 585,
+        "completionTokens" : 116,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3032,
+        "promptTokens" : 1353,
+        "completionTokens" : 49,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 8152
+}

@@ -1,0 +1,189 @@
+{
+  "id" : "HO_ANA_13",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_VISITA_SPORTIVA",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Rapisarda",
+      "normalized_extracted" : "Rapisarda",
+      "ground_truth" : "Domenico",
+      "normalized_ground_truth" : "Domenico",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Domenico",
+      "normalized_extracted" : "Domenico",
+      "ground_truth" : "Rapisarda",
+      "normalized_ground_truth" : "Rapisarda",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RPSDNC95D11C351E",
+      "normalized_extracted" : "RPSDNC95D11C351E",
+      "ground_truth" : "RPSDNC95D11C351E",
+      "normalized_ground_truth" : "RPSDNC95D11C351E",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1995-04-11",
+      "normalized_extracted" : "1995-04-11",
+      "ground_truth" : "11/04/1995",
+      "normalized_ground_truth" : "1995-04-11",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Catania (CT)",
+      "normalized_extracted" : "Catania (CT)",
+      "ground_truth" : "Catania (CT)",
+      "normalized_ground_truth" : "Catania (CT)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001593820194821",
+      "normalized_extracted" : "80380001593820194821",
+      "ground_truth" : "80380001593820194821",
+      "normalized_ground_truth" : "80380001593820194821",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "CARTA_IDENTITA",
+    "ground_truth" : "TESSERA_SANITARIA",
+    "normalized_extracted" : "CARTA_IDENTITA",
+    "normalized_ground_truth" : "TESSERA_SANITARIA",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "Rapisarda",
+    "ground_truth" : "Domenico",
+    "normalized_extracted" : "Rapisarda",
+    "normalized_ground_truth" : "Domenico",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cognome",
+    "key_present" : true,
+    "extracted" : "Domenico",
+    "ground_truth" : "Rapisarda",
+    "normalized_extracted" : "Domenico",
+    "normalized_ground_truth" : "Rapisarda",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 1,
+    "errors" : [ "codiceFiscale: Rilevata incoerenza o inversione nome/cognome rispetto alla struttura dei primi 6 caratteri del Codice Fiscale." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Rapisarda\",\n    \"cognome\": \"Domenico\",\n    \"codiceFiscale\": \"RPSDNC95D11C351E\",\n    \"dataNascita\": \"1995-04-11\",\n    \"luogoNascita\": \"Catania (CT)\",\n    \"sesso\": \"M\",\n    \"numeroDocumento\": \"80380001593820194821\",\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Rapisarda\",\n    \"cognome\": \"Domenico\",\n    \"codiceFiscale\": \"RPSDNC95D11C351E\",\n    \"dataNascita\": \"1995-04-11\",\n    \"luogoNascita\": \"Catania (CT)\",\n    \"sesso\": \"M\",\n    \"numeroDocumento\": \"80380001593820194821\",\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 7556,
+        "totalDurationMs" : 7554,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 7254,
+        "promptEvalCount" : 415,
+        "evalCount" : 201,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}
