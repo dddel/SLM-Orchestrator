@@ -6,7 +6,7 @@ Interfaccia web moderna, modulare ed estremamente minimale ("easy on the eye") p
 
 ## Caratteristiche Principali
 
-- **Design Minimale & High-Readability**: Palette scura raffinata (Slate / Deep Blue) con accenti elettrici (Emerald, Indigo, Sky), tipografia studiata (Inter & Fira Code), contrasto ottimizzato e tema chiaro alternativo.
+- **Design Material 3 Scuro Multi-Tonale**: Unico tema scuro su superfici grigio antracite neutre (`#121316`) con sistema multi-tonale semantico (Primary blu per azioni e router, Secondary teal per il livello simbolico/guardie, Tertiary viola per il livello neurale/SLM) e contrasto WCAG AA/AAA verificato.
 - **Architettura a Componenti Modulari**: Standalone components Angular 21, Signals reattivi, Service Layer disaccoppiato e Type Safety rigorosa.
 - **Menu Parametri ad Espansione (Accordion)**:
   - **Tipo Documento (`DocumentType`)**: Selezione per forzare l'instradamento (`Auto-Detect`, `FATTURA`, `EMAIL`, `ANAGRAFICA`). La tipologia `ALTRO` è riservata alla risposta del server per documenti non catalogati.

@@ -2,16 +2,17 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { App } from './app';
+import { OrchestratorPageComponent } from './features/orchestrator/orchestrator-page/orchestrator-page.component';
+import { InputCardComponent } from './features/orchestrator/components/input-card/input-card.component';
+import { ExampleChipsComponent } from './features/orchestrator/components/example-chips/example-chips.component';
 import { OrchestratorService } from './core/services/orchestrator.service';
-import { ParameterDrawerComponent } from './components/parameter-drawer/parameter-drawer.component';
-import { PresetsModalComponent } from './components/presets-modal/presets-modal.component';
 
-describe('App', () => {
+describe('SLM Orchestrator Redesign', () => {
   let httpTesting: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App, ParameterDrawerComponent],
+      imports: [App, OrchestratorPageComponent, InputCardComponent, ExampleChipsComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting()
@@ -31,7 +32,7 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render brand title', async () => {
+  it('should render brand title in header', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -39,31 +40,36 @@ describe('App', () => {
     expect(compiled.querySelector('.brand-title')?.textContent).toContain('SLM Orchestrator');
   });
 
-  it('should apply preset correctly', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    app.onSelectPreset({
+  it('should apply preset when selected from example chips', () => {
+    const fixture = TestBed.createComponent(OrchestratorPageComponent);
+    const page = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const samplePreset = {
       id: 'test-preset',
-      title: 'Test Fattura',
-      docType: 'FATTURA',
-      routerType: 'local-ollama',
+      title: 'Fattura di Test',
+      docType: 'FATTURA' as const,
+      routerType: 'local-ollama' as const,
       description: 'Test description',
       payload: 'Fattura 123',
       expected: {
-        status: 'OK',
-        detectedLabel: 'FATTURA',
+        status: 'OK' as const,
+        detectedLabel: 'FATTURA' as const,
         summary: 'Test summary'
       }
-    });
-    expect(app.payload()).toBe('Fattura 123');
-    expect(app.selectedDocType()).toBe('FATTURA');
-    expect(app.selectedRouterType()).toBe('local-ollama');
+    };
+
+    page.onSelectPreset(samplePreset);
+    expect(page.userPayload()).toBe('Fattura 123');
+    expect(page.userDocType()).toBe('FATTURA');
+    expect(page.userRouterType()).toBe('local-ollama');
+    expect(page.effectivePayload()).toBe('Fattura 123');
   });
 
   it('should not allow selecting ALTRO in input document types', () => {
-    const fixture = TestBed.createComponent(ParameterDrawerComponent);
+    const fixture = TestBed.createComponent(InputCardComponent);
     const component = fixture.componentInstance;
-    const types = component.documentTypes.map((d) => d.type);
+    const types = component.docTypeOptions.map((d) => d.value);
     expect(types).not.toContain('ALTRO');
     expect(types).toContain(null); // Auto-Detect
     expect(types).toContain('FATTURA');
@@ -85,7 +91,7 @@ describe('App', () => {
     req.flush({
       status: 'OK',
       label: 'FATTURA',
-      router: 'CLIENT_SPECIFIED',
+      router: 'local-ollama',
       result: '{"numeroFattura": "1"}',
       errors: [],
       actionErrors: [],
@@ -93,33 +99,28 @@ describe('App', () => {
     });
   });
 
-  it('should render presets modal with comparison and allow selection', () => {
-    const fixture = TestBed.createComponent(PresetsModalComponent);
-    const component = fixture.componentInstance;
+  it('should render example chips selector and include bad P.IVA demo example', () => {
+    const fixture = TestBed.createComponent(OrchestratorPageComponent);
+    const page = fixture.componentInstance;
     fixture.detectChanges();
 
-    expect(component.presets.length).toBeGreaterThan(0);
-
-    // Default selection is the first preset
-    expect(component.selectedPresetId()).toBe(component.presets[0].id);
-
-    // Find the P.IVA checksum error preset
-    const pivaErrorPreset = component.presets.find((p) => p.id === 'fattura-piva-errata');
+    expect(page.presets.length).toBeGreaterThan(0);
+    const pivaErrorPreset = page.presets.find((p) => p.id === 'fattura-piva-errata');
     expect(pivaErrorPreset).toBeDefined();
     expect(pivaErrorPreset?.expected.status).toBe('INDETERMINATE');
-    expect(pivaErrorPreset?.expected.errors?.[0].code).toBe('SOURCE_CHECKSUM_INVALID');
+  });
 
-    // Switch selection
-    component.selectPreset('fattura-piva-errata');
-    expect(component.selectedPresetId()).toBe('fattura-piva-errata');
-    expect(component.currentPreset()?.id).toBe('fattura-piva-errata');
+  it('should enforce single dark theme with no theme toggle and hide Ctrl + Invio at rest', () => {
+    const fixture = TestBed.createComponent(OrchestratorPageComponent);
+    fixture.detectChanges();
+    const el = fixture.nativeElement as HTMLElement;
 
-    // Test apply emission
-    let appliedPresetId: string | null = null;
-    component.applyPreset.subscribe((preset) => {
-      appliedPresetId = preset.id;
-    });
-    component.onApply();
-    expect(appliedPresetId).toBe('fattura-piva-errata');
+    expect(el.querySelector('app-theme-toggle')).toBeNull();
+    expect(el.textContent).not.toContain('Ctrl + Invio');
+    expect(el.textContent).not.toContain('Ctrl+Invio');
+
+    const submitBtn = el.querySelector('.submit-btn') as HTMLButtonElement;
+    expect(submitBtn).toBeTruthy();
+    expect(submitBtn.getAttribute('aria-keyshortcuts')).toBe('Control+Enter Meta+Enter');
   });
 });

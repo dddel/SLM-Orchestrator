@@ -1,0 +1,201 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.stage-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+
+  /* Default fallback (Input = neutro surface-container-highest) */
+  --stage-running-bg: var(--md-sys-color-surface-container-highest);
+  --stage-running-fg: var(--md-sys-color-on-surface);
+  --stage-completed-bg: var(--md-sys-color-surface-container-highest);
+  --stage-completed-fg: var(--md-sys-color-on-surface);
+  --stage-connector-start: var(--md-sys-color-surface-container-highest);
+  --stage-connector-end: var(--md-sys-color-primary);
+
+  &.stage-input {
+    --stage-running-bg: var(--md-sys-color-surface-container-highest);
+    --stage-running-fg: var(--md-sys-color-on-surface);
+    --stage-completed-bg: var(--md-sys-color-surface-container-highest);
+    --stage-completed-fg: var(--md-sys-color-on-surface);
+    --stage-connector-start: var(--md-sys-color-surface-container-highest);
+    --stage-connector-end: var(--md-sys-color-primary);
+  }
+
+  &.stage-router {
+    --stage-running-bg: var(--md-sys-color-primary-container);
+    --stage-running-fg: var(--md-sys-color-on-primary-container);
+    --stage-completed-bg: var(--md-sys-color-primary);
+    --stage-completed-fg: var(--md-sys-color-on-primary);
+    --stage-connector-start: var(--md-sys-color-primary);
+    --stage-connector-end: var(--md-sys-color-tertiary);
+  }
+
+  &.stage-slm {
+    --stage-running-bg: var(--md-sys-color-tertiary-container);
+    --stage-running-fg: var(--md-sys-color-on-tertiary-container);
+    --stage-completed-bg: var(--md-sys-color-tertiary);
+    --stage-completed-fg: var(--md-sys-color-on-tertiary);
+    --stage-connector-start: var(--md-sys-color-tertiary);
+    --stage-connector-end: var(--md-sys-color-secondary);
+  }
+
+  &.stage-guards {
+    --stage-running-bg: var(--md-sys-color-secondary-container);
+    --stage-running-fg: var(--md-sys-color-on-secondary-container);
+    --stage-completed-bg: var(--md-sys-color-secondary);
+    --stage-completed-fg: var(--md-sys-color-on-secondary);
+    --stage-connector-start: var(--md-sys-color-secondary);
+    --stage-connector-end: var(--md-sys-color-secondary);
+  }
+}
+
+.stage-node-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.stage-indicator {
+  width: var(--stage-node-size);
+  height: var(--stage-node-size);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface-variant);
+  z-index: 2;
+
+  .status-running & {
+    background-color: var(--stage-running-bg);
+    color: var(--stage-running-fg);
+  }
+
+  .status-completed & {
+    background-color: var(--stage-completed-bg);
+    color: var(--stage-completed-fg);
+  }
+
+  .status-warning & {
+    background-color: var(--md-sys-color-warning);
+    color: var(--md-sys-color-on-warning);
+  }
+}
+
+.connector-line {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: var(--space-0-5);
+  border-radius: var(--radius-pill);
+  background-color: var(--md-sys-color-outline-variant);
+  margin: 0 var(--space-3);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--stage-connector-start), var(--stage-connector-end));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration-smooth) var(--ease-emphasized);
+  }
+
+  &.active::after {
+    transform: scaleX(1);
+  }
+
+  &.progressing::after {
+    transform: scaleX(0.5);
+    animation: m3LinearProgress 1.2s var(--ease-emphasized) infinite;
+  }
+}
+
+.stage-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  margin-top: var(--space-2);
+  padding-right: var(--space-3);
+}
+
+.stage-title {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--weight-medium);
+  color: var(--md-sys-color-on-surface-variant);
+
+  .status-running & {
+    color: var(--md-sys-color-on-surface);
+  }
+
+  .status-completed & {
+    color: var(--md-sys-color-on-surface);
+  }
+
+  .status-warning & {
+    color: var(--md-sys-color-warning);
+  }
+}
+
+.stage-sublabel {
+  font-size: var(--type-label-sm-size);
+  line-height: var(--type-label-sm-line);
+  color: var(--md-sys-color-on-surface-variant);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spin-icon {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes m3LinearProgress {
+  0% {
+    transform: translateX(-100%) scaleX(0.4);
+  }
+  50% {
+    transform: translateX(20%) scaleX(0.6);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.4);
+  }
+}
+
+@media (max-width: 640px) {
+  :host {
+    width: 100%;
+  }
+
+  .stage-container {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .stage-node-row {
+    width: auto;
+  }
+
+  .connector-line {
+    display: none;
+  }
+
+  .stage-meta {
+    margin-top: 0;
+    padding-right: 0;
+  }
+}

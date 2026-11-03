@@ -1,0 +1,69 @@
+<div class="orchestrator-layout">
+  <!-- 1. Header sticky sottile -->
+  <app-header
+    [isDemoRunning]="isDemoRunning()"
+    [isDemoPaused]="isDemoPaused()"
+    (startDemo)="onStartDemo()"
+    (pauseDemo)="onPauseDemo()"
+    (stopDemo)="onStopDemo()"
+    (openInfo)="isInfoOpen.set(true)"
+  ></app-header>
+
+  <!-- 2. Main content: colonna singola centrata -->
+  <main class="orchestrator-main">
+    <div class="orchestrator-container">
+      <!-- Selettore Esempi (orizzontale scorrevole, sostituisce il modale) -->
+      <section class="section-examples">
+        <app-example-chips
+          [presets]="presets"
+          [activePresetId]="effectiveActivePresetId()"
+          [disabled]="effectiveIsLoading()"
+          (selectPreset)="onSelectPreset($event)"
+        ></app-example-chips>
+      </section>
+
+      <!-- Card di Input -->
+      <section class="section-input">
+        <app-input-card
+          [payload]="effectivePayload()"
+          [selectedDocType]="effectiveDocType()"
+          [selectedRouterType]="effectiveRouterType()"
+          [isLoading]="effectiveIsLoading()"
+          (payloadChange)="onPayloadChange($event)"
+          (docTypeChange)="onDocTypeChange($event)"
+          (routerTypeChange)="onRouterTypeChange($event)"
+          (submitRequest)="onSubmitRequest()"
+          (clearPayload)="onClearPayload()"
+          (userInteracted)="onUserInteracted()"
+        ></app-input-card>
+      </section>
+
+      <!-- Pipeline Neuro-Simbolica (4 stadi: Input -> Router -> SLM -> Guardie) -->
+      <section class="section-pipeline">
+        <app-pipeline [stages]="effectivePipelineStages()"></app-pipeline>
+      </section>
+
+      <!-- Risultato o Stato Vuoto -->
+      <section class="section-result">
+        @if (showResult()) {
+          <app-result-panel
+            [response]="effectiveResponse()"
+            [guards]="effectiveGuards()"
+            [streamingJson]="effectiveStreamingJson()"
+            [errorMessage]="effectiveError()"
+          ></app-result-panel>
+        } @else {
+          <app-empty-state></app-empty-state>
+        }
+      </section>
+    </div>
+  </main>
+
+  <!-- 3. Status footer minimalista -->
+  <app-status-footer></app-status-footer>
+
+  <!-- 4. Modale Info Progetto & API -->
+  @if (isInfoOpen()) {
+    <app-info-modal (close)="isInfoOpen.set(false)"></app-info-modal>
+  }
+</div>

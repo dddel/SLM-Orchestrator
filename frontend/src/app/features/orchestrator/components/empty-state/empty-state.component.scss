@@ -1,0 +1,20 @@
+.empty-state-card {
+  width: 100%;
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+
+.empty-state-inner {
+  max-width: var(--empty-state-max-width);
+  margin: 0 auto;
+}
+
+.empty-prompt {
+  font-size: var(--type-title-lg-size);
+  line-height: var(--type-title-lg-line);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--type-display-track);
+  color: var(--md-sys-color-on-surface-variant);
+}

@@ -39,7 +39,7 @@ services:
 
   # Motore SLM / LLM locale Ollama
   ollama:
-    image: ollama/ollama:latest
+    image: docker.io/ollama/ollama:latest
     container_name: slm-orchestrator-ollama
     restart: unless-stopped
     ports:
@@ -58,7 +58,7 @@ services:
 
   # Sidecar one-shot per il download dei modelli locali (generativo + decisionale)
   ollama-init:
-    image: curlimages/curl:latest
+    image: docker.io/curlimages/curl:latest
     container_name: slm-orchestrator-ollama-init
     restart: "no"
     depends_on:

@@ -1,0 +1,80 @@
+<div class="input-card" [class.is-loading]="isLoading()">
+  <!-- Top Textarea Area -->
+  <div class="textarea-wrapper">
+    <textarea
+      class="payload-textarea"
+      placeholder="Incolla qui un documento non strutturato (fattura, email, verbale, anagrafica)..."
+      [value]="payload()"
+      [disabled]="disabled()"
+      (input)="onInputText($any($event.target).value)"
+      (focus)="onFocus()"
+      rows="9"
+      aria-label="Testo del documento non strutturato"
+    ></textarea>
+
+    <!-- Discreet Bottom Stats Bar -->
+    <div class="textarea-meta">
+      <div class="stats-group">
+        <span class="meta-item">{{ lineCount() }} righe</span>
+        <span class="meta-sep">&bull;</span>
+        <span class="meta-item">{{ charCount() }} caratteri</span>
+      </div>
+
+      @if (payload()) {
+        <button
+          type="button"
+          class="clear-btn"
+          title="Cancella testo"
+          (click)="onClear()"
+          [disabled]="disabled() || isLoading()"
+        >
+          <app-icon name="trash" [size]="12"></app-icon>
+          <span>Pulisci</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Bottom Compact Parameter & Action Bar -->
+  <div class="card-controls-bar">
+    <div class="params-inline-group">
+      <app-param-select
+        label="Tipo Documento"
+        icon="file-text"
+        [options]="docTypeOptions"
+        [selectedValue]="selectedDocType()"
+        [disabled]="disabled() || isLoading()"
+        (valueChange)="onSelectDocType($event)"
+      ></app-param-select>
+
+      <app-param-select
+        label="Router"
+        icon="cpu"
+        [options]="routerOptions"
+        [selectedValue]="selectedRouterType()"
+        [disabled]="disabled() || isLoading()"
+        (valueChange)="onSelectRouter($event)"
+      ></app-param-select>
+    </div>
+
+    <div class="action-submit-group">
+      <app-tooltip text="Ctrl + Invio" [asKbd]="true">
+        <button
+          type="button"
+          class="submit-btn"
+          aria-keyshortcuts="Control+Enter Meta+Enter"
+          [disabled]="!payload().trim() || isLoading() || disabled()"
+          (click)="onSubmit()"
+        >
+          @if (isLoading()) {
+            <app-icon name="refresh" [size]="14" customClass="spin-icon"></app-icon>
+            <span>Elaborazione...</span>
+          } @else {
+            <app-icon name="play" [size]="14"></app-icon>
+            <span>Elabora Documento</span>
+          }
+        </button>
+      </app-tooltip>
+    </div>
+  </div>
+</div>
