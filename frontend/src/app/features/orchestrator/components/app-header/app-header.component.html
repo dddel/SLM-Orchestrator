@@ -1,13 +1,16 @@
 <header class="app-header">
   <div class="header-inner">
     <div class="brand-group">
-      <div class="brand-icon-box">
-        <app-icon name="sparkles" [size]="16" customClass="brand-icon"></app-icon>
+      <div class="brand-logo-wrap" title="SLM Orchestrator">
+        <app-icon name="sparkles" [size]="16" customClass="brand-sparkle"></app-icon>
       </div>
-      <div class="brand-text">
-        <h1 class="brand-title">SLM Orchestrator</h1>
-        <span class="brand-separator">&bull;</span>
-        <span class="brand-tagline">Qwen 2.5 3B · inferenza locale</span>
+
+      <div class="brand-heading">
+        <span class="brand-title">SLM Orchestrator</span>
+        <span class="model-badge">
+          <span class="model-badge-dot" aria-hidden="true"></span>
+          <span class="model-badge-text">Qwen 2.5 3B &middot; inferenza locale</span>
+        </span>
       </div>
     </div>
 
@@ -17,17 +20,18 @@
         [isPaused]="isDemoPaused()"
         (start)="startDemo.emit()"
         (pause)="pauseDemo.emit()"
+        (resume)="resumeDemo.emit()"
         (stop)="stopDemo.emit()"
       ></app-demo-control>
 
       <button
         type="button"
-        class="info-action-btn"
+        class="header-btn"
         (click)="openInfo.emit()"
-        title="Informazioni su autori, API e licenze"
+        title="Dettagli architettura, API e note di tirocinio"
         aria-label="Informazioni sul progetto"
       >
-        <app-icon name="info" [size]="15"></app-icon>
+        <app-icon name="info" [size]="14"></app-icon>
         <span class="btn-text">Info</span>
       </button>
     </div>

@@ -1,9 +1,21 @@
-<div class="json-viewer-card">
+<div class="json-viewer-card" [class.is-collapsed]="isCollapsed()">
   <div class="viewer-header">
-    <div class="header-title-box">
+    <button
+      type="button"
+      class="header-toggle-btn"
+      (click)="toggleCollapse()"
+      [attr.aria-expanded]="!isCollapsed()"
+      title="Espandi o comprimi blocco JSON"
+    >
+      <app-icon
+        [name]="isCollapsed() ? 'chevron-down' : 'chevron-up'"
+        [size]="13"
+        customClass="collapse-chevron"
+      ></app-icon>
       <app-icon name="file-text" [size]="13" customClass="title-icon"></app-icon>
       <span class="viewer-title">{{ title() }}</span>
-    </div>
+      <span class="collapsed-hint">{{ isCollapsed() ? '(compresso)' : '' }}</span>
+    </button>
 
     <div class="viewer-actions">
       <button
@@ -14,10 +26,10 @@
         [attr.aria-label]="isCopied() ? 'Copiato' : 'Copia JSON'"
       >
         @if (isCopied()) {
-          <app-icon name="check" [size]="13" customClass="text-success"></app-icon>
-          <span class="btn-text text-success">Copiato!</span>
+          <app-icon name="check" [size]="12" customClass="text-success"></app-icon>
+          <span class="btn-text text-success">Copiato</span>
         } @else {
-          <app-icon name="copy" [size]="13"></app-icon>
+          <app-icon name="copy" [size]="12"></app-icon>
           <span class="btn-text">Copia</span>
         }
       </button>
@@ -27,15 +39,17 @@
         class="action-btn"
         (click)="downloadJson()"
         title="Scarica file JSON"
-        aria-label="Scarica JSON"
+        aria-label="Scarica file JSON"
       >
-        <app-icon name="external-link" [size]="13"></app-icon>
+        <app-icon name="external-link" [size]="12"></app-icon>
         <span class="btn-text">Esporta</span>
       </button>
     </div>
   </div>
 
-  <div class="code-container">
-    <pre class="json-pre"><code>@for (token of tokens(); track $index) {@if (token.type === 'plain') {{{ token.text }}} @else {<span [class]="'json-' + token.type">{{ token.text }}</span>}}</code></pre>
-  </div>
+  @if (!isCollapsed()) {
+    <div class="code-container">
+      <pre class="json-pre"><code>@for (token of tokens(); track $index) {@if (token.type === 'plain') {{{ token.text }}} @else {<span [class]="'json-' + token.type">{{ token.text }}</span>}}</code></pre>
+    </div>
+  }
 </div>

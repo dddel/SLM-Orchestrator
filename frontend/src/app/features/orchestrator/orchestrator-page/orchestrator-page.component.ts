@@ -63,7 +63,7 @@ export class OrchestratorPageComponent {
   // Stato utente in modalità interattiva
   readonly userPayload = signal<string>('');
   readonly userDocType = signal<DocumentType | null>(null);
-  readonly userRouterType = signal<RouterType | null>(null);
+  readonly userRouterType = signal<RouterType | null>('local-ollama');
   readonly activePresetId = signal<string | null>(null);
   readonly manualPipelineStages = signal<PipelineStageState[]>(DEFAULT_PIPELINE);
   readonly isInfoOpen = signal<boolean>(false);
@@ -155,6 +155,10 @@ export class OrchestratorPageComponent {
     this.demoPlayer.pause();
   }
 
+  onResumeDemo(): void {
+    this.demoPlayer.resume();
+  }
+
   onStopDemo(): void {
     this.demoPlayer.stop();
   }
@@ -171,9 +175,7 @@ export class OrchestratorPageComponent {
     this.activePresetId.set(preset.id);
     this.userPayload.set(preset.payload);
     this.userDocType.set(preset.docType ?? null);
-    if (preset.routerType) {
-      this.userRouterType.set(preset.routerType);
-    }
+    this.userRouterType.set(preset.routerType ?? 'local-ollama');
   }
 
   onPayloadChange(val: string): void {
@@ -191,6 +193,7 @@ export class OrchestratorPageComponent {
   onClearPayload(): void {
     this.userPayload.set('');
     this.activePresetId.set(null);
+    this.userRouterType.set('local-ollama');
     this.orchestratorService.clearResponse();
     this.manualPipelineStages.set(DEFAULT_PIPELINE);
   }
@@ -219,15 +222,20 @@ export class OrchestratorPageComponent {
       .subscribe({
         next: (res) => {
           const isWarning = res.status === 'INDETERMINATE';
+          const routerMs = Math.max(15, Math.round(res.latencyMs * 0.08));
+          const guardsMs = Math.max(2, Math.round(res.latencyMs * 0.02));
+          const slmMs = Math.max(20, res.latencyMs - routerMs - guardsMs);
+
           this.manualPipelineStages.set([
             { id: 'input', label: 'Input', sublabel: 'Payload elaborato', status: 'completed' },
-            { id: 'router', label: 'Router', sublabel: res.router, status: 'completed' },
-            { id: 'slm', label: 'SLM', sublabel: 'Estrazione completata', status: 'completed' },
+            { id: 'router', label: 'Router', sublabel: res.router, status: 'completed', durationText: `${routerMs}ms` },
+            { id: 'slm', label: 'SLM', sublabel: 'Estrazione completata', status: 'completed', durationText: `${slmMs}ms` },
             {
               id: 'guards',
               label: 'Guardie',
               sublabel: isWarning ? 'Violazione rilevata' : 'Controlli superati',
-              status: isWarning ? 'warning' : 'completed'
+              status: isWarning ? 'warning' : 'completed',
+              durationText: `${guardsMs}ms`
             }
           ]);
         },

@@ -1,37 +1,54 @@
 .pipeline-card {
   width: 100%;
-  background-color: var(--md-sys-color-surface-container);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
   border-radius: var(--radius-card);
-  padding: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
 }
 
 .pipeline-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-thin) solid var(--color-border-subtle);
+}
+
+.header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pipeline-icon {
+  color: var(--color-accent-teal);
 }
 
 .pipeline-title {
-  font-size: var(--type-label-size);
-  line-height: var(--type-label-line);
+  font-size: var(--type-label-sm-size);
   font-weight: var(--weight-medium);
   letter-spacing: var(--type-label-track);
-  color: var(--md-sys-color-on-surface-variant);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.pipeline-badge {
+  font-size: var(--type-label-sm-size);
+  color: var(--color-text-subtle);
 }
 
 .pipeline-stages-row {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   width: 100%;
+  gap: var(--space-1);
 }
 
 @media (max-width: 640px) {
-  .pipeline-card {
-    padding: var(--space-5);
-  }
-
   .pipeline-stages-row {
     flex-direction: column;
     gap: var(--space-3);

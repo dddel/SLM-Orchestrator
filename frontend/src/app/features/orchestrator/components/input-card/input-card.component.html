@@ -1,30 +1,18 @@
 <div class="input-card" [class.is-loading]="isLoading()">
   <!-- Top Textarea Area -->
-  <div class="textarea-wrapper">
-    <textarea
-      class="payload-textarea"
-      placeholder="Incolla qui un documento non strutturato (fattura, email, verbale, anagrafica)..."
-      [value]="payload()"
-      [disabled]="disabled()"
-      (input)="onInputText($any($event.target).value)"
-      (focus)="onFocus()"
-      rows="9"
-      aria-label="Testo del documento non strutturato"
-    ></textarea>
-
-    <!-- Discreet Bottom Stats Bar -->
-    <div class="textarea-meta">
-      <div class="stats-group">
-        <span class="meta-item">{{ lineCount() }} righe</span>
-        <span class="meta-sep">&bull;</span>
-        <span class="meta-item">{{ charCount() }} caratteri</span>
+  <div class="textarea-container">
+    <div class="textarea-header">
+      <div class="header-label-group">
+        <app-icon name="file-text" [size]="14" customClass="textarea-icon"></app-icon>
+        <span class="textarea-label">Documento non strutturato</span>
       </div>
 
       @if (payload()) {
         <button
           type="button"
           class="clear-btn"
-          title="Cancella testo"
+          title="Svuota il testo inserito"
+          aria-label="Cancella testo inserito"
           (click)="onClear()"
           [disabled]="disabled() || isLoading()"
         >
@@ -33,11 +21,31 @@
         </button>
       }
     </div>
+
+    <textarea
+      class="payload-textarea"
+      placeholder="Incolla qui un documento non strutturato (es. testo di una fattura con P.IVA e IBAN, email con richieste urgenti, scheda KYC con Codice Fiscale, verbale)..."
+      [value]="payload()"
+      [disabled]="disabled()"
+      (input)="onInputText($any($event.target).value)"
+      (focus)="onFocus()"
+      rows="9"
+      aria-label="Testo del documento non strutturato"
+    ></textarea>
+
+    <!-- Barra statistiche in font monospace -->
+    <div class="textarea-meta">
+      <div class="stats-group">
+        <span class="meta-item"><strong class="mono-num">{{ lineCount() }}</strong> righe</span>
+        <span class="meta-sep">&bull;</span>
+        <span class="meta-item"><strong class="mono-num">{{ charCount() }}</strong> caratteri</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Bottom Compact Parameter & Action Bar -->
+  <!-- Bottom Parameters & Action Bar -->
   <div class="card-controls-bar">
-    <div class="params-inline-group">
+    <div class="params-group">
       <app-param-select
         label="Tipo Documento"
         icon="file-text"
@@ -57,18 +65,19 @@
       ></app-param-select>
     </div>
 
-    <div class="action-submit-group">
+    <div class="action-group">
       <app-tooltip text="Ctrl + Invio" [asKbd]="true">
         <button
           type="button"
           class="submit-btn"
-          aria-keyshortcuts="Control+Enter Meta+Enter"
+          [class.loading]="isLoading()"
           [disabled]="!payload().trim() || isLoading() || disabled()"
           (click)="onSubmit()"
+          aria-keyshortcuts="Control+Enter Meta+Enter"
         >
           @if (isLoading()) {
             <app-icon name="refresh" [size]="14" customClass="spin-icon"></app-icon>
-            <span>Elaborazione...</span>
+            <span>Inferenza in corso...</span>
           } @else {
             <app-icon name="play" [size]="14"></app-icon>
             <span>Elabora Documento</span>

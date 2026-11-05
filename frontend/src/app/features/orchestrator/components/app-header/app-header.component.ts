@@ -25,6 +25,8 @@ export class AppHeaderComponent {
   readonly startDemo = output<void>();
   /** Evento per mettere in pausa la demo */
   readonly pauseDemo = output<void>();
+  /** Evento per riprendere la demo */
+  readonly resumeDemo = output<void>();
   /** Evento per fermare la demo */
   readonly stopDemo = output<void>();
   /** Evento per aprire il modale informazioni */

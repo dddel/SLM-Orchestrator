@@ -15,10 +15,12 @@ export class DemoControlComponent {
   /** Se la modalità demo è temporaneamente in pausa */
   readonly isPaused = input<boolean>(false);
 
-  /** Evento per avviare o riprendere la demo */
+  /** Evento per avviare la demo */
   readonly start = output<void>();
   /** Evento per mettere in pausa la demo */
   readonly pause = output<void>();
+  /** Evento per riprendere la demo */
+  readonly resume = output<void>();
   /** Evento per fermare e resettare la demo */
   readonly stop = output<void>();
 
@@ -26,7 +28,7 @@ export class DemoControlComponent {
     if (!this.isRunning()) {
       this.start.emit();
     } else if (this.isPaused()) {
-      this.start.emit();
+      this.resume.emit();
     } else {
       this.pause.emit();
     }

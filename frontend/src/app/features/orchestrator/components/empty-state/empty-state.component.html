@@ -1,7 +1,16 @@
 <div class="empty-state-card">
-  <div class="empty-state-inner">
-    <p class="empty-prompt">
-      Incolla un documento oppure seleziona uno degli esempi in alto per visualizzare l'estrazione e i controlli formali.
+  <div class="empty-state-visual" aria-hidden="true">
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="8" width="28" height="32" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" class="svg-dashed-doc"/>
+      <path d="M16 16H32M16 22H28M16 28H24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="svg-doc-lines"/>
+      <circle cx="34" cy="34" r="7" class="svg-sparkle-bg"/>
+      <path d="M34 30V38M30 34H38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="svg-plus"/>
+    </svg>
+  </div>
+  <div class="empty-state-content">
+    <h3 class="empty-title">Pronto per l'estrazione</h3>
+    <p class="empty-desc">
+      Incolla un documento oppure seleziona uno degli esempi rapidi in alto per avviare il router e la validazione delle guardie deterministiche.
     </p>
   </div>
 </div>

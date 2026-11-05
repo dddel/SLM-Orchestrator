@@ -22,6 +22,11 @@ export class JsonViewerComponent {
   readonly title = input<string>('JSON Estratto');
 
   readonly isCopied = signal<boolean>(false);
+  readonly isCollapsed = signal<boolean>(false);
+
+  toggleCollapse(): void {
+    this.isCollapsed.update((v) => !v);
+  }
 
   readonly tokens = computed<JsonSyntaxToken[]>(() => {
     const raw = this.jsonContent() || '';
