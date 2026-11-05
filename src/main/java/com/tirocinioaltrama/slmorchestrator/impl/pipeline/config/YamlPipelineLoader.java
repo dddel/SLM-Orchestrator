@@ -332,7 +332,7 @@ public class YamlPipelineLoader {
             }
         }
 
-        long maxDurationMs = environment.getProperty("orchestrator.pipeline.max-duration-ms", Long.class, 60000L);
+        long maxDurationMs = environment.getProperty("orchestrator.pipeline.max-duration-ms", Long.class, 120000L);
         boolean includeSensitiveValues = environment.getProperty("orchestrator.logging.include-sensitive-values", Boolean.class, false);
         return new BasePipeline(docType, steps, maxDurationMs, def.getActions(), includeSensitiveValues);
     }

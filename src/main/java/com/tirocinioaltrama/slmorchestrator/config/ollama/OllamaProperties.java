@@ -112,7 +112,7 @@ public record OllamaProperties(
             connectTimeout = Duration.ofSeconds(30);
         }
         if (readTimeout == null) {
-            readTimeout = Duration.ofMinutes(2);
+            readTimeout = Duration.ofMinutes(4);
         }
     }
 

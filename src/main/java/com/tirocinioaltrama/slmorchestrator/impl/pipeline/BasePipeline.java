@@ -46,7 +46,7 @@ public class BasePipeline implements Pipeline {
     private final boolean includeSensitiveValues;
 
     public BasePipeline(DocumentType supportedType, List<PipelineStep> steps) {
-        this(supportedType, steps, 60_000L, null, false);
+        this(supportedType, steps, 120_000L, null, false);
     }
 
     public BasePipeline(DocumentType supportedType, List<PipelineStep> steps, long maxDurationMs) {
@@ -71,7 +71,7 @@ public class BasePipeline implements Pipeline {
     ) {
         this.supportedType = supportedType;
         this.steps = steps != null ? List.copyOf(steps) : List.of();
-        this.maxDurationMs = maxDurationMs > 0 ? maxDurationMs : 60_000L;
+        this.maxDurationMs = maxDurationMs > 0 ? maxDurationMs : 120_000L;
         this.actionsGroup = actionsGroup;
         this.includeSensitiveValues = includeSensitiveValues;
         Map<String, Integer> indexMap = new HashMap<>();

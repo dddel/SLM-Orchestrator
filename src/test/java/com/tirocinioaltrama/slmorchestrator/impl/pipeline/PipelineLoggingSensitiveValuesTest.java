@@ -116,7 +116,7 @@ class PipelineLoggingSensitiveValuesTest {
         return new BasePipeline(
                 DocumentType.FATTURA,
                 List.of(ovs),
-                60_000L,
+                120_000L,
                 null,
                 includeSensitiveValues
         );
