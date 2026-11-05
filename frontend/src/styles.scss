@@ -2,7 +2,7 @@
 @use 'styles/reset';
 @use 'styles/typography';
 
-/* Scrollbar polish (M3 minimal) */
+/* Scrollbar minimale moderna */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -13,15 +13,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--md-sys-color-outline-variant);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--md-sys-color-outline);
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* Global utility classes used across components */
+/* Accessibilità: classi per screen reader */
 .visually-hidden {
   position: absolute;
   width: 1px;

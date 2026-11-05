@@ -4,31 +4,34 @@
     class="param-pill-btn"
     [disabled]="disabled()"
     [attr.aria-expanded]="isOpen()"
+    aria-haspopup="listbox"
     (click)="toggleDropdown()"
   >
-    <app-icon [name]="icon()" [size]="13" customClass="param-icon"></app-icon>
+    <app-icon [name]="icon()" [size]="14" customClass="param-icon"></app-icon>
     <span class="param-label">{{ label() }}:</span>
     <span class="param-value">{{ getSelectedLabel() }}</span>
     <app-icon name="chevron-down" [size]="12" customClass="chevron-icon"></app-icon>
   </button>
 
   @if (isOpen()) {
-    <div class="dropdown-menu" role="listbox">
-      @for (opt of options(); track opt.label) {
+    <div class="dropdown-menu" role="listbox" [attr.aria-label]="label()">
+      @for (opt of options(); track opt.label; let i = $index) {
         <button
           type="button"
           class="dropdown-item"
           role="option"
           [attr.aria-selected]="selectedValue() === opt.value"
           [class.active]="selectedValue() === opt.value"
+          [class.highlighted]="highlightedIndex() === i"
           (click)="selectOption(opt.value)"
+          (mouseenter)="highlightedIndex.set(i)"
         >
           <span class="opt-label">{{ opt.label }}</span>
           @if (opt.badge) {
             <span class="opt-badge">{{ opt.badge }}</span>
           }
           @if (selectedValue() === opt.value) {
-            <app-icon name="check" [size]="12" customClass="check-icon"></app-icon>
+            <app-icon name="check" [size]="13" customClass="check-icon"></app-icon>
           }
         </button>
       }

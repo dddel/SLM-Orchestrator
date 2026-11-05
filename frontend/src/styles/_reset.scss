@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS Reset & Base Primitives — Material Design 3 Minimal
+   CSS Reset & Base Primitives
    ========================================================================== */
 
 *, *::before, *::after {
@@ -13,8 +13,10 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--surface);
-  color: var(--on-surface);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  background-image: radial-gradient(circle at 50% 0%, rgba(91, 146, 255, 0.04) 0%, transparent 45%);
+  background-attachment: fixed;
 }
 
 button {
@@ -42,15 +44,16 @@ input, textarea, select {
   outline: none;
 }
 
+/* Accessibilità: Focus ring visibile WCAG AA */
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: var(--focus-ring-width) solid var(--md-sys-color-primary);
+  outline: var(--focus-ring-width) solid var(--color-border-focus);
   outline-offset: var(--focus-ring-offset);
 }
 
-/* Reduced motion preference (WCAG / M3 accessibility) */
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

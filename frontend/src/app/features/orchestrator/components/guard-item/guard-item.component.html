@@ -1,11 +1,11 @@
 <div class="guard-item-row" [class]="'status-' + guard().status">
   <div class="guard-icon-box">
     @if (guard().status === 'passed') {
-      <app-icon name="check" [size]="12" customClass="icon-passed"></app-icon>
+      <app-icon name="check" [size]="14" customClass="icon-passed"></app-icon>
     } @else if (guard().status === 'warning') {
-      <app-icon name="alert-circle" [size]="12" customClass="icon-warning"></app-icon>
+      <app-icon name="alert-circle" [size]="14" customClass="icon-warning"></app-icon>
     } @else {
-      <app-icon name="alert-circle" [size]="12" customClass="icon-danger"></app-icon>
+      <app-icon name="alert-circle" [size]="14" customClass="icon-danger"></app-icon>
     }
   </div>
 
@@ -13,7 +13,7 @@
     <div class="guard-title-row">
       <span class="guard-title">{{ guard().title }}</span>
       <span class="guard-badge" [class]="guard().status">
-        {{ guard().status === 'passed' ? 'Valido' : 'Rifiutato' }}
+        {{ guard().status === 'passed' ? 'Superata' : guard().status === 'warning' ? 'Anomalia' : 'Errore' }}
       </span>
     </div>
     <p class="guard-detail">{{ guard().detail }}</p>

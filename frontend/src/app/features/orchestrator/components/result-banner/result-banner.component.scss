@@ -1,69 +1,147 @@
 .result-banner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-6);
-  background-color: var(--md-sys-color-surface-container-high);
-  color: var(--md-sys-color-on-surface);
+  padding: var(--space-3-5, var(--space-3)) var(--space-4);
   border-radius: var(--radius-secondary);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  background-color: var(--color-bg-surface-elevated);
+  transition: all var(--duration-normal) var(--ease-standard);
 
   &.status-OK {
-    background-color: var(--md-sys-color-success-container);
-    color: var(--md-sys-color-on-success-container);
+    border-color: var(--color-success-border);
+    background-color: rgba(34, 197, 94, 0.06);
   }
 
   &.status-INDETERMINATE {
-    background-color: var(--md-sys-color-warning-container);
-    color: var(--md-sys-color-on-warning-container);
+    border-color: var(--color-warning-border);
+    background-color: rgba(245, 158, 11, 0.06);
   }
 
   &.status-ERROR {
-    background-color: var(--md-sys-color-error-container);
-    color: var(--md-sys-color-on-error-container);
+    border-color: var(--color-error-border);
+    background-color: rgba(239, 68, 68, 0.06);
   }
 }
 
 .banner-left {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .banner-status-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  color: inherit;
+  flex-shrink: 0;
 }
 
-.router-chip {
+.status-icon-ok {
+  color: var(--color-success);
+}
+
+.status-icon-warn {
+  color: var(--color-warning);
+}
+
+.status-icon-err {
+  color: var(--color-error);
+}
+
+.badges-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.outcome-pill {
+  font-size: var(--type-label-sm-size);
+  font-weight: var(--weight-semibold);
+  padding: 3px var(--space-2-5);
+  border-radius: var(--radius-pill);
+  line-height: 1;
+
+  &.outcome-ok {
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: var(--border-thin) solid var(--color-success-border);
+  }
+
+  &.outcome-warn {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-text);
+    border: var(--border-thin) solid var(--color-warning-border);
+  }
+
+  &.outcome-err {
+    background-color: var(--color-error-bg);
+    color: var(--color-error-text);
+    border: var(--border-thin) solid var(--color-error-border);
+  }
+}
+
+.doc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px var(--space-2-5);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  font-size: var(--type-label-sm-size);
+  color: var(--color-text-main);
+  font-weight: var(--weight-medium);
+}
+
+.confidence-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1-5);
-  padding: var(--space-1) var(--space-3);
+  padding: 3px var(--space-2-5);
   border-radius: var(--radius-pill);
-  background-color: var(--md-sys-color-surface-container-lowest);
-  color: var(--md-sys-color-on-surface);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
   font-size: var(--type-label-sm-size);
-  line-height: var(--type-label-sm-line);
-  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+
+  strong {
+    color: var(--color-accent-teal-text);
+    font-family: var(--font-mono);
+  }
+}
+
+.conf-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent-teal);
 }
 
 .banner-right {
   display: flex;
   align-items: center;
+  gap: var(--space-2);
 }
 
-.latency-chip {
+.meta-chip {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1-5);
-  font-size: var(--type-label-size);
-  line-height: var(--type-label-line);
+  padding: 3px var(--space-2-5);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  font-size: var(--type-label-sm-size);
+  color: var(--color-text-muted);
+}
+
+.mono-num {
   font-family: var(--font-mono);
-  font-weight: var(--weight-medium);
-  color: inherit;
+  color: var(--color-text-main);
 }

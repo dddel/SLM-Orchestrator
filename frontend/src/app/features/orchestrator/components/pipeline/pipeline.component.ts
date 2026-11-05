@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PipelineStageComponent } from '../pipeline-stage/pipeline-stage.component';
+import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { PipelineStageState } from '../../models/orchestrator-ui.models';
 
 @Component({
   selector: 'app-pipeline',
   standalone: true,
-  imports: [CommonModule, PipelineStageComponent],
+  imports: [CommonModule, PipelineStageComponent, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './pipeline.component.html',
   styleUrls: ['./pipeline.component.scss']

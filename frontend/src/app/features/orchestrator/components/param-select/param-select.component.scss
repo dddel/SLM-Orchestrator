@@ -3,89 +3,70 @@
   display: inline-block;
 
   &.disabled {
-    opacity: 0.38;
+    opacity: 0.4;
     pointer-events: none;
   }
 }
 
 .param-pill-btn {
-  position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   height: var(--btn-secondary-height);
-  padding: 0 var(--space-4);
-  background-color: var(--md-sys-color-surface-container-high);
-  border: var(--border-thin) solid var(--md-sys-color-outline-variant);
+  padding: 0 var(--space-2-5);
+  background-color: var(--color-bg-surface-elevated);
+  border: var(--border-thin) solid var(--color-border-subtle);
   border-radius: var(--radius-input);
   font-size: var(--type-label-size);
-  line-height: var(--type-label-line);
-  color: var(--md-sys-color-on-surface);
-  transition: transform var(--duration-fast) var(--ease-standard),
-              opacity var(--duration-fast) var(--ease-standard);
+  color: var(--color-text-main);
+  transition: all var(--duration-fast) var(--ease-standard);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-color: var(--md-sys-color-on-surface);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--duration-fast) var(--ease-standard);
-  }
-
-  &:hover:not(:disabled)::after {
-    opacity: 0.08;
-  }
-
-  &:focus-visible:not(:disabled)::after,
-  &:active:not(:disabled)::after {
-    opacity: 0.10;
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-surface-highest);
+    border-color: var(--color-border-medium);
   }
 
   .open & {
-    background-color: var(--md-sys-color-secondary-container);
-    color: var(--md-sys-color-on-secondary-container);
-    border-color: var(--md-sys-color-primary);
+    background-color: var(--color-accent-container);
+    border-color: rgba(91, 146, 255, 0.45);
+    color: var(--color-accent-text);
   }
 }
 
 .param-icon {
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--color-text-muted);
 
   .open & {
-    color: var(--md-sys-color-on-secondary-container);
+    color: var(--color-accent-primary);
   }
 }
 
 .param-label {
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--color-text-subtle);
   font-weight: var(--weight-regular);
 
   .open & {
-    color: var(--md-sys-color-on-secondary-container);
+    color: var(--color-accent-text);
   }
 }
 
 .param-value {
-  color: var(--md-sys-color-on-surface);
+  color: var(--color-text-main);
   font-weight: var(--weight-medium);
 
   .open & {
-    color: var(--md-sys-color-on-secondary-container);
+    color: var(--color-text-main);
   }
 }
 
 .chevron-icon {
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--color-text-subtle);
   margin-left: var(--space-0-5);
   transition: transform var(--duration-fast) var(--ease-standard);
 
   .open & {
-    color: var(--md-sys-color-on-secondary-container);
     transform: rotate(180deg);
+    color: var(--color-accent-primary);
   }
 }
 
@@ -93,79 +74,63 @@
   position: absolute;
   top: calc(100% + var(--space-1));
   left: 0;
-  z-index: 100;
+  z-index: 50;
   min-width: var(--dropdown-min-width);
-  background-color: var(--md-sys-color-surface-container-high);
-  border: var(--border-thin) solid var(--md-sys-color-outline-variant);
+  background-color: var(--color-bg-surface-elevated);
+  border: var(--border-thin) solid var(--color-border-medium);
   border-radius: var(--radius-secondary);
-  box-shadow: var(--elevation-menu);
-  padding: var(--space-1-5);
+  box-shadow: var(--shadow-dropdown);
+  padding: var(--space-1);
   display: flex;
   flex-direction: column;
-  gap: var(--space-0-5);
-  animation: popIn var(--duration-fast) var(--ease-emphasized);
+  gap: 2px;
+  animation: dropdownPop var(--duration-fast) var(--ease-emphasized);
 }
 
 .dropdown-item {
-  position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--space-2-5) var(--space-3);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-input);
   font-size: var(--type-label-size);
-  line-height: var(--type-label-line);
-  color: var(--md-sys-color-on-surface);
+  color: var(--color-text-muted);
   text-align: left;
-  transition: opacity var(--duration-fast) var(--ease-standard);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-color: var(--md-sys-color-on-surface);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--duration-fast) var(--ease-standard);
-  }
-
-  &:hover::after {
-    opacity: 0.08;
-  }
-
-  &:focus-visible::after,
-  &:active::after {
-    opacity: 0.10;
+  &:hover,
+  &.highlighted {
+    background-color: var(--color-bg-surface-highest);
+    color: var(--color-text-main);
   }
 
   &.active {
-    background-color: var(--md-sys-color-secondary-container);
-    color: var(--md-sys-color-on-secondary-container);
+    background-color: var(--color-accent-container);
+    color: var(--color-accent-text);
     font-weight: var(--weight-medium);
   }
 }
 
 .opt-badge {
   font-size: var(--type-label-sm-size);
-  line-height: var(--type-label-sm-line);
-  padding: var(--space-0-5) var(--space-2);
+  padding: 1px var(--space-2);
   border-radius: var(--radius-pill);
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-on-surface-variant);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-subtle);
+  border: var(--border-thin) solid var(--color-border-subtle);
 }
 
 .check-icon {
-  color: var(--md-sys-color-primary);
-  margin-left: var(--space-1);
+  color: var(--color-accent-primary);
+  margin-left: var(--space-1-5);
 }
 
-@keyframes popIn {
+@keyframes dropdownPop {
   from {
     opacity: 0;
-    transform: translateY(calc(-1 * var(--space-1))) scale(0.98);
+    transform: translateY(-4px) scale(0.98);
   }
   to {
     opacity: 1;

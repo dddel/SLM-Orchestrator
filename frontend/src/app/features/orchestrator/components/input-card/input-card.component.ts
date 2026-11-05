@@ -62,8 +62,7 @@ export class InputCardComponent {
   ];
 
   readonly routerOptions: ParamOption[] = [
-    { value: null, label: 'Default di Sistema', badge: 'Auto' },
-    { value: 'local-ollama', label: 'Ollama Qwen 3B' },
+    { value: 'local-ollama', label: 'Ollama Qwen 3B', badge: 'Predefinito' },
     { value: 'reflex', label: 'APUS Reflex Classifier' }
   ];
 

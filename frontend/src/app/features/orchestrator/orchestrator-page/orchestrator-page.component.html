@@ -1,68 +1,71 @@
 <div class="orchestrator-layout">
-  <!-- 1. Header sticky sottile -->
+  <!-- Header sticky sottile -->
   <app-header
     [isDemoRunning]="isDemoRunning()"
     [isDemoPaused]="isDemoPaused()"
     (startDemo)="onStartDemo()"
     (pauseDemo)="onPauseDemo()"
+    (resumeDemo)="onResumeDemo()"
     (stopDemo)="onStopDemo()"
     (openInfo)="isInfoOpen.set(true)"
   ></app-header>
 
-  <!-- 2. Main content: colonna singola centrata -->
+  <!-- Main content: 2 colonne su schermi larghi (>= 1100px), colonna singola su mobile/tablet -->
   <main class="orchestrator-main">
-    <div class="orchestrator-container">
-      <!-- Selettore Esempi (orizzontale scorrevole, sostituisce il modale) -->
-      <section class="section-examples">
-        <app-example-chips
-          [presets]="presets"
-          [activePresetId]="effectiveActivePresetId()"
-          [disabled]="effectiveIsLoading()"
-          (selectPreset)="onSelectPreset($event)"
-        ></app-example-chips>
-      </section>
+    <div class="orchestrator-grid">
+      <!-- Colonna Sinistra: Esempi Rapidi + Input Card -->
+      <div class="grid-col-left">
+        <section class="section-examples">
+          <app-example-chips
+            [presets]="presets"
+            [activePresetId]="effectiveActivePresetId()"
+            [disabled]="effectiveIsLoading()"
+            (selectPreset)="onSelectPreset($event)"
+          ></app-example-chips>
+        </section>
 
-      <!-- Card di Input -->
-      <section class="section-input">
-        <app-input-card
-          [payload]="effectivePayload()"
-          [selectedDocType]="effectiveDocType()"
-          [selectedRouterType]="effectiveRouterType()"
-          [isLoading]="effectiveIsLoading()"
-          (payloadChange)="onPayloadChange($event)"
-          (docTypeChange)="onDocTypeChange($event)"
-          (routerTypeChange)="onRouterTypeChange($event)"
-          (submitRequest)="onSubmitRequest()"
-          (clearPayload)="onClearPayload()"
-          (userInteracted)="onUserInteracted()"
-        ></app-input-card>
-      </section>
+        <section class="section-input">
+          <app-input-card
+            [payload]="effectivePayload()"
+            [selectedDocType]="effectiveDocType()"
+            [selectedRouterType]="effectiveRouterType()"
+            [isLoading]="effectiveIsLoading()"
+            (payloadChange)="onPayloadChange($event)"
+            (docTypeChange)="onDocTypeChange($event)"
+            (routerTypeChange)="onRouterTypeChange($event)"
+            (submitRequest)="onSubmitRequest()"
+            (clearPayload)="onClearPayload()"
+            (userInteracted)="onUserInteracted()"
+          ></app-input-card>
+        </section>
+      </div>
 
-      <!-- Pipeline Neuro-Simbolica (4 stadi: Input -> Router -> SLM -> Guardie) -->
-      <section class="section-pipeline">
-        <app-pipeline [stages]="effectivePipelineStages()"></app-pipeline>
-      </section>
+      <!-- Colonna Destra: Pipeline + Risultati (o Stato Vuoto) -->
+      <div class="grid-col-right">
+        <section class="section-pipeline">
+          <app-pipeline [stages]="effectivePipelineStages()"></app-pipeline>
+        </section>
 
-      <!-- Risultato o Stato Vuoto -->
-      <section class="section-result">
-        @if (showResult()) {
-          <app-result-panel
-            [response]="effectiveResponse()"
-            [guards]="effectiveGuards()"
-            [streamingJson]="effectiveStreamingJson()"
-            [errorMessage]="effectiveError()"
-          ></app-result-panel>
-        } @else {
-          <app-empty-state></app-empty-state>
-        }
-      </section>
+        <section class="section-result">
+          @if (showResult()) {
+            <app-result-panel
+              [response]="effectiveResponse()"
+              [guards]="effectiveGuards()"
+              [streamingJson]="effectiveStreamingJson()"
+              [errorMessage]="effectiveError()"
+            ></app-result-panel>
+          } @else {
+            <app-empty-state></app-empty-state>
+          }
+        </section>
+      </div>
     </div>
   </main>
 
-  <!-- 3. Status footer minimalista -->
-  <app-status-footer></app-status-footer>
+  <!-- Status footer discreto -->
+  <app-status-footer [activeRouter]="effectiveRouterType() || 'local-ollama'"></app-status-footer>
 
-  <!-- 4. Modale Info Progetto & API -->
+  <!-- Modale Info Progetto & Architettura -->
   @if (isInfoOpen()) {
     <app-info-modal (close)="isInfoOpen.set(false)"></app-info-modal>
   }

@@ -7,6 +7,7 @@ export interface PipelineStageState {
   label: string;
   sublabel: string;
   status: PipelineStageStatus;
+  durationText?: string;
 }
 
 export interface GuardPresentationItem {

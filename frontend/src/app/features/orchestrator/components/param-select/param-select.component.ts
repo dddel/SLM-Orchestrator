@@ -20,7 +20,7 @@ import { ParamOption } from '../../models/orchestrator-ui.models';
   styleUrls: ['./param-select.component.scss']
 })
 export class ParamSelectComponent {
-  /** Etichetta del parametro (es. "Tipo Documento" o "Motore Router") */
+  /** Etichetta del parametro (es. "Tipo Documento" o "Router") */
   readonly label = input.required<string>();
   /** Icona da visualizzare a sinistra */
   readonly icon = input<IconName>('file-text');
@@ -35,12 +35,18 @@ export class ParamSelectComponent {
   readonly valueChange = output<string | null>();
 
   readonly isOpen = signal<boolean>(false);
+  readonly highlightedIndex = signal<number>(-1);
 
   constructor(private elementRef: ElementRef) {}
 
   toggleDropdown(): void {
     if (this.disabled()) return;
-    this.isOpen.update((v) => !v);
+    const next = !this.isOpen();
+    this.isOpen.set(next);
+    if (next) {
+      const idx = this.options().findIndex((o) => o.value === this.selectedValue());
+      this.highlightedIndex.set(idx >= 0 ? idx : 0);
+    }
   }
 
   selectOption(val: string | null): void {
@@ -50,7 +56,39 @@ export class ParamSelectComponent {
 
   getSelectedLabel(): string {
     const found = this.options().find((o) => o.value === this.selectedValue());
-    return found ? found.label : 'Predefinito';
+    return found ? found.label : 'Riconoscimento auto';
+  }
+
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.disabled()) return;
+
+    if (this.isOpen()) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        this.isOpen.set(false);
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const opts = this.options();
+        this.highlightedIndex.update((curr) => (curr + 1) % opts.length);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const opts = this.options();
+        this.highlightedIndex.update((curr) => (curr <= 0 ? opts.length - 1 : curr - 1));
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const opts = this.options();
+        const idx = this.highlightedIndex();
+        if (idx >= 0 && idx < opts.length) {
+          this.selectOption(opts[idx].value);
+        }
+      }
+    } else {
+      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.toggleDropdown();
+      }
+    }
   }
 
   @HostListener('document:click', ['$event'])

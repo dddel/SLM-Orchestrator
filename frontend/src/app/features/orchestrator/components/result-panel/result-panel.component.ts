@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultBannerComponent } from '../result-banner/result-banner.component';
+import { ExtractedFieldsComponent } from '../extracted-fields/extracted-fields.component';
 import { JsonViewerComponent } from '../json-viewer/json-viewer.component';
 import { GuardListComponent } from '../guard-list/guard-list.component';
 import { GuardPresentationItem } from '../../models/orchestrator-ui.models';
@@ -12,6 +13,7 @@ import { OrchestratorResponse } from '../../../../core/models/orchestrator.model
   imports: [
     CommonModule,
     ResultBannerComponent,
+    ExtractedFieldsComponent,
     JsonViewerComponent,
     GuardListComponent
   ],
@@ -40,5 +42,10 @@ export class ResultPanelComponent {
     } catch {
       return content;
     }
+  });
+
+  readonly hasViolations = computed(() => {
+    const res = this.response();
+    return res ? res.status === 'INDETERMINATE' : false;
   });
 }
