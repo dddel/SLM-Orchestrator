@@ -6,34 +6,41 @@
 ## Indice Generale
 
 1. [Executive Summary e Scopo del Progetto](#1-executive-summary-e-scopo-del-progetto)
-2. [Information Priming e Concetti Fondamentali](#2-information-priming-e-concetti-fondamentali)
+2. [Information Priming: Concetti, Stati e Categorie Documentali](#2-information-priming-concetti-stati-e-categorie-documentali)
+   - 2.1. [Le Categorie Documentali di Dominio](#21-le-categorie-documentali-di-dominio)
+   - 2.2. [Gli Stati di Risposta del Sistema (OK, INDETERMINATE, ERROR)](#22-gli-stati-di-risposta-del-sistema-ok-indeterminate-error)
+   - 2.3. [Fondamenti del Paradigma Neuro-Simbolico e Grandezze Matematiche](#23-fondamenti-del-paradigma-neuro-simbolico-e-grandezze-matematiche)
 3. [Architettura Ibrida Neuro-Simbolica](#3-architettura-ibrida-neuro-simbolica)
-   - 3.1. [Visione d'Insieme e Flusso Operativo](#31-visione-dinsieme-e-flusso-operativo)
-   - 3.2. [Analisi dei Trade-off e Scelte Progettuali](#32-analisi-dei-trade-off-e-scelte-progettuali)
+   - 3.1. [Visione d'Insieme e Diagramma di Flusso Operativo](#31-visione-dinsieme-e-diagramma-di-flusso-operativo)
+   - 3.2. [Analisi dei Trade-off e Motivazione delle Scelte Architetturali](#32-analisi-dei-trade-off-e-motivazione-delle-scelte-architetturali)
 4. [Componenti della Codebase e Flusso Esecutivo](#4-componenti-della-codebase-e-flusso-esecutivo)
-   - 4.1. [Ingestion, Sanitizzazione e Sicurezza di Ingresso](#41-ingestion-sanitizzazione-e-sicurezza-di-ingresso)
-   - 4.2. [Routing Decisionale a Singolo Token e Mitigazione Artefatti](#42-routing-decisionale-a-singolo-token-e-mitigazione-artefatti)
-   - 4.3. [Pipeline Dichiarative YAML e PipelineContext Thread-Safe](#43-pipeline-dichiarative-yaml-e-pipelinecontext-thread-safe)
-   - 4.4. [Single Base Model in RAM e Dynamic System Prompts](#44-single-base-model-in-ram-e-dynamic-system-prompts)
-   - 4.5. [Gestione della KV-Cache e Prevenzione dei Loop Degeneri](#45-gestione-della-kv-cache-e-prevenzione-dei-loop-degeneri)
-   - 4.6. [Guardia Temporale della Pipeline e Timeout di Socket HTTP](#46-guardia-temporale-della-pipeline-e-timeout-di-socket-http)
-5. [Le Guardie Simboliche e Determistiche (Specifiche e Snippets)](#5-le-guardie-simboliche-e-deterministiche-specifiche-e-snippets)
-   - 5.1. [Guardie di Validazione Algebrica e Formale di Campo](#51-guardie-di-validazione-algebrica-e-formale-di-campo)
-   - 5.2. [Guardie Simboliche di Post-Processing (G1, G2, Sesso, G3, G4, Date)](#52-guardie-simboliche-di-post-processing-g1-g2-sesso-g3-g4-date)
-   - 5.3. [Guardie di Coerenza Cross-Field e Layout (V1, V2)](#53-guardie-di-coerenza-cross-field-e-layout-v1-v2)
-   - 5.4. [Guardia Simbolica di Appartenenza a Catalogo Chiuso](#54-guardia-simbolica-di-appartenenza-a-catalogo-chiuso)
-   - 5.5. [Guardia Anti-Cache Piena (PromptCacheGuard)](#55-guardia-anti-cache-piena-promptcacheguard)
+   - 4.1. [Ingestion, Sanitizzazione e Sicurezza di Ingresso (InputValidator)](#41-ingestion-sanitizzazione-e-sicurezza-di-ingresso-inputvalidator)
+   - 4.2. [Routing Decisionale a Singolo Token e Risoluzione dell'Artefatto di Thinking](#42-routing-decisionale-a-singolo-token-e-risoluzione-dellartefatto-di-thinking)
+   - 4.3. [Le Pipeline Dichiarative e il Formato YAML](#43-le-pipeline-dichiarative-e-il-formato-yaml)
+   - 4.4. [Guida Pratica: Come Estendere il Sistema Aggiungendo una Nuova Pipeline](#44-guida-pratica-come-estendere-il-sistema-aggiungendo-una-nuova-pipeline)
+   - 4.5. [I Tool nell'Orchestratore: In-Pipeline Lookup e Post-Pipeline Actions](#45-i-tool-nellorchestratore-in-pipeline-lookup-e-post-pipeline-actions)
+   - 4.6. [Single Base Model in RAM e Dynamic System Prompts](#46-single-base-model-in-ram-e-dynamic-system-prompts)
+   - 4.7. [Perché la KV-Cache è Stata un Problema Critico e Come è Risolta](#47-perché-la-kv-cache-è-stata-un-problema-critico-e-come-è-risolta)
+   - 4.8. [Guardia Temporale della Pipeline e Timeout di Rete Socket](#48-guardia-temporale-della-pipeline-e-timeout-di-rete-socket)
+5. [Le Guardie Simboliche e Determistiche: Meccanismi e Snippets](#5-le-guardie-simboliche-e-deterministiche-meccanismi-e-snippets)
+   - 5.1. [Come Funzionano le Guardie a Livello Esecutivo](#51-come-funzionano-le-guardie-a-livello-esecutivo)
+   - 5.2. [Guardie di Validazione Algebrica e Formale di Campo (Luhn, CIN, MOD-97)](#52-guardie-di-validazione-algebrica-e-formale-di-campo-luhn-cin-mod-97)
+   - 5.3. [Guardie Simboliche di Post-Processing (G1, G2, Sesso, G3, G4, Date)](#53-guardie-simboliche-di-post-processing-g1-g2-sesso-g3-g4-date)
+   - 5.4. [Guardie di Coerenza Cross-Field e Layout Numerato (V1, V2)](#54-guardie-di-coerenza-cross-field-e-layout-numerato-v1-v2)
+   - 5.5. [Guardia Simbolica di Appartenenza a Catalogo Chiuso](#55-guardia-simbolica-di-appartenenza-a-catalogo-chiuso)
+   - 5.6. [Guardia Anti-Cache Piena (PromptCacheGuard)](#56-guardia-anti-cache-piena-promptcacheguard)
 6. [Meccanismi di Recupero: Smart Retry (RF7), Short-Circuit e Stato INDETERMINATE](#6-meccanismi-di-recupero-smart-retry-rf7-short-circuit-e-stato-indeterminate)
-   - 6.1. [Smart Retry con Zero-Injection di Valori Rifiutati](#61-smart-retry-con-zero-injection-di-valori-rifiutati)
-   - 6.2. [Short-Circuit dei Documenti Avversariali](#62-short-circuit-dei-documenti-avversariali)
-   - 6.3. [Stato di Dominio INDETERMINATE e Conservazione dell'Output](#63-stato-di-dominio-indeterminate-e-conservazione-delloutput)
+   - 6.1. [Cos'è lo Smart Retry (RF7) e Perché Risolve i Limiti del Retry Tradizionale](#61-cosè-lo-smart-retry-rf7-e-perché-risolve-i-limiti-del-retry-tradizionale)
+   - 6.2. [Costruzione del Feedback a Zero-Injection](#62-costruzione-del-feedback-a-zero-injection)
+   - 6.3. [Short-Circuit dei Documenti Avversariali (Risparmio Computazionale)](#63-short-circuit-dei-documenti-avversariali-risparmio-computazionale)
+   - 6.4. [Gestione dello Stato di Dominio INDETERMINATE e Conservazione del Dato](#64-gestione-dello-stato-di-dominio-indeterminate-e-conservazione-del-dato)
 7. [Scenari End-to-End di Esempio](#7-scenari-end-to-end-di-esempio)
    - 7.1. [Scenario A: Fattura Commerciale Valida](#71-scenario-a-fattura-commerciale-valida)
    - 7.2. [Scenario B: Documento con Codice Errato nel Testo (Short-Circuit)](#72-scenario-b-documento-con-codice-errato-nel-testo-short-circuit)
    - 7.3. [Scenario C: Email Aziendale e Risoluzione Destinatario da Catalogo](#73-scenario-c-email-aziendale-e-risoluzione-destinatario-da-catalogo)
    - 7.4. [Scenario D: Documento Fuori Dominio (ALTRO)](#74-scenario-d-documento-fuori-dominio-altro)
 8. [Risultati Sperimentali e Analisi Oggettiva dei Dati](#8-risultati-sperimentali-e-analisi-oggettiva-dei-dati)
-   - 8.1. [Protocollo di Valutazione, Dataset Congelati e Tassonomia Esiti](#81-protocollo-di-valutazione-dataset-congelati-e-tassonomia-esiti)
+   - 8.1. [Protocollo di Valutazione, Dataset Congelati e Tassonomia C1..C5](#81-protocollo-di-valutazione-dataset-congelati-e-tassonomia-c1c5)
    - 8.2. [Batteria 1: Ablazione dei Guardrail su Modello 3B](#82-batteria-1-ablazione-dei-guardrail-su-modello-3b)
    - 8.3. [Batteria 2: Confronto Architetturale 3B Orchestrato vs 7B Monolitico](#83-batteria-2-confronto-architetturale-3b-orchestrato-vs-7b-monolitico)
    - 8.4. [Batteria 3: Valutazione del Router Locale a 4 Classi](#84-batteria-3-valutazione-del-router-locale-a-4-classi)
@@ -47,73 +54,102 @@
 
 ## 1. Executive Summary e Scopo del Progetto
 
-Il progetto **SLM Orchestrator** implementa un'architettura software a microservizio (sviluppata in **Java 21** e **Spring Boot 4**, affiancata da un frontend reattivo **Angular 19**) deputata all'acquisizione, classificazione, estrazione strutturata e validazione deterministica di testi documentali non strutturati o semi-strutturati tipici dell'operatività aziendale: **Fatture**, **Certificati/Richieste Anagrafiche**, **Email di Assistenza/Ticket** e **Documenti Generici Fuori Dominio (`ALTRO`)**.
+Il progetto **SLM Orchestrator** implementa un'architettura software a microservizio (sviluppata in **Java 21** e **Spring Boot 4**, affiancata da un frontend reattivo **Angular 19**) deputata all'acquisizione, classificazione, estrazione strutturata e validazione deterministica di testi documentali non strutturati o semi-strutturati tipici dell'operatività aziendale.
 
-### Il Problema Operativo e i Limiti dei Paradigmi Esistenti
-Le organizzazioni aziendali che gestiscono flussi documentali riservati (dati personali sensibili, segreti commerciali, identificatori fiscali e bancari) affrontano un trilemma tecnologico:
-1. **Dipendenza dal Cloud e Privacy**: Inviare documenti riservati verso API commerciali di modelli proprietari su larga scala (LLM) comporta rischi di conformità normativa (GDPR), costi operativi ricorrenti non lineari e latenze soggette a congestione di rete esterna.
-2. **Fragilità dei Sistemi Basati su Sole Regole (Approccio Simbolico Puro)**: L'estrazione tramite sole espressioni regolari (regex) o parser statici fallisce di fronte alla variabilità stilistica, alle abbreviazioni, ai refusi testuali e ai formati non standardizzati con cui i documenti arrivano.
-3. **Inaffidabilità dei Modelli Linguistici Generativi Liberi (Approccio Neurale Puro)**: I modelli linguistici sono motori probabilistici di continuazione token. Anche i modelli più potenti sono soggetti ad allucinazioni (fabbricazione di dati verosimili ma inesistenti), violazioni strutturali del JSON emesso, mancato rispetto delle relazioni matematiche (es. totale fattura difforme dalla somma di imponibile e imposta) e generazione di codici con caratteri di controllo (checksum) palesemente invalidi.
+### Il Problema Operativo e il Trilemma dei Sistemi Documentali
+Le organizzazioni aziendali che gestiscono flussi documentali riservati (dati anagrafici sensibili, segreti industriali, identificatori fiscali e bancari) si trovano oggi di fronte a un trilemma tecnologico:
+1. **Dipendenza dal Cloud e Rischi di Privacy (GDPR)**: L'invio di documenti contenenti PII (Personally Identifiable Information) verso API commerciali di modelli proprietari su larga scala (LLM) comporta rischi di conformità normativa, costi operativi ricorrenti legati ai token e latenze soggette alla congestione della rete pubblica.
+2. **Fragilità dei Sistemi a Regole (Approccio Simbolico Puro)**: L'estrazione tramite sole espressioni regolari (regex) o parser deterministici fallisce non appena il testo presenta variabilità stilistica, sinonimi, abbreviazioni, refusi o layout discorsivi.
+3. **Inaffidabilità dei Modelli Linguistici Generativi Liberi (Approccio Neurale Puro)**: I modelli linguistici sono motori probabilistici di predizione token. Anche i modelli più avanzati soffrono di allucinazioni (invenzione di codici inesistenti), violazioni strutturali del JSON emesso, mancato rispetto delle relazioni algebriche (es. totale fattura difforme dalla somma di imponibile e imposta) e generazione di codici fiscali o IBAN con cifre di controllo errate.
 
-### La Soluzione Progettuale: Approccio Neuro-Simbolico Locale
-**SLM Orchestrator** adotta un'**architettura ibrida neuro-simbolica**:
-- La componente **neurale** è affidata a **Small Language Models (SLM)** eseguiti localmente tramite il runtime **Ollama** (`qwen2.5:3b-instruct-q8_0` e alternativamente `7b`, affiancati dal modello decisionale `APUS-Reflex-4B`). L'SLM ha l'unico compito di comprendere il linguaggio naturale, gestire il contesto semantico ed estrarre i frammenti informativi rilevanti vincolandoli a grammatiche formali (JSON Schema).
+### La Soluzione Progettuale: Il Paradigma Ibrido Neuro-Simbolico Locale
+**SLM Orchestrator** risolve il trilemma integrando cooperativamente due componenti:
+- La componente **neurale** è affidata a **Small Language Models (SLM)** eseguiti interamente on-premise tramite il runner **Ollama** (`qwen2.5:3b-instruct-q8_0` e `7b`, affiancati dal modello decisionale discreto `APUS-Reflex-4B`). L'SLM ha l'unico compito di comprendere il linguaggio naturale, gestire il contesto semantico ed estrarre i frammenti informativi rilevanti vincolandoli a grammatiche formali (JSON Schema).
 - La componente **simbolica** è costituita da un motore rigido e deterministico di **guardie algoritmiche, validatori algebrici e filtri di normalizzazione**. I modelli neurali non hanno l'autorità di decidere se un documento è formalmente valido: tale giudizio appartiene al codice simbolico deterministico. Se un codice fiscale, un IBAN o una partita IVA fallisce l'algoritmo di checksum, l'elaborazione non transita a uno stato di successo, ma viene intercettata, corretta tramite cicli di retry controllati (*Smart Retry RF7*) o marcata esplicitamente come **`INDETERMINATE`** per la revisione da parte di un operatore umano (*Human-in-the-Loop*).
 
 ---
 
-## 2. Information Priming e Concetti Fondamentali
+## 2. Information Priming: Concetti, Stati e Categorie Documentali
 
-Per garantire una lettura rigorosa e priva di ambiguità, vengono definiti formalmente i concetti e le grandezze matematiche utilizzate nell'intera relazione.
+Per garantire una lettura chiara e priva di ambiguità, vengono definiti formalmente gli elementi costitutivi del sistema prima del loro utilizzo nella trattazione architetturale.
 
-- **Small Language Model (SLM)**: Modello linguistico neurale compatto, tipicamente con una dimensione compresa tra 1 e 8 miliardi di parametri ($1\text{B} - 8\text{B}$). A differenza degli LLM da centinaia di miliardi di parametri eseguiti in cluster cloud, gli SLM possono essere eseguiti localmente su singola GPU di fascia workstation, iGPU (tramite backend Vulkan) o CPU con memoria unificata, riducendo l'impronta energetica e azzerando i costi di trasmissione dati.
-- **Sistema Neuro-Simbolico**: Paradigma computazionale che integra l'apprendimento automatico statistico (reti neurali profonde) con la logica formale deterministica (sistemi basati su regole, grammatiche formali, algebra relazionale). La componente neurale opera come estrattore approssimativo; la componente simbolica funge da supervisore logico insuperabile.
-- **Guardrail / Guardia Simbolica**: Procedura algoritmica deterministica eseguita prima, durante o dopo l'inferenza neurale, volta a verificare o imporre invarianti matematiche, sintattiche, semantiche o temporali sull'elaborazione.
-- **KV-Cache (Key-Value Cache)**: Struttura dati allocata nella RAM della GPU/acceleratore neurale durante l'elaborazione di un trasformatore (Transformer). Memorizza i tensori di chiave e valore dei token già calcolati nei prompt precedenti. Se il prefisso di una richiesta coincide con una già vista, il runner salta il ricalcolo dei tensori (*Cache Hit*).
-- **Stato `INDETERMINATE`**: Esito di dominio dell'orchestratore che certifica l'impossibilità di garantire formalmente la correttezza del risultato (es. codice con checksum errato non correggibile, mancata convergenza del catalogo o timeout esaurito). L'orchestratore non emette uno stato ingannevole di errore generico (`500`) né un falso positivo (`OK`), ma restituisce `INDETERMINATE` preservando il testo non validato per l'audit operatore.
-- **Intervallo di Confidenza di Wilson (Wilson Score Interval)**: Metodo statistico per calcolare l'intervallo di confidenza asimmetrico di una proporzione binomiale su campioni discreti, preferito all'approssimazione gaussiana normale di Wald poiché accurato anche in presenza di campioni ridotti ($N < 100$) o proporzioni vicine agli estremi ($0\%$ o $100\%$).
-- **Algoritmo di Luhn**: Formula algebrica di controllo basata su somme ponderate a cifre alternate, impiegata a livello normativo per la verifica della cifra finale delle Partite IVA italiane e delle carte di credito.
-- **Codice Identificativo Nazionale (CIN)**: Carattere alfabetico di controllo finale del Codice Fiscale italiano, calcolato mediante tabelle ministeriali di conversione differenziate per caratteri in posizione pari e dispari.
-- **ISO 7064 MOD 97-10**: Norma internazionale di controllo algebrico applicata alle coordinate bancarie internazionali (IBAN), fondata sulla conversione alfanumerica e sul calcolo del resto modulo 97.
-- **Greedy Decoding (`temperature = 0.0`)**: Strategia di campionamento neurale in cui, a ogni passo di generazione autoregressiva, viene selezionato esclusivamente il token con la probabilità logaritmica (*logprob*) più elevata, garantendo la riproducibilità deterministica dell'output a parità di prompt e seed.
+### 2.1. Le Categorie Documentali di Dominio
+
+L'orchestratore modella il perimetro documentale aziendale attraverso quattro categorie tassonomiche distinte, ciascuna presidiata da una pipeline specializzata:
+
+1. **`FATTURA`**: Documenti contabili-fiscali emessi per cessione di beni o prestazioni di servizi.
+   - *Campi target principali*: numero fattura, data fattura, dati identificativi del fornitore (denominazione, Partita IVA), dati del cliente (denominazione, Codice Fiscale o Partita IVA), imponibile, imposta, totale documento e coordinate bancarie IBAN.
+   - *Complessità di dominio*: Presenza obbligatoria di vincoli algebrici rigorosi (somma algebrica imponibile + imposta = totale) e codici alfanumerici a controllo normativo (Partita IVA italiana, Codice Fiscale, IBAN europeo).
+2. **`ANAGRAFICA`**: Documenti di identità, autocertificazioni o estratti anagrafici (Patente di guida, Carta d'Identità, Passaporto, Tessera Sanitaria).
+   - *Campi target principali*: cognome, nome, sesso, codice fiscale, data di nascita, comune o stato estero di nascita, sigla provincia, estremi del documento (numero, data di rilascio, data di scadenza, ente di rilascio).
+   - *Complessità di dominio*: Presenza di layout standardizzati numerati (es. numerazione comunitaria delle patenti di guida `1. Cognome`, `2. Nome`) e forte interdipendenza tra i dati anagrafici e la struttura alfanumerica del Codice Fiscale.
+3. **`EMAIL`**: Comunicazioni testuali aperte tra utenti/clienti e l'organizzazione aziendale (richieste di supporto, reclami, solleciti amministrativi).
+   - *Campi target principali*: mittente (indirizzo email valido), oggetto, corpo del messaggio sintetizzato e **destinatario/ruolo aziendale di competenza** (es. `Amministrazione`, `Ufficio Acquisti`, `Supporto Tecnico`, `Logistica`).
+   - *Complessità di dominio*: Processo a due stadi. L'SLM deve prima estrarre l'evento semantico e successivamente interrogare un catalogo aziendale autorizzato per disambiguare a quale ufficio assegnare la gestione della pratica.
+4. **`ALTRO`**: Classe residuale aperta comprendente qualsiasi documento non appartenente ai tre domini operativi precedenti (verbali interni, contratti complessi, comunicazioni sindacali, log applicativi, testo non strutturato generico).
+   - *Comportamento*: L'orchestratore non forza campi contabili o anagrafici inesistenti, ma estrae una sintesi descrittiva neutra, evitando l'applicazione di guardie matematiche non pertinenti.
+
+---
+
+### 2.2. Gli Stati di Risposta del Sistema (OK, INDETERMINATE, ERROR)
+
+A differenza dei tradizionali sistemi web che collassano gli esiti su un codice HTTP binario (200 OK / 500 Error), SLM Orchestrator adotta una semantica di stato a livello di dominio applicativo:
+
+- **`OK`**: Lo stato di successo pieno. Certifica che l'input è stato classificato, l'estrazione semantica è avvenuta conformemente allo schema JSON e **tutti i vincoli simbolici, algebrici e di coerenza relazionale sono stati superati al 100%**. Il campo `result` contiene il JSON validato.
+- **`INDETERMINATE`**: Lo stato di fallimento controllato dell'elaborazione documentale. Si verifica quando il documento presenta anomalie formali insuperabili (es. una Partita IVA con checksum errato stampata all'origine nel testo), quando il catalogo aziendale non contiene il ruolo richiesto o quando sono stati esauriti i tentativi di retry senza convergenza.
+  - *Principio cardine*: Il sistema **non maschera l'errore** e **non inventa dati**. Nel campo `unvalidatedResult` viene preservato l'intero JSON grezzo emesso dall'SLM, mentre nel campo `errors` vengono registrati i dettagli puntuali delle violazioni. In questo modo l'operatore umano trova la scheda precompilata con il campo anomalo evidenziato in rosso.
+- **`ERROR`**: Stato di errore infrastrutturale o di trasporto HTTP (es. payload non leggibile, eccezione di rete verso Ollama non recuperabile, violazione della dimensione massima di 32KB). Genera risposte conformi RFC 7807 (`ApiErrorResponse`) gestite da `@RestControllerAdvice`.
+
+---
+
+### 2.3. Fondamenti del Paradigma Neuro-Simbolico e Grandezze Matematiche
+
+- **Small Language Model (SLM)**: Rete neurale autoregressiva con dimensione tipica tra 1 e 8 miliardi di parametri ($1\text{B} - 8\text{B}$). Può essere eseguita localmente su iGPU via Vulkan o CPU unificata con footprint compreso tra 2 e 8 GB di RAM, azzerando le dipendenze esterne.
+- **Grammar-Guided Constrained Decoding**: Meccanismo a livello di campionamento token (eseguito dal runtime Ollama/llama.cpp) che limita l'albero di predizione dei logit ai soli caratteri e token che rispettano formalmente una grammatica context-free o un JSON Schema definito.
+- **KV-Cache (Key-Value Cache)**: Buffer di memoria allocato nella RAM dell'acceleratore che conserva i tensori di attenzione calcolati per i token dei prompt passati. Consente di evitare il ricalcolo computazionale dei token statici (es. il System Prompt).
+- **Intervallo di Confidenza di Wilson (Wilson Score Interval)**: Metodo statistico asimmetrico per la stima dell'intervallo di confidenza al 95% su proporzioni binomiali discrete ($p = k / N$). Risulta matematicamente robusto anche per campioni ridotti ($N < 100$) o per accuratezze prossime al 100%, superando le distorsioni dell'approssimazione normale simmetrica di Wald.
+- **Algoritmo di Luhn**: Formula di controllo algebrico a somma ponderata a posizioni alternate (le cifre in posizione pari vengono moltiplicate per 2; se il prodotto supera 9 si sottrae 9). Utilizzata per la verifica dell'undicesima cifra delle Partite IVA italiane.
+- **Carattere di Controllo CIN**: Cifra alfabetica finale del Codice Fiscale calcolata tramite conversione dei caratteri alfanumerici secondo tabelle ministeriali differenziate per posizione pari e dispari, ridotta modulo 26.
+- **ISO 7064 MOD 97-10**: Standard internazionale di verifica delle coordinate bancarie IBAN. Trasforma le lettere nei valori $10 \dots 35$ e calcola l'invariante matematico:
+  $$\text{NumeroIBAN} \pmod{97} \equiv 1$$
 
 ---
 
 ## 3. Architettura Ibrida Neuro-Simbolica
 
-### 3.1. Visione d'Insieme e Flusso Operativo
+### 3.1. Visione d'Insieme e Diagramma di Flusso Operativo
 
-L'architettura del sistema si articola su quattro strati funzionali chiaramente segregati, orchestrati dalla classe [`DefaultOrchestrator`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/DefaultOrchestrator.java).
+L'architettura del sistema si fonda su una netta separazione tra il livello di controllo e orchestrazione, il livello decisionale neurale e il supervisore logico simbolico.
 
 ```mermaid
 flowchart TD
-    Client["Client Esterno / UI Angular\nPOST /api/orchestrator/process"] --> Controller["OrchestratorController"]
+    Client["Client / UI Angular\nPOST /api/orchestrator/process"] --> Controller["OrchestratorController"]
     Controller --> Orchestrator["DefaultOrchestrator"]
     
-    subgraph S1 ["1. Fase di Ingestion e Validazione"]
-        Orchestrator --> InVal["InputValidator\n- Limite 32KB\n- Sanitizzazione Tag XML/Prompt Injection"]
+    subgraph S1 ["1. Ingestion e Validazione di Ingresso"]
+        Orchestrator --> InVal["InputValidator\n- Controllo limite 32KB\n- Sanitizzazione Tag XML/Prompt Injection"]
     end
     
     subgraph S2 ["2. Routing Globale Decisionale"]
         InVal --> RouterChoice{"Etichetta manuale presente?"}
-        RouterChoice -- No --> RModel["Router Locale\n(LocalOllamaRouter / ApusReflexRouter)\nClassificazione a 4 classi: FATTURA, ANAGRAFICA, EMAIL, ALTRO"]
+        RouterChoice -- No --> RModel["Router Locale\n(LocalOllamaRouter / ApusReflexRouter)\nClassificazione a 4 classi:\nFATTURA, ANAGRAFICA, EMAIL, ALTRO"]
         RouterChoice -- Sì --> LabelCheck["LabelValidator"]
         RModel --> LabelCheck
     end
     
     subgraph S3 ["3. Pipeline Sequenziale Specializzata (BasePipeline)"]
-        LabelCheck --> PipeReg["PipelineRegistry\nCaricamento pipeline dichiarativa da YAML"]
-        PipeReg --> PipeExec["Esecuzione Step"]
+        LabelCheck --> PipeReg["PipelineRegistry\nCaricamento pipeline da YAML"]
+        PipeReg --> PipeExec["Esecuzione Sequenziale Step"]
         
         PipeExec --> StepGen["Step 1: ModelInferenceStep\nSLM Qwen 2.5 + JSON Schema\n(Generazione Contenuto)"]
-        StepGen --> StepVal["Step 2: OutputValidationStep\n- Validazione Sintattica JSON\n- Checksum Luhn/CIN/IBAN\n- Normalizzatori G1-G4\n- Coerenza Cross-Field"]
+        StepGen --> StepVal["Step 2: OutputValidationStep\n- Validazione Sintattica JSON\n- Checksum Luhn/CIN/IBAN\n- Normalizzatori G1-G4\n- Coerenza Cross-Field (V1, V2)"]
         
         StepVal -- "Violazione rimediabile (max 2 retry)" --> RetryLoop["Smart Retry (RF7)\nFeedback strutturato tipizzato\nTemperatura: 0.0 -> 0.2"]
         RetryLoop --> StepGen
         
-        StepVal -- "Violazione avversariale sorgente" --> ShortCircuit["Short-Circuit\nInterruzione immediata retry"]
+        StepVal -- "Codice invalido nel sorgente" --> ShortCircuit["Short-Circuit Avversariale\n(Interruzione immediata retry)"]
         
-        StepVal -- Successo --> StepTool["Step 3: ToolPipelineStep (Opzionale)\nLookup Catalogo Esterno (es. Ruoli Aziendali)"]
+        StepVal -- Successo --> StepTool["Step 3: ToolPipelineStep (Opzionale)\nLookup Catalogo (es. CompanyRolesTool)"]
         StepTool --> StepDec["Step 4: DecisionPipelineStep (Opzionale)\nScelta Discreta da Catalogo (APUS Reflex)"]
     end
     
@@ -121,16 +157,18 @@ flowchart TD
         StepVal --> OutBuilder["Costruzione Risposta"]
         ShortCircuit --> OutBuilder
         StepDec --> OutBuilder
-        OutBuilder --> FinalResp["OrchestratorResponse\nStato: OK oppure INDETERMINATE\nPayload JSON Validato + Metriche di Latenza"]
+        OutBuilder --> FinalResp["OrchestratorResponse\nStato: OK oppure INDETERMINATE\nJSON Validato o Grezzo + Metriche Latenza"]
     end
 ```
 
-### 3.2. Analisi dei Trade-off e Scelte Progettuali
+---
 
-Per comprendere il funzionamento del sistema è necessario illustrare i motivi tecnici che hanno portato a scartare le architetture alternative:
+### 3.2. Analisi dei Trade-off e Motivazione delle Scelte Architetturali
+
+Per comprendere a fondo la robustezza del sistema è necessario analizzare i motivi tecnici per cui le architetture alternative sono state scartate:
 
 #### Scelta A: Pipeline Specializzate + Router vs Prompt Monolitico Unico
-- *Approccio Alternativo (Scartato)*: Inviare il testo a un unico mega-prompt contenente le istruzioni congiunte per riconoscere fatture, anagrafiche, email e altri documenti, associando un JSON Schema "a busta" unificato con tutti i possibili campi annidati.
+- *Approccio Alternativo (Scartato)*: Inviare il testo a un unico mega-prompt contenente le istruzioni congiunte per riconoscere fatture, anagrafiche ed email, associando un JSON Schema "a busta" unificato con tutti i possibili campi annidati.
 - *Motivazione del Rifiuto (Supportata da Dati Empirici)*: Come provato sperimentalmente nella **Batteria 1**, il prompt monolitico causa un collasso delle prestazioni sugli SLM ($3\text{B}$ e persino $7\text{B}$). Sul dataset Held-Out, il modello 3B monolitico scende a un'accuratezza sui campi del **58.9%** (contro il **95.2%** dell'orchestratore). L'attenzione dei modelli compatti si disperde nel tentativo di valutare regole eterogenee, provocando l'omissione sistematica di campi obbligatori (`C2a`) e il fallimento completo sulle email (**0/14 documenti corretti**). La scomposizione modulare tramite Router specializzato riduce la dimensione del prompt, specializza lo spazio delle risposte e consente a ciascuna pipeline di concentrare la KV-Cache su un unico schema ristretto.
 
 #### Scelta B: Validazione Integrata nella Pipeline vs Guardrail Puramente Post-Hoc
@@ -145,72 +183,179 @@ Per comprendere il funzionamento del sistema è necessario illustrare i motivi t
 
 ## 4. Componenti della Codebase e Flusso Esecutivo
 
-### 4.1. Ingestion, Sanitizzazione e Sicurezza di Ingresso
+### 4.1. Ingestion, Sanitizzazione e Sicurezza di Ingresso (InputValidator)
 
-La fase di ingresso è gestita dal componente [`InputValidator`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/InputValidator.java). Ogni richiesta in arrivo su `POST /api/orchestrator/process` viene sottoposta a rigorosi vincoli prima di raggiungere qualsiasi componente neurale:
-1. **Vincolo di Lunghezza Massima**: Il payload testuale non può superare la dimensione massima consentita di **32.768 caratteri** (`MAX_PAYLOAD_LENGTH`). L'eccedenza genera un'eccezione di validazione immediata (`HTTP 422`), prevenendo attacchi di Denial of Service (DoS) basati sull'esaurimento della finestra di contesto o della memoria di calcolo del backend.
-2. **Sanitizzazione Strutturale XML**: L'input dell'utente viene incapsulato all'interno del tag `<payload> ... </payload>` nei prompt inviati agli SLM. Se il testo utente contiene a sua volta tag di chiusura arbitrari (come `</payload>`, `</input>`, `</context>`), questi vengono neutralizzati tramite escape per prevenire attacchi di **Prompt Injection** mirati a evadere dal recinto del dato e impartire nuove istruzioni di sistema al modello.
-
-### 4.2. Routing Decisionale a Singolo Token e Mitigazione Artefatti
-
-Se la richiesta HTTP non specifica esplicitamente il `documentType` nel corpo JSON, interviene il router automatico. L'orchestratore implementa due router alternativi configurabili tramite la property `router.type`:
-
-1. **`LocalOllamaRouter`** ([`LocalOllamaRouter.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/router/LocalOllamaRouter.java)):
-   - Sfrutta il modello generativo di base (`qwen2.5:3b-instruct-q8_0`) istruito con il prompt [`prompts/router-system.txt`](file:///home/del/Projects/slm-orchestrator/src/main/resources/prompts/router-system.txt).
-   - Classifica il testo documentale in una tra quattro categorie: `FATTURA`, `ANAGRAFICA`, `EMAIL`, `ALTRO`.
-   - Latenza misurata: mediana di **341–421 ms**; accuratezza sul set Held-Out out-of-sample: **98.0%** (49/50).
-
-2. **`ApusReflexRouter`** ([`ApusReflexRouter.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/router/ApusReflexRouter.java)):
-   - Utilizza il modello compatto specializzato `APUS-Reflex-4B` ottimizzato per decisioni discrete a singolo token (`num_predict: 1`).
-   - Presenta le 4 classi come scelte a lettere multiple (`A`, `B`, `C`, `D`).
-
-> [!IMPORTANT]
-> **Risoluzione dell'Artefatto di Misura del Thinking (`think: false`)**:  
-> Durante le prime indagini empiriche su APUS Reflex 4B, impostando `num_predict: 1` con l'endpoint standard `/api/chat` di Ollama, il modello produceva sistematicamente la stringa `"The"` anziché la lettera attesa `A`..`D`. L'indagine approfondita ha dimostrato che non si trattava di un deficit cognitivo, ma dell'attivazione della catena interna di pensiero (`<think> ... </think>`): limitando l'emissione a 1 solo token, il runtime catturava il primo token del ragionamento interiore (*"The user wants..."*), lasciando vuoto il campo di contenuto. Disattivando esplicitamente il reasoning tramite il parametro `"think": false` inoltrato a Ollama, il modello risponde con la singola lettera `A`..`D` nel **100.0% delle prove**, eliminando ogni bias posizionale apparente.
-
-### 4.3. Pipeline Dichiarative YAML e PipelineContext Thread-Safe
-
-Le logiche di elaborazione per ciascuna tipologia documentale non sono cablate nel codice Java compilato, ma sono definite in file di configurazione YAML ([`src/main/resources/pipelines/`](file:///home/del/Projects/slm-orchestrator/src/main/resources/pipelines/)):
-- `fattura.yaml`: Estrazione dati fiscali (fornitore, cliente, totali, iban) con validatori algebrici e retry.
-- `anagrafica.yaml`: Estrazione dati anagrafici con normalizzatori, coerenza codice fiscale e controlli di sesso/data.
-- `email.yaml`: Pipeline a due stadi di inferenza: primo stadio di estrazione semantica (`email_inference`), step intermedio di lookup ruoli tramite tool Java ([`CompanyRolesTool.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/tool/CompanyRolesTool.java)), e secondo stadio decisionale (`recipient_inference`) con validazione a catalogo chiuso ([`CatalogMembershipGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/CatalogMembershipGuard.java)).
-- `altro.yaml`: Pipeline per documenti fuori dominio.
-
-Queste pipeline vengono lette al bootstrap da [`YamlPipelineLoader.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/config/YamlPipelineLoader.java) e istanziate come oggetti [`BasePipeline`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java). Lo stato di esecuzione durante l'attraversamento degli step risiede esclusivamente nell'istanza effimera di [`PipelineContext`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/pipeline/PipelineContext.java) allocata sullo stack della richiesta, garantendo la totale sicurezza in contesti multi-thread concorrenti senza variabili di classe condivise mutabili.
-
-### 4.4. Single Base Model in RAM e Dynamic System Prompts
-
-Per conciliare alte prestazioni e basso consumo di memoria RAM, l'orchestratore non invoca sessioni separate di Ollama per ciascun task, ma condivide il modello base `qwen2.5:3b-instruct-q8_0` mantenuto stabilmente in memoria tramite l'opzione `ollama.keep-alive=60m`. A ogni step della pipeline:
-1. Viene caricato il system prompt dedicato memorizzato in `src/main/resources/prompts/` (es. `fattura-system.txt`, `anagrafica-system.txt`, `email-system.txt`).
-2. Viene caricato il file JSON Schema corrispondente da `src/main/resources/schemas/` (es. `fattura_info.json`).
-3. La chiamata REST inviata a Ollama specifica il parametro `format: {schema...}`, costringendo il decoder dell'SLM ad aderire deterministicamente alla sintassi JSON e ai tipi di dato richiesti (*Grammar-Guided Constrained Decoding*).
-
-### 4.5. Gestione della KV-Cache e Prevenzione dei Loop Degeneri
-
-L'elaborazione locale tramite Ollama memorizza i tensori di attenzione nella KV-Cache del processo di inferenza. Quando due richieste consecutive presentano esattamente lo stesso prefisso (ad esempio, inviando due volte lo stesso testo documentale saltando il router), il runner Ollama trova l'intero prompt già presente nella cache (*Stato di Cache Piena*). Su alcune architetture e versioni di runner locale, questo stato provoca risposte degenerate o cicli vuoti.
-
-Per scongiurare questo difetto, l'orchestratore integra la classe [`PromptCacheGuard`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/model/PromptCacheGuard.java):
-- La guardia calcola un digest SHA-256 della tupla `(model, systemPrompt, userPrompt)`.
-- Se la richiesta è identica alla precedente, antepone al testo utente un marcatore monotono di cache-busting: `<request_id>N</request_id>`.
-- In questo modo, il System Prompt rimane byte-identico (e quindi riutilizzato dalla cache dei token di sistema), mentre l'involucro del messaggio utente viene invalidato a partire dal primo token, costringendo il runner a calcolare sempre lo stato di **Cache Parziale** ed eliminando i blocchi operativi.
-
-### 4.6. Guardia Temporale della Pipeline e Timeout di Socket HTTP
-
-Nel sistema operano due livelli distinti di protezione temporale:
-1. **Timeout di Rete Socket HTTP (`ollama.read-timeout = 240s`)**: Configurato in [`OllamaProperties.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/config/ollama/OllamaProperties.java#L115) e riflesso sul reverse proxy in [`frontend/nginx.conf`](file:///home/del/Projects/slm-orchestrator/frontend/nginx.conf#L19). Stabilisce il tempo limite massimo per la ricezione dei pacchetti TCP dal socket di Ollama durante una singola inferenza complessa.
-2. **Guardia Temporale Simbolica di Esecuzione (`orchestrator.pipeline.max-duration-ms = 120000`)**: Configurata in [`application.properties`](file:///home/del/Projects/slm-orchestrator/src/main/resources/application.properties#L37) e applicata attivamente dal ciclo `while` di [`BasePipeline.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java#L114-L134). Questa guardia controlla il tempo cumulato speso nell'intera catena di step (compresi eventuali retry multipli, chiamate a tool e invocazioni del modello di escalation). Se il tempo trascorso supera i 120 secondi, l'esecuzione viene interrotta forzatamente, registrando un `FieldError` con codice `ValidationErrorCode.INFERENCE_ERROR` (*"Tempo massimo di esecuzione pipeline superato (120000 ms)"*) e transitando a `INDETERMINATE`.
+La classe [`InputValidator`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/InputValidator.java) presidia l'ingresso delle richieste:
+1. **Controllo di Capienza (32KB)**: Se il testo supera i **32.768 caratteri** (`MAX_PAYLOAD_LENGTH`), viene respinto con eccezione `ValidationException` (HTTP 422). Questa soglia protegge il backend da esaurimento di memoria e garantisce che il testo entri comodamente nella finestra di contesto di 2048 token dell'SLM.
+2. **Neutralizzazione XML e Anti-Prompt-Injection**: Il testo dell'utente viene incapsulato all'interno del delimitatore `<payload> ... </payload>`. Se il testo fornito dall'utente contiene sequenze di chiusura artificiali come `</payload>`, `</input>`, `</context>`, il validatore esegue l'escape di tali caratteri, impedendo che istruzioni malevole escano dal recinto dei dati per manipolare il System Prompt del modello.
 
 ---
 
-## 5. Le Guardie Simboliche e Determistiche (Specifiche e Snippets)
+### 4.2. Routing Decisionale a Singolo Token e Risoluzione dell'Artefatto di Thinking
 
-### 5.1. Guardie di Validazione Algebrica e Formale di Campo
+Se il client non specifica la categoria documentale, il router identifica la classe. Il sistema supporta due router:
+- **`LocalOllamaRouter`**: Utilizza il modello generativo 3B per emettere il nome della categoria (`FATTURA`, `ANAGRAFICA`, `EMAIL`, `ALTRO`). Latenza: **341–421 ms**, accuratezza: **98.0%–100.0%**.
+- **`ApusReflexRouter`**: Utilizza il modello decisionale compatto `APUS-Reflex-4B` a singolo token (`num_predict: 1`).
 
-I modelli linguistici non sanno eseguire in modo affidabile calcoli aritmetici o algoritmi crittografici di checksum. L'orchestratore delega tale compito a validatori Java puri implementati nel package [`com.tirocinioaltrama.slmorchestrator.core.validation.field`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/):
+> [!IMPORTANT]
+> **Risoluzione dell'Artefatto di Misura del Thinking (`think: false`)**:  
+> Durante le prime sperimentazioni su APUS Reflex 4B, limitando l'emissione a 1 token (`num_predict: 1`), il modello emetteva sistematicamente la stringa `"The"` anziché la lettera della classe `A`..`D`. L'indagine ha dimostrato che si trattava del primo token della sezione di ragionamento interno (`<think> The user wants...`). Disattivando dinamicamente il reasoning tramite il parametro `"think": false` inviato a Ollama, il modello emette direttamente la singola lettera `A`..`D` nel **100.0% delle prove**, azzerando i token spuri ed eliminando qualsiasi bias posizionale apparente.
 
-#### Validatore Partita IVA ([`PartitaIvaValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/PartitaIvaValidator.java))
-Verifica la struttura formale (11 cifre numeriche, eventuale prefisso paese `IT`), controlla che le prime 7 cifre (matricola) e le cifre 8–10 (codice ufficio) non siano composte da soli zeri, ed esegue la formula di Luhn a pesi alternati:
+---
 
+### 4.3. Le Pipeline Dichiarative e il Formato YAML
+
+Una pipeline in SLM Orchestrator è una sequenza ordinata di passi computazionali (`PipelineStep`) configurata esternamente in un file YAML. La scelta di YAML rispetto al codice Java compilato consente di:
+1. Modificare prompt, schemi e parametri di retry senza ricompilare il backend.
+2. Rendere le logiche di estrazione leggibili e verificabili anche da analisti funzionali.
+3. Centralizzare la governance dei modelli e degli schemi JSON.
+
+#### Anatomia di un File di Pipeline YAML (Esempio: `fattura.yaml`)
+```yaml
+id: fattura_pipeline              # Identificativo univoco della pipeline
+documentType: FATTURA             # Categoria documentale associata
+steps:
+  # STEP 1: Estrazione neurale vincolata a schema JSON
+  - id: fattura_inference
+    type: model_inference
+    model: "${ollama.invoice-model}"
+    schema: schemas/fattura_info.json
+    system_prompt: prompts/fattura-system.txt
+
+  # STEP 2: Validazione deterministica con blocco di recupero (on_failure)
+  - id: fattura_validation
+    type: field_validation
+    on_failure:
+      retry_step: fattura_inference # Passo su cui riavvolgere il ciclo
+      max_retries: 2                # Fino a 2 tentativi di correzione
+      feedback: true                # Iniezione del feedback strutturato
+    validators:
+      - field: fornitore.partitaIva
+        validator: partita_iva      # Applica Luhn su partita IVA
+      - field: cliente.codiceFiscale
+        validator: codice_fiscale_o_partita_iva
+      - field: iban
+        validator: iban             # Applica ISO 7064 MOD 97 su IBAN
+```
+
+All'avvio dell'applicazione, la classe [`YamlPipelineLoader`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/config/YamlPipelineLoader.java) esegue il parsing del file:
+1. Risolve i placeholder delle proprietà di sistema (es. `${ollama.invoice-model}`).
+2. Costruisce le istanze di [`ModelInferenceStep`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/ModelInferenceStep.java), [`OutputValidationStep`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/OutputValidationStep.java) e degli eventuali step di Tool.
+3. Crea un'istanza di [`BasePipeline`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java) e la registra nel [`PipelineRegistry`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/PipelineRegistry.java).
+
+---
+
+### 4.4. Guida Pratica: Come Estendere il Sistema Aggiungendo una Nuova Pipeline
+
+Per estendere SLM Orchestrator con una nuova tipologia documentale (ad esempio per l'estrazione di contratti di fornitura `CONTRATTO`), è sufficiente seguire questa procedura modulare:
+
+1. **Definire la Categoria Documentale**:
+   - Aggiungere il nuovo valore nell'enum [`DocumentType.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/DocumentType.java):
+     ```java
+     public enum DocumentType {
+         FATTURA, ANAGRAFICA, EMAIL, ALTRO, CONTRATTO
+     }
+     ```
+2. **Definire il JSON Schema**:
+   - Creare il file formale in `src/main/resources/schemas/contratto_info.json` indicando i tipi e i campi obbligatori (`dataStipula`, `fornitore`, `importoCanone`, `durataMesi`).
+3. **Creare il System Prompt Specializzato**:
+   - Creare `src/main/resources/prompts/contratto-system.txt` con le istruzioni di estrazione per l'SLM.
+4. **Scrivere il File di Pipeline YAML**:
+   - Creare `src/main/resources/pipelines/contratto.yaml`:
+     ```yaml
+     id: contratto_pipeline
+     documentType: CONTRATTO
+     steps:
+       - id: contratto_inference
+         type: model_inference
+         model: "${ollama.model}"
+         schema: schemas/contratto_info.json
+         system_prompt: prompts/contratto-system.txt
+       - id: contratto_validation
+         type: field_validation
+         on_failure:
+           retry_step: contratto_inference
+           max_retries: 2
+           feedback: true
+         validators:
+           - field: fornitore.partitaIva
+             validator: partita_iva
+     ```
+5. **Aggiornare il Router**:
+   - Inserire la classe `CONTRATTO` nelle opzioni di instradamento in `prompts/router-system.txt`.
+Al bootstrap, Spring Boot caricherà automaticamente il nuovo file senza richiedere modifiche architetturali al motore di esecuzione.
+
+---
+
+### 4.5. I Tool nell'Orchestratore: In-Pipeline Lookup e Post-Pipeline Actions
+
+Nell'architettura di SLM Orchestrator, un **Tool** è un componente Java deterministico che esegue operazioni di integrazione con il sistema informativo aziendale. I Tool si dividono in due tipologie distinte:
+
+#### 1. In-Pipeline Tools (`ToolPipelineStep`)
+Vengono eseguiti durante la pipeline documentale per **arricchire il contesto informativo** prima di uno step neurale successivo:
+- *Esempio*: [`CompanyRolesTool`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/tool/CompanyRolesTool.java). Nello step `roles_lookup` della pipeline `email.yaml`, il tool carica l'elenco aggiornato dei dipartimenti aziendali da risorsa mock o database (`company_roles.json`) e lo deposita nell'attributo `context.setAttribute("availableRoles", ...)`. Nello step successivo (`recipient_inference`), l'SLM riceve tale catalogo discreto e sceglie il destinatario corretto senza inventarlo.
+
+#### 2. Post-Pipeline Actions (`ActionExecutor`)
+Vengono eseguiti al termine della pipeline all'interno del blocco `actionsGroup` per realizzare effetti collaterali deterministici:
+- In caso di esito favorevole (`on_ok`), il tool può notificare un webhook esterno, salvare il documento su database relazionale o avviare un processo di protocollo.
+- In caso di esito non valido (`on_indeterminate`), il tool può instradare il payload non validato sulla coda di revisione manuale di un operatore umano.
+
+---
+
+### 4.6. Single Base Model in RAM e Dynamic System Prompts
+
+Il microservizio adotta il pattern architetturale **Single Base Model in RAM**:
+- Mantiene un solo runner Ollama residente in memoria (`qwen2.5:3b-instruct-q8_0`) con parametro `ollama.keep-alive=60m`.
+- A runtime, il client Java inietta il System Prompt e lo schema JSON specifici per il passo in corso.
+- Questo approccio abbatte l'occupazione di memoria RAM a soli **~3.4 GB totali**, garantendo tempi di bootstrap immediati ed eliminando i tempi morti di caricamento e scaricamento dei pesi neurali tra un documento e l'altro.
+
+---
+
+### 4.7. Perché la KV-Cache è Stata un Problema Critico e Come è Risolta
+
+La **KV-Cache (Key-Value Cache)** del runtime Ollama memorizza i tensori di attenzione calcolati per il prefisso del prompt. 
+
+#### Il Problema della "Cache Piena" (Full Cache Match)
+Durante la fase di test e integrazione è emerso un problema critico: quando due richieste identiche venivano inviate consecutivamente (es. due chiamate di seguito con lo stesso documento di test saltando il router), il runtime di inferenza trovava il **100% dei token del prompt già presenti nella KV-Cache**. 
+In determinate versioni di Ollama e llama.cpp, quando non è presente nemmeno un singolo token non calcolato nel prompt di ingresso, il puntatore di contesto del decodificatore entrava in uno stato degenere:
+- Il modello iniziava a emettere token ripetitivi all'infinito (*Generation Loop*), saturando `num_predict`.
+- Oppure, la chiamata terminava istantaneamente restituendo una stringa vuota o troncata a zero byte.
+
+#### La Soluzione Architetturale: `PromptCacheGuard`
+Per risolvere deterministicamente l'anomalia senza perdere i benefici di velocità della KV-Cache per i token statici di sistema, è stata sviluppata la guardia [`PromptCacheGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/model/PromptCacheGuard.java):
+1. Calcola l'hash crittografico SHA-256 della tupla `(modello, systemPrompt, userPayload)`.
+2. Se l'impronta coincide esattamente con la richiesta precedente, antepone al testo dell'utente un marcatore monotono: `<request_id>N</request_id>`.
+3. In questo modo:
+   - Il **System Prompt** rimane invariato byte per byte e sfrutta la KV-Cache al 100% (*Cache Hit*).
+   - Il **Payload Utente** viene invalidato a partire dal primo carattere del marcatore, costringendo il runner a calcolare i nuovi token e garantendo costantemente il regime di **Cache Parziale**. I loop infiniti e i troncamenti a vuoto sono stati completamente azzerati.
+
+---
+
+### 4.8. Guardia Temporale della Pipeline e Timeout di Rete Socket
+
+Il sistema garantisce la resilienza temporale su due livelli cooperanti:
+1. **Timeout Socket HTTP (`ollama.read-timeout = 240s`)**: Configurato a livello di client REST e di reverse proxy Nginx (`frontend/nginx.conf`). Previene blocchi del thread di I/O qualora il processo Ollama subisca un crash o un blocco a livello di kernel.
+2. **Guardia Temporale Simbolica di Esecuzione (`orchestrator.pipeline.max-duration-ms = 120000`)**: Guardia applicativa implementata nel ciclo principale di [`BasePipeline.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java#L114-L134). Misura il tempo cumulato speso nell'intera catena di step (compresi eventuali retry multipli, chiamate a tool e invocazioni del modello di escalation). Se il tempo trascorso supera i 120 secondi, l'esecuzione viene interrotta forzatamente, registrando un `FieldError` con codice `ValidationErrorCode.INFERENCE_ERROR` (*"Tempo massimo di esecuzione pipeline superato (120000 ms)"*) e transitando a `INDETERMINATE`.
+
+---
+
+## 5. Le Guardie Simboliche e Determistiche: Meccanismi e Snippets
+
+### 5.1. Come Funzionano le Guardie a Livello Esecutivo
+
+A livello esecutivo, una **Guardia Simbolica** non è un semplice controllo condizionale, ma un supervisore logico che opera sull'albero di sintassi astratta (AST) del documento JSON prodotto dall'SLM tramite la libreria Jackson ([`JsonNode`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/JsonOutputValidator.java)):
+1. **Ispezione ad Albero dei Tipi**: Verifica che i tipi primitivi (stringhe, numeri, oggetti annidati) corrispondano alle attese dello schema.
+2. **Estrazione Qualificata dei Percorsi (`FieldPath`)**: Risolve i percorsi annidati (es. `fornitore.partitaIva` o `articoli[*].importo`).
+3. **Applicazione della Logica Simbolica**: Esegue l'algoritmo algebrico o lessicale.
+4. **Emissione di `FieldError` Strutturato**: Se il valore non supera il test, la guardia genera un oggetto immutabile contenente il path, il codice di errore formale (`ValidationErrorCode`) e la spiegazione diagnostica.
+
+---
+
+### 5.2. Guardie di Validazione Algebrica e Formale di Campo (Luhn, CIN, MOD-97)
+
+I validatori algebrici garantiscono l'aderenza a normative fiscali e bancarie senza margini di approssimazione:
+
+#### Validatore Partita IVA — Algoritmo di Luhn ([`PartitaIvaValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/PartitaIvaValidator.java))
 ```java
 private boolean validateChecksum(String digits) {
     int sum = 0;
@@ -220,7 +365,7 @@ private boolean validateChecksum(String digits) {
             // Posizioni dispari (1-based: 1, 3, 5, 7, 9 -> indici 0, 2, 4, 6, 8)
             sum += digit;
         } else {
-            // Posizioni pari (1-based: 2, 4, 6, 8, 10 -> indici 1, 3, 5, 7, 9)
+            // Posizioni pari (1-based: 2, 4, 6, 8, 10 -> indici 1, 3, 7, 9)
             int doubled = digit * 2;
             sum += (doubled > 9) ? (doubled - 9) : doubled;
         }
@@ -231,155 +376,128 @@ private boolean validateChecksum(String digits) {
 }
 ```
 
-#### Validatore Codice Fiscale ([`CodiceFiscaleValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/CodiceFiscaleValidator.java))
-Verifica l'espressione regolare formale a 16 caratteri alfanumerici e calcola il carattere di controllo alfabetico finale (CIN) mediante le tabelle ministeriali di conversione per indici pari e dispari:
-
+#### Validatore Codice Fiscale — Checksum Ministeriale CIN ([`CodiceFiscaleValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/CodiceFiscaleValidator.java))
 ```java
 int sum = 0;
 for (int i = 0; i < 15; i++) {
     char c = cf.charAt(i);
     if ((i + 1) % 2 != 0) {
-        sum += ODD_VALUES.get(c); // Tabella valori posizioni dispari
+        sum += ODD_VALUES.get(c); // Tabella valori posizioni dispari ministeriale
     } else {
-        sum += EVEN_VALUES.get(c); // Tabella valori posizioni pari
+        sum += EVEN_VALUES.get(c); // Tabella valori posizioni pari ministeriale
     }
 }
 char expectedCin = (char) ('A' + (sum % 26));
 return expectedCin == cf.charAt(15);
 ```
 
-#### Validatore Coordinate Bancarie IBAN ([`IbanValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/IbanValidator.java))
-Verifica la lunghezza del codice in base al paese (27 caratteri per l'Italia `IT`), sposta i primi 4 caratteri in coda, trasforma le lettere nei corrispondenti valori numerici ($A=10 \dots Z=35$) e calcola l'invariante algebrico $MOD\ 97 == 1$:
-
+#### Validatore IBAN — Standard ISO 7064 MOD 97-10 ([`IbanValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/field/IbanValidator.java))
 ```java
-// Standard ISO 7064 MOD 97-10
 String rearranged = cleanIban.substring(4) + cleanIban.substring(0, 4);
+StringBuilder numericString = new StringBuilder();
+for (int i = 0; i < rearranged.length(); i++) {
+    char c = rearranged.charAt(i);
+    if (Character.isDigit(c)) {
+        numericString.append(c);
+    } else {
+        numericString.append((c - 'A') + 10);
+    }
+}
 BigInteger ibanNumber = new BigInteger(numericString.toString());
 return ibanNumber.mod(BigInteger.valueOf(97)).intValue() == 1;
 ```
 
 ---
 
-### 5.2. Guardie Simboliche di Post-Processing (G1, G2, Sesso, G3, G4, Date)
+### 5.3. Guardie Simboliche di Post-Processing (G1, G2, Sesso, G3, G4, Date)
 
-Nel componente [`PostProcessingGuards.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/PostProcessingGuards.java) sono incapsulate le regole simboliche deterministiche volte a ripulire le tipiche imprecisioni lessicali introdotte dai modelli linguistici:
-
-1. **Guardia G1 (Normalizzazione Denominazioni)**: Rimuove prefissi amministrativi descrittivi (*"Società Fornitrice:"*, *"Fornitore:"*, *"Cliente:"*) e titoli onorifici (*"Spett.le"*, *"Dott."*, *"Ing."*, *"Gentile"*) lasciando unicamente la ragione sociale o il nominativo anagrafico canonico.
-2. **Guardia G2 (Evidenza Lessicale ed Ente Rilascio)**: Nei documenti di identità, i modelli tendono ad allucinare enti non presenti nel testo. La guardia calcola l'intersezione lessicale tra i token significativi estratti in `enteRilascio` e le parole del documento originale. Se la copertura è inferiore al **60%**, il valore viene annullato a `null`.
-3. **Guardia Evidenza Sesso**: Azzeramento a `null` del campo `sesso` (`M`/`F`) se la radice lessicale `"sesso"` non compare esplicitamente nel testo di partenza (prevenendo inferenze arbitrarie basate sul nome proprio).
-4. **Guardia G3 (Recupero Omissioni Codificate)**: Riconosce formati strutturati standard non colti dal modello (es. data rilascio patente registrata al punto `4a.` del layout europeo, o sigla provincia associata al comune di nascita).
-5. **Guardia G4 (Normalizzazione Enum)**: Mappa sinonimi eterogenei (`"PATENTE_GUIDA"`, `"CIE"`, `"CF"`) sull'insieme chiuso dei tipi documento ammessi (`CARTA_IDENTITA`, `PASSAPORTO`, `PATENTE`, `TESSERA_SANITARIA`, `NON_SPECIFICATO`).
-6. **Guardia Date Tipizzate**: Se il modello genera stringhe discorsive o prive di cifre all'interno di un campo contrassegnato come data (es. *"non disponibile"*, *"data sconosciuta"*), la guardia lo converte forzatamente a `null` JSON.
-
----
-
-### 5.3. Guardie di Coerenza Cross-Field e Layout (V1, V2)
-
-Nel componente [`AnagraficaCoherenceValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/AnagraficaCoherenceValidator.java) risiedono le regole di consistenza logica incrociata:
-
-- **Regola V1 (Coerenza Layout Numerato Europeo)**: Nelle patenti di guida e nei modelli unificati dell'Unione Europea, la dicitura numerata indica universalmente `1. COGNOME` e `2. NOME`. Quando il testo presenta questa formattazione, l'ordine è insindacabile.
-- **Regola V2 (Cross-Check Codice Fiscale $\leftrightarrow$ Cognome/Nome)**: L'algoritmo estrae le consonanti e le vocali di `nome` e `cognome` e verifica la corrispondenza con i primi 6 caratteri alfabetici del Codice Fiscale presente nel documento:
-
-$$\text{CF}_{0..2} \approx f_{\text{consonanti}}(\text{Cognome}), \quad \text{CF}_{3..5} \approx f_{\text{consonanti}}(\text{Nome})$$
-
-Se il modello linguistico ha invertito Nome e Cognome, la guardia rileva che le prime tre consonanti del Codice Fiscale corrispondono al nome anziché al cognome, sollevando la violazione specifica:
-
-```java
-if (matchesConsonants(cfCognomePart, nome) && matchesConsonants(cfNomePart, cognome)) {
-    return CoherenceCheckResult.invalid(
-        "anagrafica",
-        ValidationErrorCode.FIELD_SWAP_DETECTED.name(),
-        "Rilevata inversione cross-field: il cognome estratto corrisponde alla porzione del nome nel CF."
-    );
-}
-```
-
-Questo errore scatena il loop di **Smart Retry** con istruzioni puntuali di riordino.
+Nel componente [`PostProcessingGuards.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/PostProcessingGuards.java):
+- **Guardia G1 (Pulizia Denominazioni)**: Elimina prefissi amministrativi descrittivi (*"Società Fornitrice:"*, *"Cliente:"*) e formule onorifiche (*"Spett.le"*, *"Dott."*, *"Ing."*).
+- **Guardia G2 (Evidenza Lessicale ed Ente Rilascio)**: Misura l'intersezione tra le parole dell'`enteRilascio` estratto e il testo sorgente. Se la copertura è inferiore al **60%**, il valore viene azzerato a `null` per stroncare l'allucinazione.
+- **Guardia Evidenza Sesso**: Azzeramento a `null` del campo `sesso` se la parola radice `"sesso"` non compare esplicitamente nel testo (impedendo deduzioni arbitrarie basate sul nome).
+- **Guardia G3 (Recupero Omissioni Codificate)**: Riconosce codifiche formali sfuggite all'SLM (es. data rilascio al punto `4a.` nelle patenti europee).
+- **Guardia G4 (Normalizzazione Enum)**: Mappa sinonimi non conformi (`"PATENTE_GUIDA"`, `"CIE"`) sui valori canonici consentiti.
+- **Guardia Date Tipizzate**: Converte a `null` stringhe discorsive generate dall'SLM nei campi data (es. *"non disponibile"*).
 
 ---
 
-### 5.4. Guardia Simbolica di Appartenenza a Catalogo Chiuso
+### 5.4. Guardie di Coerenza Cross-Field e Layout Numerato (V1, V2)
 
-Implementata in [`CatalogMembershipGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/CatalogMembershipGuard.java), opera a valle di step di disambiguazione semantica (come l'assegnazione di un destinatario per un ticket email):
-
-```java
-public class CatalogMembershipGuard implements Validator<String> {
-    private final Set<String> allowedValues;
-
-    public ValidationResult validate(String value) {
-        if (value == null || !allowedValues.contains(value.trim().toLowerCase(Locale.ROOT))) {
-            return ValidationResult.withFieldErrors(
-                List.of(new FieldError("destinatario", "catalog_membership",
-                    ValidationErrorCode.VALUE_NOT_IN_CATALOG,
-                    "Il valore '" + value + "' non appartiene all'insieme discreto autorizzato.")),
-                List.of()
-            );
-        }
-        return ValidationResult.valid();
-    }
-}
-```
-
-Nessun valore inventato o dedotto dall'SLM può oltrepassare questa guardia se non è rigorosamente contenuto nel catalogo aziendale (`mock/company_roles.json`).
+Nel componente [`AnagraficaCoherenceValidator.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/AnagraficaCoherenceValidator.java):
+- **Regola V1 (Layout Numerato Europeo)**: Nelle patenti UE la convenzione è vincolante: `1.` è tassativamente il Cognome, `2.` è il Nome.
+- **Regola V2 (Cross-Check Codice Fiscale $\leftrightarrow$ Cognome/Nome)**: L'algoritmo verifica che le prime 3 consonanti del Codice Fiscale corrispondano al cognome e le successive 3 al nome. Se l'SLM ha invertito i campi, la guardia rileva l'inversione ed emette il codice specifico **`FIELD_SWAP_DETECTED`**, innescando il loop di retry RF7 con istruzioni puntuali.
 
 ---
 
-### 5.5. Guardia Anti-Cache Piena (PromptCacheGuard)
+### 5.5. Guardia Simbolica di Appartenenza a Catalogo Chiuso
 
-Implementata in [`PromptCacheGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/model/PromptCacheGuard.java), monitora l'hash SHA-256 delle richieste verso Ollama per garantire che il runner operi costantemente in regime di cache parziale:
+Implementata in [`CatalogMembershipGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/CatalogMembershipGuard.java):
+Verifica che valori generati in campi discreti (es. destinatario o ruolo in una email) appartengano rigorosamente all'insieme autorizzato estratto da un catalogo o da un tool (`Set<String> allowedValues`), impedendo l'inoltro di comunicazioni a destinatari non censiti.
 
-```java
-public synchronized String apply(String model, String systemPrompt, String userPrompt) {
-    String fingerprint = fingerprint(model, systemPrompt, userPrompt);
-    if (!fingerprint.equals(lastFingerprint)) {
-        lastFingerprint = fingerprint;
-        return userPrompt;
-    }
-    busterCounter++;
-    return MARKER_PREFIX + busterCounter + MARKER_SUFFIX + (userPrompt != null ? userPrompt : "");
-}
-```
+---
+
+### 5.6. Guardia Anti-Cache Piena (PromptCacheGuard)
+
+Implementata in [`PromptCacheGuard.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/model/PromptCacheGuard.java):
+Intercetta richieste identiche consecutive verso Ollama e inserisce un marcatore monotono di cache-busting nel messaggio utente, preservando la cache del System Prompt ed evitando generation loop degeneri nel motore di inferenza.
 
 ---
 
 ## 6. Meccanismi di Recupero: Smart Retry (RF7), Short-Circuit e Stato INDETERMINATE
 
-### 6.1. Smart Retry con Zero-Injection di Valori Rifiutati
+### 6.1. Cos'è lo Smart Retry (RF7) e Perché Risolve i Limiti del Retry Tradizionale
 
-Quando uno step di validazione rileva una non conformità sanabile (es. schema JSON incompleto, inversione campi `FIELD_SWAP_DETECTED`, o valore non appartenente al catalogo), l'orchestratore attiva la procedura **RF7 (Smart Retry)**:
-- Vengono concessi fino a un massimo di **2 retry** sullo stesso step (`max_retries = 2`).
-- A ogni tentativo di retry, la temperatura di campionamento viene incrementata leggermente (da `0.0` a `0.2`) per consentire all'SLM di esplorare percorsi di decodifica alternativi attorno al punto critico.
-- Viene generato un messaggio di feedback strutturato tramite [`ValidationFeedbackBuilder.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/ValidationFeedbackBuilder.java).
+Il termine **RF7** fa riferimento al **Requisito Funzionale 7** del capitolato di progetto: *"Meccanismo di autoriparazione deterministica guidata dell'errore neurale"*.
 
-> [!CAUTION]
-> **Sicurezza Anti-Injection nel Feedback**:  
-> Per evitare vulnerabilità di tipo *Second-Order Prompt Injection*, il builder di feedback **non re-inietta mai il valore non valido emesso dal modello o presente nel testo**. Se un utente malevolo inserisse una formula di iniezione all'interno del campo P.IVA, rimandare indietro tale stringa all'SLM offrirebbe una superficie di attacco reiterata. Il feedback segnala esclusivamente il percorso del campo (`path`) e la descrizione astratta della violazione:
+#### Perché i Retry Tradizionali Falliscono
+1. **Determinismo a Temperatura Zero**: A `temperature = 0.0` (greedy decoding), inviare nuovamente lo stesso prompt al modello produrrà matematicamente lo stesso identico output errato, rendendo inutile il retry.
+2. **Instabilità a Temperatura Libera**: Alzare arbitrariamente la temperatura a valori elevati ($0.7 - 1.0$) introduce allucinazioni, distruggendo la conformità strutturale del JSON Schema.
+3. **Effetto Ancoraggio e Second-Order Prompt Injection**: Re-iniettare nel prompt il frammento errato generato dal modello (es. *"Hai generato X che è sbagliato"*) porta l'SLM a ri-fissarsi (*anchoring*) sul valore errato. Inoltre, se il valore errato conteneva un payload di attacco, ripresentarlo al modello apre una falla di sicurezza gravissima.
+
+#### Il Funzionamento di RF7
+Lo Smart Retry RF7 supera questi limiti con un protocollo a tre pilastri:
+1. **Modulazione Termica Controllata**: La temperatura viene innalzata in modo mirato da `0.0` a **`0.2`** solo durante il tentativo di retry. Questo leggero incremento offre al decoder la varianza necessaria per esplorare un percorso alternativo attorno al token errato, senza perdere la disciplina dello schema JSON.
+2. **Feedback Strutturato Astratto**: Viene generato un messaggio di correzione che specifica unicamente il nome del campo e la causa logica dell'errore, senza mai includere il valore errato.
+3. **Budget Massimo a 2 Tentativi**: Se entro 2 retry l'SLM non converge su un output conforme, la pipeline transita a `INDETERMINATE`.
+
+---
+
+### 6.2. Costruzione del Feedback a Zero-Injection
+
+Il componente [`ValidationFeedbackBuilder.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/ValidationFeedbackBuilder.java) realizza il principio della **Zero-Injection**:
 
 ```java
-// Costruzione deterministica sicura priva del valore rifiutato
+// Costruzione deterministica del feedback privo dei valori non validi
 sb.append("- Campo '").append(err.path()).append("': ").append(describeError(err)).append("\n");
 ```
 
----
-
-### 6.2. Short-Circuit dei Documenti Avversariali
-
-Cosa succede se un documento in ingresso contiene fin dall'origine un dato formalmente errato (es. una fattura in cui l'emittente ha stampato una Partita IVA con checksum matematico errato)?
-- Se l'orchestratore insistesse con i retry chiedendo all'SLM *"correggi la Partita IVA"*, forzerebbe il modello ad **allucinare**: l'SLM dovrebbe inventare una cifra valida non presente nel documento reale, violando il principio di fedeltà al testo di partenza.
-- Per risolvere questo problema, [`OutputValidationStep.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/OutputValidationStep.java#L220-L238) verifica se il valore estratto con checksum invalido compare **letteralmente (verbatim) nel payload testuale sorgente**.
-- Se il controllo è positivo, la violazione viene classificata con il codice speciale **`SOURCE_CHECKSUM_INVALID`**.
-- In [`BasePipeline.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java#L200-L204), quando tutti gli errori sono di tipo `SOURCE_CHECKSUM_INVALID`, il sistema attiva il **Cortocircuito Immediato (Short-Circuit)**: salta tutti i retry rimanenti e commuta istantaneamente la risposta a **`INDETERMINATE`**.
-
-Come dimostrato empiricamente nei test, questo meccanismo garantisce il **risparmio del 66.7% delle chiamate di inferenza neurale sui documenti avversariali**, azzerando il tempo sprecato a chiedere al modello di correggere un testo fisicamente immutabile.
+Se ad esempio il campo `numeroFattura` è vuoto o `fornitore.partitaIva` ha il checksum errato, il messaggio per l'SLM sarà semplicemente:
+```text
+ATTENZIONE: L'output precedente conteneva errori di formato, calcolo o conformità allo schema JSON:
+- Campo 'fornitore.partitaIva': codice di controllo (checksum) non valido.
+Estrai nuovamente tutti i dati correggendo rigorosamente i campi indicati, mantenendo invariati e valorizzati tutti gli altri campi già estratti correttamente. Emetti l'intero JSON completo e valido.
+```
+Nessun dato malevolo dell'input viene re-iniettato nel canale di controllo del modello.
 
 ---
 
-### 6.3. Stato di Dominio INDETERMINATE e Conservazione dell'Output
+### 6.3. Short-Circuit dei Documenti Avversariali (Risparmio Computazionale)
 
-L'orchestratore gestisce gli insuccessi secondo la filosofia del controllo di processo:
-- **Nessun Falso Positivo**: Un dato che non soddisfa i vincoli simbolici non viene mai restituito con lo stato di successo `OK`.
-- **Nessuna Caduta nel Vuoto**: Invece di restituire un errore HTTP 500 vuoto che nasconderebbe quanto accaduto, l'orchestratore emette un payload di stato `INDETERMINATE`.
-- **Conservazione dell'Output Grezzo**: Il campo `unvalidatedResult` della risposta contiene il JSON integrale estratto dall'SLM prima del blocco. In questo modo, l'operatore umano di revisione trova tutti i campi già compilati a video (ad esempio nel frontend Angular), con l'evidenziazione visiva del singolo campo che ha violato la guardia.
+Quando un documento presenta una violazione algebrica (es. P.IVA con cifra di controllo errata), [`OutputValidationStep.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/OutputValidationStep.java#L220-L238) verifica se tale stringa compare letteralmente nel testo di partenza:
+- Se la stringa è presente verbatim nel documento originale, il modello non ha commesso un errore di lettura: ha trascritto fedelmente un documento che era **già errato all'origine**.
+- La violazione viene classificata come **`SOURCE_CHECKSUM_INVALID`**.
+- [`BasePipeline.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java#L200-L204) rileva che l'errore non è emendabile dall'SLM (l'SLM non deve inventare una P.IVA diversa) e attiva il **Cortocircuito Immediato (Short-Circuit)**: interrompe la pipeline al primo tentativo e transita a `INDETERMINATE`.
+
+Nei benchmark empirici, questo meccanismo ha consentito un **risparmio secco del 66.7% delle chiamate di inferenza sui documenti avversariali**, abbattendo la latenza e liberando risorse di calcolo.
+
+---
+
+### 6.4. Gestione dello Stato di Dominio INDETERMINATE e Conservazione del Dato
+
+Lo stato `INDETERMINATE` attua il paradigma **Human-in-the-Loop**:
+- Non restituisce un codice di errore HTTP generico.
+- Il payload contiene sia l'elenco analitico delle guardie violate sia il JSON grezzo `unvalidatedResult`.
+- L'interfaccia utente può visualizzare il documento con i dati già estratti, evidenziando in rosso solo la casella che necessita della supervisione o correzione manuale da parte dell'operatore.
 
 ---
 
@@ -395,17 +513,17 @@ L'orchestratore gestisce gli insuccessi secondo la filosofia del controllo di pr
 ```
 
 #### Esecuzione della Pipeline
-1. `InputValidator`: Payload di 342 caratteri (< 32KB). Nessun tag malevolo.
-2. `LocalOllamaRouter`: Identifica le parole chiave fiscali e l'impostazione tabellare. Classifica il documento come `FATTURA` (latenza: 338 ms).
-3. `BasePipeline (fattura_pipeline)`:
-   - `ModelInferenceStep`: Invocazione SLM Qwen 2.5 3B con `schemas/fattura_info.json`. Generazione completata in 5.8s.
+1. `InputValidator`: Payload valido (< 32KB). Nessun tag malevolo.
+2. `LocalOllamaRouter`: Classifica il testo come `FATTURA` (latenza: 338 ms).
+3. `fattura_pipeline`:
+   - `ModelInferenceStep`: Qwen 2.5 3B estrae i dati conformemente a `schemas/fattura_info.json`.
    - `OutputValidationStep`:
-     - Normalizzatore G1 ripulisce la denominazione fornitore in `"Studio Tecnico Alpha S.r.l."`.
-     - Validatore Partita IVA esegue Luhn su `01234567890`: valido.
-     - Validatore Codice Fiscale verifica formato e CIN su `80012340151`: valido.
-     - Validatore IBAN esegue ISO 7064 MOD 97 su `IT02L...`: valido.
+     - Normalizzatore G1 ripulisce la ragione sociale in `"Studio Tecnico Alpha S.r.l."`.
+     - Validatore Partita IVA verifica il checksum di Luhn: valido.
+     - Validatore Codice Fiscale verifica il CIN: valido.
+     - Validatore IBAN verifica ISO 7064 MOD 97: valido.
      - Coerenza algebrica: $1000.00 + 220.00 = 1220.00$: coerente.
-4. Esito finale: **`OK`**.
+4. Esito: **`OK`**.
 
 #### Output Risposta
 ```json
@@ -433,14 +551,14 @@ L'orchestratore gestisce gli insuccessi secondo la filosofia del controllo di pr
 *(Nota: la P.IVA `12345678903` ha la cifra di controllo errata secondo l'algoritmo di Luhn; la cifra corretta sarebbe `8`).*
 
 #### Esecuzione della Pipeline
-1. `ModelInferenceStep`: L'SLM estrae fedelmente dal testo `"12345678903"`.
+1. `ModelInferenceStep`: Estrae la stringa `"12345678903"`.
 2. `OutputValidationStep`:
-   - `PartitaIvaValidator` esegue Luhn e fallisce (`CHECKSUM_INVALID`).
-   - Il validatore esegue la ricerca testuale nel payload sorgente: la stringa `"12345678903"` è contenuta letteralmente nel testo di input.
-   - La violazione viene convertita in `ValidationErrorCode.SOURCE_CHECKSUM_INVALID`.
+   - `PartitaIvaValidator` fallisce il controllo Luhn (`CHECKSUM_INVALID`).
+   - Il validatore constata che la stringa `"12345678903"` è contenuta letteralmente nel testo di partenza.
+   - Converte l'errore in `SOURCE_CHECKSUM_INVALID`.
 3. `BasePipeline`:
-   - Rileva che l'unico errore presente è di tipo `SOURCE_CHECKSUM_INVALID`.
-   - Attiva il **cortocircuito avversariale**: azzera i 2 retry pianificati in `on_failure`.
+   - Rileva che l'unico errore presente è `SOURCE_CHECKSUM_INVALID`.
+   - Attiva lo **Short-Circuit**: sopprime i 2 retry pianificati.
    - Transita immediatamente a `INDETERMINATE`.
 
 #### Output Risposta
@@ -475,15 +593,15 @@ L'orchestratore gestisce gli insuccessi secondo la filosofia del controllo di pr
 
 #### Esecuzione della Pipeline (`email_pipeline`)
 1. **Step 1 (`email_inference`)**: Estrae l'evento semantico (`"richiesta verifica pagamento bonifico non contabilizzato"`).
-2. **Step 2 (`email_validation`)**: Verifica la validità formale dell'email del mittente (`claudia.verdi@partner.com` conforme RFC).
-3. **Step 3 (`roles_lookup`)**: Esegue il tool [`CompanyRolesTool.java`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/tool/CompanyRolesTool.java) che carica i ruoli aziendali dal catalogo autorizzato (`mock/company_roles.json`).
-4. **Step 4 (`recipient_inference`)**: Invocazione decisionale: sulla base del catalogo ruoli (`Amministrazione`, `Ufficio Acquisti`, `Supporto Tecnico`, `Logistica`), determina che la richiesta riguarda l'**Amministrazione**.
-5. **Step 5 (`recipient_validation`)**: [`CatalogMembershipGuard`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/CatalogMembershipGuard.java) verifica che `"Amministrazione"` esista nell'insieme autorizzato.
-6. Esito finale: **`OK`**.
+2. **Step 2 (`email_validation`)**: Verifica l'indirizzo del mittente (`claudia.verdi@partner.com` conforme RFC).
+3. **Step 3 (`roles_lookup`)**: Esegue il tool [`CompanyRolesTool`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/tool/CompanyRolesTool.java) caricando i ruoli dal catalogo aziendale (`mock/company_roles.json`).
+4. **Step 4 (`recipient_inference`)**: Invocazione decisionale: sulla base delle opzioni del catalogo, determina che la competenza appartiene all'**Amministrazione**.
+5. **Step 5 (`recipient_validation`)**: [`CatalogMembershipGuard`](file:///home/del/Projects/slm-orchestrator/src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/guard/CatalogMembershipGuard.java) certifica che `"Amministrazione"` appartiene all'insieme autorizzato.
+6. Esito: **`OK`**.
 
 ---
 
-### 7.4. Scenario D: Documento Fuori Dominio (`ALTRO`)
+### 7.4. Scenario D: Documento Fuori Dominio (ALTRO)
 
 #### Input Utente
 ```json
@@ -493,16 +611,15 @@ L'orchestratore gestisce gli insuccessi secondo la filosofia del controllo di pr
 ```
 
 #### Esecuzione della Pipeline
-1. `LocalOllamaRouter`: Rileva assenza di elementi fiscali, anagrafici individuali o corrispondenza di ticket.
-2. Assegna l'etichetta `ALTRO` (latenza: 395 ms).
-3. Viene attivata `altro_pipeline`: estrae una sintesi descrittiva in formato neutro JSON senza imporre validazioni algebriche non applicabili.
-4. Esito finale: **`OK`** (etichetta `ALTRO`).
+1. `LocalOllamaRouter`: Rileva assenza di elementi fiscali, anagrafici individuali o corrispondenza di ticket. Assegna la classe `ALTRO` (latenza: 395 ms).
+2. `altro_pipeline`: Estrae una sintesi descrittiva in formato neutro JSON senza imporre controlli fiscali non applicabili.
+3. Esito: **`OK`** (etichetta `ALTRO`).
 
 ---
 
 ## 8. Risultati Sperimentali e Analisi Oggettiva dei Dati
 
-### 8.1. Protocollo di Valutazione, Dataset Congelati e Tassonomia Esiti
+### 8.1. Protocollo di Valutazione, Dataset Congelati e Tassonomia C1..C5
 
 Tutte le metriche esposte in questa sezione provengono da benchmark sistematici eseguiti su codice compilato e congelato al commit `freeze-1`.
 
@@ -668,6 +785,7 @@ Dalla lettura rigorosa delle tabelle sperimentali emergono le seguenti deduzioni
 - **CatalogMembershipGuard**: Guardia simbolica deterministica che verifica l'appartenenza di una stringa a un insieme discreto chiuso autorizzato (catalogo entità o ruoli).
 - **Check Digit (Cifra di Controllo)**: Carattere numerico o alfabetico posizionato al termine di un codice identificativo, calcolato mediante formula algebrica sui caratteri precedenti per rilevare errori di trascrizione.
 - **CIN (Codice Identificativo Nazionale)**: Cifra di controllo finale del Codice Fiscale italiano.
+- **CompanyRolesTool**: Tool in-pipeline che carica l'elenco dei ruoli aziendali censiti per arricchire il contesto di elaborazione delle email.
 - **C1, C2, C3, C4, C5**: Categorie standard della tassonomia documentale per quantificare la conformità dell'output rispetto alla Ground Truth annotata.
 - **CrossFieldCoherenceGuard / AnagraficaCoherenceValidator**: Controllore di coerenza logica tra campi eterogenei (es. conformità tra Codice Fiscale e Nome/Cognome per sventare inversioni).
 - **DecisionPipelineStep**: Passo di pipeline specializzato nella selezione di un'opzione discreta da un catalogo tramite modello neurale discreto con permutazione rotatoria anti-bias.
@@ -689,7 +807,9 @@ Dalla lettura rigorosa delle tabelle sperimentali emergono le seguenti deduzioni
 - **Short-Circuit Avversariale (`SOURCE_CHECKSUM_INVALID`)**: Rilevamento immediato della presenza verbatim di un dato algebricamente errato nel testo sorgente per interrompere preventivamente i retry inutili.
 - **Single Base Model Architecture**: Pattern architetturale che mantiene un solo modello base caricato in memoria RAM/VRAM, variando il comportamento tramite iniezione dinamica di System Prompt e Schemi.
 - **Smart Retry (RF7)**: Strategia di ritentativo su fallimento con innalzamento controllato della temperatura e feedback strutturato privo di iniezioni del valore rifiutato.
+- **Tool / ToolPipelineStep**: Componente Java eseguibile all'interno di una pipeline per interrogare sorgenti dati esterne e iniettare informazioni nel contesto prima delle inferenze.
 - **Wilson Score Interval**: Formula statistica per il calcolo di intervalli di confidenza binomiali asimmetrici e stabili al 95%.
+- **YamlPipelineLoader**: Componente Spring Boot che carica e valida i file YAML delle pipeline al bootstrap dell'applicazione.
 - **Zero-Injection**: Principio di sicurezza che proibisce la re-immissione di dati utente non sanificati all'interno dei prompt di correzione e retry del sistema.
 
 ---
