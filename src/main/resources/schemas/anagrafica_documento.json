@@ -1,0 +1,82 @@
+{
+  "type": "object",
+  "properties": {
+    "tipoDocumento": {
+      "type": "string",
+      "enum": [
+        "CARTA_IDENTITA",
+        "PASSAPORTO",
+        "TESSERA_SANITARIA",
+        "PATENTE",
+        "NON_SPECIFICATO"
+      ]
+    },
+    "nome": {
+      "type": "string"
+    },
+    "cognome": {
+      "type": "string"
+    },
+    "codiceFiscale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dataNascita": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "luogoNascita": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sesso": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "numeroDocumento": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dataRilascio": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dataScadenza": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "enteRilascio": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "tipoDocumento",
+    "nome",
+    "cognome",
+    "codiceFiscale",
+    "dataNascita",
+    "luogoNascita",
+    "sesso",
+    "numeroDocumento",
+    "dataRilascio",
+    "dataScadenza",
+    "enteRilascio"
+  ]
+}

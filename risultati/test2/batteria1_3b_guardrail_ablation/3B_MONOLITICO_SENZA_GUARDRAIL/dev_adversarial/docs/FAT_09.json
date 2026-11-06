@@ -1,0 +1,154 @@
+{
+  "id" : "FAT_09",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev_adversarial",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "NP-101",
+      "normalized_ground_truth" : "NP-101",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataFattura" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "03/08/2026",
+      "normalized_ground_truth" : "03/08/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "fornitore.denominazione" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Studio Legale Giuris",
+      "normalized_ground_truth" : "Studio Legale Giuris",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "fornitore.partitaIva" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "10000006850",
+      "normalized_ground_truth" : "10000006850",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Mario Bianchi",
+      "normalized_ground_truth" : "Mario Bianchi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 1500.0,
+      "normalized_ground_truth" : 1500.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "numeroFattura",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "NP-101",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "NP-101",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataFattura",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "03/08/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "03/08/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "fornitore.denominazione",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Studio Legale Giuris",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Studio Legale Giuris",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "fornitore.partitaIva",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "10000006850",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "10000006850",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "cliente.denominazione",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Mario Bianchi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Mario Bianchi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "importoTotale",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 1500.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 1500.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Notula professionale\",\n    \"argomentoPrincipale\": \"Studio Legale Giuris\",\n    \"motivoEsclusione\": \"Non rispetta i criteri di classificazione FATTURA, EMAIL, ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Studio Legale Giuris\",\n      \"Gent.le Mario Bianchi\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Notula professionale\",\n    \"argomentoPrincipale\": \"Studio Legale Giuris\",\n    \"motivoEsclusione\": \"Non rispetta i criteri di classificazione FATTURA, EMAIL, ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Studio Legale Giuris\",\n      \"Gent.le Mario Bianchi\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 5439,
+      "totalDurationMs" : 5437,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5170,
+      "promptEvalCount" : 374,
+      "evalCount" : 139,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 5439
+}

@@ -1,0 +1,133 @@
+{
+  "id" : "EML_19",
+  "type" : "EMAIL",
+  "template" : "EML_T5_THREAD_RECAPITO_FIRMA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Dott. Filippo Sala",
+      "normalized_extracted" : "Filippo Sala",
+      "ground_truth" : "Filippo Sala",
+      "normalized_ground_truth" : "Filippo Sala",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "f.sala@pharmaone.it",
+      "normalized_extracted" : "f.sala@pharmaone.it",
+      "ground_truth" : "f.sala@pharmaone.it",
+      "normalized_ground_truth" : "f.sala@pharmaone.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PharmaOne S.p.A.",
+      "normalized_extracted" : "PharmaOne S.p.A.",
+      "ground_truth" : "PharmaOne S.p.A.",
+      "normalized_ground_truth" : "PharmaOne S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Convegno medico digitale",
+      "normalized_extracted" : "Convegno medico digitale",
+      "ground_truth" : "Convegno medico digitale",
+      "normalized_ground_truth" : "Convegno medico digitale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20/01/2027",
+      "normalized_extracted" : "2027-01-20",
+      "ground_truth" : "20/01/2027",
+      "normalized_ground_truth" : "2027-01-20",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 100,
+      "normalized_extracted" : 100.0,
+      "ground_truth" : 100,
+      "normalized_ground_truth" : 100.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 15000,
+      "normalized_extracted" : 15000.0,
+      "ground_truth" : 15000.0,
+      "normalized_ground_truth" : 15000.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Dott. Filippo Sala\",\"email\":\"f.sala@pharmaone.it\",\"telefono\":null,\"azienda\":\"PharmaOne S.p.A.\",\"oggetto\":\"Convegno medico digitale\",\"citta\":null,\"numeroPartecipanti\":100,\"budgetEuro\":15000,\"dataEvento\":\"20/01/2027\",\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Approvazione budget e coordinamento con la direzione generale\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 31031,
+    "metrics" : {
+      "totalDurationMs" : 30072,
+      "totalPromptTokens" : 1871,
+      "totalCompletionTokens" : 157,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 19989,
+        "promptTokens" : 553,
+        "completionTokens" : 113,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 10080,
+        "promptTokens" : 1318,
+        "completionTokens" : 44,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 31035
+}

@@ -1,0 +1,114 @@
+{
+  "id" : "HO_ADV_01",
+  "type" : "FATTURA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FAT-2026-049",
+      "normalized_extracted" : "FAT-2026-049",
+      "ground_truth" : "FAT-2026-049",
+      "normalized_ground_truth" : "FAT-2026-049",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02/03/2026",
+      "normalized_extracted" : "2026-03-02",
+      "ground_truth" : "02/03/2026",
+      "normalized_ground_truth" : "2026-03-02",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "normalized_extracted" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "normalized_ground_truth" : "TERMOIDRAULICA F.LLI SARTORI S.N.C.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "07319450284",
+      "normalized_extracted" : "07319450284",
+      "ground_truth" : "07319450284",
+      "normalized_ground_truth" : "07319450284",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "normalized_extracted" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "normalized_ground_truth" : "HOTEL DOLOMITI RESORT S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 1342.0,
+      "normalized_ground_truth" : 1342.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT36K0503411701000000038472",
+      "normalized_extracted" : "IT36K0503411701000000038472",
+      "ground_truth" : "IT36K0503411701000000038472",
+      "normalized_ground_truth" : "IT36K0503411701000000038472",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "importoTotale",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : 1342.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 1342.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"FAT-2026-049\",\n    \"dataFattura\": \"02/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"TERMOIDRAULICA F.LLI SARTORI S.N.C.\",\n      \"partitaIva\": \"07319450284\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"HOTEL DOLOMITI RESORT S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": null,\n    \"iban\": \"IT36K0503411701000000038472\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"FAT-2026-049\",\n    \"dataFattura\": \"02/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"TERMOIDRAULICA F.LLI SARTORI S.N.C.\",\n      \"partitaIva\": \"07319450284\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"HOTEL DOLOMITI RESORT S.R.L.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": null,\n    \"iban\": \"IT36K0503411701000000038472\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 7972,
+      "totalDurationMs" : 7969,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 7726,
+      "promptEvalCount" : 487,
+      "evalCount" : 215,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 7972
+}

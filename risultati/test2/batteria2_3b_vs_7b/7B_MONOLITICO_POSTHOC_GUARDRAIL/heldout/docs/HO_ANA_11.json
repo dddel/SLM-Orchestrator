@@ -1,0 +1,181 @@
+{
+  "id" : "HO_ANA_11",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSEGNA_BADGE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Monica",
+      "normalized_extracted" : "Monica",
+      "ground_truth" : "Monica",
+      "normalized_ground_truth" : "Monica",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Trevisan",
+      "normalized_extracted" : "Trevisan",
+      "ground_truth" : "Trevisan",
+      "normalized_ground_truth" : "Trevisan",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TRVMNC86T54L736S",
+      "normalized_extracted" : "TRVMNC86T54L736S",
+      "ground_truth" : "TRVMNC86T54L736S",
+      "normalized_ground_truth" : "TRVMNC86T54L736S",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1986-12-14",
+      "normalized_extracted" : "1986-12-14",
+      "ground_truth" : "14/12/1986",
+      "normalized_ground_truth" : "1986-12-14",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Venezia (VE)",
+      "normalized_extracted" : "Venezia (VE)",
+      "ground_truth" : "Venezia (VE)",
+      "normalized_ground_truth" : "Venezia (VE)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "80380001492817293841",
+      "normalized_ground_truth" : "80380001492817293841",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PASSAPORTO",
+    "ground_truth" : "TESSERA_SANITARIA",
+    "normalized_extracted" : "PASSAPORTO",
+    "normalized_ground_truth" : "TESSERA_SANITARIA",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "80380001492817293841",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "80380001492817293841",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Monica\",\n    \"cognome\": \"Trevisan\",\n    \"codiceFiscale\": \"TRVMNC86T54L736S\",\n    \"dataNascita\": \"1986-12-14\",\n    \"luogoNascita\": \"Venezia (VE)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Monica\",\n    \"cognome\": \"Trevisan\",\n    \"codiceFiscale\": \"TRVMNC86T54L736S\",\n    \"dataNascita\": \"1986-12-14\",\n    \"luogoNascita\": \"Venezia (VE)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": null,\n    \"dataScadenza\": null,\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 28403,
+        "totalDurationMs" : 28401,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 27600,
+        "promptEvalCount" : 405,
+        "evalCount" : 180,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_04",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_TESSERA_SANITARIA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Serena",
+      "normalized_extracted" : "Serena",
+      "ground_truth" : "Serena",
+      "normalized_ground_truth" : "Serena",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "De Luca",
+      "normalized_extracted" : "De Luca",
+      "ground_truth" : "De Luca",
+      "normalized_ground_truth" : "De Luca",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DLCSRN94A52F839Q",
+      "normalized_extracted" : "DLCSRN94A52F839Q",
+      "ground_truth" : "DLCSRN94A52F839Q",
+      "normalized_ground_truth" : "DLCSRN94A52F839Q",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/01/1994",
+      "normalized_extracted" : "1994-01-12",
+      "ground_truth" : "12/01/1994",
+      "normalized_ground_truth" : "1994-01-12",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Napoli (NA)",
+      "normalized_extracted" : "Napoli (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001200394829102",
+      "normalized_extracted" : "80380001200394829102",
+      "ground_truth" : "80380001200394829102",
+      "normalized_ground_truth" : "80380001200394829102",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/01/2028",
+      "normalized_extracted" : "2028-01-12",
+      "ground_truth" : "12/01/2028",
+      "normalized_ground_truth" : "2028-01-12",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"TESSERA_SANITARIA\",\n  \"nome\": \"Serena\",\n  \"cognome\": \"De Luca\",\n  \"codiceFiscale\": \"DLCSRN94A52F839Q\",\n  \"dataNascita\": \"12/01/1994\",\n  \"luogoNascita\": \"Napoli (NA)\",\n  \"sesso\": \"F\",\n  \"numeroDocumento\": \"80380001200394829102\",\n  \"dataRilascio\": null,\n  \"dataScadenza\": \"12/01/2028\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 15279,
+    "metrics" : {
+      "totalDurationMs" : 14176,
+      "totalPromptTokens" : 774,
+      "totalCompletionTokens" : 166,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 14175,
+        "promptTokens" : 774,
+        "completionTokens" : 166,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 15283
+}

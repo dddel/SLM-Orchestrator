@@ -1,0 +1,467 @@
+{
+  "metadata" : {
+    "model" : "qwen2.5:3b-instruct-q8_0",
+    "git_commit" : "bf3d125a7e7811283e7799e49725f8be605c2cf8",
+    "split" : "dev",
+    "evaluated_at" : "2026-11-02T15:43:22.564921358Z",
+    "total_documents" : 60
+  },
+  "summary" : {
+    "accuracy_wilson" : "60/60 (100.0%, IC 95%: 94.0–100.0%)",
+    "total" : 60,
+    "accuracy_pct" : 100.0,
+    "correct" : 60
+  },
+  "confusion_matrix" : {
+    "FATTURA" : {
+      "FATTURA" : 20,
+      "EMAIL" : 0,
+      "ANAGRAFICA" : 0,
+      "ALTRO" : 0
+    },
+    "EMAIL" : {
+      "FATTURA" : 0,
+      "EMAIL" : 20,
+      "ANAGRAFICA" : 0,
+      "ALTRO" : 0
+    },
+    "ANAGRAFICA" : {
+      "FATTURA" : 0,
+      "EMAIL" : 0,
+      "ANAGRAFICA" : 20,
+      "ALTRO" : 0
+    },
+    "ALTRO" : {
+      "FATTURA" : 0,
+      "EMAIL" : 0,
+      "ANAGRAFICA" : 0,
+      "ALTRO" : 0
+    }
+  },
+  "latency_stats" : {
+    "median_ms" : 341,
+    "mean_ms" : 342.0,
+    "p95_ms" : 412
+  },
+  "documents" : [ {
+    "id" : "FAT_01",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 367
+  }, {
+    "id" : "FAT_02",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 359
+  }, {
+    "id" : "FAT_03",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 375
+  }, {
+    "id" : "FAT_04",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 371
+  }, {
+    "id" : "EML_01",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 289
+  }, {
+    "id" : "EML_02",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 275
+  }, {
+    "id" : "EML_03",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 285
+  }, {
+    "id" : "EML_04",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 284
+  }, {
+    "id" : "ANA_01",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 410
+  }, {
+    "id" : "ANA_02",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 423
+  }, {
+    "id" : "ANA_03",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 417
+  }, {
+    "id" : "ANA_04",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 419
+  }, {
+    "id" : "FAT_05",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 341
+  }, {
+    "id" : "FAT_06",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 327
+  }, {
+    "id" : "FAT_07",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 326
+  }, {
+    "id" : "FAT_08",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 329
+  }, {
+    "id" : "FAT_09",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 334
+  }, {
+    "id" : "FAT_10",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 336
+  }, {
+    "id" : "FAT_11",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 335
+  }, {
+    "id" : "FAT_12",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 317
+  }, {
+    "id" : "FAT_13",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 378
+  }, {
+    "id" : "FAT_14",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 372
+  }, {
+    "id" : "FAT_15",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 349
+  }, {
+    "id" : "FAT_16",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 355
+  }, {
+    "id" : "FAT_17",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 345
+  }, {
+    "id" : "FAT_18",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 339
+  }, {
+    "id" : "FAT_19",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 333
+  }, {
+    "id" : "FAT_20",
+    "expected" : "FATTURA",
+    "predicted" : "FATTURA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 325
+  }, {
+    "id" : "EML_05",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 282
+  }, {
+    "id" : "EML_06",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 286
+  }, {
+    "id" : "EML_07",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 283
+  }, {
+    "id" : "EML_08",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 274
+  }, {
+    "id" : "EML_09",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 267
+  }, {
+    "id" : "EML_10",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 262
+  }, {
+    "id" : "EML_11",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 270
+  }, {
+    "id" : "EML_12",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 265
+  }, {
+    "id" : "EML_13",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 282
+  }, {
+    "id" : "EML_14",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 283
+  }, {
+    "id" : "EML_15",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 280
+  }, {
+    "id" : "EML_16",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 263
+  }, {
+    "id" : "EML_17",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 282
+  }, {
+    "id" : "EML_18",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 263
+  }, {
+    "id" : "EML_19",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 275
+  }, {
+    "id" : "EML_20",
+    "expected" : "EMAIL",
+    "predicted" : "EMAIL",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 260
+  }, {
+    "id" : "ANA_05",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 405
+  }, {
+    "id" : "ANA_06",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 409
+  }, {
+    "id" : "ANA_07",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 405
+  }, {
+    "id" : "ANA_08",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 403
+  }, {
+    "id" : "ANA_09",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 402
+  }, {
+    "id" : "ANA_10",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 387
+  }, {
+    "id" : "ANA_11",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 394
+  }, {
+    "id" : "ANA_12",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 403
+  }, {
+    "id" : "ANA_13",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 410
+  }, {
+    "id" : "ANA_14",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 412
+  }, {
+    "id" : "ANA_15",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 389
+  }, {
+    "id" : "ANA_16",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 406
+  }, {
+    "id" : "ANA_17",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 404
+  }, {
+    "id" : "ANA_18",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 407
+  }, {
+    "id" : "ANA_19",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 392
+  }, {
+    "id" : "ANA_20",
+    "expected" : "ANAGRAFICA",
+    "predicted" : "ANAGRAFICA",
+    "match" : true,
+    "router_name" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "latency_ms" : 402
+  } ]
+}

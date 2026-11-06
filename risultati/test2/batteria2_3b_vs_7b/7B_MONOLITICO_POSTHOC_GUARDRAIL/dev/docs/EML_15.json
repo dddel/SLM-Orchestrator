@@ -1,0 +1,155 @@
+{
+  "id" : "EML_15",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Simona De Luca <s.deluca@fashionbrand.it>",
+      "normalized_extracted" : "Simona De Luca <s.deluca@fashionbrand.it>",
+      "ground_truth" : "Simona De Luca",
+      "normalized_ground_truth" : "Simona De Luca",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "s.deluca@fashionbrand.it",
+      "normalized_extracted" : "s.deluca@fashionbrand.it",
+      "ground_truth" : "s.deluca@fashionbrand.it",
+      "normalized_ground_truth" : "s.deluca@fashionbrand.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 11223344",
+      "normalized_extracted" : "0211223344",
+      "ground_truth" : "+39 02 11223344",
+      "normalized_ground_truth" : "0211223344",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FashionBrand S.p.A.",
+      "normalized_extracted" : "FashionBrand S.p.A.",
+      "ground_truth" : "FashionBrand S.p.A.",
+      "normalized_ground_truth" : "FashionBrand S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Presentazione collezione Milano",
+      "normalized_extracted" : "Presentazione collezione Milano",
+      "ground_truth" : "Presentazione collezione Milano",
+      "normalized_ground_truth" : "Presentazione collezione Milano",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "22/12/2026",
+      "normalized_extracted" : "2026-12-22",
+      "ground_truth" : "22/12/2026",
+      "normalized_ground_truth" : "2026-12-22",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano",
+      "normalized_extracted" : "Milano",
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Simona De Luca <s.deluca@fashionbrand.it>",
+    "ground_truth" : "Simona De Luca",
+    "normalized_extracted" : "Simona De Luca <s.deluca@fashionbrand.it>",
+    "normalized_ground_truth" : "Simona De Luca",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Simona De Luca <s.deluca@fashionbrand.it>\",\n    \"email\": \"s.deluca@fashionbrand.it\",\n    \"telefono\": \"+39 02 11223344\",\n    \"azienda\": \"FashionBrand S.p.A.\",\n    \"oggetto\": \"Presentazione collezione Milano\",\n    \"citta\": \"Milano\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"22/12/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Simona De Luca <s.deluca@fashionbrand.it>\",\n    \"email\": \"s.deluca@fashionbrand.it\",\n    \"telefono\": \"+39 02 11223344\",\n    \"azienda\": \"FashionBrand S.p.A.\",\n    \"oggetto\": \"Presentazione collezione Milano\",\n    \"citta\": \"Milano\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"22/12/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 24596,
+        "totalDurationMs" : 24593,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 23692,
+        "promptEvalCount" : 397,
+        "evalCount" : 171,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

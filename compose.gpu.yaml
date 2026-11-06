@@ -1,0 +1,11 @@
+# Esempio di abilitazione GPU NVIDIA (opzionale)
+# Rinomina questo file in compose.override.yaml per attivarlo automaticamente con docker compose o podman compose.
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi # oppure 'nvidia' per Docker engine standard
+              count: all
+              capabilities: [gpu]

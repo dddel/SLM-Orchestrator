@@ -1,0 +1,178 @@
+{
+  "id" : "HO_EML_11",
+  "type" : "EMAIL",
+  "template" : "EML_PREVENTIVO_FLOTTA",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Fabio Manzoni",
+      "normalized_ground_truth" : "Fabio Manzoni",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "f.manzoni@manzoni-commerciale.it",
+      "normalized_ground_truth" : "f.manzoni@manzoni-commerciale.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 02 67194012",
+      "normalized_ground_truth" : "+39 02 67194012",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "normalized_ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "normalized_ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 30000.0,
+      "normalized_ground_truth" : 30000.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Fabio Manzoni",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Fabio Manzoni",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "f.manzoni@manzoni-commerciale.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "f.manzoni@manzoni-commerciale.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 02 67194012",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 02 67194012",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Manzoni Soluzioni Commerciali S.p.A.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Milano",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Milano",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 30000.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 30000.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ "Sotto-oggetto 'email' assente o nullo nella busta" ],
+    "processedOutput" : null,
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric\",\n    \"argomentoPrincipale\": \"Richiesta quotazione\",\n    \"motivoEsclusione\": null,\n    \"entitaRilevate\": [\n      \"Spettabile Lease Plan\",\n      \"Dott. Fabio Manzoni\",\n      \"Manzoni Soluzioni Commerciali S.p.A.\"\n    ]\n  }\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta quotazione noleggio a lungo termine flotta 5 vetture full-electric\",\n    \"argomentoPrincipale\": \"Richiesta quotazione\",\n    \"motivoEsclusione\": null,\n    \"entitaRilevate\": [\n      \"Spettabile Lease Plan\",\n      \"Dott. Fabio Manzoni\",\n      \"Manzoni Soluzioni Commerciali S.p.A.\"\n    ]\n  }\n}",
+      "metrics" : {
+        "clientLatencyMs" : 5709,
+        "totalDurationMs" : 5707,
+        "loadDurationMs" : 2,
+        "evalDurationMs" : 5361,
+        "promptEvalCount" : 485,
+        "evalCount" : 147,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

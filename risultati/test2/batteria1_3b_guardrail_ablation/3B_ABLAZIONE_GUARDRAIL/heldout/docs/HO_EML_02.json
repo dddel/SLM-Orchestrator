@@ -1,0 +1,141 @@
+{
+  "id" : "HO_EML_02",
+  "type" : "EMAIL",
+  "template" : "EML_TICKET_SUPPORTO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Ing. Marco Ferretti",
+      "normalized_extracted" : "Marco Ferretti",
+      "ground_truth" : "Marco Ferretti",
+      "normalized_ground_truth" : "Marco Ferretti",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "m.ferretti@ferretti-logistica.it",
+      "normalized_extracted" : "m.ferretti@ferretti-logistica.it",
+      "ground_truth" : "m.ferretti@ferretti-logistica.it",
+      "normalized_ground_truth" : "m.ferretti@ferretti-logistica.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 051 6829104",
+      "normalized_extracted" : "0516829104",
+      "ground_truth" : "+39 051 6829104",
+      "normalized_ground_truth" : "0516829104",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Ferretti Logistica Integrata S.p.A.",
+      "normalized_extracted" : "Ferretti Logistica Integrata S.p.A.",
+      "ground_truth" : "Ferretti Logistica Integrata S.p.A.",
+      "normalized_ground_truth" : "Ferretti Logistica Integrata S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione",
+      "normalized_extracted" : "Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione",
+      "ground_truth" : "Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione",
+      "normalized_ground_truth" : "Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "04/03/2026",
+      "normalized_extracted" : "04/03/2026",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "dataEvento",
+    "key_present" : true,
+    "extracted" : "04/03/2026",
+    "ground_truth" : null,
+    "normalized_extracted" : "04/03/2026",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Ing. Marco Ferretti\",\"email\":\"m.ferretti@ferretti-logistica.it\",\"telefono\":\"+39 051 6829104\",\"azienda\":\"Ferretti Logistica Integrata S.p.A.\",\"oggetto\":\"Ticket 8941 - Blocco accesso con credenziali SSO al portale fatturazione\",\"citta\":null,\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"04/03/2026\",\"destinatario\":\"Marco Rossi\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Disservizi server, connettività, firewall, infrastruttura cloud, problemi hardware\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 9218,
+    "metrics" : {
+      "totalDurationMs" : 8668,
+      "totalPromptTokens" : 2089,
+      "totalCompletionTokens" : 194,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5487,
+        "promptTokens" : 647,
+        "completionTokens" : 143,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3179,
+        "promptTokens" : 1442,
+        "completionTokens" : 51,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 9222
+}

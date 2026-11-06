@@ -1,0 +1,146 @@
+{
+  "id" : "HO_FAT_02",
+  "type" : "FATTURA",
+  "template" : "FAT_TABELLARE_COMPATTA",
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-FATT-00412",
+      "normalized_extracted" : "2026-FATT-00412",
+      "ground_truth" : "2026-FATT-00412",
+      "normalized_ground_truth" : "2026-FATT-00412",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/02/2026",
+      "normalized_extracted" : "2026-02-18",
+      "ground_truth" : "18/02/2026",
+      "normalized_ground_truth" : "2026-02-18",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "normalized_extracted" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "ground_truth" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "normalized_ground_truth" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01847290242",
+      "normalized_extracted" : "01847290242",
+      "ground_truth" : "01847290242",
+      "normalized_ground_truth" : "01847290242",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BAVARIA MOTORWERKE GMBH",
+      "normalized_extracted" : "BAVARIA MOTORWERKE GMBH",
+      "ground_truth" : "BAVARIA MOTORWERKE GMBH",
+      "normalized_ground_truth" : "BAVARIA MOTORWERKE GMBH",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "IT01847290242",
+      "normalized_extracted" : "IT01847290242",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1329.8,
+      "normalized_extracted" : 1329.8,
+      "ground_truth" : 1329.8,
+      "normalized_ground_truth" : 1329.8,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT80A0503411701000000049182",
+      "normalized_extracted" : "IT80A0503411701000000049182",
+      "ground_truth" : "IT80A0503411701000000049182",
+      "normalized_ground_truth" : "IT80A0503411701000000049182",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "cliente.codiceFiscale",
+    "key_present" : true,
+    "extracted" : "IT01847290242",
+    "ground_truth" : null,
+    "normalized_extracted" : "IT01847290242",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 4,
+    "errors" : [ "Il codice fiscale deve essere lungo esattamente 16 caratteri (trovati: 13)." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026-FATT-00412\",\n    \"dataFattura\": \"18/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"MECCANICA DI PRECISIONE VENETA S.R.L.\",\n      \"partitaIva\": \"01847290242\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"BAVARIA MOTORWERKE GMBH\",\n      \"codiceFiscale\": \"IT01847290242\"\n    },\n    \"importoTotale\": 1329.8,\n    \"iban\": \"IT80A0503411701000000049182\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026-FATT-00412\",\n    \"dataFattura\": \"18/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"MECCANICA DI PRECISIONE VENETA S.R.L.\",\n      \"partitaIva\": \"01847290242\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"BAVARIA MOTORWERKE GMBH\",\n      \"codiceFiscale\": \"IT01847290242\"\n    },\n    \"importoTotale\": 1329.8,\n    \"iban\": \"IT80A0503411701000000049182\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 8845,
+        "totalDurationMs" : 8843,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 8287,
+        "promptEvalCount" : 579,
+        "evalCount" : 230,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

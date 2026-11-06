@@ -1,0 +1,106 @@
+{
+  "id" : "HO_FAT_08",
+  "type" : "FATTURA",
+  "template" : "FAT_MANUTENZIONE_FOTOVOLTAICO",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-F-189",
+      "normalized_extracted" : "2026-F-189",
+      "ground_truth" : "2026-F-189",
+      "normalized_ground_truth" : "2026-F-189",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "02/03/2026",
+      "normalized_extracted" : "2026-03-02",
+      "ground_truth" : "02/03/2026",
+      "normalized_ground_truth" : "2026-03-02",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ECO-ENERGY IMPIANTI BERGAMO S.R.L.",
+      "normalized_extracted" : "ECO-ENERGY IMPIANTI BERGAMO S.R.L.",
+      "ground_truth" : "ECO-ENERGY IMPIANTI BERGAMO S.R.L.",
+      "normalized_ground_truth" : "ECO-ENERGY IMPIANTI BERGAMO S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04819230162",
+      "normalized_extracted" : "04819230162",
+      "ground_truth" : "04819230162",
+      "normalized_ground_truth" : "04819230162",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Condominio Parco dei Fiori",
+      "normalized_extracted" : "Condominio Parco dei Fiori",
+      "ground_truth" : "Condominio Parco dei Fiori",
+      "normalized_ground_truth" : "Condominio Parco dei Fiori",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1952.0,
+      "normalized_extracted" : 1952.0,
+      "ground_truth" : 1952.0,
+      "normalized_ground_truth" : 1952.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026-F-189\",\n    \"dataFattura\": \"02/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"ECO-ENERGY IMPIANTI BERGAMO S.R.L.\",\n      \"partitaIva\": \"04819230162\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Condominio Parco dei Fiori\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 1952.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026-F-189\",\n    \"dataFattura\": \"02/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"ECO-ENERGY IMPIANTI BERGAMO S.R.L.\",\n      \"partitaIva\": \"04819230162\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Condominio Parco dei Fiori\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 1952.0,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 29050,
+      "totalDurationMs" : 29047,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 28792,
+      "promptEvalCount" : 495,
+      "evalCount" : 190,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 29050
+}

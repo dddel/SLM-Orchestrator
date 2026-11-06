@@ -1,0 +1,171 @@
+{
+  "id" : "EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Marco Neri",
+      "normalized_ground_truth" : "Marco Neri",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "m.neri@innovasol.it",
+      "normalized_ground_truth" : "m.neri@innovasol.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Innovasol S.r.l.",
+      "normalized_ground_truth" : "Innovasol S.r.l.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Workshop formativo intelligenza artificiale",
+      "normalized_ground_truth" : "Workshop formativo intelligenza artificiale",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "15/10/2026",
+      "normalized_ground_truth" : "15/10/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 25,
+      "normalized_ground_truth" : 25,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 3500.0,
+      "normalized_ground_truth" : 3500.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Marco Neri",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Marco Neri",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "m.neri@innovasol.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "m.neri@innovasol.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Innovasol S.r.l.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Innovasol S.r.l.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Workshop formativo intelligenza artificiale",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Workshop formativo intelligenza artificiale",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "15/10/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "15/10/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 25,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 25,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 3500.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 3500.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di pianificazione di una sessione formativa\",\n    \"argomentoPrincipale\": \"Workshop formativo intelligenza artificiale\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\n      \"Marco Neri\",\n      \"Innovasol S.r.l.\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta di pianificazione di una sessione formativa\",\n    \"argomentoPrincipale\": \"Workshop formativo intelligenza artificiale\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche di tipo fattura, email o anagrafica\",\n    \"entitaRilevate\": [\n      \"Marco Neri\",\n      \"Innovasol S.r.l.\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 5861,
+      "totalDurationMs" : 5859,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5636,
+      "promptEvalCount" : 426,
+      "evalCount" : 152,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 5861
+}

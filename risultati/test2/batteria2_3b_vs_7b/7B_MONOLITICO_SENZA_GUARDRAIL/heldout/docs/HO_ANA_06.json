@@ -1,0 +1,141 @@
+{
+  "id" : "HO_ANA_06",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_VERBALE_TESTIMONE",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Andrea",
+      "normalized_extracted" : "Andrea",
+      "ground_truth" : "Andrea",
+      "normalized_ground_truth" : "Andrea",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Venturi",
+      "normalized_extracted" : "Venturi",
+      "ground_truth" : "Venturi",
+      "normalized_ground_truth" : "Venturi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VNTNDR85S30A944S",
+      "normalized_extracted" : "VNTNDR85S30A944S",
+      "ground_truth" : "VNTNDR85S30A944S",
+      "normalized_ground_truth" : "VNTNDR85S30A944S",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1985-11-30",
+      "normalized_extracted" : "1985-11-30",
+      "ground_truth" : "30/11/1985",
+      "normalized_ground_truth" : "1985-11-30",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Bologna",
+      "normalized_extracted" : "Bologna",
+      "ground_truth" : "Bologna (BO)",
+      "normalized_ground_truth" : "Bologna (BO)",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AT9182371",
+      "normalized_extracted" : "AT9182371",
+      "ground_truth" : "AT9182371",
+      "normalized_ground_truth" : "AT9182371",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2018-01-10",
+      "normalized_extracted" : "2018-01-10",
+      "ground_truth" : "10/01/2018",
+      "normalized_ground_truth" : "2018-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2028-11-30",
+      "normalized_extracted" : "2028-11-30",
+      "ground_truth" : "30/11/2028",
+      "normalized_ground_truth" : "2028-11-30",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Bologna",
+      "normalized_extracted" : "Comune di Bologna",
+      "ground_truth" : "Comune di Bologna",
+      "normalized_ground_truth" : "Comune di Bologna",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "luogoNascita",
+    "key_present" : true,
+    "extracted" : "Bologna",
+    "ground_truth" : "Bologna (BO)",
+    "normalized_extracted" : "Bologna",
+    "normalized_ground_truth" : "Bologna (BO)",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Andrea\",\n    \"cognome\": \"Venturi\",\n    \"codiceFiscale\": \"VNTNDR85S30A944S\",\n    \"dataNascita\": \"1985-11-30\",\n    \"luogoNascita\": \"Bologna\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AT9182371\",\n    \"dataRilascio\": \"2018-01-10\",\n    \"dataScadenza\": \"2028-11-30\",\n    \"enteRilascio\": \"Comune di Bologna\"\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"Andrea\",\n    \"cognome\": \"Venturi\",\n    \"codiceFiscale\": \"VNTNDR85S30A944S\",\n    \"dataNascita\": \"1985-11-30\",\n    \"luogoNascita\": \"Bologna\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"AT9182371\",\n    \"dataRilascio\": \"2018-01-10\",\n    \"dataScadenza\": \"2028-11-30\",\n    \"enteRilascio\": \"Comune di Bologna\"\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 33143,
+      "totalDurationMs" : 33139,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 32364,
+      "promptEvalCount" : 445,
+      "evalCount" : 210,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 33143
+}

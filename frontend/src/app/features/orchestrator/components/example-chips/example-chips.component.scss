@@ -1,0 +1,112 @@
+.chips-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chips-label {
+  font-size: var(--type-label-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+}
+
+.chips-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--type-label-sm-size);
+  color: var(--color-text-subtle);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.legend-text {
+  font-size: var(--type-label-sm-size);
+}
+
+.chips-track {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--chip-height);
+  padding: 0 var(--space-3);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  font-size: var(--type-label-size);
+  color: var(--color-text-muted);
+  transition: all var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-surface-elevated);
+    color: var(--color-text-main);
+    border-color: var(--color-border-medium);
+  }
+
+  &.active {
+    background-color: var(--color-accent-container);
+    color: var(--color-accent-text);
+    border-color: rgba(91, 146, 255, 0.4);
+    box-shadow: 0 0 12px -2px rgba(91, 146, 255, 0.25);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.chip-type-icon {
+  opacity: 0.75;
+
+  .active & {
+    opacity: 1;
+    color: var(--color-accent-primary);
+  }
+}
+
+.chip-text {
+  line-height: 1;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+
+  &.dot-ok {
+    background-color: var(--color-success);
+    box-shadow: 0 0 5px var(--color-success);
+  }
+
+  &.dot-warning {
+    background-color: var(--color-warning);
+    box-shadow: 0 0 5px var(--color-warning);
+  }
+}

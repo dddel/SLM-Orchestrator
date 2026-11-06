@@ -1,0 +1,19 @@
+<div class="guard-list-card">
+  <div class="guard-list-header">
+    <div class="header-left">
+      <app-icon name="check-circle" [size]="14" customClass="title-icon"></app-icon>
+      <span class="guard-list-title">Guardie Simboliche Deterministico-Matematiche</span>
+    </div>
+    <span class="guard-count-badge">{{ guards().length }} controlli</span>
+  </div>
+
+  <div class="guard-items-stack">
+    @for (g of guards(); track g.id) {
+      <app-guard-item [guard]="g"></app-guard-item>
+    } @empty {
+      <div class="empty-guards-msg">
+        Nessun controllo simbolico richiesto per questo documento.
+      </div>
+    }
+  </div>
+</div>

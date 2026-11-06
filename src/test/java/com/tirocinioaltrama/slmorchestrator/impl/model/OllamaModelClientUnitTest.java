@@ -1,0 +1,267 @@
+package com.tirocinioaltrama.slmorchestrator.impl.model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Map;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestClient;
+
+import com.tirocinioaltrama.slmorchestrator.core.model.ModelRequest;
+import com.tirocinioaltrama.slmorchestrator.core.model.ModelResponse;
+
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.*;
+
+class OllamaModelClientUnitTest {
+
+    private MockRestServiceServer server;
+    private OllamaModelClient client;
+    private OllamaModelClient clientWithDefaults;
+
+    @BeforeEach
+    void setUp() {
+        RestClient.Builder builder = RestClient.builder().baseUrl("http://localhost:11434");
+        server = MockRestServiceServer.bindTo(builder).build();
+        RestClient restClient = builder.build();
+
+        client = new OllamaModelClient(restClient, "qwen2.5:3b", true, OllamaRuntimeOptions.defaults());
+        clientWithDefaults = new OllamaModelClient(restClient);
+    }
+
+    @Test
+    @DisplayName("generate restituisce ModelResponse con contenuto e metriche conformi")
+    void testGenerateSuccess() {
+        String jsonResponse = """
+                {
+                  "model": "qwen2.5:3b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "{\\"mittente\\": \\"Luca\\", \\"email\\": \\"luca@test.it\\"}"
+                  },
+                  "prompt_eval_count": 45,
+                  "eval_count": 30,
+                  "done_reason": "stop"
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest(
+                "qwen2.5:3b",
+                "Estrai dati da: Sono Luca luca@test.it",
+                "{\"type\": \"object\"}",
+                Map.of("temperature", 0.1),
+                "Sei un assistente di estrazione dati."
+        );
+
+        ModelResponse response = client.generate(request);
+
+        assertNotNull(response);
+        assertEquals("{\"mittente\": \"Luca\", \"email\": \"luca@test.it\"}", response.content());
+        assertNotNull(response.metrics());
+        assertEquals(45, response.metrics().promptTokens());
+        assertEquals(30, response.metrics().completionTokens());
+        assertEquals("stop", response.metrics().doneReason());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("generate usa il defaultModel se request.model() è nullo o vuoto")
+    void testGenerateWithDefaultModel() {
+        String jsonResponse = """
+                {
+                  "model": "qwen2.5:3b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "risultato"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.model").value("qwen2.5:3b"))
+                .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest(null, "Test user prompt", null);
+        ModelResponse response = client.generate(request);
+
+        assertEquals("risultato", response.content());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("generate solleva IllegalStateException se Ollama risponde con messaggio vuoto")
+    void testGenerateWithEmptyMessage() {
+        String jsonResponse = """
+                {
+                  "model": "qwen2.5:3b",
+                  "message": null
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest("qwen2.5:3b", "Ciao", null);
+        assertThrows(IllegalStateException.class, () -> client.generate(request));
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("generate propaga eccezioni HTTP sollevate dal server Ollama")
+    void testGenerateHttpError() {
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andRespond(withStatus(HttpStatus.INTERNAL_SERVER_ERROR));
+
+        ModelRequest request = new ModelRequest("qwen2.5:3b", "Ciao", null);
+        assertThrows(Exception.class, () -> client.generate(request));
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2-bis: modello con capabilities ['completion', 'tools'] -> think omesso")
+    void testThinkOmittedForNonThinkingModel() {
+        String showResponse = """
+                {
+                  "capabilities": ["completion", "tools"]
+                }
+                """;
+
+        String chatResponse = """
+                {
+                  "model": "qwen2.5:3b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "A"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").doesNotExist())
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest("qwen2.5:3b", "Choose A", null, null, null, Boolean.FALSE);
+        ModelResponse response = client.generate(request);
+        assertEquals("A", response.content());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2-bis: modello con capabilities ['completion', 'thinking', 'tools'] -> think: false inviato")
+    void testThinkFalseSentForThinkingModel() {
+        String showResponse = """
+                {
+                  "capabilities": ["completion", "thinking", "tools"]
+                }
+                """;
+
+        String chatResponse = """
+                {
+                  "model": "reflex-4b",
+                  "message": {
+                    "role": "assistant",
+                    "content": "B"
+                  }
+                }
+                """;
+
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest request = new ModelRequest("reflex-4b", "Choose B", null, null, null, Boolean.FALSE);
+        ModelResponse response = client.generate(request);
+        assertEquals("B", response.content());
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Fase A2-ter: Fallimento temporaneo di /api/show non viene memorizzato in cache; chiamata successiva con capability thinking invia think:false")
+    void testShowFailureNotCachedAndSecondCallRecoversThinking() {
+        String chatResponse = """
+                {
+                  "message": {
+                    "role": "assistant",
+                    "content": "A"
+                  }
+                }
+                """;
+        String showResponse = """
+                {
+                  "capabilities": ["tools", "thinking", "completion"]
+                }
+                """;
+
+        // Registra tutte le aspettative in sequenza prima di eseguire le richieste
+        // Chiamata 1: /api/show fallisce con 500 -> capability non in cache, chat senza think
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withServerError());
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").doesNotExist())
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        // Chiamata 2: /api/show ora risponde con successo -> capability memorizzata, think:false inviato
+        server.expect(requestTo("http://localhost:11434/api/show"))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withSuccess(showResponse, MediaType.APPLICATION_JSON));
+
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        // Chiamata 3 (verifica cache): nessuna chiamata a /api/show, think:false inviato direttamente
+        server.expect(requestTo("http://localhost:11434/api/chat"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(jsonPath("$.think").value(false))
+                .andRespond(withSuccess(chatResponse, MediaType.APPLICATION_JSON));
+
+        ModelRequest req1 = new ModelRequest("transient-model", "Test prompt 1", null, null, null, Boolean.FALSE);
+        ModelResponse resp1 = client.generate(req1);
+        assertEquals("A", resp1.content());
+
+        ModelRequest req2 = new ModelRequest("transient-model", "Test prompt 2", null, null, null, Boolean.FALSE);
+        ModelResponse resp2 = client.generate(req2);
+        assertEquals("A", resp2.content());
+
+        ModelResponse resp3 = client.generate(req2);
+        assertEquals("A", resp3.content());
+
+        server.verify();
+    }
+
+    @Test
+    @DisplayName("Costruttori sovraccaricati di OllamaModelClient")
+    void testConstructors() {
+        RestClient restClient = RestClient.builder().build();
+        assertNotNull(new OllamaModelClient(restClient));
+        assertNotNull(new OllamaModelClient(restClient, "m1"));
+        assertNotNull(new OllamaModelClient(restClient, "m1", false));
+        assertNotNull(new OllamaModelClient(restClient, "m1", true, OllamaRuntimeOptions.defaults()));
+    }
+}

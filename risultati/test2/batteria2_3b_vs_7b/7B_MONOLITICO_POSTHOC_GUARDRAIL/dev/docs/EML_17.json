@@ -1,0 +1,163 @@
+{
+  "id" : "EML_17",
+  "type" : "EMAIL",
+  "template" : "EML_T5_THREAD_RECAPITO_FIRMA",
+  "split" : "test",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Sig.ra Roberta Conti <r.conti@edilsmart.it>",
+      "normalized_extracted" : "Roberta Conti <r.conti@edilsmart.it>",
+      "ground_truth" : "Roberta Conti",
+      "normalized_ground_truth" : "Roberta Conti",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "r.conti@edilsmart.it",
+      "normalized_extracted" : "r.conti@edilsmart.it",
+      "ground_truth" : "r.conti@edilsmart.it",
+      "normalized_ground_truth" : "r.conti@edilsmart.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "091-6677889",
+      "normalized_extracted" : "0916677889",
+      "ground_truth" : "0916677889",
+      "normalized_ground_truth" : "0916677889",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "EdilSmart S.r.l.",
+      "normalized_extracted" : "EdilSmart S.r.l.",
+      "ground_truth" : "EdilSmart S.r.l.",
+      "normalized_ground_truth" : "EdilSmart S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Corso sicurezza sul lavoro da remoto",
+      "normalized_extracted" : "Corso sicurezza sul lavoro da remoto",
+      "ground_truth" : "Corso sicurezza sul lavoro da remoto",
+      "normalized_ground_truth" : "Corso sicurezza sul lavoro da remoto",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/01/2027",
+      "normalized_extracted" : "2027-01-12",
+      "ground_truth" : "12/01/2027",
+      "normalized_ground_truth" : "2027-01-12",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 10,
+      "normalized_ground_truth" : 10,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Sig.ra Roberta Conti <r.conti@edilsmart.it>",
+    "ground_truth" : "Roberta Conti",
+    "normalized_extracted" : "Roberta Conti <r.conti@edilsmart.it>",
+    "normalized_ground_truth" : "Roberta Conti",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : 10,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 10,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Sig.ra Roberta Conti <r.conti@edilsmart.it>\",\n    \"email\": \"r.conti@edilsmart.it\",\n    \"telefono\": \"091-6677889\",\n    \"azienda\": \"EdilSmart S.r.l.\",\n    \"oggetto\": \"Corso sicurezza sul lavoro da remoto\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"12/01/2027\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Sig.ra Roberta Conti <r.conti@edilsmart.it>\",\n    \"email\": \"r.conti@edilsmart.it\",\n    \"telefono\": \"091-6677889\",\n    \"azienda\": \"EdilSmart S.r.l.\",\n    \"oggetto\": \"Corso sicurezza sul lavoro da remoto\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"12/01/2027\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 25775,
+        "totalDurationMs" : 25773,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 25108,
+        "promptEvalCount" : 400,
+        "evalCount" : 176,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

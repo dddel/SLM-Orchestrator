@@ -1,0 +1,155 @@
+{
+  "id" : "EML_08",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Dott.ssa Chiara Moretti <chiara.moretti@medialab.it>",
+      "normalized_extracted" : "Chiara Moretti <chiara.moretti@medialab.it>",
+      "ground_truth" : "Chiara Moretti",
+      "normalized_ground_truth" : "Chiara Moretti",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "chiara.moretti@medialab.it",
+      "normalized_extracted" : "chiara.moretti@medialab.it",
+      "ground_truth" : "chiara.moretti@medialab.it",
+      "normalized_ground_truth" : "chiara.moretti@medialab.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "055 998877",
+      "normalized_extracted" : "055998877",
+      "ground_truth" : "055998877",
+      "normalized_ground_truth" : "055998877",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MediaLab Group",
+      "normalized_extracted" : "MediaLab Group",
+      "ground_truth" : "MediaLab Group",
+      "normalized_ground_truth" : "MediaLab Group",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Conferenza stampa Firenze",
+      "normalized_extracted" : "Conferenza stampa Firenze",
+      "ground_truth" : "Conferenza stampa Firenze",
+      "normalized_ground_truth" : "Conferenza stampa Firenze",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/11/2026",
+      "normalized_extracted" : "2026-11-05",
+      "ground_truth" : "05/11/2026",
+      "normalized_ground_truth" : "2026-11-05",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze",
+      "normalized_extracted" : "Firenze",
+      "ground_truth" : "Firenze",
+      "normalized_ground_truth" : "Firenze",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Dott.ssa Chiara Moretti <chiara.moretti@medialab.it>",
+    "ground_truth" : "Chiara Moretti",
+    "normalized_extracted" : "Chiara Moretti <chiara.moretti@medialab.it>",
+    "normalized_ground_truth" : "Chiara Moretti",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "EMAIL",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Chiara Moretti <chiara.moretti@medialab.it>\",\n    \"email\": \"chiara.moretti@medialab.it\",\n    \"telefono\": \"055 998877\",\n    \"azienda\": \"MediaLab Group\",\n    \"oggetto\": \"Conferenza stampa Firenze\",\n    \"citta\": \"Firenze\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"05/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Dott.ssa Chiara Moretti <chiara.moretti@medialab.it>\",\n    \"email\": \"chiara.moretti@medialab.it\",\n    \"telefono\": \"055 998877\",\n    \"azienda\": \"MediaLab Group\",\n    \"oggetto\": \"Conferenza stampa Firenze\",\n    \"citta\": \"Firenze\",\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": \"05/11/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 26773,
+        "totalDurationMs" : 26770,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 26107,
+        "promptEvalCount" : 394,
+        "evalCount" : 172,
+        "contextExceeded" : false
+      },
+      "classified_type" : "EMAIL"
+    }
+  }
+}

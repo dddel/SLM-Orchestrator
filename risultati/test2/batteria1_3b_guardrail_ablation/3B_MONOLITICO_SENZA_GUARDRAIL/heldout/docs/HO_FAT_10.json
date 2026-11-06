@@ -1,0 +1,106 @@
+{
+  "id" : "HO_FAT_10",
+  "type" : "FATTURA",
+  "template" : "FAT_PARCELLA_LEGALE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LEG-2026/019",
+      "normalized_extracted" : "LEG-2026/019",
+      "ground_truth" : "LEG-2026/019",
+      "normalized_ground_truth" : "LEG-2026/019",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "16/03/2026",
+      "normalized_extracted" : "2026-03-16",
+      "ground_truth" : "16/03/2026",
+      "normalized_ground_truth" : "2026-03-16",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "STUDIO LEGALE AVV. GABRIELE MORETTI",
+      "normalized_extracted" : "STUDIO LEGALE AVV. GABRIELE MORETTI",
+      "ground_truth" : "STUDIO LEGALE AVV. GABRIELE MORETTI",
+      "normalized_ground_truth" : "STUDIO LEGALE AVV. GABRIELE MORETTI",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08129470582",
+      "normalized_extracted" : "08129470582",
+      "ground_truth" : "08129470582",
+      "normalized_ground_truth" : "08129470582",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sig.ra Giulia Marchetti",
+      "normalized_extracted" : "Giulia Marchetti",
+      "ground_truth" : "Giulia Marchetti",
+      "normalized_ground_truth" : "Giulia Marchetti",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MRCGLI82M45H501E",
+      "normalized_extracted" : "MRCGLI82M45H501E",
+      "ground_truth" : "MRCGLI82M45H501E",
+      "normalized_ground_truth" : "MRCGLI82M45H501E",
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3904,
+      "normalized_extracted" : 3904.0,
+      "ground_truth" : 3904.0,
+      "normalized_ground_truth" : 3904.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT04F0200805000000104829104",
+      "normalized_extracted" : "IT04F0200805000000104829104",
+      "ground_truth" : "IT04F0200805000000104829104",
+      "normalized_ground_truth" : "IT04F0200805000000104829104",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"LEG-2026/019\",\n    \"dataFattura\": \"16/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"STUDIO LEGALE AVV. GABRIELE MORETTI\",\n      \"partitaIva\": \"08129470582\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Sig.ra Giulia Marchetti\",\n      \"codiceFiscale\": \"MRCGLI82M45H501E\"\n    },\n    \"importoTotale\": 3904,\n    \"iban\": \"IT04F0200805000000104829104\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"LEG-2026/019\",\n    \"dataFattura\": \"16/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"STUDIO LEGALE AVV. GABRIELE MORETTI\",\n      \"partitaIva\": \"08129470582\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Sig.ra Giulia Marchetti\",\n      \"codiceFiscale\": \"MRCGLI82M45H501E\"\n    },\n    \"importoTotale\": 3904,\n    \"iban\": \"IT04F0200805000000104829104\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 8467,
+      "totalDurationMs" : 8465,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 8100,
+      "promptEvalCount" : 513,
+      "evalCount" : 225,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 8467
+}

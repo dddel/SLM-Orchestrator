@@ -1,0 +1,22 @@
+<div
+  class="pipeline-card"
+  role="region"
+  aria-label="Pipeline neuro-simbolica di orchestrazione"
+>
+  <div class="pipeline-header">
+    <div class="header-title-wrap">
+      <app-icon name="cpu" [size]="14" customClass="pipeline-icon"></app-icon>
+      <span class="pipeline-title">Pipeline Neuro-Simbolica</span>
+    </div>
+    <span class="pipeline-badge">Inferenza in tempo reale</span>
+  </div>
+
+  <div class="pipeline-stages-row">
+    @for (stage of stages(); track stage.id; let last = $last) {
+      <app-pipeline-stage
+        [stage]="stage"
+        [isLast]="last"
+      ></app-pipeline-stage>
+    }
+  </div>
+</div>

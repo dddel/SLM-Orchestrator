@@ -1,0 +1,133 @@
+{
+  "id" : "EML_15",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Simona De Luca",
+      "normalized_extracted" : "Simona De Luca",
+      "ground_truth" : "Simona De Luca",
+      "normalized_ground_truth" : "Simona De Luca",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "s.deluca@fashionbrand.it",
+      "normalized_extracted" : "s.deluca@fashionbrand.it",
+      "ground_truth" : "s.deluca@fashionbrand.it",
+      "normalized_ground_truth" : "s.deluca@fashionbrand.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 02 11223344",
+      "normalized_extracted" : "0211223344",
+      "ground_truth" : "+39 02 11223344",
+      "normalized_ground_truth" : "0211223344",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FashionBrand S.p.A.",
+      "normalized_extracted" : "FashionBrand S.p.A.",
+      "ground_truth" : "FashionBrand S.p.A.",
+      "normalized_ground_truth" : "FashionBrand S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Presentazione collezione Milano",
+      "normalized_extracted" : "Presentazione collezione Milano",
+      "ground_truth" : "Presentazione collezione Milano",
+      "normalized_ground_truth" : "Presentazione collezione Milano",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "22/12/2026",
+      "normalized_extracted" : "2026-12-22",
+      "ground_truth" : "22/12/2026",
+      "normalized_ground_truth" : "2026-12-22",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Milano",
+      "normalized_extracted" : "Milano",
+      "ground_truth" : "Milano",
+      "normalized_ground_truth" : "Milano",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Simona De Luca\",\"email\":\"s.deluca@fashionbrand.it\",\"telefono\":\"+39 02 11223344\",\"azienda\":\"FashionBrand S.p.A.\",\"oggetto\":\"Presentazione collezione Milano\",\"citta\":\"Milano\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"22/12/2026\",\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Conferma evento e mancante di limiti di budget e numero di partecipanti, riferito alla direzione generale dell'azienda\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 35078,
+    "metrics" : {
+      "totalDurationMs" : 34176,
+      "totalPromptTokens" : 1884,
+      "totalCompletionTokens" : 180,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 20507,
+        "promptTokens" : 558,
+        "completionTokens" : 116,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13666,
+        "promptTokens" : 1326,
+        "completionTokens" : 64,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 35081
+}

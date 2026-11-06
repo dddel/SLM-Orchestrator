@@ -1,0 +1,53 @@
+.empty-state-card {
+  width: 100%;
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) dashed var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-3);
+  min-height: 280px;
+}
+
+.empty-state-visual {
+  color: var(--color-text-subtle);
+
+  .svg-dashed-doc {
+    stroke: var(--color-border-medium);
+  }
+
+  .svg-doc-lines {
+    stroke: var(--color-text-subtle);
+  }
+
+  .svg-sparkle-bg {
+    fill: var(--color-accent-container);
+  }
+
+  .svg-plus {
+    stroke: var(--color-accent-primary);
+  }
+}
+
+.empty-state-content {
+  max-width: var(--empty-state-max-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.empty-title {
+  font-size: var(--type-title-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-main);
+}
+
+.empty-desc {
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--color-text-subtle);
+}

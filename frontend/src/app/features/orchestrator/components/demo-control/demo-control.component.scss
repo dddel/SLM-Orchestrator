@@ -1,0 +1,78 @@
+.demo-control-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  height: var(--btn-secondary-height);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface-elevated);
+  color: var(--color-text-muted);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  font-size: var(--type-label-size);
+  font-weight: var(--weight-medium);
+  transition: all var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background-color: var(--color-bg-surface-highest);
+    color: var(--color-text-main);
+    border-color: var(--color-border-medium);
+  }
+
+  &.active {
+    background-color: var(--color-accent-container);
+    color: var(--color-accent-text);
+    border-color: rgba(91, 146, 255, 0.35);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent-primary);
+  animation: pulseGlow 1.4s ease-in-out infinite;
+}
+
+.stop-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--btn-secondary-height);
+  height: var(--btn-secondary-height);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface-elevated);
+  color: var(--color-error-text);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  transition: all var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background-color: var(--color-error-bg);
+    border-color: var(--color-error-border);
+    color: var(--color-error);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}

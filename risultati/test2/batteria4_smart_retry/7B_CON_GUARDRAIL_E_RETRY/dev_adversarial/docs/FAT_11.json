@@ -1,0 +1,121 @@
+{
+  "id" : "FAT_11",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LC-2026-9",
+      "normalized_extracted" : "LC-2026-9",
+      "ground_truth" : "LC-2026-9",
+      "normalized_ground_truth" : "LC-2026-9",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-09-14",
+      "normalized_extracted" : "2026-09-14",
+      "ground_truth" : "2026-09-14",
+      "normalized_ground_truth" : "2026-09-14",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "WebCraft Studio",
+      "normalized_extracted" : "WebCraft Studio",
+      "ground_truth" : "WebCraft Studio",
+      "normalized_ground_truth" : "WebCraft Studio",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000008592",
+      "normalized_extracted" : "10000008592",
+      "ground_truth" : "10000008592",
+      "normalized_ground_truth" : "10000008592",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Nexa Digital S.r.l.",
+      "normalized_extracted" : "Nexa Digital S.r.l.",
+      "ground_truth" : "Nexa Digital S.r.l.",
+      "normalized_ground_truth" : "Nexa Digital S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 750.0,
+      "normalized_extracted" : 750.0,
+      "ground_truth" : 750.0,
+      "normalized_ground_truth" : 750.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\n  \"numeroFattura\": \"LC-2026-9\",\n  \"dataFattura\": \"2026-09-14\",\n  \"fornitore\": {\n    \"denominazione\": \"WebCraft Studio\",\n    \"partitaIva\": \"10000008592\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"Nexa Digital S.r.l.\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 750.00,\n  \"iban\": null\n}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000008592'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 24560,
+    "metrics" : {
+      "totalDurationMs" : 23374,
+      "totalPromptTokens" : 548,
+      "totalCompletionTokens" : 132,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 23374,
+        "promptTokens" : 548,
+        "completionTokens" : 132,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 24564
+}

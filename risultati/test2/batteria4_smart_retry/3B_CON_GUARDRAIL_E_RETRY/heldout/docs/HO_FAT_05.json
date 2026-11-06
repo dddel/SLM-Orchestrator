@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_05",
+  "type" : "FATTURA",
+  "template" : "FAT_MATERIALI_EDILI",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "ED-892/2026",
+      "normalized_extracted" : "ED-892/2026",
+      "ground_truth" : "ED-892/2026",
+      "normalized_ground_truth" : "ED-892/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "24/02/2026",
+      "normalized_extracted" : "2026-02-24",
+      "ground_truth" : "24/02/2026",
+      "normalized_ground_truth" : "2026-02-24",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "EDILIZIA PADOVANA FORNITURE S.R.L.",
+      "normalized_extracted" : "EDILIZIA PADOVANA FORNITURE S.R.L.",
+      "ground_truth" : "EDILIZIA PADOVANA FORNITURE S.R.L.",
+      "normalized_ground_truth" : "EDILIZIA PADOVANA FORNITURE S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05492810287",
+      "normalized_extracted" : "05492810287",
+      "ground_truth" : "05492810287",
+      "normalized_ground_truth" : "05492810287",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Stefano Rinaldi",
+      "normalized_extracted" : "Stefano Rinaldi",
+      "ground_truth" : "Stefano Rinaldi",
+      "normalized_ground_truth" : "Stefano Rinaldi",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RNLSFN78H14G224N",
+      "normalized_extracted" : "RNLSFN78H14G224N",
+      "ground_truth" : "RNLSFN78H14G224N",
+      "normalized_ground_truth" : "RNLSFN78H14G224N",
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 6710.0,
+      "normalized_extracted" : 6710.0,
+      "ground_truth" : 6710.0,
+      "normalized_ground_truth" : 6710.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"ED-892/2026\", \"dataFattura\": \"24/02/2026\", \"fornitore\": {\"denominazione\": \"EDILIZIA PADOVANA FORNITURE S.R.L.\", \"partitaIva\": \"05492810287\"}, \"cliente\": {\"denominazione\": \"Stefano Rinaldi\", \"codiceFiscale\": \"RNLSFN78H14G224N\"}, \"importoTotale\": 6710.0, \"iban\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5950,
+    "metrics" : {
+      "totalDurationMs" : 5382,
+      "totalPromptTokens" : 700,
+      "totalCompletionTokens" : 140,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5379,
+        "promptTokens" : 700,
+        "completionTokens" : 140,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5956
+}

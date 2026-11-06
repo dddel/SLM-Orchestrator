@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_09",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_ASSUNZIONE_DIPENDENTE",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Francesca",
+      "normalized_extracted" : "Francesca",
+      "ground_truth" : "Francesca",
+      "normalized_ground_truth" : "Francesca",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Parodi",
+      "normalized_extracted" : "Parodi",
+      "ground_truth" : "Parodi",
+      "normalized_ground_truth" : "Parodi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PRDFNC93B48D969W",
+      "normalized_extracted" : "PRDFNC93B48D969W",
+      "ground_truth" : "PRDFNC93B48D969W",
+      "normalized_ground_truth" : "PRDFNC93B48D969W",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08/02/1993",
+      "normalized_extracted" : "1993-02-08",
+      "ground_truth" : "08/02/1993",
+      "normalized_ground_truth" : "1993-02-08",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Genova (GE)",
+      "normalized_extracted" : "Genova (GE)",
+      "ground_truth" : "Genova (GE)",
+      "normalized_ground_truth" : "Genova (GE)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1829402T",
+      "normalized_extracted" : "U1829402T",
+      "ground_truth" : "U1829402T",
+      "normalized_ground_truth" : "U1829402T",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/03/2021",
+      "normalized_extracted" : "2021-03-15",
+      "ground_truth" : "15/03/2021",
+      "normalized_ground_truth" : "2021-03-15",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08/02/2031",
+      "normalized_extracted" : "2031-02-08",
+      "ground_truth" : "08/02/2031",
+      "normalized_ground_truth" : "2031-02-08",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MIT-UCO",
+      "normalized_extracted" : "MIT-UCO",
+      "ground_truth" : "MIT-UCO",
+      "normalized_ground_truth" : "MIT-UCO",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"PATENTE\",\n  \"nome\": \"Francesca\",\n  \"cognome\": \"Parodi\",\n  \"codiceFiscale\": \"PRDFNC93B48D969W\",\n  \"dataNascita\": \"08/02/1993\",\n  \"luogoNascita\": \"Genova (GE)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"U1829402T\",\n  \"dataRilascio\": \"15/03/2021\",\n  \"dataScadenza\": \"08/02/2031\",\n  \"enteRilascio\": \"MIT-UCO\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 31084,
+    "metrics" : {
+      "totalDurationMs" : 29347,
+      "totalPromptTokens" : 768,
+      "totalCompletionTokens" : 163,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 29345,
+        "promptTokens" : 768,
+        "completionTokens" : 163,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 31090
+}

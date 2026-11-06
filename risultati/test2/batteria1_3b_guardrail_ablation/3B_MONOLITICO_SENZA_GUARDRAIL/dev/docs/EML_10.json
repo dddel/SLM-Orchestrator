@@ -1,0 +1,171 @@
+{
+  "id" : "EML_10",
+  "type" : "EMAIL",
+  "template" : "EML_T3_ORGANIZZAZIONE_WORKSHOP_CORPO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Federica Rinaldi",
+      "normalized_ground_truth" : "Federica Rinaldi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "f.rinaldi@greencell.eu",
+      "normalized_ground_truth" : "f.rinaldi@greencell.eu",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "GreenCell Ltd",
+      "normalized_ground_truth" : "GreenCell Ltd",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Seminario sostenibilità aziendale",
+      "normalized_ground_truth" : "Seminario sostenibilità aziendale",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "2026-11-25",
+      "normalized_ground_truth" : "2026-11-25",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Genova",
+      "normalized_ground_truth" : "Genova",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 45,
+      "normalized_ground_truth" : 45,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Federica Rinaldi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Federica Rinaldi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "f.rinaldi@greencell.eu",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "f.rinaldi@greencell.eu",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "GreenCell Ltd",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "GreenCell Ltd",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Seminario sostenibilità aziendale",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Seminario sostenibilità aziendale",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "2026-11-25",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "2026-11-25",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Genova",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Genova",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 45,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 45,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Seminario sostenibilità aziendale\",\n    \"argomentoPrincipale\": \"Prenotazione sala\",\n    \"motivoEsclusione\": \"Non contiene informazioni sufficienti per classificazione in FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Federica Rinaldi\",\n      \"GreenCell Ltd\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Seminario sostenibilità aziendale\",\n    \"argomentoPrincipale\": \"Prenotazione sala\",\n    \"motivoEsclusione\": \"Non contiene informazioni sufficienti per classificazione in FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Federica Rinaldi\",\n      \"GreenCell Ltd\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 6051,
+      "totalDurationMs" : 6046,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 5840,
+      "promptEvalCount" : 389,
+      "evalCount" : 144,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 6051
+}

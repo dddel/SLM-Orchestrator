@@ -1,0 +1,66 @@
+{
+  "direzione": {
+    "ruolo": "Direttore",
+    "persona": "Stefano Vena",
+    "email": "stefano.vena@azienda.it",
+    "ambiti": [
+      "direzione generale",
+      "strategia aziendale",
+      "contratti e accordi quadro",
+      "partnership istituzionali",
+      "approvazione budget"
+    ]
+  },
+  "risorse_umane": {
+    "ruolo": "H.R.",
+    "persona": "Claudia Frammartino",
+    "email": "claudia.frammartino@azienda.it",
+    "ambiti": [
+      "recruiting e selezione",
+      "candidature e invio curriculum vitae",
+      "colloqui di lavoro",
+      "gestione del personale e ferie",
+      "tirocini e stage"
+    ]
+  },
+  "reparto_tecnico": {
+    "ruolo": "Reparto Tecnico",
+    "persona": "Marco Rossi",
+    "email": "marco.rossi@azienda.it",
+    "ambiti": [
+      "infrastruttura sistemistica e server",
+      "reti e connettività",
+      "cloud computing e devops",
+      "sicurezza informatica e firewall",
+      "manutenzione hardware e apparati"
+    ]
+  },
+  "testers": {
+    "ruolo": "Testers",
+    "persona": "Luca Bianchi",
+    "collaboratori": [
+      "Sara Verdi"
+    ],
+    "email": "testers@azienda.it",
+    "ambiti": [
+      "segnalazione bug e difetti",
+      "quality assurance e collaudo",
+      "test di regressione e conformità",
+      "riproduzione anomalie applicative"
+    ]
+  },
+  "developers": {
+    "ruolo": "Developers",
+    "persona": "Alessandro Ferrari",
+    "collaboratori": [
+      "Matteo Gallo"
+    ],
+    "email": "developers@azienda.it",
+    "ambiti": [
+      "sviluppo software e applicativi",
+      "scrittura codice e nuove feature",
+      "integrazione API e webservice",
+      "architettura software e pull request"
+    ]
+  }
+}

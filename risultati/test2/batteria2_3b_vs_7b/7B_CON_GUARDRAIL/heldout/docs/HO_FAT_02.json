@@ -1,0 +1,116 @@
+{
+  "id" : "HO_FAT_02",
+  "type" : "FATTURA",
+  "template" : "FAT_TABELLARE_COMPATTA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026-FATT-00412",
+      "normalized_extracted" : "2026-FATT-00412",
+      "ground_truth" : "2026-FATT-00412",
+      "normalized_ground_truth" : "2026-FATT-00412",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/02/2026",
+      "normalized_extracted" : "2026-02-18",
+      "ground_truth" : "18/02/2026",
+      "normalized_ground_truth" : "2026-02-18",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "normalized_extracted" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "ground_truth" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "normalized_ground_truth" : "MECCANICA DI PRECISIONE VENETA S.R.L.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01847290242",
+      "normalized_extracted" : "01847290242",
+      "ground_truth" : "01847290242",
+      "normalized_ground_truth" : "01847290242",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "BAVARIA MOTORWERKE GMBH",
+      "normalized_extracted" : "BAVARIA MOTORWERKE GMBH",
+      "ground_truth" : "BAVARIA MOTORWERKE GMBH",
+      "normalized_ground_truth" : "BAVARIA MOTORWERKE GMBH",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1329.8,
+      "normalized_extracted" : 1329.8,
+      "ground_truth" : 1329.8,
+      "normalized_ground_truth" : 1329.8,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT80A0503411701000000049182",
+      "normalized_extracted" : "IT80A0503411701000000049182",
+      "ground_truth" : "IT80A0503411701000000049182",
+      "normalized_ground_truth" : "IT80A0503411701000000049182",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"numeroFattura\": \"2026-FATT-00412\",\n  \"dataFattura\": \"18/02/2026\",\n  \"fornitore\": {\n    \"denominazione\": \"MECCANICA DI PRECISIONE VENETA S.R.L.\",\n    \"partitaIva\": \"01847290242\"\n  },\n  \"cliente\": {\n    \"denominazione\": \"BAVARIA MOTORWERKE GMBH\",\n    \"codiceFiscale\": null\n  },\n  \"importoTotale\": 1329.80,\n  \"iban\": \"IT80A0503411701000000049182\"\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 33481,
+    "metrics" : {
+      "totalDurationMs" : 31659,
+      "totalPromptTokens" : 749,
+      "totalCompletionTokens" : 176,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 31657,
+        "promptTokens" : 749,
+        "completionTokens" : 176,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 33487
+}

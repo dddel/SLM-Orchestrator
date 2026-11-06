@@ -1,0 +1,30 @@
+{"id": "N_007", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Questo messaggio non contiene informazioni rilevanti.", "clean_text": null}
+{"id": "N_002", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "1 2 3 5 8 13 21 34 55 89 144", "clean_text": null}
+{"id": "N_013", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Pagina 3 di 7", "clean_text": null}
+{"id": "N_009", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Alba tramonto montagna fiume sasso", "clean_text": null}
+{"id": "N_012", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Mi piace passeggiare al parco la domenica mattina.", "clean_text": null}
+{"id": "N_010", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Il quick brown fox jumps over the lazy dog.", "clean_text": null}
+{"id": "N_029", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "La luna gira intorno alla terra.", "clean_text": null}
+{"id": "N_005", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Testo di prova. Testo di prova. Testo di prova.", "clean_text": null}
+{"id": "N_026", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Buona giornata a tutti.", "clean_text": null}
+{"id": "N_006", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "xyz qwe asd zxc rty fgh vbn", "clean_text": null}
+{"id": "N_023", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Frase generica senza alcun riferimento specifico a persone o cose.", "clean_text": null}
+{"id": "N_001", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "a b c d e f g h i j k l m n o p", "clean_text": null}
+{"id": "N_028", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Quattro tre due uno.", "clean_text": null}
+{"id": "N_003", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Oggi il cielo è nuvoloso con possibili schiarite nel pomeriggio.", "clean_text": null}
+{"id": "N_000", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", "clean_text": null}
+{"id": "N_027", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Ciao ciao ciao.", "clean_text": null}
+{"id": "N_016", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Nulla da segnalare.", "clean_text": null}
+{"id": "N_008", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "...", "clean_text": null}
+{"id": "N_022", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Testo troncato che si interrompe a metà della fra", "clean_text": null}
+{"id": "N_025", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Il lunedì segue la domenica e precede il martedì.", "clean_text": null}
+{"id": "N_021", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.", "clean_text": null}
+{"id": "N_018", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Ok.", "clean_text": null}
+{"id": "N_014", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "[contenuto non disponibile]", "clean_text": null}
+{"id": "N_011", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Sequenza: 10, 20, 30, 40, 50, 60.", "clean_text": null}
+{"id": "N_004", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Il gatto dorme sul divano mentre fuori piove.", "clean_text": null}
+{"id": "N_024", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "A.B.C.D.E.F.G.", "clean_text": null}
+{"id": "N_019", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Parole sparse: tavolo, nuvola, bicicletta, lago, finestra.", "clean_text": null}
+{"id": "N_017", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Il cielo è azzurro e l'aria è fresca.", "clean_text": null}
+{"id": "N_015", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Rosso verde blu giallo viola arancione", "clean_text": null}
+{"id": "N_020", "task": "neutral", "split": "test", "label": null, "strata": "neutro", "template": "neutral", "text": "Lorem ipsum.", "clean_text": null}

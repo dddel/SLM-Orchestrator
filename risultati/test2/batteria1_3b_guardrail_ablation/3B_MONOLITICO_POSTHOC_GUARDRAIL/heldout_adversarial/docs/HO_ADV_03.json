@@ -1,0 +1,173 @@
+{
+  "id" : "HO_ADV_03",
+  "type" : "ANAGRAFICA",
+  "template" : null,
+  "split" : "heldout",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Lorenzo",
+      "normalized_extracted" : "Lorenzo",
+      "ground_truth" : "Lorenzo",
+      "normalized_ground_truth" : "Lorenzo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Gentile",
+      "normalized_extracted" : "Gentile",
+      "ground_truth" : "Gentile",
+      "normalized_ground_truth" : "Gentile",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GNTLNZ84D15L781X",
+      "normalized_extracted" : "GNTLNZ84D15L781X",
+      "ground_truth" : "GNTLNZ84D15L781X",
+      "normalized_ground_truth" : "GNTLNZ84D15L781X",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1984-04-15",
+      "normalized_extracted" : "1984-04-15",
+      "ground_truth" : "15/04/1984",
+      "normalized_ground_truth" : "1984-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verona (VR)",
+      "normalized_extracted" : "Verona (VR)",
+      "ground_truth" : "Verona (VR)",
+      "normalized_ground_truth" : "Verona (VR)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "AX8492019",
+      "normalized_extracted" : "AX8492019",
+      "ground_truth" : "AX8492019",
+      "normalized_ground_truth" : "AX8492019",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2020-05-10",
+      "normalized_extracted" : "2020-05-10",
+      "ground_truth" : "10/05/2020",
+      "normalized_ground_truth" : "2020-05-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2030-04-15",
+      "normalized_extracted" : "2030-04-15",
+      "ground_truth" : "15/04/2030",
+      "normalized_ground_truth" : "2030-04-15",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Comune di Verona",
+      "normalized_extracted" : "Comune di Verona",
+      "ground_truth" : "Comune di Verona",
+      "normalized_ground_truth" : "Comune di Verona",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "PASSAPORTO",
+    "ground_truth" : "CARTA_IDENTITA",
+    "normalized_extracted" : "PASSAPORTO",
+    "normalized_ground_truth" : "CARTA_IDENTITA",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 19,
+    "errors" : [ "Carattere di controllo del codice fiscale non valido (atteso: 'W', trovato: 'X')." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Lorenzo\",\n    \"cognome\": \"Gentile\",\n    \"codiceFiscale\": \"GNTLNZ84D15L781X\",\n    \"dataNascita\": \"1984-04-15\",\n    \"luogoNascita\": \"Verona (VR)\",\n    \"sesso\": \"M\",\n    \"numeroDocumento\": \"AX8492019\",\n    \"dataRilascio\": \"2020-05-10\",\n    \"dataScadenza\": \"2030-04-15\",\n    \"enteRilascio\": \"Comune di Verona\"\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PASSAPORTO\",\n    \"nome\": \"Lorenzo\",\n    \"cognome\": \"Gentile\",\n    \"codiceFiscale\": \"GNTLNZ84D15L781X\",\n    \"dataNascita\": \"1984-04-15\",\n    \"luogoNascita\": \"Verona (VR)\",\n    \"sesso\": \"M\",\n    \"numeroDocumento\": \"AX8492019\",\n    \"dataRilascio\": \"2020-05-10\",\n    \"dataScadenza\": \"2030-04-15\",\n    \"enteRilascio\": \"Comune di Verona\"\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 7918,
+        "totalDurationMs" : 7915,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 7594,
+        "promptEvalCount" : 421,
+        "evalCount" : 213,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

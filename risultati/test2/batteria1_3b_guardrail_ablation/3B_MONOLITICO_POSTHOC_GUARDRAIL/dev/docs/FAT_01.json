@@ -1,0 +1,138 @@
+{
+  "id" : "FAT_01",
+  "type" : "FATTURA",
+  "template" : "FAT_T1_STANDARD_LINEARE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/001",
+      "normalized_extracted" : "2026/001",
+      "ground_truth" : "2026/001",
+      "normalized_ground_truth" : "2026/001",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04/02/2026",
+      "normalized_extracted" : "2026-02-04",
+      "ground_truth" : "04/02/2026",
+      "normalized_ground_truth" : "2026-02-04",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Fornitore Aziendale 1 S.r.l.",
+      "normalized_extracted" : "Fornitore Aziendale 1 S.r.l.",
+      "ground_truth" : "Fornitore Aziendale 1 S.r.l.",
+      "normalized_ground_truth" : "Fornitore Aziendale 1 S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000001379",
+      "normalized_extracted" : "10000001379",
+      "ground_truth" : "10000001379",
+      "normalized_ground_truth" : "10000001379",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Cliente Spettabile 1 S.p.A.",
+      "normalized_extracted" : "Cliente Spettabile 1 S.p.A.",
+      "ground_truth" : "Cliente Spettabile 1 S.p.A.",
+      "normalized_ground_truth" : "Cliente Spettabile 1 S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CFXUSR71A03H501A",
+      "normalized_extracted" : "CFXUSR71A03H501A",
+      "ground_truth" : "CFXUSR71A03H501A",
+      "normalized_ground_truth" : "CFXUSR71A03H501A",
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 145.5,
+      "normalized_extracted" : 145.5,
+      "ground_truth" : 145.5,
+      "normalized_ground_truth" : 145.5,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT42L1234512345123456789012",
+      "normalized_extracted" : "IT42L1234512345123456789012",
+      "ground_truth" : "IT42L1234512345123456789012",
+      "normalized_ground_truth" : "IT42L1234512345123456789012",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 23,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/001\",\n    \"dataFattura\": \"04/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Fornitore Aziendale 1 S.r.l.\",\n      \"partitaIva\": \"10000001379\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Spett.le Cliente Spettabile 1 S.p.A.\",\n      \"codiceFiscale\": \"CFXUSR71A03H501A\"\n    },\n    \"importoTotale\": 145.5,\n    \"iban\": \"IT42L1234512345123456789012\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/001\",\n    \"dataFattura\": \"04/02/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Fornitore Aziendale 1 S.r.l.\",\n      \"partitaIva\": \"10000001379\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Spett.le Cliente Spettabile 1 S.p.A.\",\n      \"codiceFiscale\": \"CFXUSR71A03H501A\"\n    },\n    \"importoTotale\": 145.5,\n    \"iban\": \"IT42L1234512345123456789012\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 8308,
+        "totalDurationMs" : 8305,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 8080,
+        "promptEvalCount" : 437,
+        "evalCount" : 226,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

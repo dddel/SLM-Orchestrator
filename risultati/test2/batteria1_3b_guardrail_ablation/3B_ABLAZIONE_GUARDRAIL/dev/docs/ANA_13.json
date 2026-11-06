@@ -1,0 +1,151 @@
+{
+  "id" : "ANA_13",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "LUIGI",
+      "normalized_extracted" : "LUIGI",
+      "ground_truth" : "Luigi",
+      "normalized_ground_truth" : "Luigi",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "COSTA",
+      "normalized_extracted" : "COSTA",
+      "ground_truth" : "Costa",
+      "normalized_ground_truth" : "Costa",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CSTLGI88D14F205I",
+      "normalized_extracted" : "CSTLGI88D14F205I",
+      "ground_truth" : "CSTLGI88D14F205I",
+      "normalized_ground_truth" : "CSTLGI88D14F205I",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/04/1988",
+      "normalized_extracted" : "1988-04-14",
+      "ground_truth" : "14/04/1988",
+      "normalized_ground_truth" : "1988-04-14",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "MILANO",
+      "normalized_extracted" : "MILANO",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001234567890123",
+      "normalized_extracted" : "80380001234567890123",
+      "ground_truth" : "80380001234567890123",
+      "normalized_ground_truth" : "80380001234567890123",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "14/04/2028",
+      "normalized_extracted" : "2028-04-14",
+      "ground_truth" : "14/04/2028",
+      "normalized_ground_truth" : "2028-04-14",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "luogoNascita",
+    "key_present" : true,
+    "extracted" : "MILANO",
+    "ground_truth" : "Milano (MI)",
+    "normalized_extracted" : "MILANO",
+    "normalized_ground_truth" : "Milano (MI)",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"TESSERA_SANITARIA\", \"nome\": \"LUIGI\", \"cognome\": \"COSTA\", \"codiceFiscale\": \"CSTLGI88D14F205I\", \"dataNascita\": \"14/04/1988\", \"luogoNascita\": \"MILANO\", \"sesso\": null, \"numeroDocumento\": \"80380001234567890123\", \"dataRilascio\": null, \"dataScadenza\": \"14/04/2028\", \"enteRilascio\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6234,
+    "metrics" : {
+      "totalDurationMs" : 5717,
+      "totalPromptTokens" : 725,
+      "totalCompletionTokens" : 153,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5717,
+        "promptTokens" : 725,
+        "completionTokens" : 153,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6238
+}

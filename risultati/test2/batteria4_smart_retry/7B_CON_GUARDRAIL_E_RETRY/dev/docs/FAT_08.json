@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_08",
+  "type" : "FATTURA",
+  "template" : "FAT_T2_TABELLARE_COMPATTO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FT-2026-088",
+      "normalized_extracted" : "FT-2026-088",
+      "ground_truth" : "FT-2026-088",
+      "normalized_ground_truth" : "FT-2026-088",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20 luglio 2026",
+      "normalized_extracted" : "2026-07-20",
+      "ground_truth" : "2026-07-20",
+      "normalized_ground_truth" : "2026-07-20",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Kronos Energy S.r.l.",
+      "normalized_extracted" : "Kronos Energy S.r.l.",
+      "ground_truth" : "Kronos Energy S.r.l.",
+      "normalized_ground_truth" : "Kronos Energy S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000005487",
+      "normalized_extracted" : "10000005487",
+      "ground_truth" : "10000005487",
+      "normalized_ground_truth" : "10000005487",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Associato Rossi",
+      "normalized_extracted" : "Studio Associato Rossi",
+      "ground_truth" : "Studio Associato Rossi",
+      "normalized_ground_truth" : "Studio Associato Rossi",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 980.0,
+      "normalized_extracted" : 980.0,
+      "ground_truth" : 980.0,
+      "normalized_ground_truth" : 980.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\":\"FT-2026-088\",\"dataFattura\":\"20 luglio 2026\",\"fornitore\":{\"denominazione\":\"Kronos Energy S.r.l.\",\"partitaIva\":\"10000005487\"},\"cliente\":{\"denominazione\":\"Studio Associato Rossi\",\"codiceFiscale\":null},\"importoTotale\":980.0,\"iban\":null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 25461,
+    "metrics" : {
+      "totalDurationMs" : 24031,
+      "totalPromptTokens" : 551,
+      "totalCompletionTokens" : 137,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 24030,
+        "promptTokens" : 551,
+        "completionTokens" : 137,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 25465
+}

@@ -1,0 +1,129 @@
+{
+  "id" : "FAT_17",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev",
+  "category" : "C4",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con almeno un campo diverso dalla ground truth",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "",
+      "normalized_extracted" : null,
+      "ground_truth" : "PAR-2026-17",
+      "normalized_ground_truth" : "PAR-2026-17",
+      "field_class" : "STRINGA_VUOTA"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/12/2026",
+      "normalized_extracted" : "2026-12-05",
+      "ground_truth" : "05/12/2026",
+      "normalized_ground_truth" : "2026-12-05",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roberto Ferri",
+      "normalized_extracted" : "Roberto Ferri",
+      "ground_truth" : "Roberto Ferri",
+      "normalized_ground_truth" : "Roberto Ferri",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000006857",
+      "normalized_extracted" : "10000006857",
+      "ground_truth" : "10000006857",
+      "normalized_ground_truth" : "10000006857",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Impianti Solari S.p.A.",
+      "normalized_extracted" : "Impianti Solari S.p.A.",
+      "ground_truth" : "Impianti Solari S.p.A.",
+      "normalized_ground_truth" : "Impianti Solari S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 4200.0,
+      "normalized_extracted" : 4200.0,
+      "ground_truth" : 4200.0,
+      "normalized_ground_truth" : 4200.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "numeroFattura",
+    "key_present" : true,
+    "extracted" : "",
+    "ground_truth" : "PAR-2026-17",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "PAR-2026-17",
+    "field_class" : "STRINGA_VUOTA"
+  } ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\":\"\",\"dataFattura\":\"05/12/2026\",\"fornitore\":{\"denominazione\":\"Roberto Ferri\",\"partitaIva\":\"10000006857\"},\"cliente\":{\"denominazione\":\"Impianti Solari S.p.A.\",\"codiceFiscale\":null},\"importoTotale\":4200.0,\"iban\":null}",
+    "errors" : [ {
+      "path" : "numeroFattura",
+      "validatorName" : "required",
+      "code" : "REQUIRED_EMPTY",
+      "message" : "Il campo obbligatorio 'numeroFattura' è presente ma vuoto nell'output del modello."
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5537,
+    "metrics" : {
+      "totalDurationMs" : 4919,
+      "totalPromptTokens" : 561,
+      "totalCompletionTokens" : 119,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4916,
+        "promptTokens" : 561,
+        "completionTokens" : 119,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5546
+}

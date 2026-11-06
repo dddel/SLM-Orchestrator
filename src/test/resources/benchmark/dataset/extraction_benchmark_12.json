@@ -1,0 +1,251 @@
+[
+  {
+    "id": "FAT_01",
+    "type": "FATTURA",
+    "payload": "Spett.le Cliente Spettabile 1 S.p.A. (C.F. CFXUSR71A03H501A),\nvi trasmettiamo documento contabile ref. 2026/001 emesso in data 04/02/2026.\nEmittente: Fornitore Aziendale 1 S.r.l., Partita IVA 10000001379.\nTotale dovuto pari a euro 145.50. Bonifico su conto corrente IBAN IT42L1234512345123456789012.",
+    "ground_truth": {
+      "numeroFattura": "2026/001",
+      "dataFattura": "04/02/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 1 S.r.l.",
+        "partitaIva": "10000001379"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 1 S.p.A.",
+        "codiceFiscale": "CFXUSR71A03H501A"
+      },
+      "importoTotale": 145.5,
+      "iban": "IT42L1234512345123456789012"
+    }
+  },
+  {
+    "id": "FAT_02",
+    "type": "FATTURA",
+    "payload": "[DOC_CONTABILE] NUM: 2026/002 | DATA: 07/03/2026\nFORNITORE: Fornitore Aziendale 2 S.r.l. (P.IVA 10000002740)\nCLIENTE: Cliente Spettabile 2 S.p.A. (CF: CFXUSR72A05H501H)\nTOTALE DOCUMENTO: 245.50 EUR\nIBAN: IT60X0542811101000000123456",
+    "ground_truth": {
+      "numeroFattura": "2026/002",
+      "dataFattura": "07/03/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 2 S.r.l.",
+        "partitaIva": "10000002740"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 2 S.p.A.",
+        "codiceFiscale": "CFXUSR72A05H501H"
+      },
+      "importoTotale": 245.5,
+      "iban": "IT60X0542811101000000123456"
+    }
+  },
+  {
+    "id": "FAT_03",
+    "type": "FATTURA",
+    "payload": "FATTURA COMMERCIALE N. 2026/003 DEL 10/04/2026\nCedente/Prestatore: Fornitore Aziendale 3 S.r.l. - P.IVA: 10000004118\nCessionario/Committente: Cliente Spettabile 3 S.p.A. - C.F.: CFXUSR73A07H501M\nDescrizione: Fornitura lotti industriali.\nImporto totale da saldare: EUR 345.50\nCoordinate accredito: IBAN IT42L1234512345123456789012",
+    "ground_truth": {
+      "numeroFattura": "2026/003",
+      "dataFattura": "10/04/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 3 S.r.l.",
+        "partitaIva": "10000004118"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 3 S.p.A.",
+        "codiceFiscale": "CFXUSR73A07H501M"
+      },
+      "importoTotale": 345.5,
+      "iban": "IT42L1234512345123456789012"
+    }
+  },
+  {
+    "id": "FAT_04",
+    "type": "FATTURA",
+    "payload": "Spett.le Cliente Spettabile 4 S.p.A. (C.F. CFXUSR74A09H501R),\nvi trasmettiamo documento contabile ref. 2026/004 emesso in data 13/05/2026.\nEmittente: Fornitore Aziendale 4 S.r.l., Partita IVA 10000005487.\nTotale dovuto pari a euro 445.50. Bonifico su conto corrente IBAN IT60X0542811101000000123456.",
+    "ground_truth": {
+      "numeroFattura": "2026/004",
+      "dataFattura": "13/05/2026",
+      "fornitore": {
+        "denominazione": "Fornitore Aziendale 4 S.r.l.",
+        "partitaIva": "10000005487"
+      },
+      "cliente": {
+        "denominazione": "Cliente Spettabile 4 S.p.A.",
+        "codiceFiscale": "CFXUSR74A09H501R"
+      },
+      "importoTotale": 445.5,
+      "iban": "IT60X0542811101000000123456"
+    }
+  },
+  {
+    "id": "EML_01",
+    "type": "EMAIL",
+    "payload": "Mittente: Persona Nome 1 (utente.1@innovazione-tech.it)\nOrganizzazione: Azienda Partner 1 S.r.l.\nTel: +39 02 9000111\nOggetto: Richiesta preventivo e allineamento progetto 1\nSalve, vi scrivo per richiedere supporto per evento a Roma programmato per il 03/11/2026. I partecipanti saranno 12 con disponibilità economica di euro 1250. Resto a disposizione.",
+    "ground_truth": {
+      "mittente": "Persona Nome 1",
+      "email": "utente.1@innovazione-tech.it",
+      "telefono": "+39 02 9000111",
+      "azienda": "Azienda Partner 1 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 1",
+      "numeroPartecipanti": 12,
+      "dataEvento": "03/11/2026",
+      "budgetEuro": 1250.0,
+      "citta": "Roma"
+    }
+  },
+  {
+    "id": "EML_02",
+    "type": "EMAIL",
+    "payload": "Da: Persona Nome 2 <utente.2@innovazione-tech.it>\nOggetto: Richiesta preventivo e allineamento progetto 2\nAzienda: Azienda Partner 2 S.r.l.\nGentile Team,\nvorremmo organizzare una conferenza tecnica nella citta di Torino in data 05/11/2026.\nPrevediamo circa 14 persone con budget indicativo di 1500 euro.\nPotete ricontattarmi al telefono +39 02 9000222.\nCordiali saluti,\nPersona Nome 2",
+    "ground_truth": {
+      "mittente": "Persona Nome 2",
+      "email": "utente.2@innovazione-tech.it",
+      "telefono": "+39 02 9000222",
+      "azienda": "Azienda Partner 2 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 2",
+      "numeroPartecipanti": 14,
+      "dataEvento": "05/11/2026",
+      "budgetEuro": 1500.0,
+      "citta": "Torino"
+    }
+  },
+  {
+    "id": "EML_03",
+    "type": "EMAIL",
+    "payload": "Mittente: Persona Nome 3 (utente.3@innovazione-tech.it)\nOrganizzazione: Azienda Partner 3 S.r.l.\nTel: +39 02 9000333\nOggetto: Richiesta preventivo e allineamento progetto 3\nSalve, vi scrivo per richiedere supporto per evento a Milano programmato per il 07/11/2026. I partecipanti saranno 16 con disponibilità economica di euro 1750. Resto a disposizione.",
+    "ground_truth": {
+      "mittente": "Persona Nome 3",
+      "email": "utente.3@innovazione-tech.it",
+      "telefono": "+39 02 9000333",
+      "azienda": "Azienda Partner 3 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 3",
+      "numeroPartecipanti": 16,
+      "dataEvento": "07/11/2026",
+      "budgetEuro": 1750.0,
+      "citta": "Milano"
+    }
+  },
+  {
+    "id": "EML_04",
+    "type": "EMAIL",
+    "payload": "Da: Persona Nome 4 <utente.4@innovazione-tech.it>\nOggetto: Richiesta preventivo e allineamento progetto 4\nAzienda: Azienda Partner 4 S.r.l.\nGentile Team,\nvorremmo organizzare una conferenza tecnica nella citta di Roma in data 09/11/2026.\nPrevediamo circa 18 persone con budget indicativo di 2000 euro.\nPotete ricontattarmi al telefono +39 02 9000444.\nCordiali saluti,\nPersona Nome 4",
+    "ground_truth": {
+      "mittente": "Persona Nome 4",
+      "email": "utente.4@innovazione-tech.it",
+      "telefono": "+39 02 9000444",
+      "azienda": "Azienda Partner 4 S.r.l.",
+      "oggetto": "Richiesta preventivo e allineamento progetto 4",
+      "numeroPartecipanti": 18,
+      "dataEvento": "09/11/2026",
+      "budgetEuro": 2000.0,
+      "citta": "Roma"
+    }
+  },
+  {
+    "id": "ANA_01",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA MODELLO UE\n1. Cognome1 2. Nome1\n3. 03/05/1981 Roma (RM)\n4a. 10/01/2021 4b. 10/01/2031 4c. MIT-UCO\n5. U1900023K\nCodice Fiscale: COGNOM81M03H501F",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Nome1",
+      "cognome": "Cognome1",
+      "codiceFiscale": "COGNOM81M03H501F",
+      "dataNascita": "03/05/1981",
+      "luogoNascita": "Roma (RM)",
+      "sesso": "F",
+      "numeroDocumento": "U1900023K",
+      "dataRilascio": "10/01/2021",
+      "dataScadenza": "10/01/2031",
+      "enteRilascio": "MIT-UCO"
+    }
+  },
+  {
+    "id": "ANA_02",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PASSAPORTO\nTipo: P Documento: YA100014\nCognome: Cognome2 Nome: Nome2\nCittadinanza: ITA Data di nascita: 05/05/1982 Sesso: M\nLuogo di nascita: Napoli (NA)\nCodice Fiscale: COGNOM82M05H501M\nRilasciato da: Questura di Napoli in data 10/01/2022 con validita' fino al 10/01/2032",
+    "ground_truth": {
+      "tipoDocumento": "PASSAPORTO",
+      "nome": "Nome2",
+      "cognome": "Cognome2",
+      "codiceFiscale": "COGNOM82M05H501M",
+      "dataNascita": "05/05/1982",
+      "luogoNascita": "Napoli (NA)",
+      "sesso": "M",
+      "numeroDocumento": "YA100014",
+      "dataRilascio": "10/01/2022",
+      "dataScadenza": "10/01/2032",
+      "enteRilascio": "Questura di Napoli"
+    }
+  },
+  {
+    "id": "ANA_03",
+    "type": "ANAGRAFICA",
+    "payload": "MINISTERO DELL'INTERNO - CARTA D'IDENTITA N. CA80039AA\nCognome: Cognome3 Nome: Nome3\nNato a: Milano (MI) il: 07/05/1983 Sesso: F\nCodice Fiscale: COGNOM83M07H501R\nRilasciata il: 10/01/2023 Scadenza: 10/01/2033\nEnte di emissione: Comune di Milano",
+    "ground_truth": {
+      "tipoDocumento": "CARTA_IDENTITA",
+      "nome": "Nome3",
+      "cognome": "Cognome3",
+      "codiceFiscale": "COGNOM83M07H501R",
+      "dataNascita": "07/05/1983",
+      "luogoNascita": "Milano (MI)",
+      "sesso": "F",
+      "numeroDocumento": "CA80039AA",
+      "dataRilascio": "10/01/2023",
+      "dataScadenza": "10/01/2033",
+      "enteRilascio": "Comune di Milano"
+    }
+  },
+  {
+    "id": "ANA_04",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA MODELLO UE\n1. Cognome4 2. Nome4\n3. 09/05/1984 Roma (RM)\n4a. 10/01/2020 4b. 10/01/2030 4c. MIT-UCO\n5. U1900092K\nCodice Fiscale: COGNOM84M09H501W",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "Nome4",
+      "cognome": "Cognome4",
+      "codiceFiscale": "COGNOM84M09H501W",
+      "dataNascita": "09/05/1984",
+      "luogoNascita": "Roma (RM)",
+      "sesso": "M",
+      "numeroDocumento": "U1900092K",
+      "dataRilascio": "10/01/2020",
+      "dataScadenza": "10/01/2030",
+      "enteRilascio": "MIT-UCO"
+    }
+  },
+  {
+    "id": "NEG_PAT_01",
+    "type": "ANAGRAFICA",
+    "payload": "REPUBBLICA ITALIANA - PATENTE DI GUIDA MODELLO UE\n1. BIANCHI 2. MARCO\n3. 15/04/1988 ROMA (RM)\n4a. 12/03/2021 4b. 12/03/2031 4c. MIT-UCO\n5. U1839201F\nCategoria: B",
+    "ground_truth": {
+      "tipoDocumento": "PATENTE",
+      "nome": "MARCO",
+      "cognome": "BIANCHI",
+      "codiceFiscale": null,
+      "dataNascita": "15/04/1988",
+      "luogoNascita": "ROMA (RM)",
+      "sesso": null,
+      "numeroDocumento": "U1839201F",
+      "dataRilascio": "12/03/2021",
+      "dataScadenza": "12/03/2031",
+      "enteRilascio": "MIT-UCO"
+    }
+  },
+  {
+    "id": "NEG_FAT_01",
+    "type": "FATTURA",
+    "payload": "FATTURA ELETTRONICA N. FT-2026/999\nFORNITORE: Studio Alpha Srl - P.IVA: IT10000001379\nCLIENTE: Beta Spa - C.F.: CFXUSR71A03H501A\nTOTALE: 500.00 EUR\nIBAN: IT42L1234512345123456789012",
+    "ground_truth": {
+      "numeroFattura": "FT-2026/999",
+      "dataFattura": null,
+      "fornitore": {
+        "denominazione": "Studio Alpha Srl",
+        "partitaIva": "10000001379"
+      },
+      "cliente": {
+        "denominazione": "Beta Spa",
+        "codiceFiscale": "CFXUSR71A03H501A"
+      },
+      "importoTotale": 500.0,
+      "iban": "IT42L1234512345123456789012"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+<div class="fields-card">
+  <div class="fields-header">
+    <div class="header-left">
+      <app-icon name="file-text" [size]="14" customClass="title-icon"></app-icon>
+      <span class="fields-title">Campi Strutturati Estratti</span>
+    </div>
+    <span class="fields-count">{{ fields().length }} campi</span>
+  </div>
+
+  <div class="fields-grid-wrap">
+    @if (fields().length > 0) {
+      <div class="fields-grid" role="table" aria-label="Campi estratti dal documento">
+        @for (item of fields(); track item.key) {
+          <div class="field-row" [class.field-warn]="item.isWarning" role="row">
+            <div class="field-key-col" role="rowheader">
+              <span class="field-label">{{ item.label }}</span>
+            </div>
+            <div class="field-val-col" role="cell">
+              <span class="field-mono-value">{{ item.value }}</span>
+              @if (item.isWarning) {
+                <span class="warn-badge" title="Checksum Luhn errato nel testo sorgente">
+                  <app-icon name="alert-circle" [size]="11"></app-icon>
+                  Checksum non valido
+                </span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="fields-empty">
+        Elaborazione completata. I dettagli strutturati verranno mostrati qui appena disponibili.
+      </div>
+    }
+  </div>
+</div>

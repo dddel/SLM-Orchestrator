@@ -1,0 +1,149 @@
+{
+  "id" : "HO_EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_SEGNALAZIONE_GUASTO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roberto Maran",
+      "normalized_extracted" : "Roberto Maran",
+      "ground_truth" : "Roberto Maran",
+      "normalized_ground_truth" : "Roberto Maran",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "roberto.maran@telecom-fibra-net.org",
+      "normalized_extracted" : "roberto.maran@telecom-fibra-net.org",
+      "ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "normalized_ground_truth" : "roberto.maran@telecom-fibra-net.org",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Telecom-Fibra-Net",
+      "normalized_extracted" : "Telecom-Fibra-Net",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_extracted" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "normalized_ground_truth" : "Segnalazione trancio cavo ottico dorsale Brescia - Bergamo",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Brescia",
+      "normalized_extracted" : "Brescia",
+      "ground_truth" : "Brescia",
+      "normalized_ground_truth" : "Brescia",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "02/03/2026",
+      "normalized_extracted" : "02/03/2026",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "azienda",
+    "key_present" : true,
+    "extracted" : "Telecom-Fibra-Net",
+    "ground_truth" : null,
+    "normalized_extracted" : "Telecom-Fibra-Net",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : true,
+    "extracted" : "02/03/2026",
+    "ground_truth" : null,
+    "normalized_extracted" : "02/03/2026",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Roberto Maran\",\"email\":\"roberto.maran@telecom-fibra-net.org\",\"telefono\":null,\"azienda\":\"Telecom-Fibra-Net\",\"oggetto\":\"Segnalazione trancio cavo ottico dorsale Brescia - Bergamo\",\"citta\":\"Brescia\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":\"02/03/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Segnalazione anomalia software o bug\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 9179,
+    "metrics" : {
+      "totalDurationMs" : 8188,
+      "totalPromptTokens" : 1956,
+      "totalCompletionTokens" : 169,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4847,
+        "promptTokens" : 592,
+        "completionTokens" : 120,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3338,
+        "promptTokens" : 1364,
+        "completionTokens" : 49,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 9187
+}

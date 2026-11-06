@@ -1,0 +1,143 @@
+{
+  "id" : "HO_ANA_13",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_VISITA_SPORTIVA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Domenico",
+      "normalized_extracted" : "Domenico",
+      "ground_truth" : "Domenico",
+      "normalized_ground_truth" : "Domenico",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Rapisarda",
+      "normalized_extracted" : "Rapisarda",
+      "ground_truth" : "Rapisarda",
+      "normalized_ground_truth" : "Rapisarda",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "RPSDNC95D11C351E",
+      "normalized_extracted" : "RPSDNC95D11C351E",
+      "ground_truth" : "RPSDNC95D11C351E",
+      "normalized_ground_truth" : "RPSDNC95D11C351E",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/04/1995",
+      "normalized_extracted" : "1995-04-11",
+      "ground_truth" : "11/04/1995",
+      "normalized_ground_truth" : "1995-04-11",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Catania (CT)",
+      "normalized_extracted" : "Catania (CT)",
+      "ground_truth" : "Catania (CT)",
+      "normalized_ground_truth" : "Catania (CT)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "M",
+      "normalized_extracted" : "M",
+      "ground_truth" : "M",
+      "normalized_ground_truth" : "M",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380001593820194821",
+      "normalized_extracted" : "80380001593820194821",
+      "ground_truth" : "80380001593820194821",
+      "normalized_ground_truth" : "80380001593820194821",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"TESSERA_SANITARIA\",\n  \"nome\": \"Domenico\",\n  \"cognome\": \"Rapisarda\",\n  \"codiceFiscale\": \"RPSDNC95D11C351E\",\n  \"dataNascita\": \"11/04/1995\",\n  \"luogoNascita\": \"Catania (CT)\",\n  \"sesso\": \"M\",\n  \"numeroDocumento\": \"80380001593820194821\",\n  \"dataRilascio\": null,\n  \"dataScadenza\": null,\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 14570,
+    "metrics" : {
+      "totalDurationMs" : 13466,
+      "totalPromptTokens" : 756,
+      "totalCompletionTokens" : 158,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 13465,
+        "promptTokens" : 756,
+        "completionTokens" : 158,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 14575
+}

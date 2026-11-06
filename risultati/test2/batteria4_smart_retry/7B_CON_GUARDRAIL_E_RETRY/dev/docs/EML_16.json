@@ -1,0 +1,133 @@
+{
+  "id" : "EML_16",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Matteo Fontana",
+      "normalized_extracted" : "Matteo Fontana",
+      "ground_truth" : "Matteo Fontana",
+      "normalized_ground_truth" : "Matteo Fontana",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "m.fontana@solarenergia.it",
+      "normalized_extracted" : "m.fontana@solarenergia.it",
+      "ground_truth" : "m.fontana@solarenergia.it",
+      "normalized_ground_truth" : "m.fontana@solarenergia.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SolarEnergia S.r.l.",
+      "normalized_extracted" : "SolarEnergia S.r.l.",
+      "ground_truth" : "SolarEnergia S.r.l.",
+      "normalized_ground_truth" : "SolarEnergia S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Tavola rotonda transizione energetica",
+      "normalized_extracted" : "Tavola rotonda transizione energetica",
+      "ground_truth" : "Tavola rotonda transizione energetica",
+      "normalized_ground_truth" : "Tavola rotonda transizione energetica",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "28/12/2026",
+      "normalized_extracted" : "2026-12-28",
+      "ground_truth" : "28/12/2026",
+      "normalized_ground_truth" : "2026-12-28",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 60,
+      "normalized_extracted" : 60.0,
+      "ground_truth" : 60,
+      "normalized_ground_truth" : 60.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3000,
+      "normalized_extracted" : 3000.0,
+      "ground_truth" : 3000.0,
+      "normalized_ground_truth" : 3000.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Matteo Fontana\",\"email\":\"m.fontana@solarenergia.it\",\"telefono\":null,\"azienda\":\"SolarEnergia S.r.l.\",\"oggetto\":\"Tavola rotonda transizione energetica\",\"citta\":null,\"numeroPartecipanti\":60,\"budgetEuro\":3000,\"dataEvento\":\"28/12/2026\",\"destinatario\":\"Stefano Vena\",\"ruoloDestinatario\":\"Direttore\",\"motivoInstradamento\":\"Approvazione budget per evento di transizione energetica\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 31290,
+    "metrics" : {
+      "totalDurationMs" : 30161,
+      "totalPromptTokens" : 1859,
+      "totalCompletionTokens" : 158,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 20339,
+        "promptTokens" : 546,
+        "completionTokens" : 115,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9820,
+        "promptTokens" : 1313,
+        "completionTokens" : 43,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 31295
+}

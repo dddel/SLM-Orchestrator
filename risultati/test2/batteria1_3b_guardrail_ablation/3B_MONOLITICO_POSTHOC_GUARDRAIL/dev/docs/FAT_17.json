@@ -1,0 +1,138 @@
+{
+  "id" : "FAT_17",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "test",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PAR-2026-17",
+      "normalized_extracted" : "PAR-2026-17",
+      "ground_truth" : "PAR-2026-17",
+      "normalized_ground_truth" : "PAR-2026-17",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/12/2026",
+      "normalized_extracted" : "2026-12-05",
+      "ground_truth" : "05/12/2026",
+      "normalized_ground_truth" : "2026-12-05",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roberto Ferri",
+      "normalized_extracted" : "Roberto Ferri",
+      "ground_truth" : "Roberto Ferri",
+      "normalized_ground_truth" : "Roberto Ferri",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000006857",
+      "normalized_extracted" : "10000006857",
+      "ground_truth" : "10000006857",
+      "normalized_ground_truth" : "10000006857",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Impianti Solari S.p.A.",
+      "normalized_extracted" : "Impianti Solari S.p.A.",
+      "ground_truth" : "Impianti Solari S.p.A.",
+      "normalized_ground_truth" : "Impianti Solari S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 4200.0,
+      "normalized_extracted" : 4200.0,
+      "ground_truth" : 4200.0,
+      "normalized_ground_truth" : 4200.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"PAR-2026-17\",\n    \"dataFattura\": \"05/12/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Ing. Roberto Ferri\",\n      \"partitaIva\": \"10000006857\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Impianti Solari S.p.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 4200.00,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"PAR-2026-17\",\n    \"dataFattura\": \"05/12/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Ing. Roberto Ferri\",\n      \"partitaIva\": \"10000006857\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Impianti Solari S.p.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 4200.00,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 6716,
+        "totalDurationMs" : 6713,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 6434,
+        "promptEvalCount" : 392,
+        "evalCount" : 178,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

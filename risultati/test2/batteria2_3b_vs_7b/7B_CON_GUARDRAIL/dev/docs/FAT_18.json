@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_18",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/2026",
+      "normalized_extracted" : "18/2026",
+      "ground_truth" : "18/2026",
+      "normalized_ground_truth" : "18/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12 dicembre 2026",
+      "normalized_extracted" : "2026-12-12",
+      "ground_truth" : "2026-12-12",
+      "normalized_ground_truth" : "2026-12-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Giulia Monti",
+      "normalized_extracted" : "Giulia Monti",
+      "ground_truth" : "Giulia Monti",
+      "normalized_ground_truth" : "Giulia Monti",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000007228",
+      "normalized_extracted" : "10000007228",
+      "ground_truth" : "10000007228",
+      "normalized_ground_truth" : "10000007228",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Franco Riva",
+      "normalized_extracted" : "Franco Riva",
+      "ground_truth" : "Franco Riva",
+      "normalized_ground_truth" : "Franco Riva",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1150.0,
+      "normalized_extracted" : 1150.0,
+      "ground_truth" : 1150.0,
+      "normalized_ground_truth" : 1150.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\":\"18/2026\",\"dataFattura\":\"12 dicembre 2026\",\"fornitore\":{\"denominazione\":\"Giulia Monti\",\"partitaIva\":\"10000007228\"},\"cliente\":{\"denominazione\":\"Franco Riva\",\"codiceFiscale\":null},\"importoTotale\":1150.0,\"iban\":null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 25541,
+    "metrics" : {
+      "totalDurationMs" : 24248,
+      "totalPromptTokens" : 552,
+      "totalCompletionTokens" : 137,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 24246,
+        "promptTokens" : 552,
+        "completionTokens" : 137,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 25545
+}

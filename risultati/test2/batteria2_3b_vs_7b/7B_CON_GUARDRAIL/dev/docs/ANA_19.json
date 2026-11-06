@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_19",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T5_DOCUMENTO_OCR_NOISY",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MATTEO",
+      "normalized_extracted" : "MATTEO",
+      "ground_truth" : "Matteo",
+      "normalized_ground_truth" : "Matteo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FONTANA",
+      "normalized_extracted" : "FONTANA",
+      "ground_truth" : "Fontana",
+      "normalized_ground_truth" : "Fontana",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/1988",
+      "normalized_extracted" : "1988-11-11",
+      "ground_truth" : "11/11/1988",
+      "normalized_ground_truth" : "1988-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VERONA (VR)",
+      "normalized_extracted" : "VERONA (VR)",
+      "ground_truth" : "Verona (VR)",
+      "normalized_ground_truth" : "Verona (VR)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CD112233AA",
+      "normalized_extracted" : "CD112233AA",
+      "ground_truth" : "CD112233AA",
+      "normalized_ground_truth" : "CD112233AA",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/2021",
+      "normalized_extracted" : "2021-11-11",
+      "ground_truth" : "11/11/2021",
+      "normalized_ground_truth" : "2021-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "11/11/2031",
+      "normalized_extracted" : "2031-11-11",
+      "ground_truth" : "11/11/2031",
+      "normalized_ground_truth" : "2031-11-11",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\n  \"tipoDocumento\": \"CARTA_IDENTITA\",\n  \"nome\": \"MATTEO\",\n  \"cognome\": \"FONTANA\",\n  \"codiceFiscale\": null,\n  \"dataNascita\": \"11/11/1988\",\n  \"luogoNascita\": \"VERONA (VR)\",\n  \"sesso\": null,\n  \"numeroDocumento\": \"CD112233AA\",\n  \"dataRilascio\": \"11/11/2021\",\n  \"dataScadenza\": \"11/11/2031\",\n  \"enteRilascio\": null\n}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 28205,
+    "metrics" : {
+      "totalDurationMs" : 26616,
+      "totalPromptTokens" : 703,
+      "totalCompletionTokens" : 148,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 26612,
+        "promptTokens" : 703,
+        "completionTokens" : 148,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 28209
+}

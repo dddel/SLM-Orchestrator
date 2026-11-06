@@ -1,0 +1,219 @@
+{
+  "id" : "EML_02",
+  "type" : "EMAIL",
+  "template" : "EML_T1_EVENTO_RICHIESTA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 0,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Persona Nome 2",
+      "normalized_ground_truth" : "Persona Nome 2",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "utente.2@innovazione-tech.it",
+      "normalized_ground_truth" : "utente.2@innovazione-tech.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 02 9000222",
+      "normalized_ground_truth" : "+39 02 9000222",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Azienda Partner 2 S.r.l.",
+      "normalized_ground_truth" : "Azienda Partner 2 S.r.l.",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Richiesta preventivo e allineamento progetto 2",
+      "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 2",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 14,
+      "normalized_ground_truth" : 14,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "05/11/2026",
+      "normalized_ground_truth" : "05/11/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 1500.0,
+      "normalized_ground_truth" : 1500.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Torino",
+      "normalized_ground_truth" : "Torino",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Persona Nome 2",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Persona Nome 2",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "utente.2@innovazione-tech.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "utente.2@innovazione-tech.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 02 9000222",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 02 9000222",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Azienda Partner 2 S.r.l.",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Azienda Partner 2 S.r.l.",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Richiesta preventivo e allineamento progetto 2",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Richiesta preventivo e allineamento progetto 2",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 14,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 14,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "05/11/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "05/11/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 1500.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 1500.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Torino",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Torino",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ALTRO",
+    "classificationMatch" : false,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta preventivo e allineamento progetto\",\n    \"argomentoPrincipale\": \"Conferenza tecnica\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche per una classificazione come FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Persona Nome 2\",\n      \"Azienda Partner 2 S.r.l.\",\n      \"Persona Nome 2\"\n    ]\n  }\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Richiesta preventivo e allineamento progetto\",\n    \"argomentoPrincipale\": \"Conferenza tecnica\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni specifiche per una classificazione come FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Persona Nome 2\",\n      \"Azienda Partner 2 S.r.l.\",\n      \"Persona Nome 2\"\n    ]\n  }\n}",
+      "metrics" : {
+        "clientLatencyMs" : 6019,
+        "totalDurationMs" : 6017,
+        "loadDurationMs" : 1,
+        "evalDurationMs" : 5727,
+        "promptEvalCount" : 423,
+        "evalCount" : 157,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ALTRO"
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "id" : "ANA_06",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PATENTE",
+      "normalized_extracted" : "PATENTE",
+      "ground_truth" : "PATENTE",
+      "normalized_ground_truth" : "PATENTE",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GIULIA",
+      "normalized_extracted" : "GIULIA",
+      "ground_truth" : "Giulia",
+      "normalized_ground_truth" : "Giulia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VERDI",
+      "normalized_extracted" : "VERDI",
+      "ground_truth" : "Verdi",
+      "normalized_ground_truth" : "Verdi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1990-09-24",
+      "normalized_extracted" : "1990-09-24",
+      "ground_truth" : "24/09/1990",
+      "normalized_ground_truth" : "1990-09-24",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MILANO (MI)",
+      "normalized_extracted" : "MILANO (MI)",
+      "ground_truth" : "Milano (MI)",
+      "normalized_ground_truth" : "Milano (MI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "U1Y112233K",
+      "normalized_extracted" : "U1Y112233K",
+      "ground_truth" : "U1Y112233K",
+      "normalized_ground_truth" : "U1Y112233K",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2021-10-10",
+      "normalized_extracted" : "2021-10-10",
+      "ground_truth" : "10/10/2021",
+      "normalized_ground_truth" : "2021-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2031-10-10",
+      "normalized_extracted" : "2031-10-10",
+      "ground_truth" : "10/10/2031",
+      "normalized_ground_truth" : "2031-10-10",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 7,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "valueNode" : false,
+      "missingNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"GIULIA\",\n    \"cognome\": \"VERDI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1990-09-24\",\n    \"luogoNascita\": \"MILANO\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1Y112233K\",\n    \"dataRilascio\": \"2021-10-10\",\n    \"dataScadenza\": \"2031-10-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"PATENTE\",\n    \"nome\": \"GIULIA\",\n    \"cognome\": \"VERDI\",\n    \"codiceFiscale\": null,\n    \"dataNascita\": \"1990-09-24\",\n    \"luogoNascita\": \"MILANO\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"U1Y112233K\",\n    \"dataRilascio\": \"2021-10-10\",\n    \"dataScadenza\": \"2031-10-10\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 8144,
+        "totalDurationMs" : 8142,
+        "loadDurationMs" : 3,
+        "evalDurationMs" : 7938,
+        "promptEvalCount" : 369,
+        "evalCount" : 191,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

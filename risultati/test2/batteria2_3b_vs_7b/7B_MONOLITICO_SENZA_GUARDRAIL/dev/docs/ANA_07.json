@@ -1,0 +1,149 @@
+{
+  "id" : "ANA_07",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T2_PATENTE_GUIDA_CARD",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "CARTA_IDENTITA",
+      "normalized_ground_truth" : "CARTA_IDENTITA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "FRANCESCO PAOLO",
+      "normalized_extracted" : "FRANCESCO PAOLO",
+      "ground_truth" : "Francesco Paolo",
+      "normalized_ground_truth" : "Francesco Paolo",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "DE ROSSI",
+      "normalized_extracted" : "DE ROSSI",
+      "ground_truth" : "De Rossi",
+      "normalized_ground_truth" : "De Rossi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CA12345XY",
+      "normalized_extracted" : "CA12345XY",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/07/1978",
+      "normalized_extracted" : "1978-07-15",
+      "ground_truth" : "15/07/1978",
+      "normalized_ground_truth" : "1978-07-15",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NAPOLI (NA)",
+      "normalized_extracted" : "NAPOLI (NA)",
+      "ground_truth" : "Napoli (NA)",
+      "normalized_ground_truth" : "Napoli (NA)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "CA12345XY",
+      "normalized_ground_truth" : "CA12345XY",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "01/02/2022",
+      "normalized_extracted" : "2022-02-01",
+      "ground_truth" : "01/02/2022",
+      "normalized_ground_truth" : "2022-02-01",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/07/2032",
+      "normalized_extracted" : "2032-07-15",
+      "ground_truth" : "15/07/2032",
+      "normalized_ground_truth" : "2032-07-15",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "codiceFiscale",
+    "key_present" : true,
+    "extracted" : "CA12345XY",
+    "ground_truth" : null,
+    "normalized_extracted" : "CA12345XY",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "numeroDocumento",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "CA12345XY",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "CA12345XY",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"FRANCESCO PAOLO\",\n    \"cognome\": \"DE ROSSI\",\n    \"codiceFiscale\": \"CA12345XY\",\n    \"dataNascita\": \"15/07/1978\",\n    \"luogoNascita\": \"NAPOLI (NA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": \"01/02/2022\",\n    \"dataScadenza\": \"15/07/2032\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"FRANCESCO PAOLO\",\n    \"cognome\": \"DE ROSSI\",\n    \"codiceFiscale\": \"CA12345XY\",\n    \"dataNascita\": \"15/07/1978\",\n    \"luogoNascita\": \"NAPOLI (NA)\",\n    \"sesso\": null,\n    \"numeroDocumento\": null,\n    \"dataRilascio\": \"01/02/2022\",\n    \"dataScadenza\": \"15/07/2032\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 28851,
+      "totalDurationMs" : 28849,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 27939,
+      "promptEvalCount" : 369,
+      "evalCount" : 200,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 28851
+}

@@ -1,0 +1,167 @@
+{
+  "id" : "HO_ANA_14",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_CONSENSO_PRIVACY",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Elena",
+      "normalized_extracted" : "Elena",
+      "ground_truth" : "Elena",
+      "normalized_ground_truth" : "Elena",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Kovacs",
+      "normalized_extracted" : "Kovacs",
+      "ground_truth" : "Kovacs",
+      "normalized_ground_truth" : "Kovacs",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "KVCLNE87H46L424A",
+      "normalized_extracted" : "KVCLNE87H46L424A",
+      "ground_truth" : "KVCLNE87H46L424A",
+      "normalized_ground_truth" : "KVCLNE87H46L424A",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "06/06/1987",
+      "normalized_extracted" : "1987-06-06",
+      "ground_truth" : "06/06/1987",
+      "normalized_ground_truth" : "1987-06-06",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Trieste (TS)",
+      "normalized_extracted" : "Trieste (TS)",
+      "ground_truth" : "Trieste (TS)",
+      "normalized_ground_truth" : "Trieste (TS)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "03/03/2026",
+      "normalized_extracted" : "03/03/2026",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Ministero",
+      "normalized_extracted" : "Ministero",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "TESSERA_SANITARIA",
+    "ground_truth" : "NON_SPECIFICATO",
+    "normalized_extracted" : "TESSERA_SANITARIA",
+    "normalized_ground_truth" : "NON_SPECIFICATO",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "dataRilascio",
+    "key_present" : true,
+    "extracted" : "03/03/2026",
+    "ground_truth" : null,
+    "normalized_extracted" : "03/03/2026",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  }, {
+    "field" : "enteRilascio",
+    "key_present" : true,
+    "extracted" : "Ministero",
+    "ground_truth" : null,
+    "normalized_extracted" : "Ministero",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"TESSERA_SANITARIA\", \"nome\": \"Elena\", \"cognome\": \"Kovacs\", \"codiceFiscale\": \"KVCLNE87H46L424A\", \"dataNascita\": \"06/06/1987\", \"luogoNascita\": \"Trieste (TS)\", \"sesso\": null, \"numeroDocumento\": null, \"dataRilascio\": \"03/03/2026\", \"dataScadenza\": null, \"enteRilascio\": \"Ministero\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 5697,
+    "metrics" : {
+      "totalDurationMs" : 5155,
+      "totalPromptTokens" : 731,
+      "totalCompletionTokens" : 135,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5153,
+        "promptTokens" : 731,
+        "completionTokens" : 135,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 5701
+}

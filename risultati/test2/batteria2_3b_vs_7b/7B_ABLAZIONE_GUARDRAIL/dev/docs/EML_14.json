@@ -1,0 +1,181 @@
+{
+  "id" : "EML_14",
+  "type" : "EMAIL",
+  "template" : "EML_T4_CONFERMA_PARTECIPAZIONE_MULTI_DATA",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 2,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Giorgio Bassi",
+      "normalized_ground_truth" : "Giorgio Bassi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "giorgio.bassi@studiobassi.it",
+      "normalized_ground_truth" : "giorgio.bassi@studiobassi.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39051990011",
+      "normalized_ground_truth" : "+39051990011",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Studio Legale Bassi",
+      "normalized_ground_truth" : "Studio Legale Bassi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Incontro fiscale telematico",
+      "normalized_ground_truth" : "Incontro fiscale telematico",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "18/12/2026",
+      "normalized_ground_truth" : "18/12/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 15,
+      "normalized_ground_truth" : 15,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Giorgio Bassi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Giorgio Bassi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "giorgio.bassi@studiobassi.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "giorgio.bassi@studiobassi.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39051990011",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39051990011",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "azienda",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Studio Legale Bassi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Studio Legale Bassi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Incontro fiscale telematico",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Incontro fiscale telematico",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "18/12/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "18/12/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : 15,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 15,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ALTRO",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"categoriaRilevata\":\"Conferma di incontro\",\"argomentoPrincipale\":\"Incontro telematico fiscale\",\"motivoEsclusione\": \"Il testo non contiene informazioni relative a email, fatture o anagrafiche specifiche.\",\"entitaRilevate\":[\"Avv. Giorgio Bassi\",\"giorgio.bassi@studiobassi.it\",\"10/08/2026\",\"15/06/2026\",\"18/12/2026\",\"+39-051-990011\",\"Studio Legale Bassi\"]}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 13635,
+    "metrics" : {
+      "totalDurationMs" : 12675,
+      "totalPromptTokens" : 588,
+      "totalCompletionTokens" : 139,
+      "steps" : [ {
+        "stepId" : "altro_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 12674,
+        "promptTokens" : 588,
+        "completionTokens" : 139,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 13638
+}

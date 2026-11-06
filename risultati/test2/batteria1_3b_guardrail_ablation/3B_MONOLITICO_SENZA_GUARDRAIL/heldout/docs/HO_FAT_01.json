@@ -1,0 +1,122 @@
+{
+  "id" : "HO_FAT_01",
+  "type" : "FATTURA",
+  "template" : "FAT_PARCELLA_DISCORSIVA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 8,
+  "correct_fields" : 6,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2026/PAR-084",
+      "normalized_extracted" : "2026/PAR-084",
+      "ground_truth" : "2026/PAR-084",
+      "normalized_ground_truth" : "2026/PAR-084",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "12/03/2026",
+      "normalized_extracted" : "2026-03-12",
+      "ground_truth" : "12/03/2026",
+      "normalized_ground_truth" : "2026-03-12",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "normalized_extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "normalized_ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "04128930486",
+      "normalized_extracted" : "04128930486",
+      "ground_truth" : "04128930486",
+      "normalized_ground_truth" : "04128930486",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "normalized_extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+      "ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "normalized_ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3552.64,
+      "normalized_extracted" : 3552.64,
+      "ground_truth" : 3552.64,
+      "normalized_ground_truth" : 3552.64,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "IT81S0306909606100000019482",
+      "normalized_extracted" : "IT81S0306909606100000019482",
+      "ground_truth" : "IT81S0306909606100000019482",
+      "normalized_ground_truth" : "IT81S0306909606100000019482",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "fornitore.denominazione",
+    "key_present" : true,
+    "extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+    "ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+    "normalized_extracted" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+    "normalized_ground_truth" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "cliente.denominazione",
+    "key_present" : true,
+    "extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+    "ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+    "normalized_extracted" : "STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI",
+    "normalized_ground_truth" : "Impresa Costruzioni Generali Edilizia Moderna S.p.A.",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/PAR-084\",\n    \"dataFattura\": \"12/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Impresa Costruzioni Generali Edilizia Moderna S.p.A.\",\n      \"partitaIva\": \"04128930486\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 3552.64,\n    \"iban\": \"IT81S0306909606100000019482\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"2026/PAR-084\",\n    \"dataFattura\": \"12/03/2026\",\n    \"fornitore\": {\n      \"denominazione\": \"Impresa Costruzioni Generali Edilizia Moderna S.p.A.\",\n      \"partitaIva\": \"04128930486\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"STUDIO DI INGEGNERIA CIVILE ING. MATTEO VALENTINI\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 3552.64,\n    \"iban\": \"IT81S0306909606100000019482\"\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 8876,
+      "totalDurationMs" : 8874,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 8415,
+      "promptEvalCount" : 618,
+      "evalCount" : 233,
+      "contextExceeded" : false
+    },
+    "classified_type" : "FATTURA"
+  },
+  "client_latency_ms" : 8876
+}

@@ -1,0 +1,33 @@
+<div class="demo-control-wrap" [class.running]="isRunning()">
+  <button
+    type="button"
+    class="demo-btn"
+    [class.active]="isRunning() && !isPaused()"
+    [attr.aria-label]="!isRunning() ? 'Avvia Demo Automatica' : isPaused() ? 'Riprendi Demo' : 'Metti in pausa Demo'"
+    (click)="onToggle()"
+  >
+    @if (!isRunning()) {
+      <app-icon name="play" [size]="13"></app-icon>
+      <span class="btn-label">Demo</span>
+    } @else if (isPaused()) {
+      <app-icon name="play" [size]="13"></app-icon>
+      <span class="btn-label">Riprendi</span>
+    } @else {
+      <span class="pulse-dot"></span>
+      <span class="btn-label">Demo in corso</span>
+      <app-icon name="pause" [size]="12"></app-icon>
+    }
+  </button>
+
+  @if (isRunning()) {
+    <button
+      type="button"
+      class="stop-btn"
+      aria-label="Ferma Demo"
+      title="Ferma Demo"
+      (click)="onStop($event)"
+    >
+      <app-icon name="square" [size]="11"></app-icon>
+    </button>
+  }
+</div>

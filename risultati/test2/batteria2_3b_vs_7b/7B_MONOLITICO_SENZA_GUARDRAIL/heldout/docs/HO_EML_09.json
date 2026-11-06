@@ -1,0 +1,131 @@
+{
+  "id" : "HO_EML_09",
+  "type" : "EMAIL",
+  "template" : "EML_SOLLECITO_CONSEGNA",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 7,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Gianluca Riva <gianluca.riva@studio-associato-riva.it>",
+      "normalized_extracted" : "Gianluca Riva <gianluca.riva@studio-associato-riva.it>",
+      "ground_truth" : "Gianluca Riva",
+      "normalized_ground_truth" : "Gianluca Riva",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_extracted" : "gianluca.riva@studio-associato-riva.it",
+      "ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Padova",
+      "normalized_ground_truth" : "Padova",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Gianluca Riva <gianluca.riva@studio-associato-riva.it>",
+    "ground_truth" : "Gianluca Riva",
+    "normalized_extracted" : "Gianluca Riva <gianluca.riva@studio-associato-riva.it>",
+    "normalized_ground_truth" : "Gianluca Riva",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "citta",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "Padova",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Padova",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Gianluca Riva <gianluca.riva@studio-associato-riva.it>\",\n    \"email\": \"gianluca.riva@studio-associato-riva.it\",\n    \"telefono\": null,\n    \"azienda\": null,\n    \"oggetto\": \"Sollecito consegna ordine cancelleria ORD-2026-9921\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Gianluca Riva <gianluca.riva@studio-associato-riva.it>\",\n    \"email\": \"gianluca.riva@studio-associato-riva.it\",\n    \"telefono\": null,\n    \"azienda\": null,\n    \"oggetto\": \"Sollecito consegna ordine cancelleria ORD-2026-9921\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 26801,
+      "totalDurationMs" : 26799,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 26033,
+      "promptEvalCount" : 443,
+      "evalCount" : 172,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 26801
+}

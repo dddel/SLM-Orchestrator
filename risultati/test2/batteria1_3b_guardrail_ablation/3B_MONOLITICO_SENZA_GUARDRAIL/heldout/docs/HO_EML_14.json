@@ -1,0 +1,155 @@
+{
+  "id" : "HO_EML_14",
+  "type" : "EMAIL",
+  "template" : "EML_CANDIDATURA_LAVORO",
+  "split" : "heldout",
+  "category" : "C2",
+  "c2_subcode" : "C2a",
+  "c5_subcode" : null,
+  "category_description" : "OK con solo chiavi assenti/omissioni (C2a)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 4,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Matteo Salvi",
+      "normalized_ground_truth" : "Matteo Salvi",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "matteo.salvi.dev@libero-mail.it",
+      "normalized_ground_truth" : "matteo.salvi.dev@libero-mail.it",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "telefono" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "+39 347 8920145",
+      "normalized_ground_truth" : "+39 347 8920145",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "normalized_ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : false,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "Torino",
+      "normalized_ground_truth" : "Torino",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : false,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Matteo Salvi",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Matteo Salvi",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "email",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "matteo.salvi.dev@libero-mail.it",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "matteo.salvi.dev@libero-mail.it",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "telefono",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "+39 347 8920145",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "+39 347 8920145",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "oggetto",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Candidatura per posizione Senior Data Platform Engineer - Sede Torino",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "citta",
+    "key_present" : false,
+    "extracted" : null,
+    "ground_truth" : "Torino",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "Torino",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Candidatura\",\n    \"argomentoPrincipale\": \"Posizione Senior Data Platform Engineer - Sede Torino\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni sufficienti per classificare come FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Ing. Matteo Salvi\",\n      \"recruiting-tech@innovazione-software-torino.it\",\n      \"matteo.salvi.dev@libero-mail.it\",\n      \"recruitment@innovazione-software-torino.it\"\n    ]\n  }\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ALTRO\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": {\n    \"categoriaRilevata\": \"Candidatura\",\n    \"argomentoPrincipale\": \"Posizione Senior Data Platform Engineer - Sede Torino\",\n    \"motivoEsclusione\": \"Il testo non contiene informazioni sufficienti per classificare come FATTURA, EMAIL o ANAGRAFICA\",\n    \"entitaRilevate\": [\n      \"Ing. Matteo Salvi\",\n      \"recruiting-tech@innovazione-software-torino.it\",\n      \"matteo.salvi.dev@libero-mail.it\",\n      \"recruitment@innovazione-software-torino.it\"\n    ]\n  }\n}",
+    "metrics" : {
+      "clientLatencyMs" : 7082,
+      "totalDurationMs" : 7080,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 6748,
+      "promptEvalCount" : 478,
+      "evalCount" : 185,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ALTRO"
+  },
+  "client_latency_ms" : 7082
+}

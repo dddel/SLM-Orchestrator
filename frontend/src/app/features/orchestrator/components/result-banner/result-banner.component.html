@@ -1,0 +1,49 @@
+<div class="result-banner" [class]="'status-' + status()">
+  <div class="banner-left">
+    <div class="banner-status-icon">
+      @if (status() === 'OK') {
+        <app-icon name="check-circle" [size]="18" customClass="status-icon-ok"></app-icon>
+      } @else if (status() === 'INDETERMINATE') {
+        <app-icon name="alert-circle" [size]="18" customClass="status-icon-warn"></app-icon>
+      } @else {
+        <app-icon name="alert-circle" [size]="18" customClass="status-icon-err"></app-icon>
+      }
+    </div>
+
+    <div class="banner-title-group">
+      <div class="badges-row">
+        @if (status() === 'OK') {
+          <span class="outcome-pill outcome-ok">Elaborazione Conforme</span>
+        } @else if (status() === 'INDETERMINATE') {
+          <span class="outcome-pill outcome-warn">Violazione Guardie</span>
+        } @else {
+          <span class="outcome-pill outcome-err">Errore</span>
+        }
+
+        <span class="doc-badge" title="Tipo di documento classificato">
+          <app-icon [name]="getDocIcon()" [size]="12"></app-icon>
+          <span class="doc-label">{{ label() || 'DOCUMENTO' }}</span>
+        </span>
+
+        @if (displayConfidence()) {
+          <span class="confidence-badge" title="Confidenza classificazione router">
+            <span class="conf-dot" aria-hidden="true"></span>
+            <span>Confidenza: <strong>{{ displayConfidence() }}</strong></span>
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-right">
+    <span class="meta-chip router-chip" title="Router utilizzato">
+      <app-icon name="cpu" [size]="13"></app-icon>
+      <span>{{ router() }}</span>
+    </span>
+
+    <span class="meta-chip latency-chip" title="Latenza totale inferenza locale e guardie">
+      <app-icon name="clock" [size]="13"></app-icon>
+      <span class="mono-num">{{ latencyMs() }} ms</span>
+    </span>
+  </div>
+</div>

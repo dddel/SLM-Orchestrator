@@ -1,0 +1,116 @@
+{
+  "id" : "FAT_15",
+  "type" : "FATTURA",
+  "template" : "FAT_T4_FATTURA_ELETTRONICA_XML_LIKE",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "9981",
+      "normalized_extracted" : "9981",
+      "ground_truth" : "9981",
+      "normalized_ground_truth" : "9981",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Heavy Machinery S.p.A.",
+      "normalized_extracted" : "Heavy Machinery S.p.A.",
+      "ground_truth" : "Heavy Machinery S.p.A.",
+      "normalized_ground_truth" : "Heavy Machinery S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000004118",
+      "normalized_extracted" : "10000004118",
+      "ground_truth" : "10000004118",
+      "normalized_ground_truth" : "10000004118",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Costruzioni Edili S.r.l.",
+      "normalized_extracted" : "Costruzioni Edili S.r.l.",
+      "ground_truth" : "Costruzioni Edili S.r.l.",
+      "normalized_ground_truth" : "Costruzioni Edili S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 12500.0,
+      "normalized_extracted" : 12500.0,
+      "ground_truth" : 12500.0,
+      "normalized_ground_truth" : 12500.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"numeroFattura\": \"9981\", \"dataFattura\": null, \"fornitore\": {\"denominazione\": \"Heavy Machinery S.p.A.\", \"partitaIva\": \"10000004118\"}, \"cliente\": {\"denominazione\": \"Costruzioni Edili S.r.l.\", \"codiceFiscale\": null}, \"importoTotale\": 12500.0, \"iban\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4786,
+    "metrics" : {
+      "totalDurationMs" : 4335,
+      "totalPromptTokens" : 601,
+      "totalCompletionTokens" : 105,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4334,
+        "promptTokens" : 601,
+        "completionTokens" : 105,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 4790
+}

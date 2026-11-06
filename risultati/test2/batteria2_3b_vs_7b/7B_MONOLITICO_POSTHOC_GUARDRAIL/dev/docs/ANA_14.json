@@ -1,0 +1,165 @@
+{
+  "id" : "ANA_14",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "test",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MARTINA",
+      "normalized_extracted" : "MARTINA",
+      "ground_truth" : "Martina",
+      "normalized_ground_truth" : "Martina",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GALLO",
+      "normalized_extracted" : "GALLO",
+      "ground_truth" : "Gallo",
+      "normalized_ground_truth" : "Gallo",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GLLMTN95T65L219K",
+      "normalized_extracted" : "GLLMTN95T65L219K",
+      "ground_truth" : "GLLMTN95T65L219K",
+      "normalized_ground_truth" : "GLLMTN95T65L219K",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/12/1995",
+      "normalized_extracted" : "1995-12-25",
+      "ground_truth" : "25/12/1995",
+      "normalized_ground_truth" : "1995-12-25",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TORINO (TO)",
+      "normalized_extracted" : "TORINO (TO)",
+      "ground_truth" : "Torino (TO)",
+      "normalized_ground_truth" : "Torino (TO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380009876543210987",
+      "normalized_extracted" : "80380009876543210987",
+      "ground_truth" : "80380009876543210987",
+      "normalized_ground_truth" : "80380009876543210987",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/12/2030",
+      "normalized_extracted" : "2030-12-25",
+      "ground_truth" : "25/12/2030",
+      "normalized_ground_truth" : "2030-12-25",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "classifiedType" : "ANAGRAFICA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"TESSERA_SANITARIA\",\n    \"nome\": \"MARTINA\",\n    \"cognome\": \"GALLO\",\n    \"codiceFiscale\": \"GLLMTN95T65L219K\",\n    \"dataNascita\": \"25/12/1995\",\n    \"luogoNascita\": \"TORINO (TO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"80380009876543210987\",\n    \"dataRilascio\": null,\n    \"dataScadenza\": \"25/12/2030\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"TESSERA_SANITARIA\",\n    \"nome\": \"MARTINA\",\n    \"cognome\": \"GALLO\",\n    \"codiceFiscale\": \"GLLMTN95T65L219K\",\n    \"dataNascita\": \"25/12/1995\",\n    \"luogoNascita\": \"TORINO (TO)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"80380009876543210987\",\n    \"dataRilascio\": null,\n    \"dataScadenza\": \"25/12/2030\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 31059,
+        "totalDurationMs" : 31056,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 30053,
+        "promptEvalCount" : 392,
+        "evalCount" : 214,
+        "contextExceeded" : false
+      },
+      "classified_type" : "ANAGRAFICA"
+    }
+  }
+}

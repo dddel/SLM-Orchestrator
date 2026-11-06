@@ -1,0 +1,56 @@
+.pipeline-card {
+  width: 100%;
+  background-color: var(--color-bg-surface);
+  border: var(--border-thin) solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+}
+
+.pipeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-thin) solid var(--color-border-subtle);
+}
+
+.header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pipeline-icon {
+  color: var(--color-accent-teal);
+}
+
+.pipeline-title {
+  font-size: var(--type-label-sm-size);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.pipeline-badge {
+  font-size: var(--type-label-sm-size);
+  color: var(--color-text-subtle);
+}
+
+.pipeline-stages-row {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: var(--space-1);
+}
+
+@media (max-width: 640px) {
+  .pipeline-stages-row {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}

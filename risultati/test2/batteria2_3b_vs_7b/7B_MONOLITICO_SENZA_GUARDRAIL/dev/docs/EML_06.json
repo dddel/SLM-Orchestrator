@@ -1,0 +1,147 @@
+{
+  "id" : "EML_06",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 5,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Sara Donati <sara.donati@cloudtech.com>",
+      "normalized_extracted" : "Sara Donati <sara.donati@cloudtech.com>",
+      "ground_truth" : "Sara Donati",
+      "normalized_ground_truth" : "Sara Donati",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "sara.donati@cloudtech.com",
+      "normalized_extracted" : "sara.donati@cloudtech.com",
+      "ground_truth" : "sara.donati@cloudtech.com",
+      "normalized_ground_truth" : "sara.donati@cloudtech.com",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CloudTech S.p.A.",
+      "normalized_extracted" : "CloudTech S.p.A.",
+      "ground_truth" : "CloudTech S.p.A.",
+      "normalized_ground_truth" : "CloudTech S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Richiesta quotazione convegno annuale",
+      "normalized_extracted" : "Richiesta quotazione convegno annuale",
+      "ground_truth" : "Richiesta quotazione convegno annuale",
+      "normalized_ground_truth" : "Richiesta quotazione convegno annuale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : "22/11/2026",
+      "normalized_ground_truth" : "22/11/2026",
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 50,
+      "normalized_ground_truth" : 50,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 2000.0,
+      "normalized_ground_truth" : 2000.0,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Sara Donati <sara.donati@cloudtech.com>",
+    "ground_truth" : "Sara Donati",
+    "normalized_extracted" : "Sara Donati <sara.donati@cloudtech.com>",
+    "normalized_ground_truth" : "Sara Donati",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "dataEvento",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : "22/11/2026",
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : "22/11/2026",
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : 50,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 50,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  }, {
+    "field" : "budgetEuro",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : 2000.0,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 2000.0,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Sara Donati <sara.donati@cloudtech.com>\",\n    \"email\": \"sara.donati@cloudtech.com\",\n    \"telefono\": null,\n    \"azienda\": \"CloudTech S.p.A.\",\n    \"oggetto\": \"Richiesta quotazione convegno annuale\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Sara Donati <sara.donati@cloudtech.com>\",\n    \"email\": \"sara.donati@cloudtech.com\",\n    \"telefono\": null,\n    \"azienda\": \"CloudTech S.p.A.\",\n    \"oggetto\": \"Richiesta quotazione convegno annuale\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": null,\n    \"dataEvento\": null\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 24846,
+      "totalDurationMs" : 24844,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 23724,
+      "promptEvalCount" : 419,
+      "evalCount" : 154,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 24846
+}

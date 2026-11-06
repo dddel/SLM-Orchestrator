@@ -1,0 +1,133 @@
+{
+  "id" : "EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Marco Neri",
+      "normalized_extracted" : "Marco Neri",
+      "ground_truth" : "Marco Neri",
+      "normalized_ground_truth" : "Marco Neri",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "m.neri@innovasol.it",
+      "normalized_extracted" : "m.neri@innovasol.it",
+      "ground_truth" : "m.neri@innovasol.it",
+      "normalized_ground_truth" : "m.neri@innovasol.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Innovasol S.r.l.",
+      "normalized_extracted" : "Innovasol S.r.l.",
+      "ground_truth" : "Innovasol S.r.l.",
+      "normalized_ground_truth" : "Innovasol S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Workshop formativo intelligenza artificiale",
+      "normalized_extracted" : "Workshop formativo intelligenza artificiale",
+      "ground_truth" : "Workshop formativo intelligenza artificiale",
+      "normalized_ground_truth" : "Workshop formativo intelligenza artificiale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/10/2026",
+      "normalized_extracted" : "2026-10-15",
+      "ground_truth" : "15/10/2026",
+      "normalized_ground_truth" : "2026-10-15",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 25,
+      "normalized_extracted" : 25.0,
+      "ground_truth" : 25,
+      "normalized_ground_truth" : 25.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3500,
+      "normalized_extracted" : 3500.0,
+      "ground_truth" : 3500.0,
+      "normalized_ground_truth" : 3500.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Marco Neri\",\"email\":\"m.neri@innovasol.it\",\"telefono\":null,\"azienda\":\"Innovasol S.r.l.\",\"oggetto\":\"Workshop formativo intelligenza artificiale\",\"citta\":null,\"numeroPartecipanti\":25,\"budgetEuro\":3500,\"dataEvento\":\"15/10/2026\",\"destinatario\":\"Marco Rossi\",\"ruoloDestinatario\":\"Reparto Tecnico\",\"motivoInstradamento\":\"Pianificazione sessione formativa online, senza riferimento a ambiti specifici di candidature, contratti o sviluppo software\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 36860,
+    "metrics" : {
+      "totalDurationMs" : 35635,
+      "totalPromptTokens" : 1940,
+      "totalCompletionTokens" : 185,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 20507,
+        "promptTokens" : 587,
+        "completionTokens" : 114,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 15125,
+        "promptTokens" : 1353,
+        "completionTokens" : 71,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 36864
+}

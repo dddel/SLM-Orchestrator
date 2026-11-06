@@ -1,0 +1,133 @@
+{
+  "id" : "HO_EML_04",
+  "type" : "EMAIL",
+  "template" : "EML_CONFERMA_SALA",
+  "split" : "heldout",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 2,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Alberto Sala",
+      "normalized_extracted" : "Alberto Sala",
+      "ground_truth" : "Alberto Sala",
+      "normalized_ground_truth" : "Alberto Sala",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "alberto.sala@centro-congressi-to.it",
+      "normalized_extracted" : "alberto.sala@centro-congressi-to.it",
+      "ground_truth" : "alberto.sala@centro-congressi-to.it",
+      "normalized_ground_truth" : "alberto.sala@centro-congressi-to.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "+39 011 5928104",
+      "normalized_extracted" : "0115928104",
+      "ground_truth" : "+39 011 5928104",
+      "normalized_ground_truth" : "0115928104",
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Centro Congressi Metropolitano Torino S.r.l.",
+      "normalized_extracted" : "Centro Congressi Metropolitano Torino S.r.l.",
+      "ground_truth" : "Centro Congressi Metropolitano Torino S.r.l.",
+      "normalized_ground_truth" : "Centro Congressi Metropolitano Torino S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Conferma prenotazione Sala Cavour per seminario finanza etica",
+      "normalized_extracted" : "Conferma prenotazione Sala Cavour per seminario finanza etica",
+      "ground_truth" : "Conferma prenotazione Sala Cavour per seminario finanza etica",
+      "normalized_ground_truth" : "Conferma prenotazione Sala Cavour per seminario finanza etica",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Torino",
+      "normalized_extracted" : "Torino",
+      "ground_truth" : "Torino",
+      "normalized_ground_truth" : "Torino",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 45,
+      "normalized_extracted" : 45.0,
+      "ground_truth" : 45,
+      "normalized_ground_truth" : 45.0,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 800,
+      "normalized_extracted" : 800.0,
+      "ground_truth" : 800.0,
+      "normalized_ground_truth" : 800.0,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "18/04/2026",
+      "normalized_extracted" : "2026-04-18",
+      "ground_truth" : "18/04/2026",
+      "normalized_ground_truth" : "2026-04-18",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"mittente\":\"Alberto Sala\",\"email\":\"alberto.sala@centro-congressi-to.it\",\"telefono\":\"+39 011 5928104\",\"azienda\":\"Centro Congressi Metropolitano Torino S.r.l.\",\"oggetto\":\"Conferma prenotazione Sala Cavour per seminario finanza etica\",\"citta\":\"Torino\",\"numeroPartecipanti\":45,\"budgetEuro\":800,\"dataEvento\":\"18/04/2026\",\"destinatario\":\"Claudia Frammartino\",\"ruoloDestinatario\":\"H.R.\",\"motivoInstradamento\":\"Candidature lavorativa o invio curriculum\"}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 9215,
+    "metrics" : {
+      "totalDurationMs" : 8644,
+      "totalPromptTokens" : 2136,
+      "totalCompletionTokens" : 194,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5482,
+        "promptTokens" : 670,
+        "completionTokens" : 144,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 3158,
+        "promptTokens" : 1466,
+        "completionTokens" : 50,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 9219
+}

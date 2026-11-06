@@ -1,0 +1,141 @@
+{
+  "id" : "HO_ADV_04",
+  "type" : "ANAGRAFICA",
+  "template" : null,
+  "split" : "heldout_adversarial",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 10,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PASSAPORTO",
+      "normalized_extracted" : "PASSAPORTO",
+      "ground_truth" : "PASSAPORTO",
+      "normalized_ground_truth" : "PASSAPORTO",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Verdi Martina",
+      "normalized_extracted" : "Verdi Martina",
+      "ground_truth" : "Martina",
+      "normalized_ground_truth" : "Martina",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Verdi",
+      "normalized_extracted" : "Verdi",
+      "ground_truth" : "Verdi",
+      "normalized_ground_truth" : "Verdi",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "VRDMTN91P52D612K",
+      "normalized_extracted" : "VRDMTN91P52D612K",
+      "ground_truth" : "VRDMTN91P52D612K",
+      "normalized_ground_truth" : "VRDMTN91P52D612K",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "1991-09-12",
+      "normalized_extracted" : "1991-09-12",
+      "ground_truth" : "12/09/1991",
+      "normalized_ground_truth" : "1991-09-12",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Firenze (FI)",
+      "normalized_extracted" : "Firenze (FI)",
+      "ground_truth" : "Firenze (FI)",
+      "normalized_ground_truth" : "Firenze (FI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "F",
+      "normalized_extracted" : "F",
+      "ground_truth" : "F",
+      "normalized_ground_truth" : "F",
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "08BB49281",
+      "normalized_extracted" : "08BB49281",
+      "ground_truth" : "08BB49281",
+      "normalized_ground_truth" : "08BB49281",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2019-06-18",
+      "normalized_extracted" : "2019-06-18",
+      "ground_truth" : "18/06/2019",
+      "normalized_ground_truth" : "2019-06-18",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "2029-06-18",
+      "normalized_extracted" : "2029-06-18",
+      "ground_truth" : "18/06/2029",
+      "normalized_ground_truth" : "2029-06-18",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Questura di Firenze",
+      "normalized_extracted" : "Questura di Firenze",
+      "ground_truth" : "Questura di Firenze",
+      "normalized_ground_truth" : "Questura di Firenze",
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "nome",
+    "key_present" : true,
+    "extracted" : "Verdi Martina",
+    "ground_truth" : "Martina",
+    "normalized_extracted" : "Verdi Martina",
+    "normalized_ground_truth" : "Martina",
+    "field_class" : "VALORE_ERRATO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Verdi Martina\", \"cognome\": \"Verdi\", \"codiceFiscale\": \"VRDMTN91P52D612K\", \"dataNascita\": \"1991-09-12\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": \"F\", \"numeroDocumento\": \"08BB49281\", \"dataRilascio\": \"2019-06-18\", \"dataScadenza\": \"2029-06-18\", \"enteRilascio\": \"Questura di Firenze\" },\"altro\": null}",
+    "result" : "{\"tipoDocumento\": \"ANAGRAFICA\", \"fattura\": null, \"email\": null, \"anagrafica\": {\"tipoDocumento\": \"PASSAPORTO\", \"nome\": \"Verdi Martina\", \"cognome\": \"Verdi\", \"codiceFiscale\": \"VRDMTN91P52D612K\", \"dataNascita\": \"1991-09-12\", \"luogoNascita\": \"Firenze (FI)\", \"sesso\": \"F\", \"numeroDocumento\": \"08BB49281\", \"dataRilascio\": \"2019-06-18\", \"dataScadenza\": \"2029-06-18\", \"enteRilascio\": \"Questura di Firenze\" },\"altro\": null}",
+    "metrics" : {
+      "clientLatencyMs" : 7160,
+      "totalDurationMs" : 7158,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 6855,
+      "promptEvalCount" : 428,
+      "evalCount" : 191,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 7160
+}

@@ -1,0 +1,139 @@
+{
+  "id" : "EML_05",
+  "type" : "EMAIL",
+  "template" : "EML_T2_PREVENTIVO_SERVIZIO",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2b",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore diverso su campo non-null (C2b)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 9,
+  "correct_fields" : 6,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "mittente" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Marco Neri <m.neri@innovasol.it>",
+      "normalized_extracted" : "Marco Neri <m.neri@innovasol.it>",
+      "ground_truth" : "Marco Neri",
+      "normalized_ground_truth" : "Marco Neri",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "email" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "commerciale@eventi.it",
+      "normalized_extracted" : "commerciale@eventi.it",
+      "ground_truth" : "m.neri@innovasol.it",
+      "normalized_ground_truth" : "m.neri@innovasol.it",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Innovasol S.r.l.",
+      "normalized_extracted" : "Innovasol S.r.l.",
+      "ground_truth" : "Innovasol S.r.l.",
+      "normalized_ground_truth" : "Innovasol S.r.l.",
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Workshop formativo intelligenza artificiale",
+      "normalized_extracted" : "Workshop formativo intelligenza artificiale",
+      "ground_truth" : "Workshop formativo intelligenza artificiale",
+      "normalized_ground_truth" : "Workshop formativo intelligenza artificiale",
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "15/10/2026",
+      "normalized_extracted" : "2026-10-15",
+      "ground_truth" : "15/10/2026",
+      "normalized_ground_truth" : "2026-10-15",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : 25,
+      "normalized_ground_truth" : 25,
+      "field_class" : "NULL_SU_VALORE_PRESENTE"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3500,
+      "normalized_extracted" : 3500.0,
+      "ground_truth" : 3500.0,
+      "normalized_ground_truth" : 3500.0,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "mittente",
+    "key_present" : true,
+    "extracted" : "Marco Neri <m.neri@innovasol.it>",
+    "ground_truth" : "Marco Neri",
+    "normalized_extracted" : "Marco Neri <m.neri@innovasol.it>",
+    "normalized_ground_truth" : "Marco Neri",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "email",
+    "key_present" : true,
+    "extracted" : "commerciale@eventi.it",
+    "ground_truth" : "m.neri@innovasol.it",
+    "normalized_extracted" : "commerciale@eventi.it",
+    "normalized_ground_truth" : "m.neri@innovasol.it",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "numeroPartecipanti",
+    "key_present" : true,
+    "extracted" : null,
+    "ground_truth" : 25,
+    "normalized_extracted" : null,
+    "normalized_ground_truth" : 25,
+    "field_class" : "NULL_SU_VALORE_PRESENTE"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Marco Neri <m.neri@innovasol.it>\",\n    \"email\": \"commerciale@eventi.it\",\n    \"telefono\": null,\n    \"azienda\": \"Innovasol S.r.l.\",\n    \"oggetto\": \"Workshop formativo intelligenza artificiale\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": 3500,\n    \"dataEvento\": \"15/10/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"EMAIL\",\n  \"fattura\": null,\n  \"email\": {\n    \"mittente\": \"Marco Neri <m.neri@innovasol.it>\",\n    \"email\": \"commerciale@eventi.it\",\n    \"telefono\": null,\n    \"azienda\": \"Innovasol S.r.l.\",\n    \"oggetto\": \"Workshop formativo intelligenza artificiale\",\n    \"citta\": null,\n    \"numeroPartecipanti\": null,\n    \"budgetEuro\": 3500,\n    \"dataEvento\": \"15/10/2026\"\n  },\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 26726,
+      "totalDurationMs" : 26721,
+      "loadDurationMs" : 1,
+      "evalDurationMs" : 26130,
+      "promptEvalCount" : 426,
+      "evalCount" : 167,
+      "contextExceeded" : false
+    },
+    "classified_type" : "EMAIL"
+  },
+  "client_latency_ms" : 26726
+}

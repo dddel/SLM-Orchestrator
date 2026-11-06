@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "categoriaRilevata": {
+      "type": "string",
+      "description": "Breve sintesi o categoria ipotizzata per il contenuto non standard"
+    },
+    "argomentoPrincipale": {
+      "type": "string",
+      "description": "Soggetto o tema principale trattato nel testo"
+    },
+    "motivoEsclusione": {
+      "type": "string",
+      "description": "Spiegazione sintetica del perché non è qualificabile come EMAIL, FATTURA o ANAGRAFICA"
+    },
+    "entitaRilevate": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Eventuali nomi, date o riferimenti chiave individuati nel testo"
+    }
+  },
+  "required": ["categoriaRilevata", "argomentoPrincipale"]
+}

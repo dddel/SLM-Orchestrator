@@ -1,0 +1,52 @@
+.result-panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  animation: entranceFadeSlide var(--duration-smooth) var(--ease-emphasized) forwards;
+}
+
+.result-sections-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.error-notice-card {
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-error-bg);
+  border: var(--border-thin) solid var(--color-error-border);
+  color: var(--color-error-text);
+  border-radius: var(--radius-secondary);
+}
+
+.error-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.error-badge {
+  font-size: var(--type-label-sm-size);
+  font-weight: var(--weight-medium);
+  padding: 2px var(--space-2-5);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-error);
+  color: var(--color-on-error);
+}
+
+.error-text {
+  font-size: var(--type-body-size);
+  color: var(--color-error-text);
+}
+
+@keyframes entranceFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

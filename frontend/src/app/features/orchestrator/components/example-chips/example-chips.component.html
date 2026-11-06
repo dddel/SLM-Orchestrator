@@ -1,0 +1,38 @@
+<div class="chips-container" role="region" aria-label="Esempi di documenti predefiniti">
+  <div class="chips-header">
+    <span class="chips-label">Esempi rapidi</span>
+    <div class="chips-legend" aria-label="Legenda stato atteso">
+      <span class="legend-item" title="Casi con tutte le guardie superate">
+        <span class="status-dot dot-ok" aria-hidden="true"></span>
+        <span class="legend-text">Valido</span>
+      </span>
+      <span class="legend-item" title="Casi con anomalia rilevata dalle guardie deterministiche">
+        <span class="status-dot dot-warning" aria-hidden="true"></span>
+        <span class="legend-text">Anomalia guardia</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="chips-track">
+    @for (preset of presets(); track preset.id) {
+      <button
+        type="button"
+        class="chip-item"
+        [class.active]="activePresetId() === preset.id"
+        [disabled]="disabled()"
+        [attr.aria-pressed]="activePresetId() === preset.id"
+        (click)="selectPreset.emit(preset)"
+        [title]="preset.title + ' — Atteso: ' + (preset.expected.status === 'OK' ? 'Valido' : 'Anomalia Luhn/Guardia')"
+      >
+        <app-icon [name]="getPresetIcon(preset)" [size]="13" customClass="chip-type-icon"></app-icon>
+        <span class="chip-text">{{ getShortLabel(preset) }}</span>
+        <span
+          class="status-dot"
+          [class.dot-ok]="preset.expected.status === 'OK'"
+          [class.dot-warning]="preset.expected.status === 'INDETERMINATE'"
+          aria-hidden="true"
+        ></span>
+      </button>
+    }
+  </div>
+</div>

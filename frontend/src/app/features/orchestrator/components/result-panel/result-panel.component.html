@@ -1,0 +1,36 @@
+<div class="result-panel-container">
+  @if (errorMessage()) {
+    <div class="error-notice-card" role="alert">
+      <div class="error-header">
+        <span class="error-badge">Errore Richiesta</span>
+        <span class="error-text">{{ errorMessage() }}</span>
+      </div>
+    </div>
+  } @else if (response()) {
+    <!-- 1. Outcome Banner: Stato, Tipo doc, Confidenza, Latenza -->
+    <app-result-banner
+      [status]="response()!.status"
+      [label]="response()!.label"
+      [router]="response()!.router"
+      [latencyMs]="response()!.latencyMs"
+    ></app-result-banner>
+
+    <!-- 2. Griglia Campi Estratti e Controlli Guardie -->
+    <div class="result-sections-stack">
+      <!-- Sezione Campi Strutturati Ordinati -->
+      <app-extracted-fields
+        [jsonContent]="displayJson()"
+        [hasViolations]="hasViolations()"
+      ></app-extracted-fields>
+
+      <!-- Sezione Guardie Simboliche -->
+      <app-guard-list [guards]="guards()"></app-guard-list>
+
+      <!-- Sezione JSON Grezzo Comprimibile con pulsante Copia -->
+      <app-json-viewer
+        [jsonContent]="displayJson()"
+        [title]="response()!.status === 'INDETERMINATE' ? 'JSON Rifiutato dalle Guardie (Grezzo)' : 'JSON Estratto (Validato)'"
+      ></app-json-viewer>
+    </div>
+  }
+</div>

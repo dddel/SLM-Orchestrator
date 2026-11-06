@@ -1,0 +1,121 @@
+{
+  "id" : "FAT_17",
+  "type" : "FATTURA",
+  "template" : "FAT_T5_AVVISO_PARCELLA_PROFESSIONALE",
+  "split" : "dev_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PAR-2026-17",
+      "normalized_extracted" : "PAR-2026-17",
+      "ground_truth" : "PAR-2026-17",
+      "normalized_ground_truth" : "PAR-2026-17",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "05/12/2026",
+      "normalized_extracted" : "2026-12-05",
+      "ground_truth" : "05/12/2026",
+      "normalized_ground_truth" : "2026-12-05",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Roberto Ferri",
+      "normalized_extracted" : "Roberto Ferri",
+      "ground_truth" : "Roberto Ferri",
+      "normalized_ground_truth" : "Roberto Ferri",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000006850",
+      "normalized_extracted" : "10000006850",
+      "ground_truth" : "10000006850",
+      "normalized_ground_truth" : "10000006850",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Impianti Solari S.p.A.",
+      "normalized_extracted" : "Impianti Solari S.p.A.",
+      "ground_truth" : "Impianti Solari S.p.A.",
+      "normalized_ground_truth" : "Impianti Solari S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 4200.0,
+      "normalized_extracted" : 4200.0,
+      "ground_truth" : 4200.0,
+      "normalized_ground_truth" : 4200.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\":\"PAR-2026-17\",\"dataFattura\":\"05/12/2026\",\"fornitore\":{\"denominazione\":\"Roberto Ferri\",\"partitaIva\":\"10000006850\"},\"cliente\":{\"denominazione\":\"Impianti Solari S.p.A.\",\"codiceFiscale\":null},\"importoTotale\":4200.0,\"iban\":null}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000006850'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6509,
+    "metrics" : {
+      "totalDurationMs" : 5918,
+      "totalPromptTokens" : 561,
+      "totalCompletionTokens" : 129,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5916,
+        "promptTokens" : 561,
+        "completionTokens" : 129,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6516
+}

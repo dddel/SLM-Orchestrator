@@ -1,0 +1,143 @@
+{
+  "id" : "ANA_14",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T4_TESSERA_SANITARIA_TEAM",
+  "split" : "dev",
+  "category" : "C1",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "OK con tutti i campi corretti rispetto alla ground truth",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 11,
+  "correct_fields" : 11,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TESSERA_SANITARIA",
+      "normalized_extracted" : "TESSERA_SANITARIA",
+      "ground_truth" : "TESSERA_SANITARIA",
+      "normalized_ground_truth" : "TESSERA_SANITARIA",
+      "field_class" : "CORRETTO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "MARTINA",
+      "normalized_extracted" : "MARTINA",
+      "ground_truth" : "Martina",
+      "normalized_ground_truth" : "Martina",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GALLO",
+      "normalized_extracted" : "GALLO",
+      "ground_truth" : "Gallo",
+      "normalized_ground_truth" : "Gallo",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "GLLMTN95T65L219K",
+      "normalized_extracted" : "GLLMTN95T65L219K",
+      "ground_truth" : "GLLMTN95T65L219K",
+      "normalized_ground_truth" : "GLLMTN95T65L219K",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/12/1995",
+      "normalized_extracted" : "1995-12-25",
+      "ground_truth" : "25/12/1995",
+      "normalized_ground_truth" : "1995-12-25",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "TORINO (TO)",
+      "normalized_extracted" : "TORINO (TO)",
+      "ground_truth" : "Torino (TO)",
+      "normalized_ground_truth" : "Torino (TO)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "80380009876543210987",
+      "normalized_extracted" : "80380009876543210987",
+      "ground_truth" : "80380009876543210987",
+      "normalized_ground_truth" : "80380009876543210987",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "25/12/2030",
+      "normalized_extracted" : "2030-12-25",
+      "ground_truth" : "25/12/2030",
+      "normalized_ground_truth" : "2030-12-25",
+      "field_class" : "CORRETTO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "OK",
+    "label" : "ANAGRAFICA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : "{\"tipoDocumento\": \"TESSERA_SANITARIA\", \"nome\": \"MARTINA\", \"cognome\": \"GALLO\", \"codiceFiscale\": \"GLLMTN95T65L219K\", \"dataNascita\": \"25/12/1995\", \"luogoNascita\": \"TORINO (TO)\", \"sesso\": null, \"numeroDocumento\": \"80380009876543210987\", \"dataRilascio\": null, \"dataScadenza\": \"25/12/2030\", \"enteRilascio\": null}",
+    "unvalidatedResult" : null,
+    "errors" : [ ],
+    "actionErrors" : [ ],
+    "latencyMs" : 6294,
+    "metrics" : {
+      "totalDurationMs" : 5753,
+      "totalPromptTokens" : 733,
+      "totalCompletionTokens" : 154,
+      "steps" : [ {
+        "stepId" : "anagrafica_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 5751,
+        "promptTokens" : 733,
+        "completionTokens" : 154,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 6298
+}

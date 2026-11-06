@@ -1,0 +1,159 @@
+{
+  "id" : "HO_EML_09",
+  "type" : "EMAIL",
+  "template" : "EML_SOLLECITO_CONSEGNA",
+  "split" : "heldout",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 9,
+  "correct_fields" : 9,
+  "n_inference_steps" : 4,
+  "field_matches" : {
+    "mittente" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Gianluca Riva",
+      "normalized_extracted" : "Gianluca Riva",
+      "ground_truth" : "Gianluca Riva",
+      "normalized_ground_truth" : "Gianluca Riva",
+      "field_class" : "CORRETTO"
+    },
+    "email" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_extracted" : "gianluca.riva@studio-associato-riva.it",
+      "ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "normalized_ground_truth" : "gianluca.riva@studio-associato-riva.it",
+      "field_class" : "CORRETTO"
+    },
+    "telefono" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "azienda" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "oggetto" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_extracted" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "normalized_ground_truth" : "Sollecito consegna ordine cancelleria ORD-2026-9921",
+      "field_class" : "CORRETTO"
+    },
+    "citta" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Padova",
+      "normalized_extracted" : "Padova",
+      "ground_truth" : "Padova",
+      "normalized_ground_truth" : "Padova",
+      "field_class" : "CORRETTO"
+    },
+    "numeroPartecipanti" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "budgetEuro" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "dataEvento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "EMAIL",
+    "router" : "Ollama Local (qwen2.5:7b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"mittente\":\"Gianluca Riva\",\"email\":\"gianluca.riva@studio-associato-riva.it\",\"telefono\":null,\"azienda\":null,\"oggetto\":\"Sollecito consegna ordine cancelleria ORD-2026-9921\",\"citta\":\"Padova\",\"numeroPartecipanti\":null,\"budgetEuro\":null,\"dataEvento\":null,\"destinatario\":\"ordini@forniture-ufficio-online.com\",\"ruoloDestinatario\":\"Assistenza Clienti\",\"motivoInstradamento\":\"Richiesta aggiornamento sul tracking della consegna di un ordine\"}",
+    "errors" : [ {
+      "path" : "destinatario",
+      "validatorName" : "CatalogMembershipGuard",
+      "code" : "VALUE_NOT_IN_CATALOG",
+      "message" : "Il valore 'ordini@forniture-ufficio-online.com' per il campo 'destinatario' non appartiene al catalogo autorizzato."
+    }, {
+      "path" : "ruoloDestinatario",
+      "validatorName" : "CatalogMembershipGuard",
+      "code" : "VALUE_NOT_IN_CATALOG",
+      "message" : "Il valore 'Assistenza Clienti' per il campo 'ruoloDestinatario' non appartiene al catalogo autorizzato."
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 40817,
+    "metrics" : {
+      "totalDurationMs" : 39856,
+      "totalPromptTokens" : 5032,
+      "totalCompletionTokens" : 297,
+      "steps" : [ {
+        "stepId" : "email_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 12205,
+        "promptTokens" : 605,
+        "completionTokens" : 109,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9040,
+        "promptTokens" : 1366,
+        "completionTokens" : 61,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9262,
+        "promptTokens" : 1526,
+        "completionTokens" : 64,
+        "doneReason" : "stop"
+      }, {
+        "stepId" : "recipient_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:7b-instruct-q8_0",
+        "latencyMs" : 9339,
+        "promptTokens" : 1535,
+        "completionTokens" : 63,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 40823
+}

@@ -1,0 +1,138 @@
+{
+  "id" : "FAT_10",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "test",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "102/2026",
+      "normalized_extracted" : "102/2026",
+      "ground_truth" : "102/2026",
+      "normalized_ground_truth" : "102/2026",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Elena Neri Consulenze",
+      "normalized_extracted" : "Elena Neri Consulenze",
+      "ground_truth" : "Elena Neri Consulenze",
+      "normalized_ground_truth" : "Elena Neri Consulenze",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000007221",
+      "normalized_extracted" : "10000007221",
+      "ground_truth" : "10000007221",
+      "normalized_ground_truth" : "10000007221",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Astra Holding S.p.A.",
+      "normalized_extracted" : "Astra Holding S.p.A.",
+      "ground_truth" : "Astra Holding S.p.A.",
+      "normalized_ground_truth" : "Astra Holding S.p.A.",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 3500,
+      "normalized_extracted" : 3500.0,
+      "ground_truth" : 3500.0,
+      "normalized_ground_truth" : 3500.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "classifiedType" : "FATTURA",
+    "classificationMatch" : true,
+    "guardrailsLatencyMs" : 0,
+    "errors" : [ "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000007221')." ],
+    "processedOutput" : {
+      "empty" : false,
+      "object" : true,
+      "nodeType" : "OBJECT",
+      "array" : false,
+      "null" : false,
+      "missingNode" : false,
+      "valueNode" : false,
+      "container" : true,
+      "embeddedValue" : false,
+      "float" : false,
+      "pojo" : false,
+      "number" : false,
+      "integralNumber" : false,
+      "floatingPointNumber" : false,
+      "short" : false,
+      "int" : false,
+      "long" : false,
+      "double" : false,
+      "bigDecimal" : false,
+      "bigInteger" : false,
+      "textual" : false,
+      "boolean" : false,
+      "binary" : false,
+      "string" : false
+    },
+    "originalRawResponse" : {
+      "raw_output" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"102/2026\",\n    \"dataFattura\": null,\n    \"fornitore\": {\n      \"denominazione\": \"Dott.ssa Elena Neri Consulenze\",\n      \"partitaIva\": \"10000007221\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Spett.le Astra Holding S.p.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 3500,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "result" : "{\n  \"tipoDocumento\": \"FATTURA\",\n  \"fattura\": {\n    \"numeroFattura\": \"102/2026\",\n    \"dataFattura\": null,\n    \"fornitore\": {\n      \"denominazione\": \"Dott.ssa Elena Neri Consulenze\",\n      \"partitaIva\": \"10000007221\"\n    },\n    \"cliente\": {\n      \"denominazione\": \"Spett.le Astra Holding S.p.A.\",\n      \"codiceFiscale\": null\n    },\n    \"importoTotale\": 3500,\n    \"iban\": null\n  },\n  \"email\": null,\n  \"anagrafica\": null,\n  \"altro\": null\n}",
+      "metrics" : {
+        "clientLatencyMs" : 24502,
+        "totalDurationMs" : 24499,
+        "loadDurationMs" : 0,
+        "evalDurationMs" : 23843,
+        "promptEvalCount" : 379,
+        "evalCount" : 170,
+        "contextExceeded" : false
+      },
+      "classified_type" : "FATTURA"
+    }
+  }
+}

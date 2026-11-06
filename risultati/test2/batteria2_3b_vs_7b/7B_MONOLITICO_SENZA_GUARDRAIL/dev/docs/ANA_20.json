@@ -1,0 +1,149 @@
+{
+  "id" : "ANA_20",
+  "type" : "ANAGRAFICA",
+  "template" : "ANA_T5_DOCUMENTO_OCR_NOISY",
+  "split" : "dev",
+  "category" : "C2",
+  "c2_subcode" : "C2c",
+  "c5_subcode" : null,
+  "category_description" : "OK con almeno un valore allucinato su campo atteso null (C2c)",
+  "status" : "OK",
+  "http_status" : 200,
+  "all_fields_match" : false,
+  "total_fields" : 11,
+  "correct_fields" : 9,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "tipoDocumento" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "CARTA_IDENTITA",
+      "normalized_extracted" : "CARTA_IDENTITA",
+      "ground_truth" : "NON_SPECIFICATO",
+      "normalized_ground_truth" : "NON_SPECIFICATO",
+      "field_class" : "VALORE_ERRATO"
+    },
+    "nome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SILVIA",
+      "normalized_extracted" : "SILVIA",
+      "ground_truth" : "Silvia",
+      "normalized_ground_truth" : "Silvia",
+      "field_class" : "CORRETTO"
+    },
+    "cognome" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SANTORO",
+      "normalized_extracted" : "SANTORO",
+      "ground_truth" : "Santoro",
+      "normalized_ground_truth" : "Santoro",
+      "field_class" : "CORRETTO"
+    },
+    "codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "SNTLSV91E60G702T",
+      "normalized_extracted" : "SNTLSV91E60G702T",
+      "ground_truth" : "SNTLSV91E60G702T",
+      "normalized_ground_truth" : "SNTLSV91E60G702T",
+      "field_class" : "CORRETTO"
+    },
+    "dataNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "20/05/1991",
+      "normalized_extracted" : "1991-05-20",
+      "ground_truth" : "20/05/1991",
+      "normalized_ground_truth" : "1991-05-20",
+      "field_class" : "CORRETTO"
+    },
+    "luogoNascita" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "PISA (PI)",
+      "normalized_extracted" : "PISA (PI)",
+      "ground_truth" : "Pisa (PI)",
+      "normalized_ground_truth" : "Pisa (PI)",
+      "field_class" : "CORRETTO"
+    },
+    "sesso" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "numeroDocumento" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "CERT-889900",
+      "normalized_extracted" : "CERT-889900",
+      "ground_truth" : "CERT-889900",
+      "normalized_ground_truth" : "CERT-889900",
+      "field_class" : "CORRETTO"
+    },
+    "dataRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10/01/2020",
+      "normalized_extracted" : "2020-01-10",
+      "ground_truth" : "10/01/2020",
+      "normalized_ground_truth" : "2020-01-10",
+      "field_class" : "CORRETTO"
+    },
+    "dataScadenza" : {
+      "match" : false,
+      "key_present" : true,
+      "extracted" : "Non prevista (tempo indeterminato)",
+      "normalized_extracted" : "Non prevista (tempo indeterminato)",
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "VALORE_SU_NULL_ATTESO"
+    },
+    "enteRilascio" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ {
+    "field" : "tipoDocumento",
+    "key_present" : true,
+    "extracted" : "CARTA_IDENTITA",
+    "ground_truth" : "NON_SPECIFICATO",
+    "normalized_extracted" : "CARTA_IDENTITA",
+    "normalized_ground_truth" : "NON_SPECIFICATO",
+    "field_class" : "VALORE_ERRATO"
+  }, {
+    "field" : "dataScadenza",
+    "key_present" : true,
+    "extracted" : "Non prevista (tempo indeterminato)",
+    "ground_truth" : null,
+    "normalized_extracted" : "Non prevista (tempo indeterminato)",
+    "normalized_ground_truth" : null,
+    "field_class" : "VALORE_SU_NULL_ATTESO"
+  } ],
+  "raw_response" : {
+    "raw_output" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"SILVIA\",\n    \"cognome\": \"SANTORO\",\n    \"codiceFiscale\": \"SNTLSV91E60G702T\",\n    \"dataNascita\": \"20/05/1991\",\n    \"luogoNascita\": \"PISA (PI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"CERT-889900\",\n    \"dataRilascio\": \"10/01/2020\",\n    \"dataScadenza\": \"Non prevista (tempo indeterminato)\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "result" : "{\n  \"tipoDocumento\": \"ANAGRAFICA\",\n  \"fattura\": null,\n  \"email\": null,\n  \"anagrafica\": {\n    \"tipoDocumento\": \"CARTA_IDENTITA\",\n    \"nome\": \"SILVIA\",\n    \"cognome\": \"SANTORO\",\n    \"codiceFiscale\": \"SNTLSV91E60G702T\",\n    \"dataNascita\": \"20/05/1991\",\n    \"luogoNascita\": \"PISA (PI)\",\n    \"sesso\": null,\n    \"numeroDocumento\": \"CERT-889900\",\n    \"dataRilascio\": \"10/01/2020\",\n    \"dataScadenza\": \"Non prevista (tempo indeterminato)\",\n    \"enteRilascio\": null\n  },\n  \"altro\": null\n}",
+    "metrics" : {
+      "clientLatencyMs" : 31037,
+      "totalDurationMs" : 31035,
+      "loadDurationMs" : 0,
+      "evalDurationMs" : 30375,
+      "promptEvalCount" : 386,
+      "evalCount" : 214,
+      "contextExceeded" : false
+    },
+    "classified_type" : "ANAGRAFICA"
+  },
+  "client_latency_ms" : 31037
+}

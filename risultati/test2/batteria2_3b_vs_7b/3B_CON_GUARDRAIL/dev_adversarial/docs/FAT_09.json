@@ -1,0 +1,121 @@
+{
+  "id" : "FAT_09",
+  "type" : "FATTURA",
+  "template" : "FAT_T3_DISCORSIVO_NOTULA",
+  "split" : "dev_adversarial",
+  "category" : "C3",
+  "c2_subcode" : null,
+  "c5_subcode" : null,
+  "category_description" : "INDETERMINATE con estrazione uguale alla ground truth su tutti i campi",
+  "status" : "INDETERMINATE",
+  "http_status" : 200,
+  "all_fields_match" : true,
+  "total_fields" : 8,
+  "correct_fields" : 8,
+  "n_inference_steps" : 1,
+  "field_matches" : {
+    "numeroFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "NP-101",
+      "normalized_extracted" : "NP-101",
+      "ground_truth" : "NP-101",
+      "normalized_ground_truth" : "NP-101",
+      "field_class" : "CORRETTO"
+    },
+    "dataFattura" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "03/08/2026",
+      "normalized_extracted" : "2026-08-03",
+      "ground_truth" : "03/08/2026",
+      "normalized_ground_truth" : "2026-08-03",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Studio Legale Giuris",
+      "normalized_extracted" : "Studio Legale Giuris",
+      "ground_truth" : "Studio Legale Giuris",
+      "normalized_ground_truth" : "Studio Legale Giuris",
+      "field_class" : "CORRETTO"
+    },
+    "fornitore.partitaIva" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "10000006850",
+      "normalized_extracted" : "10000006850",
+      "ground_truth" : "10000006850",
+      "normalized_ground_truth" : "10000006850",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.denominazione" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : "Mario Bianchi",
+      "normalized_extracted" : "Mario Bianchi",
+      "ground_truth" : "Mario Bianchi",
+      "normalized_ground_truth" : "Mario Bianchi",
+      "field_class" : "CORRETTO"
+    },
+    "cliente.codiceFiscale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    },
+    "importoTotale" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : 1500.0,
+      "normalized_extracted" : 1500.0,
+      "ground_truth" : 1500.0,
+      "normalized_ground_truth" : 1500.0,
+      "field_class" : "CORRETTO"
+    },
+    "iban" : {
+      "match" : true,
+      "key_present" : true,
+      "extracted" : null,
+      "normalized_extracted" : null,
+      "ground_truth" : null,
+      "normalized_ground_truth" : null,
+      "field_class" : "CORRETTO"
+    }
+  },
+  "mismatches" : [ ],
+  "raw_response" : {
+    "status" : "INDETERMINATE",
+    "label" : "FATTURA",
+    "router" : "Ollama Local (qwen2.5:3b-instruct-q8_0)",
+    "result" : null,
+    "unvalidatedResult" : "{\"numeroFattura\": \"NP-101\", \"dataFattura\": \"03/08/2026\", \"fornitore\": {\"denominazione\": \"Studio Legale Giuris\", \"partitaIva\": \"10000006850\"}, \"cliente\": {\"denominazione\": \"Mario Bianchi\", \"codiceFiscale\": null}, \"importoTotale\": 1500.0, \"iban\": null}",
+    "errors" : [ {
+      "path" : "fornitore.partitaIva",
+      "validatorName" : "partita_iva",
+      "code" : "SOURCE_CHECKSUM_INVALID",
+      "message" : "Il codice di controllo della partita IVA non è valido (checksum Luhn errato per '10000006850'). [Dato invalido presente letteralmente nel testo sorgente: retry omesso]"
+    } ],
+    "actionErrors" : [ ],
+    "latencyMs" : 4612,
+    "metrics" : {
+      "totalDurationMs" : 4183,
+      "totalPromptTokens" : 543,
+      "totalCompletionTokens" : 110,
+      "steps" : [ {
+        "stepId" : "fattura_inference",
+        "type" : "MODEL_INFERENCE",
+        "model" : "qwen2.5:3b-instruct-q8_0",
+        "latencyMs" : 4182,
+        "promptTokens" : 543,
+        "completionTokens" : 110,
+        "doneReason" : "stop"
+      } ]
+    }
+  },
+  "client_latency_ms" : 4616
+}

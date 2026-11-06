@@ -1,0 +1,278 @@
+# Relazione Tecnica Completa — Benchmark e Validazione Empirica dei Modelli Decisionali
+
+**Data**: 30 Ottobre 2026  
+**Autore**: Antigravity Assistant & Engineering Team  
+**Progetto**: SLM Orchestrator (Spring Boot 4 / Java 21 / Ollama)  
+**Cartella Dedicata**: `eval_decision_benchmark/`  
+**Hash SHA-256 Dataset Congelato**: `7192e7752015c914e72756fe02c0209c5a1a184545cb676b79f51d213995c754`
+
+---
+
+## Indice
+1. [Obiettivo e Contesto dell'Indagine](#1-obiettivo-e-contesto-dellindagine)
+2. [Fase A — Scoperta e Dimostrazione dell'Artefatto di Misura](#2-fase-a--scoperta-e-dimostrazione-dellartefatto-di-misura)
+3. [Fasi A2, A2-bis e A2-ter — Correzioni Architetturali nel Codice di Produzione](#3-fasi-a2-a2-bis-e-a2-ter--correzioni-architetturali-nel-codice-di-produzione)
+4. [Fase B — Costruzione e Congelamento del Dataset Difficile (Condizione B0)](#4-fase-b--costruzione-e-congelamento-del-dataset-difficile-condizione-b0)
+5. [Risultati Sperimentali Dettagliati della Fase B (4.208 Prove Reali)](#5-risultati-sperimentali-dettagliati-della-fase-b-4208-prove-reali)
+6. [Analisi Critica dei Risultati Empirici](#6-analisi-critica-dei-risultati-empirici)
+7. [Conclusioni e Linee Guida Architetturali per la Produzione](#7-conclusioni-e-linee-guida-architetturali-per-la-produzione)
+8. [Mappa dei File e Istruzioni di Riproducibilità](#8-mappa-dei-file-e-istruzioni-di-riproducibilit%C3%A0)
+
+---
+
+## 1. Obiettivo e Contesto dell'Indagine
+
+Nel sistema **SLM Orchestrator**, l'architettura ibrida neuro-simbolica assegna compiti diversi a due famiglie di modelli:
+- **Modello Generativo (Qwen 2.5 3B/7B)**: estrazione strutturata di campi testo aperti in formato JSON Schema.
+- **Modello Decisionale Discreto (APUS Reflex 4B)**: classificazione categorica a singolo token (`num_predict: 1`, `temperature: 0.0`) impiegato a monte come router globale ([`ApusReflexRouter`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/router/ApusReflexRouter.java)) e all'interno delle pipeline per la selezione deterministica da catalogo ([`DecisionPipelineStep`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/DecisionPipelineStep.java)).
+
+Una prima revisione empirica aveva evidenziato anomalie critiche:
+1. Una presunta accuratezza del 79,7% (153/192 prove) su 8 campioni semplici;
+2. Un apparente forte bias posizionale verso la prima opzione presentata (`A` al 100%, posizioni intermedie `B` e `C` al 62–68%);
+3. Una frequente emissione della stringa `"The"` anziché della singola lettera `A`..`D`.
+
+L'obiettivo di questa indagine è stato verificare se tali anomalie derivassero da un effettivo limite cognitivo del modello o da un **artefatto di misura**, correggere il codice di produzione e sottoporre il sistema a un benchmark rigoroso e non saturante su dataset complesso.
+
+---
+
+## 2. Fase A — Scoperta e Dimostrazione dell'Artefatto di Misura
+
+### 2.1. L'Ipotesi del Troncamento del Ragionamento
+APUS Reflex 4B è un modello derivato con capacità di *reasoning*. Con l'endpoint standard `/api/chat` di Ollama:
+- Il runtime apre una sezione interna di pensiero (`<think> ... </think>`).
+- Quando si impone `num_predict: 1`, il modello non genera la risposta finale, bensì il **primo token della catena di pensiero**, che tipicamente inizia con `"The"` (es. *"The user wants to classify..."*).
+- Il token `"The"` finiva nel campo `message.thinking`, mentre `message.content` risultava vuoto. Di conseguenza, il client estraeva `"The"` o stringa vuota, interpretandola erroneamente come scelta fallita o attivando il fallback euristico.
+
+### 2.2. Verifica Sperimentale (Step 1 e Step 2)
+Nello Step 1 (72 chiamate esplorative) e nello Step 2 (768 chiamate sistematiche registrate in `results/phase_a_step2_raw.jsonl`), sono state messe a confronto 4 configurazioni candidate su tutte le 24 permutazioni di 8 campioni:
+1. `chat_default_np1`: `/api/chat` default, `num_predict: 1`
+2. `generate_np1`: `/api/generate`, `num_predict: 1`
+3. `chat_think_false_np1`: `/api/chat` con `"think": false`, `num_predict: 1`
+4. `chat_think_false_np32`: `/api/chat` con `"think": false`, `num_predict: 32`
+
+### 2.3. Risultati della Fase A
+| Configurazione | Token Validi (A..D) | Token Spuri ("The") | Accuratezza sui Token Validi | Accuratezza Globale | Invarianza Permutazioni |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `chat_default_np1` | 147 / 192 (76,6%) | 45 / 192 (23,4%) | **100,0%** (147/147) | 76,6% | 4 / 8 campioni |
+| `generate_np1` | 147 / 192 (76,6%) | 45 / 192 (23,4%) | **100,0%** (147/147) | 76,6% | 4 / 8 campioni |
+| **`chat_think_false_np1`** | **192 / 192 (100,0%)** | **0 / 192 (0,0%)** | **100,0%** (192/192) | **100,0% (192/192)** | **8 / 8 campioni (100%)** |
+| `chat_think_false_np32` | 192 / 192 (100,0%) | 0 / 192 (0,0%) | **100,0%** (192/192) | **100,0% (192/192)** | **8 / 8 campioni (100%)** |
+
+**Conclusione della Fase A**: Il bias posizionale e gli errori storici erano un **puro artefatto di misura**. Disattivando esplicitamente la modalità di pensiero discorsivo (`"think": false`), APUS Reflex 4B risponde con la singola lettera `A`..`D` direttamente in `message.content`, azzerando i token non ammessi ed eliminando ogni apparente positional bias sui campioni base (25,0% esatto per ciascuna posizione ordinale).
+
+---
+
+## 3. Fasi A2, A2-bis e A2-ter — Correzioni Architetturali nel Codice di Produzione
+
+Le correzioni sono state integrate nella codebase Java con suite di test offline interamente verde (279 test passati):
+
+1. **Supporto Dinamico a `think: false` (Commits `2b990be`, `d804a49`, `a37ca84`)**:
+   - Parametro `Boolean think` aggiunto a [`ModelRequest`](src/main/java/com/tirocinioaltrama/slmorchestrator/core/model/ModelRequest.java) e [`OllamaRuntimeOptions`](src/main/java/com/tirocinioaltrama/slmorchestrator/config/ollama/OllamaRuntimeOptions.java).
+   - In [`OllamaModelClient`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/model/OllamaModelClient.java) e [`ApusReflexRouter`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/router/ApusReflexRouter.java), la presenza della capability `thinking` viene verificata dinamicamente interrogando `/api/show` di Ollama, **senza liste hardcoded di modelli**.
+   - **Politica di Cache Resiliente**: Solo le risposte riuscite con capabilities vengono memorizzate in cache; eventuali timeout o fallimenti di `/api/show` all'avvio non vengono memorizzati, consentendo il recupero trasparente della modalità `think: false` alle chiamate successive.
+2. **Retry con Permutazione Ciclica Alternativa nello Step di Pipeline**:
+   - In [`DecisionPipelineStep`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/DecisionPipelineStep.java), ripetere la stessa richiesta identica a `temperature: 0.0` è deterministico e spreca solo tempo. Se il modello restituisce un token non ammesso, lo step effettua un retry **ruotando ciclicamente i candidati** ($shift = 1$):
+     $$\text{Candidato}_i \rightarrow \text{Lettera}_i, \quad \text{IndiceOriginale} = (\text{IndiceRetry} + 1) \pmod N$$
+   - Se anche il retry non produce un'opzione valida, lo step non tira a indovinare ma restituisce `ValidationErrorCode.INDETERMINATE`, preservando il testo originale per la revisione operatore.
+3. **Mappatura Esplicita di `INDETERMINATE`**:
+   - Tracciata esplicitamente in [`BasePipeline`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/pipeline/BasePipeline.java) e [`DefaultOrchestrator`](src/main/java/com/tirocinioaltrama/slmorchestrator/impl/DefaultOrchestrator.java), con test unitari dedicati.
+4. **Riconciliazione dei Numeri Storici di Audit**:
+   - La discrepanza tra il vecchio 153/192 (79,7%) e il 147/192 (76,6%) derivava dalla formula finale del prompt (`(A..D)` vs `(A, B, C, or D)`), che a thinking attivo spostava 6 prove dalla lettera secca al troncamento `"The"`.
+   - Il valore **181/192 (94,3%)** rappresenta l'accuratezza del **Router comprensivo del Fallback Euristico a regole**, e non l'accuratezza del modello isolato.
+
+---
+
+## 4. Fase B — Costruzione e Congelamento del Dataset Difficile (Condizione B0)
+
+Per evitare saturazioni (tutti 100%), è stato costruito il dataset [`dataset/phase_b_dataset.json`](dataset/phase_b_dataset.json) con le seguenti caratteristiche:
+- **Numerosità**: 40 campioni per il Router (4 classi), 40 email per i 5 Ruoli aziendali, 16 campioni a contenuto Neutro.
+- **Validazione Algebrica dei Checksum (B0.a)**:
+  - Tutti i 12 Codici Fiscali verificati con l'algoritmo ministeriale (tabella caratteri pari/dispari).
+  - Tutte le 4 Partite IVA verificate con l'algoritmo di Luhn.
+  - Tutti i 4 IBAN verificati con lo standard ISO 7064 mod 97-10 (eliminato ogni IBAN placeholder `IT60X...`).
+- **Composizione Bilanciata**: 10 campioni chiari/standard, 16 campioni borderline/ibridi (es. email che citano fatture e coordinate bancarie), 4 campioni a basso segnale/brevissimi, 10 campioni lunghi e multi-argomento.
+
+### 12 Campioni Segnalati per la Revisione
+1. `R_BOR_04` (Borderline): Autocertificazione di residenza con CF valido (`MCNRRT64S27E388Q`). Primary: `ANAGRAFICA`, Admissible: `['ANAGRAFICA', 'ALTRO']`.
+2. `R_BOR_09` (Borderline): Fattura pro-forma / preventivo con clausola di non validità fiscale. Primary: `FATTURA`, Admissible: `['FATTURA', 'ALTRO']`.
+3. `R_FAT_BRV_01` (Basso Segnale): `"Ft. 120/26: 450€ + IVA 22%. Saldo bonifico."`
+4. `R_EML_BRV_01` (Basso Segnale): `"Re: ok per domani alle 15. Ti chiamo io. Ciao, L."`
+5. `R_ANA_BRV_01` (Basso Segnale): `"CF: RSSMRA85T10H501O - MARIO ROSSI, ROMA 10/12/1985"`
+6. `R_ALT_BRV_01` (Basso Segnale): `"Promemoria: sostituire toner stampante piano 2 entro venerdì."`
+7. `R_BOR_01` (Ibrido): Sollecito di pagamento via email con fattura, importo e IBAN (`IT68K0542811101000000984512`). Primary: `EMAIL`, Admissible: `['EMAIL', 'FATTURA']`.
+8. `R_BOR_02` (Ibrido): Lettera di trasmissione nota pro-forma. Primary: `EMAIL`, Admissible: `['EMAIL', 'FATTURA']`.
+9. `R_BOR_03` (Ibrido): Richiesta documenti HR con CF candidato (`BNCMRC88A12H501Q`). Primary: `EMAIL`, Admissible: `['EMAIL', 'ANAGRAFICA']`.
+10. `R_BOR_06` (Ibrido): Accordo transattivo legale a saldo e stralcio con bonifico. Primary: `ALTRO`, Admissible: `['ALTRO', 'FATTURA']`.
+11. `R_BOR_07` (Ibrido): Documento di Trasporto (DDT) merci con valore assicurativo. Primary: `ALTRO`, Admissible: `['ALTRO', 'FATTURA']`.
+12. `R_BOR_16` (Ibrido): Certificazione Unica (CU) con CF, imponibili e ritenute IRPEF. Primary: `FATTURA`, Admissible: `['FATTURA', 'ANAGRAFICA', 'ALTRO']`.
+
+---
+
+## 5. Risultati Sperimentali Dettagliati della Fase B (4.208 Prove Reali)
+
+I dati derivano dall'elaborazione dei log grezzi archiviati in [`results/phase_b_raw.jsonl`](results/phase_b_raw.jsonl) tramite lo script [`scripts/analyze_phase_b.py`](scripts/analyze_phase_b.py).
+
+### 5.1. Router su 4 Opzioni (24 Permutazioni Esaustive per Campione, 960 Invocazioni per Modello)
+| Modello / Metodo | Accuratezza Stretta (Wilson 95%) | Accuratezza Permissiva (Wilson 95%) | Campioni 100% Invarianti | Token Non Validi (con `think: false`) |
+| :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | **84,1%** (807/960) [81,6%–86,2%] | **98,3%** (944/960) [97,3%–99,0%] | **27 / 40** (67,5%) | **0 su 960 (0,0%)** |
+| **Qwen-2.5-3B** | **67,1%** (644/960) [64,0%–70,0%] | **80,2%** (770/960) [77,6%–82,6%] | **6 / 40** (15,0%) | **1 su 960 (0,1%)** |
+| *Baseline a Regole (Regex)* | 55,0% (22/40) [39,8%–69,3%] | 67,5% (27/40) [52,0%–79,9%] | Deterministica | N/A |
+| *Baseline Casuale ($1/4$)* | 25,0% | 25,0% – 50,0% | N/A | N/A |
+
+#### 5.1.1. Scorporo dell'Accuratezza per Categoria: Campioni Standard vs Borderline
+L'analisi disaggregata dimostra in modo oggettivo l'origine del tasso di errore sul Router:
+- **Campioni Standard, Lunghi e Brevi ($N=24$ campioni, 576 prove)**: campioni con segnale documentale chiaro e non ambiguo.
+- **Campioni Borderline / Ibridi ($N=16$ campioni, 384 prove)**: campioni deliberatamente costruiti con segnali misti (es. email contenenti fatture e coordinate bancarie, autocertificazioni con CF).
+
+| Modello | Sottoinsieme | Prove | Accuratezza Stretta (Wilson 95%) | Accuratezza Permissiva (Wilson 95%) | Invarianza 24/24 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | Standard+Long+Short | 576 | **100,0%** (576/576) [99,3%–100,0%] | **100,0%** (576/576) [99,3%–100,0%] | **24/24** (100,0%) |
+| **APUS-Reflex-4B** | Borderline / Ibridi | 384 | **60,2%** (231/384) [55,2%–64,9%] | **95,8%** (368/384) [93,3%–97,4%] | **3/16** (18,8%) |
+| **Qwen-2.5-3B** | Standard+Long+Short | 576 | **81,4%** (469/576) [78,0%–84,4%] | **81,4%** (469/576) [78,0%–84,4%] | **5/24** (20,8%) |
+| **Qwen-2.5-3B** | Borderline / Ibridi | 384 | **45,6%** (175/384) [40,7%–50,6%] | **78,4%** (301/384) [74,0%–82,2%] | **1/16** (6,2%) |
+
+> **Nota metodologica sul dataset**: Sui 24 campioni non-borderline, **APUS Reflex 4B raggiunge il 100,0% sia di accuratezza stretta (576/576) che di invarianza permutazionale (24/24)**. Il calo all'84,1% globale è interamente circoscritto ai 16 campioni borderline (60,2% stretta, 95,8% permissiva). Inoltre, alcuni campioni presentano etichette `primary` arbitrarie (es. `R_BOR_10`, lettera di dimissioni etichettata `ANAGRAFICA` anziché `ALTRO`; `R_BOR_16`, Certificazione Unica etichettata `FATTURA` anziché `ANAGRAFICA`), che penalizzano artificialmente lo score stretto nonostante la decisione del modello sia semanticamente difendibile.
+
+### 5.2. Distribuzione dell'Accuratezza per Posizione Ordinale (Positional Bias)
+| Modello | Posizione A | Posizione B | Posizione C | Posizione D | Delta (Max - Min) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | 84,2% (202/240) | 82,1% (197/240) | 79,2% (190/240) | 90,8% (218/240) | **11,7%** |
+| **Qwen-2.5-3B** | 63,3% (152/240) | 78,8% (189/240) | 85,4% (205/240) | 40,8% (98/240) | **44,6%** |
+
+### 5.3. Scenari a 8 e 16 Opzioni: Declassamento per Label Shift / Ontology Overlap
+
+Gli scenari a 8 e 16 opzioni non possono essere usati come prova di decadimento cognitivo o di "limite della memoria di lavoro a 1 token" a causa di un vizio metodologico strutturale:
+1. **Ontology Overlap**: Il dataset ha etichette di riferimento `primary` e `admissible` congelate sulle sole 4 macro-classi (`FATTURA`, `EMAIL`, `ANAGRAFICA`, `ALTRO`). Nei menù a 8 e 16 opzioni sono state introdotte opzioni più granulari (es. `DDT_TRASPORTO`, `CONTRATTO`, `PREVENTIVO`, `CURRICULUM`, `NOTA_SPESE`, `CIRCOLARE_INTERNA`).
+2. **Verifica sui Dati Grezzi**: Ispezionando `results/phase_b_raw.jsonl`, APUS Reflex 4B seleziona invariabilmente (8 volte su 8 rotazioni per ciascun campione) la classe specialistica esatta, venendo penalizzato come errore dal valutatore automatico:
+   - `R_BOR_07` (Documento di trasporto): Reflex sceglie **`DDT_TRASPORTO` (8/8)**. Target atteso congelato: `ALTRO` $\rightarrow$ Falso Errore.
+   - `R_BOR_11` (Contratto di locazione): Reflex sceglie **`CONTRATTO` (8/8)**. Target atteso congelato: `ALTRO` $\rightarrow$ Falso Errore.
+   - `R_ALT_LNG_01` (Accordo fornitura): Reflex sceglie **`CONTRATTO` (8/8)**. Target atteso congelato: `ALTRO` $\rightarrow$ Falso Errore.
+   - `R_BOR_09` (Preventivo pro-forma): a 16 opzioni Reflex sceglie **`PREVENTIVO` (8/8)**. Target atteso congelato: `FATTURA` $\rightarrow$ Falso Errore.
+   - `R_BOR_05` (Candidatura con CV allegato): a 16 opzioni Reflex sceglie **`CURRICULUM` (8/8)**. Target atteso congelato: `ANAGRAFICA` $\rightarrow$ Falso Errore.
+   - `R_BOR_12` (Nota spese dipendente): a 16 opzioni Reflex sceglie **`NOTA_SPESE` (8/8)**. Target atteso congelato: `ALTRO` $\rightarrow$ Falso Errore.
+   - `R_BOR_15` (Circolare aziendale orari): a 16 opzioni Reflex sceglie **`CIRCOLARE_INTERNA` (8/8)**. Target atteso congelato: `ALTRO` $\rightarrow$ Falso Errore.
+3. **Conflitto Logico nel Prompt**: La descrizione della categoria `ALTRO` nel prompt recitava *"any document that does not clearly belong to FATTURA, EMAIL, or ANAGRAFICA"*, entrando in insanabile contraddizione logica con la presenza contemporanea delle altre 4/12 opzioni specialistiche.
+
+| Modello | Opzioni | Prove Totali | Accuratezza Stretta Calcolata (Wilson 95%) | Accuratezza Permissiva Calcolata (Wilson 95%) | Stato Metodologico |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | 8 opzioni | 320 | 71,9% (230/320) [66,7%–76,5%] | 80,9% (259/320) [76,3%–84,9%] | **Declassata (Label Shift)** |
+| **Qwen-2.5-3B** | 8 opzioni | 320 | 46,2% (148/320) [40,9%–51,7%] | 52,8% (169/320) [47,3%–58,2%] | **Declassata (Label Shift)** |
+| **APUS-Reflex-4B** | 16 opzioni | 320 | 59,1% (189/320) [53,6%–64,3%] | 66,2% (212/320) [60,9%–71,2%] | **Declassata (Label Shift)** |
+| **Qwen-2.5-3B** | 16 opzioni | 320 | 34,4% (110/320) [29,4%–39,7%] | 38,8% (124/320) [33,6%–44,2%] | **Declassata (Label Shift)** |
+
+Di conseguenza, le percentuali aggregate su 8 e 16 opzioni **vengono scartate ed escluse dalle conclusioni primarie della tesi**, in quanto viziate da disallineamento ontologico tra prompt e ground truth.
+
+### 5.4. Instradamento Email sui 5 Ruoli Aziendali (200 Invocazioni per Modello)
+| Modello / Metodo | Accuratezza Stretta (Wilson 95%) | Accuratezza Permissiva (Wilson 95%) | Baseline a Regole (Stretta, N=40) | Token Non Validi |
+| :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | **88,5%** (177/200) [83,3%–92,2%] | **100,0%** (200/200) [98,1%–100,0%] | **60,0%** (24/40) [44,6%–73,7%] | 0 (0,0%) |
+| **Qwen-2.5-3B** | **59,0%** (118/200) [52,1%–65,6%] | **76,0%** (152/200) [69,6%–81,4%] | **60,0%** (24/40) [44,6%–73,7%] | 0 (0,0%) |
+
+> **Nota statistica**: L'intervallo di Wilson per la baseline deterministica a regole è calcolato sui $N=40$ campioni indipendenti (`[44,6%–73,7%]`), evitando la replicazione artificiale a $N=200$.
+
+### 5.5. Contenuto Neutro: Analisi del Tracciamento Semantico vs Bias Posizionale (B2)
+Valutazione su 16 testi neutri privi di riferimenti aziendali (astronomia, fisica, ricette, latino, scacchi, botanica) moltiplicati per 4 rotazioni cicliche delle opzioni (64 prove per modello).
+
+Poiché `ALTRO` è la categoria semanticamente corretta per testi non aziendali, e nei 4 turni di rotazione `ALTRO` compare esattamente una volta in posizione A, B, C e D:
+
+| Modello | Selezioni Classe `ALTRO` | Posizione A | Posizione B | Posizione C | Posizione D | Chi-Quadro Posizionale ($\chi^2$, df=3) | p-value | Esito di Uniformità Posizionale |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | **64/64 (100,0%)** | 16/64 (25,0%) | 16/64 (25,0%) | 16/64 (25,0%) | 16/64 (25,0%) | **0,00** | **1,0000** | **Uniforme (Tracciamento Semantico Perfetto)** |
+| **Qwen-2.5-3B** | **52/64 (81,2%)** | 16/64 (25,0%) | 16/64 (25,0%) | 28/64 (43,8%) | 4/64 (6,2%) | **18,00** | **0,0012** | **Sbilanciata (Bias su Lettera C)** |
+
+> **Interpretazione Matematica Corretta**: Il valore $\chi^2 = 0,00$ ($p = 1,0000$) ottenuto da APUS Reflex **non rappresenta un'assenza casuale di preferenze in assenza di segnale**, bensì la conseguenza matematica diretta del fatto che il modello ha scelto **`ALTRO` nel 100,0% delle prove (64 su 64)**, tracciando con precisione la classe corretta attraverso le 4 posizioni ordinali (16 volte in A, 16 in B, 16 in C, 16 in D). Al contrario, Qwen 2.5 3B dimostra che il proprio bias posizionale verso la lettera `C` (28 su 64, 43,8%) prevale sulla semantica, deviando 12 volte su `ANAGRAFICA` quando quest'ultima si trovava alla lettera C.
+
+### 5.6. Confronto Statistico Paired Cluster Bootstrap (B4)
+Confronto a livello di cluster per singolo campione (10.000 ricampionamenti):
+- **Differenza media di accuratezza ($\text{Reflex} - \text{Qwen}$)**: **+16,98%**
+- **Intervallo di Confidenza Bootstrap 95%**: **[+8,12%, +26,25%]**
+- **Valore p a due code**: **0,0000** ($p < 10^{-4}$)
+- **Esito**: La superiorità di APUS Reflex rispetto a Qwen 2.5 3B è statisticamente significativa con $p < 0,001$.
+
+### 5.7. Analisi della Latenza e TTFT (B5)
+| Modello | Scenario | TTFT / Prompt Eval (ms) [Media / p50 / p95] | Decode (ms) | Latenza Totale Client (ms) [Media / p50 / p95] |
+| :--- | :--- | :--- | :--- | :--- |
+| **APUS-Reflex-4B** | Router 4 Opz | 776,3 / 722,1 / 1.140,1 | < 0,01 | **1.099,8 / 1.072,6 / 1.526,5** |
+| **Qwen-2.5-3B** | Router 4 Opz | 211,4 / 170,1 / 477,4 | < 0,01 | **264,2 / 215,6 / 565,1** |
+| **APUS-Reflex-4B** | Email 5 Ruoli | 646,7 / 617,1 / 869,1 | < 0,01 | **909,1 / 878,3 / 1.141,3** |
+| **Qwen-2.5-3B** | Email 5 Ruoli | 165,5 / 160,0 / 220,3 | < 0,01 | **215,6 / 208,3 / 285,7** |
+
+> **Evidenza empirica**: A `num_predict: 1`, il tempo di generazione pura (Decode) è < 0,01 ms. La latenza complessiva è dominata per oltre il 70–80% dal Prompt Eval / TTFT (tempo di elaborazione dei token di ingresso) e dall'overhead fisso HTTP di serializzazione.
+
+#### 5.7.1. Nota Tecnica sul Test KV Cache Prefix vs Suffix
+- Prompt Eval Suffix (Opzioni prima del testo): Media 687,84 ms (p50 642,89 ms)
+- Prompt Eval Prefix (Documento prima delle opzioni): Media 683,79 ms (p50 629,98 ms)
+- Differenziale misurato: **1,01x** (~4 ms di differenza)
+> **Nota metodologica**: Poiché `results/phase_b_raw.jsonl` non registra il contatore interno `prompt_eval_cached_count`, e il differenziale misurato è ampiamente compreso nel margine di rumore termico/scheduling della CPU (~4 ms), il test non ha evidenziato guadagni quantificabili ed è **inconcludente**. Pertanto non viene impiegato per motivare decisioni architetturali sul prompt design.
+
+---
+
+## 6. Analisi Critica dei Risultati Empirici
+
+1. **Scomposizione Campioni Puliti vs Borderline**:
+   - Sui 24 campioni non-borderline (576 prove), **APUS Reflex 4B ottiene il 100,0% sia in accuratezza stretta (576/576) che in invarianza completa (24/24 campioni)**, contro l'81,4% (469/576) e sole 5/24 invarianze di Qwen 2.5 3B.
+   - Sui 16 campioni borderline/ibridi (384 prove), l'accuratezza stretta scende al 60,2% (231/384) mentre l'accuratezza permissiva raggiunge il 95,8% (368/384).
+   - Questo divario evidenzia un limite oggettivo del dataset: in campioni come `R_BOR_10` (lettera di dimissioni etichettata `ANAGRAFICA` come primary anziché `ALTRO`) e `R_BOR_16` (Certificazione Unica etichettata `FATTURA` anziché `ANAGRAFICA`), la categorizzazione univoca è arbitraria. Il modello sceglie l'altra etichetta valida, penalizzando lo score nominale stretto.
+2. **Robustezza Posizionale Reale**:
+   - Con 24 permutazioni esaustive, APUS Reflex mostra un delta max-min posizionale limitato all'11,7% (minimo 79,2% su C, massimo 90,8% su D), mentre Qwen 2.5 3B mostra un collasso al 40,8% in posizione D e picco all'85,4% su C (delta 44,6%).
+   - Nel test a contenuto neutro (B2), Reflex traccia la classe semantica `ALTRO` in 64 su 64 prove (100,0%), generando una distribuzione posizionale perfettamente uniforme ($\chi^2 = 0,00, p = 1,0000$), mentre Qwen soccombe al bias sulla lettera `C` (28/64, 43,8%, $\chi^2 = 18,00, p = 0,0012$).
+3. **Invalidità Metodologica degli Scenari a 8 e 16 Opzioni**:
+   - L'ispezione diretta dei record grezzi smentisce l'ipotesi di un cedimento della memoria di lavoro o della capacità di attenzione del modello: nei campioni etichettati `ALTRO` o `FATTURA` nelle 4 macro-classi, APUS Reflex ha selezionato sistematicamente (8/8 volte) la categoria più specifica introdotta nel menu allargato (`DDT_TRASPORTO`, `CONTRATTO`, `PREVENTIVO`, `CURRICULUM`, `NOTA_SPESE`, `CIRCOLARE_INTERNA`).
+   - Il calo percentuale è quindi interamente riconducibile a un *Label Shift / Ontology Overlap* indotto dal disallineamento tra prompt espanso e ground truth congelata su 4 classi.
+
+---
+
+## 7. Conclusioni e Linee Guida Architetturali per la Produzione
+
+1. **Modello Confermato**: APUS Reflex 4B con `"think": false`, `"temperature": 0.0`, `"num_predict": 1` è confermato come standard per router e passi decisionali discreti. Risolve completamente l'artefatto di troncamento (0 token non validi su 1.800 invocazioni di Fase B).
+2. **Architettura Gerarchica Modulare**:
+   - Evitare menù unici sovraccarichi con ontologie sovrapposte.
+   - Adottare instradamento a due livelli: prima Router macro-classi (4 categorie disgiunte), poi eventuale raffinamento specialistico all'interno della singola pipeline con opzioni mutuamente esclusive.
+3. **Politica di Retry con Rotazione Ciclica**:
+   - La rotazione ciclica introdotta in `DecisionPipelineStep` garantisce che un eventuale token non valido non ripeta ciecamente la stessa probabilità di output; nei casi persistenti, il sistema solleva in modo deterministico `ValidationErrorCode.INDETERMINATE`.
+4. **Mitigazione Voto a k-Permutazioni**:
+   - `kPermutations: 1` per il default operativo (latenza ~1 s).
+   - `kPermutations: 3` (`minAgreementRatio: 0.66`) utilizzabile nei casi di instradamento ad alta criticità per intercettare disaccordi e deviare in sicurezza su `INDETERMINATE`.
+
+---
+
+## 8. Mappa dei File e Istruzioni di Riproducibilità
+
+Tutti gli elementi di questo test risiedono nella cartella autocontenuta `risultati/test_modello_decisionale_1/` (sul branch `docs`):
+
+```
+risultati/test_modello_decisionale_1/
+├── docs/
+│   ├── RELAZIONE_COMPLETA_BENCHMARK.md          # La presente relazione tecnica integrale
+│   └── randomized_decision_ground_truth_report.md # Report di audit sui test randomizzati
+├── dataset/
+│   └── phase_b_dataset.json                     # Dataset congelato con SHA-256 e checksum validi
+├── scripts/
+│   ├── run_phase_b_benchmark.py                 # Esecutore delle 4.208 prove live su Ollama
+│   ├── analyze_phase_b.py                       # Script di ricalcolo statistico deterministico
+│   ├── sanitize_and_freeze_phase_b_dataset.py   # Generatore e validatore algebrico dei checksum
+│   ├── generate_phase_b_dataset.py              # Generatore sorgente del dataset
+│   ├── phase_a_step1.py                         # Script Step 1 Fase A (analisi artefatto thinking)
+│   ├── phase_a_step2.py                         # Script Step 2 Fase A (768 prove comparative)
+│   └── analyze_phase_a.py                       # Analizzatore Fase A
+└── results/
+    ├── phase_b_raw.jsonl                        # Log grezzo di tutte le 4.208 chiamate live Fase B
+    ├── phase_b_report.md                        # Report sintetico generato dallo script di analisi
+    ├── phase_a_step1_raw.jsonl                  # Log grezzo Step 1 Fase A
+    └── phase_a_step2_raw.jsonl                  # Log grezzo Step 2 Fase A
+```
+
+### Come Riprodurre l'Analisi
+Per ricalcolare tutte le tabelle e metriche direttamente dai log grezzi senza rieseguire le chiamate a Ollama:
+```bash
+python3 risultati/test_modello_decisionale_1/scripts/analyze_phase_b.py
+```
+*(Oppure entrando direttamente nella cartella con `cd risultati/test_modello_decisionale_1 && python3 scripts/analyze_phase_b.py`).*
+
+### Come Rieseguire l'Intero Benchmark Live
+Con Ollama attivo su `http://localhost:11434`:
+```bash
+python3 risultati/test_modello_decisionale_1/scripts/run_phase_b_benchmark.py
+```
+*(Lo script supporta la ripresa automatica in append nel caso in cui il file di log contenga già record parziali).*

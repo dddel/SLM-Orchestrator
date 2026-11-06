@@ -1,0 +1,13 @@
+campioni: 1470 {'email_role': 800, 'router': 640, 'neutral': 30}
+token verificati: {'CF': 157, 'IBAN': 236, 'PIVA': 236}
+router/dev classi: {'ANAGRAFICA': 40, 'FATTURA': 40, 'EMAIL': 40, 'ALTRO': 40}
+router/test classi: {'ANAGRAFICA': 120, 'FATTURA': 120, 'ALTRO': 120, 'EMAIL': 120}
+router strati: {'standard': 238, 'conflitto_lessicale': 203, 'breve': 129, 'lungo_distrattori': 70}
+router con rumore OCR: 60
+email_role/dev classi: {'risorse_umane': 40, 'reparto_tecnico': 40, 'amministrazione': 40, 'legale': 40, 'direzione': 40}
+email_role/test classi: {'risorse_umane': 120, 'reparto_tecnico': 120, 'legale': 120, 'direzione': 120, 'amministrazione': 120}
+email_role strati: {'lungo_distrattori': 130, 'breve': 135, 'thread': 130, 'conflitto_contesto': 270, 'standard': 135}
+email_role con rumore OCR: 76
+testi duplicati (eccedenza): 0 {}
+rigenerazione identica: True
+ANOMALIE: 0
