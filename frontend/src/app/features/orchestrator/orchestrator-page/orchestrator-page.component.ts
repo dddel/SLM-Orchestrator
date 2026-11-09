@@ -14,6 +14,7 @@ import { ResultPanelComponent } from '../components/result-panel/result-panel.co
 import { EmptyStateComponent } from '../components/empty-state/empty-state.component';
 import { StatusFooterComponent } from '../components/status-footer/status-footer.component';
 import { InfoModalComponent } from '../components/info-modal/info-modal.component';
+import { MailpitPreviewComponent } from '../components/mailpit-preview/mailpit-preview.component';
 import { OrchestratorService } from '../../../core/services/orchestrator.service';
 import { PresetsService } from '../../../core/services/presets.service';
 import { DemoPlayerService } from '../demo/demo-player.service';
@@ -25,6 +26,7 @@ import {
 } from '../../../core/models/orchestrator.models';
 import {
   GuardPresentationItem,
+  MailpitDemoState,
   PipelineStageState
 } from '../models/orchestrator-ui.models';
 
@@ -47,7 +49,8 @@ const DEFAULT_PIPELINE: PipelineStageState[] = [
     ResultPanelComponent,
     EmptyStateComponent,
     StatusFooterComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    MailpitPreviewComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './orchestrator-page.component.html',
@@ -126,6 +129,12 @@ export class OrchestratorPageComponent {
       return this.demoPlayer.streamingJson();
     }
     return '';
+  });
+
+  readonly effectiveMailpitState = computed<MailpitDemoState>(() => {
+    return this.isDemoRunning()
+      ? this.demoPlayer.mailpitState()
+      : { phase: 'hidden', recipient: '', subject: '', preview: '' };
   });
 
   readonly effectiveGuards = computed<GuardPresentationItem[]>(() => {

@@ -54,6 +54,7 @@
               [streamingJson]="effectiveStreamingJson()"
               [errorMessage]="effectiveError()"
             ></app-result-panel>
+            <app-mailpit-preview [state]="effectiveMailpitState()"></app-mailpit-preview>
           } @else {
             <app-empty-state></app-empty-state>
           }

@@ -9,9 +9,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import com.tirocinioaltrama.slmorchestrator.config.OrchestratorLoggingProperties;
+import com.tirocinioaltrama.slmorchestrator.config.email.EmailProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties(OrchestratorLoggingProperties.class)
+@EnableConfigurationProperties({OrchestratorLoggingProperties.class, EmailProperties.class})
 public class SlmOrchestratorApplication {
 
     private static final Logger log = LoggerFactory.getLogger(SlmOrchestratorApplication.class);

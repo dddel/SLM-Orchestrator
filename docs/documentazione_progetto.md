@@ -1,7 +1,7 @@
 # Documentazione di Progetto — SLM Orchestrator
 ## Estrazione documentale con piccoli modelli linguistici locali e validazione deterministica
 
-> **Stato del documento (6 novembre 2026).** Le cifre del §8 sono ricalcolate dai file di riepilogo congelati e dai log grezzi e coincidono con quelle riportate. I percorsi dei file sono relativi alla radice del repository (la riorganizzazione sotto `risultati/` e `frontend/` rispecchia il branch `develop`; al tag `freeze-1` il benchmark decisionale risiedeva nella directory radice `test_modello_decisionale_1/`). L'esito delle verifiche sui punti aperti è riportato nel §11.3.
+> **Stato del documento (9 novembre 2026).** Le cifre del §8 sono ricalcolate dai file di riepilogo congelati e dai log grezzi e coincidono con quelle riportate. I percorsi dei file sono relativi alla radice del repository (la riorganizzazione sotto `risultati/` e `frontend/` rispecchia il branch `develop`; al tag `freeze-1` il benchmark decisionale risiedeva nella directory radice `test_modello_decisionale_1/`). L'esito delle verifiche sui punti aperti è riportato nel §11.3. La sezione 4.5 documenta anche l'azione email opzionale e il sink SMTP Mailpit per demo e collaudo.
 
 ---
 
@@ -325,7 +325,18 @@ Vengono eseguiti durante la pipeline documentale per **arricchire il contesto in
 Vengono eseguiti al termine della pipeline all'interno del blocco `actionsGroup` per realizzare effetti collaterali deterministici:
 - Con esito favorevole (`on_ok`) un tool può, ad esempio, notificare un webhook, salvare il documento su un database o avviare un protocollo.
 - Con esito `INDETERMINATE` (`on_indeterminate`) un tool può, ad esempio, mettere il payload non validato in una coda di revisione manuale.
-Nel repository l'unico tool effettivamente implementato è `CompanyRolesTool`; gli esempi di azioni `on_ok` e `on_indeterminate` descrivono il meccanismo e sono illustrativi. Se un tool fallisce sollevando un'eccezione Java durante l'esecuzione di un `ToolPipelineStep`, l'errore non viene gestito con retry interni ma si propaga a `DefaultOrchestrator`, che interrompe la richiesta e genera una risposta HTTP 503 (`PipelineExecutionException`). Per le azioni post-pipeline, eventuali fallimenti vengono registrati nella lista `actionErrors` della risposta senza alterare lo stato primario (`OK` o `INDETERMINATE`).
+Nel repository sono implementati `CompanyRolesTool` e `SendEmailTool`. Quest'ultimo è configurato come action `on_ok` della pipeline `EMAIL`: riceve l'output validato, legge il campo `email`, costruisce un riepilogo testuale e lo invia tramite la porta astratta `EmailSender`. L'adapter SMTP (`SmtpEmailSender`) usa le proprietà `spring.mail.*`; nel profilo Compose `mailpit` il server SMTP è Mailpit sulla porta `1025`, con UI e API sulla porta `8025`.
+
+L'invio è disabilitato e in `dry-run` per default. Per abilitarlo in una demo locale:
+
+```bash
+EMAIL_ENABLED=true EMAIL_DRY_RUN=false \
+  docker compose --profile mailpit up -d --build
+```
+
+Compose trasferisce al servizio `app` anche `EMAIL_FROM` e `EMAIL_ALLOWED_RECIPIENT_DOMAINS`; quest'ultima variabile limita i domini dei destinatari e ha valore predefinito `example.test`. L'azione è eseguita solo con esito `OK`; destinatari mancanti, non validi o non consentiti producono un errore dell'azione senza inviare il messaggio.
+
+Se un tool fallisce sollevando un'eccezione Java durante l'esecuzione di un `ToolPipelineStep`, l'errore non viene gestito con retry interni ma si propaga a `DefaultOrchestrator`, che interrompe la richiesta e genera una risposta HTTP 503 (`PipelineExecutionException`). Per le azioni post-pipeline, eventuali fallimenti vengono registrati nella lista `actionErrors` della risposta senza alterare lo stato primario (`OK` o `INDETERMINATE`). Mailpit è un sink SMTP locale per demo e collaudo: non viene usato dal modello, non riceve dati dal dominio direttamente e non sostituisce un provider email di produzione.
 
 ---
 

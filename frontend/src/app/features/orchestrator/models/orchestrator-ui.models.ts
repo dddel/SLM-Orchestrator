@@ -17,6 +17,15 @@ export interface GuardPresentationItem {
   status: 'passed' | 'warning' | 'error';
 }
 
+export type MailpitDemoPhase = 'hidden' | 'sending' | 'delivered' | 'replying' | 'received';
+
+export interface MailpitDemoState {
+  phase: MailpitDemoPhase;
+  recipient: string;
+  subject: string;
+  preview: string;
+}
+
 export interface ParamOption {
   value: string | null;
   label: string;
@@ -31,6 +40,7 @@ export type DemoStep =
   | 'pipeline'
   | 'stream_json'
   | 'guards'
+  | 'mailpit'
   | 'holding';
 
 export interface DemoState {

@@ -1,0 +1,44 @@
+@if (state().phase !== 'hidden') {
+  <section class="mailpit-card" aria-live="polite" aria-label="Simulazione Mailpit">
+    <div class="mailpit-heading">
+      <div>
+        <p class="eyebrow">Demo / Mailpit</p>
+        <h3>Risposta email simulata</h3>
+      </div>
+      <span class="phase-pill" [class.phase-pill--received]="state().phase === 'received'">
+        <span class="phase-dot" aria-hidden="true"></span>
+        {{ phaseLabels[state().phase] }}
+      </span>
+    </div>
+
+    <div class="mailpit-route" aria-hidden="true">
+      <div class="route-node route-node--app">
+        <span class="node-mark">A</span>
+        <span>Orchestrator</span>
+      </div>
+      <div class="route-line" [class.route-line--replying]="state().phase === 'replying'">
+        <span class="route-packet"></span>
+      </div>
+      <div class="route-node route-node--mailpit">
+        <span class="node-mark">M</span>
+        <span>Mailpit</span>
+      </div>
+    </div>
+
+    <div class="mail-preview">
+      <div class="mail-preview__meta">
+        <span class="mail-icon" aria-hidden="true">✉</span>
+        <div>
+          <strong>{{ state().subject }}</strong>
+          <span>A {{ state().recipient }}</span>
+        </div>
+      </div>
+      <p>{{ state().preview }}</p>
+      @if (state().phase === 'received') {
+        <a class="mailpit-link" href="http://localhost:8025" target="_blank" rel="noreferrer">
+          Apri la casella Mailpit <span aria-hidden="true">↗</span>
+        </a>
+      }
+    </div>
+  </section>
+}
