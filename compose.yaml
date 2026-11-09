@@ -45,8 +45,8 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      # Volume nominato OCI: compatibile con Docker, Podman e SELinux (nessun conflitto permessi)
-      - ollama_data:/root/.ollama
+      # Condivide la directory dati nativa di Ollama indicata dal Makefile.
+      - ${OLLAMA_DATA_DIR:-./.ollama}:/root/.ollama
     healthcheck:
       test: ["CMD-SHELL", "ollama list || exit 1"]
       interval: 10s
@@ -72,17 +72,31 @@ services:
       - "sh"
       - "-c"
       - |
+        set -eu
+        model_present() {
+          curl -fsS -o /dev/null \
+            -X POST "$$OLLAMA_BASE_URL/api/show" \
+            -H "Content-Type: application/json" \
+            -d "{\"name\":\"$$1\"}"
+        }
+        ensure_model() {
+          model="$$1"
+          if model_present "$$model"; then
+            echo "Modello già disponibile: $$model"
+          else
+            echo "Download modello: $$model"
+            curl -fsS "$$OLLAMA_BASE_URL/api/pull" \
+              -H "Content-Type: application/json" \
+              -d "{\"model\":\"$$model\", \"stream\":false}"
+          fi
+        }
         echo "Pull modello generativo: $$OLLAMA_BASE_MODEL"
-        curl -fsS http://ollama:11434/api/pull -d "{\"model\": \"$$OLLAMA_BASE_MODEL\", \"stream\": false}" || true
+        ensure_model "$$OLLAMA_BASE_MODEL"
         echo "Pull modello decisionale: $$OLLAMA_REFLEX_MODEL"
-        curl -fsS http://ollama:11434/api/pull -d "{\"model\": \"$$OLLAMA_REFLEX_MODEL\", \"stream\": false}" || true
+        ensure_model "$$OLLAMA_REFLEX_MODEL"
         echo "Inizializzazione modelli completata."
     networks:
       - slmnet
-
-volumes:
-  ollama_data:
-    name: slm_orchestrator_ollama_data
 
 networks:
   slmnet:
