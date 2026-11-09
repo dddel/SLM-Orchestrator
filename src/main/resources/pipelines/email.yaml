@@ -36,3 +36,9 @@ steps:
     unvalidated:
       - destinatario
       - ruoloDestinatario
+
+actions:
+  on_ok:
+    - tool: send_email
+      args:
+        document: "$result"

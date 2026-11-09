@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.tirocinioaltrama.slmorchestrator.impl.tool.CompanyRolesTool;
+import com.tirocinioaltrama.slmorchestrator.impl.tool.SendEmailTool;
 import org.springframework.stereotype.Component;
 
 /**
@@ -60,6 +61,7 @@ public class ToolRegistry {
             register(new CompanyRolesTool());
         } catch (Exception ignored) {
         }
+        register(SendEmailTool.disabled());
     }
 
     public synchronized void register(Tool tool) {
