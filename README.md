@@ -62,11 +62,21 @@ docs/                          documentazione tecnica e risultati
 - Risorse sufficienti per eseguire localmente i modelli scelti
 - GPU opzionale; per NVIDIA è disponibile `compose.gpu.yaml`
 
-Avvia backend, frontend, Ollama e il download automatico dei modelli predefiniti:
+Avvia backend, frontend e Ollama. Prima dell'avvio viene chiesto il percorso della directory dati di Ollama:
 
 ```bash
 make up
 ```
+
+È possibile premere `Invio` per usare il default `~/.ollama`, oppure indicare una directory dati Ollama già esistente. La directory viene montata direttamente nel container su `/root/.ollama`; l'init scarica solo i modelli non già presenti.
+
+Per evitare il prompt e usare un percorso specifico:
+
+```bash
+OLLAMA_DATA_DIR=/percorso/assoluto/.ollama make up
+```
+
+Il percorso deve essere la directory dati completa di Ollama, non soltanto la sottocartella `models`.
 
 Indirizzi principali:
 
@@ -82,7 +92,7 @@ make logs
 make ps
 make restart
 make down
-make clean   # arresta i servizi e rimuove anche i volumi
+make clean   # arresta i servizi senza cancellare i pesi Ollama
 ```
 
 Per abilitare il profilo GPU NVIDIA:
@@ -92,7 +102,7 @@ cp compose.gpu.yaml compose.override.yaml
 make up
 ```
 
-I modelli predefiniti sono `qwen2.5:3b-instruct-q8_0` e `hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M`. Possono essere sostituiti tramite variabili d'ambiente, ad esempio:
+I modelli predefiniti sono `qwen2.5:3b-instruct-q8_0` e `hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M`. Se non sono già presenti nella directory selezionata, vengono scaricati automaticamente. Possono essere sostituiti tramite variabili d'ambiente, ad esempio:
 
 ```bash
 OLLAMA_BASE_MODEL=qwen2.5:3b-instruct-q8_0 \

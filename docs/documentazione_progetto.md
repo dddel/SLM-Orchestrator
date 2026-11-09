@@ -60,7 +60,7 @@
 
 ## 1. Executive Summary e Scopo del Progetto
 
-SLM Orchestrator è un servizio (Java 21, Spring Boot 4, con un frontend Angular 19) che riceve testi di documenti aziendali non strutturati, li classifica, ne estrae i campi in JSON e li valida con controlli deterministici. È nato come progetto di tirocinio (UNICAL – Altrama, dal 1 ottobre al 30 novembre 2026; relatore accademico: Carmine Dodaro; responsabile tecnico dell'azienda: Stefano Vena) con una stima iniziale di 150 ore. L'obiettivo era verificare se una catena di piccoli modelli linguistici locali (1–4 miliardi di parametri), con validazione a ogni passo, riesca a svolgere compiti brevi e ripetitivi in modo affidabile. Il frontend Angular non compare nel riepilogo iniziale del progetto; gli scostamenti rispetto a quel riepilogo sono nel §11.
+SLM Orchestrator è un servizio (Java 21, Spring Boot 4, con un frontend Angular 21) che riceve testi di documenti aziendali non strutturati, li classifica, ne estrae i campi in JSON e li valida con controlli deterministici. È nato come progetto di tirocinio (UNICAL – Altrama, dal 1 ottobre al 30 novembre 2026; relatore accademico: Carmine Dodaro; responsabile tecnico dell'azienda: Stefano Vena) con una stima iniziale di 150 ore. L'obiettivo era verificare se una catena di piccoli modelli linguistici locali (1–4 miliardi di parametri), con validazione a ogni passo, riesca a svolgere compiti brevi e ripetitivi in modo affidabile. Il frontend Angular non compare nel riepilogo iniziale del progetto; gli scostamenti rispetto a quel riepilogo sono nel §11.
 
 ### Il problema
 Le organizzazioni che trattano documenti riservati (dati anagrafici, segreti industriali, identificativi fiscali e bancari) hanno davanti tre problemi:
@@ -113,7 +113,7 @@ A differenza dei tradizionali sistemi web che collassano gli esiti su un codice 
       INDETERMINATE
   }
   ```
-  Non esistono gli stati `ERROR` né `FAILURE`. `FAILURE` compare solo nel nome del metodo factory statico `OrchestratorResponse.failure(...)`, che restituisce una risposta con stato `OrchestratorStatus.INDETERMINATE`. Tutti gli errori infrastrutturali o di validazione preliminare vengono gestiti a livello HTTP tramite eccezioni catturate da `@RestControllerAdvice` (`GlobalExceptionHandler`), che restituisce una risposta di errore conforme allo standard RFC 7807 (`ApiErrorResponse`). Specificamente: `ValidationException` produce HTTP 422 (Unprocessable Entity); `IllegalArgumentException` e `HttpMessageNotReadableException` producono HTTP 400 (Bad Request); `RoutingException` produce HTTP 502 (Bad Gateway); `PipelineExecutionException` produce HTTP 503 (Service Unavailable); qualsiasi altra eccezione non gestita produce HTTP 500 (Internal Server Error). Il superamento del tempo massimo di pipeline (§4.8) non produce un'eccezione ma conclude la pipeline con stato `INDETERMINATE` e HTTP 200.
+  Non esistono gli stati `ERROR` né `FAILURE`. `FAILURE` compare solo nel nome del metodo factory statico `OrchestratorResponse.failure(...)`, che restituisce una risposta con stato `OrchestratorStatus.INDETERMINATE`. Tutti gli errori infrastrutturali o di validazione preliminare vengono gestiti a livello HTTP tramite eccezioni catturate da `@RestControllerAdvice` (`GlobalExceptionHandler`), che restituisce un JSON strutturato proprietario (`ApiErrorResponse`), ispirato ai Problem Details ma non conforme integralmente a RFC 7807. Specificamente: `ValidationException` produce HTTP 422 (Unprocessable Entity); `IllegalArgumentException` e `HttpMessageNotReadableException` producono HTTP 400 (Bad Request); `RoutingException` produce HTTP 502 (Bad Gateway); `PipelineExecutionException` produce HTTP 503 (Service Unavailable); qualsiasi altra eccezione non gestita produce HTTP 500 (Internal Server Error). Il superamento del tempo massimo di pipeline (§4.8) non produce un'eccezione ma conclude la pipeline con stato `INDETERMINATE` e HTTP 200.
 
 ---
 
@@ -1157,6 +1157,8 @@ La scheda del GGUF di APUS-Reflex-4B raccomanda la quantizzazione Q8_0 e di disa
    ollama pull qwen2.5:7b-instruct-q8_0
    ```
    *(Per la valutazione con APUS-Reflex-4B scaricare il modello GGUF Q4_K_M `hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M`). L'ambiente hardware rilevato alla data della stesura è dettagliato nel §8.1.*
+
+   Per l'avvio containerizzato del progetto sono disponibili `compose.yaml` e `Makefile`. `make up` chiede la directory dati completa di Ollama (default `~/.ollama`), la monta nel container su `/root/.ollama` e scarica solo i modelli assenti, evitando una seconda cache dei pesi. Questa modalità di avvio è distinta dall'ambiente host usato per i benchmark congelati.
 2. **Esecuzione Batterie Test 2 (Ablazione, Confronto 3B/7B, Smart Retry, Router)**:
    Entrare nella cartella del workspace ed eseguire gli script bash automatizzati per le Batterie 1, 2 e 4:
    ```bash
@@ -1210,9 +1212,9 @@ Raccolta dei limiti architetturali, metodologici e di perimetro del prototipo.
 | Benchmark iniziale dei modelli candidati (resa sull'italiano) | Assente: non è motivata la scelta di Qwen2.5 rispetto ad altre famiglie |
 | Confronto con un singolo modello di grandi dimensioni | Il confronto più grande è con un 7B; nessun confronto di latenza |
 | Pipeline dimostrative: triage di ticket, estrazione da email, validazione di anagrafiche | Documentate FATTURA, ANAGRAFICA, EMAIL, ALTRO; il triage di ticket non c'è |
-| Servizio containerizzato | Docker non descritto (compare solo Nginx per il frontend) |
+| Servizio containerizzato | Implementato in `compose.yaml` e nel `Makefile`: backend, frontend e Ollama sono avviabili con Docker/Podman; la directory dati completa di Ollama viene scelta all'avvio e montata come bind mount, mentre il sidecar scarica solo i modelli mancanti. I benchmark congelati restano eseguiti sull'ambiente host descritto nel §10. |
 | Modelli da 1 a 4 miliardi di parametri | Usati anche un 7B (confronto, escalation) |
-| Non previsto nel riepilogo | Frontend Angular 19 |
+| Non previsto nel riepilogo | Frontend Angular 21 |
 
 ### 11.2 Limiti tecnici
 
