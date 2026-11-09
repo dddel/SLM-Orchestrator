@@ -10,6 +10,7 @@ DOCKER_COMPOSE ?= $(shell if command -v docker >/dev/null 2>&1 && docker compose
 
 FRONTEND_URL := http://localhost:4200
 BACKEND_URL  := http://localhost:8080
+OLLAMA_DATA_DIR ?=
 
 # Colori terminale per output pulito ed elegante
 CYAN    := \033[0;36m
@@ -24,7 +25,26 @@ up: start
 
 start:
 	@printf "$(BLUE)$(BOLD)Avvio di SLM Orchestrator (Backend + Frontend + Ollama) con Docker...$(RESET)\n"
-	@$(DOCKER_COMPOSE) up -d --build
+	@set -eu; \
+	default_dir="$${OLLAMA_DATA_DIR:-$$HOME/.ollama}"; \
+	if [ -n "$${OLLAMA_DATA_DIR:-}" ]; then \
+		selected_dir="$$OLLAMA_DATA_DIR"; \
+	else \
+		printf "Directory dati Ollama [$$default_dir]: "; \
+		IFS= read -r selected_dir; \
+	fi; \
+	selected_dir="$${selected_dir:-$$default_dir}"; \
+	case "$$selected_dir" in \
+		"~") selected_dir="$$HOME/.ollama" ;; \
+		"~/"*) selected_dir="$$HOME/$${selected_dir#~/}" ;; \
+	esac; \
+	case "$$selected_dir" in \
+		/*) ;; \
+		*) printf "$(YELLOW)Il percorso deve essere assoluto.$(RESET)\n" >&2; exit 1 ;; \
+	esac; \
+	mkdir -p "$$selected_dir"; \
+	printf "$(CYAN)Uso directory Ollama: %s$(RESET)\n" "$$selected_dir"; \
+	OLLAMA_DATA_DIR="$$selected_dir" $(DOCKER_COMPOSE) up -d --build
 	@printf "$(YELLOW)Attesa disponibilità dei servizi...$(RESET)\n"
 	@for i in $$(seq 1 30); do \
 		if curl -fs -o /dev/null $(FRONTEND_URL) 2>/dev/null; then \
@@ -52,7 +72,6 @@ stop:
 ## restart: Riavvia tutti i container e restituisce il link del frontend
 restart:
 	@printf "$(YELLOW)Riavvio dei servizi...$(RESET)\n"
-	@$(DOCKER_COMPOSE) restart
 	@$(MAKE) up
 
 ## logs: Visualizza i log in tempo reale di tutti i container
@@ -68,11 +87,11 @@ build:
 	@printf "$(BLUE)Ricompilazione immagini Docker di backend e frontend...$(RESET)\n"
 	@$(DOCKER_COMPOSE) build
 
-## clean: Arresta i container e rimuove i volumi dati
+## clean: Arresta i container e rimuove le risorse Compose senza cancellare i pesi locali
 clean:
 	@printf "$(YELLOW)Pulizia completa container e volumi...$(RESET)\n"
 	@$(DOCKER_COMPOSE) down -v --remove-orphans
-	@printf "$(GREEN)Pulizia completata.$(RESET)\n"
+	@printf "$(GREEN)Pulizia completata; la directory dati di Ollama non è stata modificata.$(RESET)\n"
 
 ## help: Mostra questo messaggio di aiuto
 help:
@@ -83,4 +102,4 @@ help:
 	@printf "  $(CYAN)make logs$(RESET)          - Segue i log dei servizi in tempo reale\n"
 	@printf "  $(CYAN)make ps$(RESET)            - Mostra lo stato dei servizi\n"
 	@printf "  $(CYAN)make build$(RESET)         - Ricostruisce le immagini Docker\n"
-	@printf "  $(CYAN)make clean$(RESET)         - Rimuove container e volumi\n"
+	@printf "  $(CYAN)make clean$(RESET)         - Rimuove container e risorse Compose, non i pesi Ollama\n"
