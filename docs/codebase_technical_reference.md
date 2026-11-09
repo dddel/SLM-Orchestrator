@@ -130,8 +130,8 @@ flowchart TD
 - **`DocumentType`**: Enum delle etichette di classificazione supportate: `FATTURA`, `EMAIL`, `ANAGRAFICA`, `ALTRO`.
 - **`Orchestrator`**: Interfaccia principale: `OrchestratorResponse process(OrchestratorRequest request)`.
 - **`OrchestratorRequest`**: Record immutabile della richiesta: `DocumentType type`, `String payload`, `RouterType routerType`.
-- **`OrchestratorResponse`**: Record immutabile della risposta: `status` (`OK`, `INDETERMINATE`, `FAILURE`), `label`, `routerUsed`, `result`, `unvalidatedResult`, `errors`, `actionErrors`, `executionTimeMs`, `metrics`.
-- **`OrchestratorStatus`**: Enum: `OK`, `INDETERMINATE`, `FAILURE`.
+- **`OrchestratorResponse`**: Record immutabile della risposta: `status` (`OK`, `INDETERMINATE`), `label`, `router`, `result`, `unvalidatedResult`, `errors`, `actionErrors`, `latencyMs`, `metrics`.
+- **`OrchestratorStatus`**: Enum: `OK`, `INDETERMINATE`. Il metodo factory `OrchestratorResponse.failure(...)` produce comunque una risposta `INDETERMINATE`.
 - **`Router`**: Interfaccia per la classificazione: `getName()`, `DocumentType route(String payload)` e `RoutingDecision routeWithDecision(String payload)`.
 - **`RouterRegistry`**: Registro concorrente per la gestione dei router per enum e alias.
 - **`RouterType`**: Enum dei router supportati nativamente: `LOCAL_OLLAMA("local-ollama")`, `REFLEX("reflex")`.
@@ -165,7 +165,7 @@ flowchart TD
 - **`Pipeline`**: Interfaccia di pipeline sequenziale: `DocumentType getSupportedType()`, `PipelineResult execute(PipelineContext context)`.
 - **`PipelineContext`**: Contesto per-richiesta con stato, input, attributi, metriche e output.
 - **`PipelineRegistry`**: Registro con mappa concorrente `DocumentType -> Pipeline`.
-- **`PipelineResult`**: Risultato immutabile: `status`, `output`, `unvalidatedOutput`, `validationResult`, `executionTimeMs`, `metrics`.
+- **`PipelineResult`**: Risultato immutabile: `success`, `output`, `unvalidatedOutput`, `validationResult`, `executionTimeMs`, `metrics`.
 - **`PipelineStep`**: Interfaccia per singolo passo della pipeline.
 
 ---
