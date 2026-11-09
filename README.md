@@ -216,6 +216,21 @@ Per limitare i destinatari durante i test è possibile configurare
 `EMAIL_ALLOWED_RECIPIENT_DOMAINS` (default: `example.test`). Un'azione fallita
 non altera lo stato primario della pipeline: viene riportata in `actionErrors`.
 
+### Demo email con Mailpit
+
+La pipeline `EMAIL` può eseguire l'azione post-pipeline `send_email`, che invia un
+riepilogo testuale dell'output validato. L'invio è disabilitato e in `dry-run` per
+default; Mailpit viene avviato solo con il profilo Compose dedicato:
+
+```bash
+EMAIL_ENABLED=true EMAIL_DRY_RUN=false \
+  docker compose --profile mailpit up -d --build
+```
+
+La UI di Mailpit è disponibile su <http://localhost:8025>. Per limitare i
+destinatari durante i test è possibile configurare
+`EMAIL_ALLOWED_RECIPIENT_DOMAINS` (default: `example.test`).
+
 Per aggiungere una nuova pipeline occorre definire la categoria documentale, lo schema JSON, il prompt e il file YAML; la procedura completa è descritta nella sezione dedicata della [documentazione tecnica](docs/documentazione_progetto.md).
 
 ## Limiti e sicurezza
