@@ -12,6 +12,10 @@ services:
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
       - ROUTER_TYPE=${ROUTER_TYPE:-local-ollama}
+      - EMAIL_ENABLED=${EMAIL_ENABLED:-false}
+      - EMAIL_DRY_RUN=${EMAIL_DRY_RUN:-true}
+      - EMAIL_FROM=${EMAIL_FROM:-no-reply@example.test}
+      - EMAIL_ALLOWED_RECIPIENT_DOMAINS=${EMAIL_ALLOWED_RECIPIENT_DOMAINS:-example.test}
       - EMAIL_SMTP_HOST=${EMAIL_SMTP_HOST:-mailpit}
       - EMAIL_SMTP_PORT=${EMAIL_SMTP_PORT:-1025}
     depends_on:
