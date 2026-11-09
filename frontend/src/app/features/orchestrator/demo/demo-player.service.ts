@@ -3,6 +3,7 @@ import { DEMO_ITEMS, DemoItem } from './demo-data';
 import {
   DemoStep,
   GuardPresentationItem,
+  MailpitDemoState,
   PipelineStageState
 } from '../models/orchestrator-ui.models';
 import { DocumentType, OrchestratorResponse, RouterType } from '../../../core/models/orchestrator.models';
@@ -13,6 +14,13 @@ const INITIAL_PIPELINE_STAGES: PipelineStageState[] = [
   { id: 'slm', label: 'SLM', sublabel: 'Estrazione Qwen 3B', status: 'inactive' },
   { id: 'guards', label: 'Guardie', sublabel: 'Validazione simbolica', status: 'inactive' }
 ];
+
+const INITIAL_MAILPIT_STATE: MailpitDemoState = {
+  phase: 'hidden',
+  recipient: '',
+  subject: '',
+  preview: ''
+};
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +41,7 @@ export class DemoPlayerService implements OnDestroy {
   readonly simulatedResponse = signal<OrchestratorResponse | null>(null);
   readonly visibleGuards = signal<GuardPresentationItem[]>([]);
   readonly streamingJson = signal<string>('');
+  readonly mailpitState = signal<MailpitDemoState>(INITIAL_MAILPIT_STATE);
 
   private currentItemIndex = 0;
   private timerRef: any = null;
@@ -137,6 +146,7 @@ export class DemoPlayerService implements OnDestroy {
     this.simulatedResponse.set(null);
     this.visibleGuards.set([]);
     this.streamingJson.set('');
+    this.mailpitState.set(INITIAL_MAILPIT_STATE);
   }
 
   onUserInteracted(): void {
@@ -339,7 +349,11 @@ export class DemoPlayerService implements OnDestroy {
         this.scheduleAction(addNextGuard, 250);
       } else {
         this.currentStep.set('holding');
-        this.scheduleNext(item, 3500);
+        if (item.detectedLabel === 'EMAIL' && item.expectedStatus === 'OK') {
+          this.startMailpitSimulation(item);
+        } else {
+          this.scheduleNext(item, 3500);
+        }
       }
     };
 
@@ -372,6 +386,64 @@ export class DemoPlayerService implements OnDestroy {
       actionErrors: [],
       latencyMs: item.latencyMs
     });
+    if (item.detectedLabel === 'EMAIL' && item.expectedStatus === 'OK') {
+      this.mailpitState.set({
+        phase: 'received',
+        recipient: this.extractRecipient(item),
+        subject: 'Elaborazione email completata',
+        preview: 'La tua richiesta è stata elaborata con successo.'
+      });
+    }
+  }
+
+  private startMailpitSimulation(item: DemoItem): void {
+    if (!this.isRunning() || this.isPaused() || this.isDestroyed) return;
+
+    this.currentStep.set('mailpit');
+    const recipient = this.extractRecipient(item);
+    this.mailpitState.set({
+      phase: 'sending',
+      recipient,
+      subject: 'Elaborazione email completata',
+      preview: 'Invio del riepilogo via SMTP...'
+    });
+
+    this.scheduleAction(() => {
+      this.mailpitState.set({
+        phase: 'delivered',
+        recipient,
+        subject: 'Elaborazione email completata',
+        preview: 'Messaggio catturato da Mailpit sulla porta 1025.'
+      });
+
+      this.scheduleAction(() => {
+        this.mailpitState.set({
+          phase: 'replying',
+          recipient,
+          subject: 'Elaborazione email completata',
+          preview: 'Risposta simulata in arrivo nella demo.'
+        });
+
+        this.scheduleAction(() => {
+          this.mailpitState.set({
+            phase: 'received',
+            recipient,
+            subject: 'Elaborazione email completata',
+            preview: 'La tua richiesta è stata elaborata con successo.'
+          });
+          this.scheduleNext(item, 3800);
+        }, 800);
+      }, 700);
+    }, 500);
+  }
+
+  private extractRecipient(item: DemoItem): string {
+    try {
+      const parsed = JSON.parse(item.expectedJson) as { email?: string };
+      return parsed.email || 'cliente@example.test';
+    } catch {
+      return 'cliente@example.test';
+    }
   }
 
   private scheduleNext(item: DemoItem, delayMs: number): void {
@@ -398,6 +470,9 @@ export class DemoPlayerService implements OnDestroy {
         break;
       case 'guards':
         this.turnOnGuards(item, this.visibleGuards().length);
+        break;
+      case 'mailpit':
+        this.startMailpitSimulation(item);
         break;
       case 'holding':
         this.scheduleNext(item, 2000);
