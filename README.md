@@ -190,6 +190,31 @@ Le proprietà principali sono in `src/main/resources/application.properties` e p
 | `ROUTER_TYPE` | `local-ollama` | Router da utilizzare |
 | `ORCHESTRATOR_GUARDS_ENABLED` | `true` | Abilita le guardie deterministiche |
 | `ORCHESTRATOR_COHERENCE_ENABLED` | `true` | Abilita i controlli di coerenza |
+| `EMAIL_ENABLED` | `false` | Abilita l'azione di invio email |
+| `EMAIL_DRY_RUN` | `true` | Simula l'invio senza contattare SMTP |
+| `EMAIL_FROM` | `no-reply@example.test` | Mittente dei messaggi |
+| `EMAIL_ALLOWED_RECIPIENT_DOMAINS` | `example.test` | Domini ammessi dalla allowlist |
+| `EMAIL_SMTP_HOST` | `localhost` | Host del server SMTP |
+| `EMAIL_SMTP_PORT` | `1025` | Porta del server SMTP |
+
+### Demo email con Mailpit
+
+La pipeline `EMAIL` può eseguire l'azione post-pipeline `send_email`, che invia un
+riepilogo testuale dell'output validato. L'invio è disabilitato e in `dry-run` per
+default; Mailpit viene avviato solo con il profilo Compose dedicato:
+
+```bash
+EMAIL_ENABLED=true EMAIL_DRY_RUN=false \
+  docker compose --profile mailpit up -d --build
+```
+
+Il servizio `app` riceve queste variabili e usa Mailpit come destinazione SMTP
+predefinita nel profilo Compose. La UI di Mailpit è disponibile su
+<http://localhost:8025>; il server SMTP ascolta sulla porta `1025`.
+
+Per limitare i destinatari durante i test è possibile configurare
+`EMAIL_ALLOWED_RECIPIENT_DOMAINS` (default: `example.test`). Un'azione fallita
+non altera lo stato primario della pipeline: viene riportata in `actionErrors`.
 
 Per aggiungere una nuova pipeline occorre definire la categoria documentale, lo schema JSON, il prompt e il file YAML; la procedura completa è descritta nella sezione dedicata della [documentazione tecnica](docs/documentazione_progetto.md).
 
