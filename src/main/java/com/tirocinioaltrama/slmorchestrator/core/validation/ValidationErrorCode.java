@@ -19,5 +19,7 @@ public enum ValidationErrorCode {
     MODEL_UNAVAILABLE,
     TOOL_TIMEOUT,
     TOOL_ERROR,
+    CONTEXT_TRUNCATED,
+    OUTPUT_TRUNCATED,
     INDETERMINATE
 }

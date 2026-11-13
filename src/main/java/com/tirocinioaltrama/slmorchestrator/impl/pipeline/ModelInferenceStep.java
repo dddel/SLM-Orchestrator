@@ -145,6 +145,34 @@ public class ModelInferenceStep implements PipelineStep {
                     doneReason
             ));
 
+            Integer configuredNumCtx = context.getAttribute("context.num_ctx", Integer.class);
+            Integer configuredNumPredict = context.getAttribute("context.num_predict", Integer.class);
+            int numCtx = configuredNumCtx != null && configuredNumCtx > 0 ? configuredNumCtx : 2048;
+            int numPredict = configuredNumPredict != null && configuredNumPredict > 0 ? configuredNumPredict : 400;
+            if (pTokens > 0 && pTokens >= (numCtx - numPredict - 16)) {
+                String truncMsg = String.format(
+                        "Saturazione finestra di contesto rilevata post-inferenza nello step '%s': prompt_eval_count=%d token su num_ctx=%d (num_predict=%d).",
+                        getId(), pTokens, numCtx, numPredict
+                );
+                log.warn(truncMsg);
+                return ValidationResult.withFieldErrors(
+                        List.of(new FieldError("$", "context", ValidationErrorCode.CONTEXT_TRUNCATED, truncMsg)),
+                        List.of()
+                );
+            }
+
+            if ("length".equalsIgnoreCase(doneReason)) {
+                String outTruncMsg = String.format(
+                        "Output del modello troncato per raggiungimento del limite num_predict nello step '%s' (done_reason=length, eval_count=%d).",
+                        getId(), cTokens
+                );
+                log.warn(outTruncMsg);
+                return ValidationResult.withFieldErrors(
+                        List.of(new FieldError("$", "output", ValidationErrorCode.OUTPUT_TRUNCATED, outTruncMsg)),
+                        List.of()
+                );
+            }
+
             return ValidationResult.valid();
         } catch (Exception e) {
             log.error("Errore durante l'invocazione del modello '{}': {}", effectiveModel, e.getMessage(), e);

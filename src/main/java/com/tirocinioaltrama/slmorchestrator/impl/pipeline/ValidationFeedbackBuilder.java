@@ -61,6 +61,8 @@ public final class ValidationFeedbackBuilder {
             case MODEL_UNAVAILABLE -> "motore di inferenza temporaneamente non disponibile.";
             case TOOL_TIMEOUT -> "timeout durante l'esecuzione del tool esterno.";
             case TOOL_ERROR -> "errore durante l'esecuzione del tool esterno.";
+            case CONTEXT_TRUNCATED -> "il prompt di input supera la finestra di contesto massima del modello (num_ctx).";
+            case OUTPUT_TRUNCATED -> "la risposta generata dal modello è stata troncata per esaurimento dei token massimi di output (num_predict).";
             case INDETERMINATE -> "decisione indeterminata per consenso insufficiente tra permutazioni.";
         };
     }

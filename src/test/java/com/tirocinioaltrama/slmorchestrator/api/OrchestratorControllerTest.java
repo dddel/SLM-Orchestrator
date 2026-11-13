@@ -226,6 +226,26 @@ class OrchestratorControllerTest {
     }
 
     @Test
+    void processRestituisce422SePayloadSuperaBudgetFinestraDiContesto() throws Exception {
+        com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult budgetRes =
+                com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult.withFieldErrors(
+                        java.util.List.of(new FieldError("$", "payload", ValidationErrorCode.CONTEXT_TRUNCATED,
+                                "Il payload supera il budget della finestra di contesto (num_ctx=2048)")),
+                        java.util.List.of()
+                );
+        when(orchestrator.process(any(OrchestratorRequest.class)))
+                .thenThrow(new ValidationException("Payload eccede il budget della finestra di contesto (num_ctx)", budgetRes));
+
+        mockMvc.perform(post("/api/orchestrator/process")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"payload\": \"testo molto lungo oltre num_ctx\"}"))
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.status").value(422))
+                .andExpect(jsonPath("$.message").value("Payload eccede il budget della finestra di contesto (num_ctx): Il payload supera il budget della finestra di contesto (num_ctx=2048)"))
+                .andExpect(jsonPath("$.details[0]").value("Il payload supera il budget della finestra di contesto (num_ctx=2048)"));
+    }
+
+    @Test
     void processRestituisce500SeEccezioneGenerica() throws Exception {
         when(orchestrator.process(any(OrchestratorRequest.class)))
                 .thenThrow(new RuntimeException("Crash imprevisto"));
