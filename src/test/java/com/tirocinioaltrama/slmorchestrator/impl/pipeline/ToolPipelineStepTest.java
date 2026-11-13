@@ -73,6 +73,35 @@ class ToolPipelineStepTest {
     }
 
     @Test
+    void testExecuteToolWithDeclarativeOutputKeyDepositsCustomContextAttribute() {
+        ToolRegistry registry = new ToolRegistry();
+        Tool mockTool = mock(Tool.class);
+        when(mockTool.getName()).thenReturn("custom_catalog_tool");
+        when(mockTool.execute(any())).thenReturn(ToolResult.ok("OK", "{\"items\": [\"A\", \"B\"]}"));
+        registry.register(mockTool);
+
+        ToolPipelineStep step = new ToolPipelineStep(
+                "custom_step",
+                "custom_catalog_tool",
+                "custom_catalog_data",
+                registry,
+                Map.of(),
+                ToolExecutionPolicy.defaults(),
+                new ToolInvoker()
+        );
+        assertEquals("custom_catalog_data", step.getOutputKey());
+
+        PipelineContext ctx = new PipelineContext("test", DocumentType.ALTRO);
+        ValidationResult result = step.execute(ctx);
+
+        assertTrue(result.isValid());
+        assertEquals("{\"items\": [\"A\", \"B\"]}", ctx.getAttribute("tool.custom_step"));
+        assertEquals("{\"items\": [\"A\", \"B\"]}", ctx.getAttribute("custom_catalog_tool"));
+        assertEquals("{\"items\": [\"A\", \"B\"]}", ctx.getAttribute("custom_catalog_data"));
+        assertNull(ctx.getAttribute("company_roles"));
+    }
+
+    @Test
     void testExecuteToolReturnsNullResult() {
         ToolRegistry registry = new ToolRegistry();
         Tool mockTool = mock(Tool.class);

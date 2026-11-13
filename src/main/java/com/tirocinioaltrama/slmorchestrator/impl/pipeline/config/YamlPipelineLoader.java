@@ -212,6 +212,31 @@ public class YamlPipelineLoader {
                     if (sm.get("tool") != null) {
                         step.setTool(sm.get("tool").toString());
                     }
+                    if (sm.get("output_key") != null) {
+                        step.setOutputKey(sm.get("output_key").toString().strip());
+                    } else if (sm.get("outputKey") != null) {
+                        step.setOutputKey(sm.get("outputKey").toString().strip());
+                    }
+                    Object injectCtxObj = sm.containsKey("inject_context") ? sm.get("inject_context") : sm.get("injectContext");
+                    if (injectCtxObj instanceof Map<?, ?> injectMap) {
+                        Map<String, String> parsedInject = new java.util.LinkedHashMap<>();
+                        for (Map.Entry<?, ?> entry : injectMap.entrySet()) {
+                            String k = entry.getKey() != null ? entry.getKey().toString().strip() : "";
+                            String v = entry.getValue() != null ? entry.getValue().toString().strip() : "";
+                            parsedInject.put(k, v);
+                        }
+                        step.setInjectContext(parsedInject);
+                    }
+                    Object mergeFieldsObj = sm.containsKey("merge_fields") ? sm.get("merge_fields") : sm.get("mergeFields");
+                    if (mergeFieldsObj instanceof List<?> mergeList) {
+                        List<String> parsedMerge = new ArrayList<>();
+                        for (Object item : mergeList) {
+                            if (item != null) {
+                                parsedMerge.add(item.toString().strip());
+                            }
+                        }
+                        step.setMergeFields(parsedMerge);
+                    }
                     if (sm.get("candidates_source") != null) {
                         step.setCandidatesSource(sm.get("candidates_source").toString());
                     } else if (sm.get("candidatesSource") != null) {
@@ -256,6 +281,33 @@ public class YamlPipelineLoader {
                             }
                         }
                         step.setUnvalidated(unvalidated);
+                    }
+                    Object catalogValObj = sm.containsKey("catalog_validation") ? sm.get("catalog_validation") : sm.get("catalogValidation");
+                    if (catalogValObj instanceof Map<?, ?> catMap) {
+                        StepDefinition.CatalogValidationDefinition catDef = new StepDefinition.CatalogValidationDefinition();
+                        if (catMap.get("source") != null) {
+                            catDef.setSource(catMap.get("source").toString().strip());
+                        }
+                        if (catMap.get("fields") instanceof List<?> fList) {
+                            List<String> parsedFields = new ArrayList<>();
+                            for (Object fObj : fList) {
+                                if (fObj != null) {
+                                    parsedFields.add(fObj.toString().strip());
+                                }
+                            }
+                            catDef.setFields(parsedFields);
+                        }
+                        step.setCatalogValidation(catDef);
+                    }
+                    Object coherenceObj = sm.containsKey("coherence_checks") ? sm.get("coherence_checks") : sm.get("coherenceChecks");
+                    if (coherenceObj instanceof List<?> cohList) {
+                        List<String> parsedCoh = new ArrayList<>();
+                        for (Object cObj : cohList) {
+                            if (cObj != null) {
+                                parsedCoh.add(cObj.toString().strip());
+                            }
+                        }
+                        step.setCoherenceChecks(parsedCoh);
                     }
                     steps.add(step);
                 }
@@ -344,7 +396,15 @@ public class YamlPipelineLoader {
                             ? SystemPromptResolver.resolve(stepDef.getSystemPrompt(), resourceResolver,
                                     "lo step '" + stepDef.getId() + "' della pipeline '" + def.getId() + "'")
                             : null;
-                    steps.add(new ModelInferenceStep(stepDef.getId(), modelClient, stepDef.getModel(), schemaContent, systemPrompt));
+                    steps.add(new ModelInferenceStep(
+                            stepDef.getId(),
+                            modelClient,
+                            stepDef.getModel(),
+                            schemaContent,
+                            systemPrompt,
+                            stepDef.getInjectContext(),
+                            stepDef.getMergeFields()
+                    ));
                 }
                 case "field_validation" -> {
                     List<PathValidatorBinding> bindings = new ArrayList<>();
@@ -360,7 +420,25 @@ public class YamlPipelineLoader {
                     }
                     boolean guardsEnabled = environment.getProperty("orchestrator.guards.enabled", Boolean.class, true);
                     boolean coherenceEnabled = environment.getProperty("orchestrator.coherence.enabled", Boolean.class, true);
-                    steps.add(new OutputValidationStep(stepDef.getId(), bindings, requiredSpecs, stepDef.getOnFailureDefinition(), guardsEnabled, coherenceEnabled));
+                    OutputValidationStep.CatalogValidationSpec catSpec = null;
+                    if (stepDef.getCatalogValidation() != null) {
+                        catSpec = new OutputValidationStep.CatalogValidationSpec(
+                                stepDef.getCatalogValidation().getSource(),
+                                stepDef.getCatalogValidation().getFields()
+                        );
+                    }
+                    steps.add(new OutputValidationStep(
+                            stepDef.getId(),
+                            objectMapper,
+                            Collections.emptyMap(),
+                            bindings,
+                            requiredSpecs,
+                            stepDef.getOnFailureDefinition(),
+                            guardsEnabled,
+                            coherenceEnabled,
+                            catSpec,
+                            stepDef.getCoherenceChecks()
+                    ));
                 }
                 case "tool" -> {
                     String toolName = stepDef.getTool();
@@ -378,7 +456,15 @@ public class YamlPipelineLoader {
                             defaultMaxRetries,
                             defaultBackoffMs
                     );
-                    steps.add(new ToolPipelineStep(stepDef.getId(), toolName, toolRegistry, stepDef.getArgs(), policy, toolInvoker));
+                    steps.add(new ToolPipelineStep(
+                            stepDef.getId(),
+                            toolName,
+                            stepDef.getOutputKey(),
+                            toolRegistry,
+                            stepDef.getArgs(),
+                            policy,
+                            toolInvoker
+                    ));
                 }
                 case "decision" -> {
                     String model = stepDef.getModel();

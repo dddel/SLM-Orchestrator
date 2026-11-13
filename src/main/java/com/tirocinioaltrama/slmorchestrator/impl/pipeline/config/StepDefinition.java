@@ -15,11 +15,16 @@ public class StepDefinition {
     private String systemPrompt; // system_prompt: path risorsa o testo inline
     private String name; // Per type: tool
     private String tool; // Per type: tool (chiave alternativa/preferita 'tool')
+    private String outputKey; // Per type: tool (chiave nel contesto in cui salvare il risultato)
     private Map<String, Object> args; // Argomenti opzionali per type: tool
     private Map<String, Object> onFailure; // on_failure opzionale
     private OnFailureDefinition onFailureDefinition;
+    private Map<String, String> injectContext; // Per type: model_inference (tag XML -> chiave attributo nel contesto)
+    private List<String> mergeFields; // Per type: model_inference (campi autorevoli da unire al JSON precedente)
     private List<FieldValidatorDefinition> validators;
     private List<String> unvalidated;
+    private CatalogValidationDefinition catalogValidation; // Per type: field_validation (validazione su catalogo dinamico)
+    private List<String> coherenceChecks; // Per type: field_validation (es. ["anagrafica"])
     private String candidatesSource;
     private String targetField;
     private Boolean shuffleCandidates;
@@ -177,6 +182,78 @@ public class StepDefinition {
 
     public void setValidators(List<FieldValidatorDefinition> validators) {
         this.validators = validators;
+    }
+
+    public String getOutputKey() {
+        return outputKey;
+    }
+
+    public void setOutputKey(String outputKey) {
+        this.outputKey = outputKey;
+    }
+
+    public Map<String, String> getInjectContext() {
+        return injectContext;
+    }
+
+    public void setInjectContext(Map<String, String> injectContext) {
+        this.injectContext = injectContext;
+    }
+
+    public List<String> getMergeFields() {
+        return mergeFields;
+    }
+
+    public void setMergeFields(List<String> mergeFields) {
+        this.mergeFields = mergeFields;
+    }
+
+    public CatalogValidationDefinition getCatalogValidation() {
+        return catalogValidation;
+    }
+
+    public void setCatalogValidation(CatalogValidationDefinition catalogValidation) {
+        this.catalogValidation = catalogValidation;
+    }
+
+    public List<String> getCoherenceChecks() {
+        return coherenceChecks;
+    }
+
+    public void setCoherenceChecks(List<String> coherenceChecks) {
+        this.coherenceChecks = coherenceChecks;
+    }
+
+    /**
+     * DTO per la definizione della validazione di appartenenza a un catalogo dinamico nel contesto.
+     */
+    public static class CatalogValidationDefinition {
+        private String source;
+        private List<String> fields;
+
+        public CatalogValidationDefinition() {
+        }
+
+        public CatalogValidationDefinition(String source, List<String> fields) {
+            this.source = source;
+            this.fields = fields;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public void setSource(String source) {
+            this.source = source;
+        }
+
+        public List<String> getFields() {
+            return fields;
+        }
+
+        public void setFields(List<String> fields) {
+            this.fields = fields;
+        }
     }
 
     /**

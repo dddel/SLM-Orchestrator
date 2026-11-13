@@ -2,12 +2,17 @@ package com.tirocinioaltrama.slmorchestrator.impl.pipeline.guard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.tirocinioaltrama.slmorchestrator.core.DocumentType;
+import com.tirocinioaltrama.slmorchestrator.core.validation.FieldError;
+import com.tirocinioaltrama.slmorchestrator.core.validation.ValidationErrorCode;
+import com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult;
 
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ObjectNode;
@@ -96,7 +101,55 @@ public final class PostProcessingGuards {
             Map.entry("NON_DEFINITO", "NON_SPECIFICATO")
     );
 
+    private static final Map<String, BiFunction<JsonNode, String, ValidationResult>> COHERENCE_CHECKS = Map.of(
+            "anagrafica", PostProcessingGuards::validateAnagraficaCoherence
+    );
+
     private PostProcessingGuards() {
+    }
+
+    private static ValidationResult validateAnagraficaCoherence(JsonNode rootNode, String payload) {
+        var coherenceRes = AnagraficaCoherenceValidator.validate(rootNode, payload);
+        if (coherenceRes.isValid()) {
+            return ValidationResult.valid();
+        }
+        List<String> errors = new ArrayList<>();
+        List<FieldError> fieldErrors = new ArrayList<>();
+        for (var violation : coherenceRes.violations()) {
+            errors.add(violation.errorMessage());
+            fieldErrors.add(new FieldError(
+                    violation.path(),
+                    "coherence",
+                    ValidationErrorCode.FIELD_SWAP_DETECTED,
+                    violation.errorMessage()
+            ));
+        }
+        return new ValidationResult(false, errors, List.of(), fieldErrors);
+    }
+
+    /**
+     * Verifica se il nome del controllo di coerenza inter-campo è registrato.
+     */
+    public static boolean isSupportedCoherenceCheck(String checkName) {
+        if (checkName == null || checkName.isBlank()) {
+            return false;
+        }
+        return COHERENCE_CHECKS.containsKey(checkName.strip().toLowerCase(Locale.ROOT));
+    }
+
+    /**
+     * Esegue un controllo di coerenza inter-campo registrato per nome (es. "anagrafica").
+     */
+    public static ValidationResult executeCoherenceCheck(String checkName, JsonNode rootNode, String payload) {
+        if (checkName == null || checkName.isBlank()) {
+            return ValidationResult.valid();
+        }
+        BiFunction<JsonNode, String, ValidationResult> check =
+                COHERENCE_CHECKS.get(checkName.strip().toLowerCase(Locale.ROOT));
+        if (check == null) {
+            return ValidationResult.valid();
+        }
+        return check.apply(rootNode, payload);
     }
 
     /**
@@ -104,11 +157,24 @@ public final class PostProcessingGuards {
      * Restituisce true se almeno un campo è stato modificato, false altrimenti.
      */
     public static boolean applyGuards(JsonNode rootNode, String payload, DocumentType documentType) {
+        return applyGuards(rootNode, payload, documentType, null);
+    }
+
+    /**
+     * Applica tutte le guardie di post-processing deterministiche sul nodo radice JSON,
+     * tenendo conto anche dei controlli dichiarativi configurati nello step YAML.
+     */
+    public static boolean applyGuards(
+            JsonNode rootNode,
+            String payload,
+            DocumentType documentType,
+            List<String> coherenceChecks) {
         if (rootNode == null || !rootNode.isObject()) {
             return false;
         }
         ObjectNode root = (ObjectNode) rootNode;
         boolean modified = false;
+        DocumentType effectiveDocType = resolveEffectiveDocumentType(documentType, coherenceChecks);
 
         // G1: Normalizzazione etichette denominazioni
         if (guardG1StripLabels(root)) {
@@ -126,7 +192,7 @@ public final class PostProcessingGuards {
         }
 
         // G3: Recupero omissioni codificate (dataRilascio da 4a., provincia in luogoNascita, CF da 4d.)
-        if (guardG3OmissionRecovery(root, payload, documentType)) {
+        if (guardG3OmissionRecovery(root, payload, effectiveDocType)) {
             modified = true;
         }
 
@@ -136,7 +202,7 @@ public final class PostProcessingGuards {
         }
 
         // Pulizia prefissi numerici su anagrafica (es. 1. ROSSI, 2. MARIO)
-        if (guardStripNumberingPrefixes(root, documentType)) {
+        if (guardStripNumberingPrefixes(root, effectiveDocType)) {
             modified = true;
         }
 
@@ -146,6 +212,19 @@ public final class PostProcessingGuards {
         }
 
         return modified;
+    }
+
+    private static DocumentType resolveEffectiveDocumentType(
+            DocumentType documentType,
+            List<String> coherenceChecks) {
+        if (coherenceChecks != null) {
+            for (String check : coherenceChecks) {
+                if (check != null && "anagrafica".equalsIgnoreCase(check.strip())) {
+                    return DocumentType.ANAGRAFICA;
+                }
+            }
+        }
+        return documentType;
     }
 
     public static String cleanLabelAndHonorifics(String value) {

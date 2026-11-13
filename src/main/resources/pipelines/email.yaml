@@ -20,6 +20,7 @@ steps:
   - id: roles_lookup
     type: tool
     tool: company_roles_lookup
+    output_key: company_roles
     timeout_ms: 2000
     max_retries: 1
     retry_backoff_ms: 100
@@ -29,6 +30,13 @@ steps:
     model: "${ollama.email-model}"
     schema: schemas/email_recipient_info.json
     system_prompt: prompts/email-recipient-system.txt
+    inject_context:
+      company_roles: company_roles
+      extracted_info: step.email_inference.output
+    merge_fields:
+      - destinatario
+      - ruoloDestinatario
+      - motivoInstradamento
 
   - id: recipient_validation
     type: field_validation
@@ -39,6 +47,11 @@ steps:
     unvalidated:
       - destinatario
       - ruoloDestinatario
+    catalog_validation:
+      source: company_roles
+      fields:
+        - destinatario
+        - ruoloDestinatario
 
 actions:
   on_ok:

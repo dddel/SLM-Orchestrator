@@ -45,7 +45,7 @@ public class ContextBudgetValidator {
 
     public static final double DEFAULT_CHARS_PER_TOKEN = 2.5;
     public static final int DEFAULT_RESERVED_TOKENS = 0;
-    private static final int EMAIL_PIPELINE_EXTRA_OVERHEAD_TOKENS = 200;
+    private static final int CONTEXT_INJECTION_EXTRA_OVERHEAD_TOKENS = 200;
     private static final int RETRY_FEEDBACK_OVERHEAD_TOKENS = 90;
 
     private final int numCtx;
@@ -149,13 +149,14 @@ public class ContextBudgetValidator {
                     continue;
                 }
                 int maxStepOverhead = 0;
+                boolean multiStepEnrichment = hasMultiStepOrToolEnrichment(def);
                 for (StepDefinition step : def.getSteps()) {
                     if (step.getType() != null && "model_inference".equalsIgnoreCase(step.getType().strip())) {
                         int promptTokens = estimateTokensForPrompt(step.getSystemPrompt(), loader, def.getId(), step.getId());
                         int schemaTokens = estimateTokensForSchema(step.getSchema(), loader);
                         int stepOverhead = promptTokens + schemaTokens + RETRY_FEEDBACK_OVERHEAD_TOKENS;
-                        if (docType == DocumentType.EMAIL) {
-                            stepOverhead += EMAIL_PIPELINE_EXTRA_OVERHEAD_TOKENS;
+                        if (requiresContextInjectionOverhead(step, multiStepEnrichment)) {
+                            stepOverhead += CONTEXT_INJECTION_EXTRA_OVERHEAD_TOKENS;
                         }
                         if (stepOverhead > maxStepOverhead) {
                             maxStepOverhead = stepOverhead;
@@ -268,6 +269,39 @@ public class ContextBudgetValidator {
 
     public int getNumPredict() {
         return numPredict;
+    }
+
+    private static boolean hasMultiStepOrToolEnrichment(PipelineDefinition def) {
+        if (def == null || def.getSteps() == null) {
+            return false;
+        }
+        int inferenceSteps = 0;
+        for (StepDefinition step : def.getSteps()) {
+            if (step == null || step.getType() == null) {
+                continue;
+            }
+            String t = step.getType().strip().toLowerCase(Locale.ROOT);
+            if ("tool".equals(t) || "decision".equals(t)) {
+                return true;
+            }
+            if ("model_inference".equals(t)) {
+                inferenceSteps++;
+            }
+        }
+        return inferenceSteps > 1;
+    }
+
+    private static boolean requiresContextInjectionOverhead(StepDefinition step, boolean multiStepEnrichment) {
+        if (step == null) {
+            return false;
+        }
+        if (step.getInjectContext() != null && !step.getInjectContext().isEmpty()) {
+            return true;
+        }
+        if (step.getMergeFields() != null && !step.getMergeFields().isEmpty()) {
+            return true;
+        }
+        return multiStepEnrichment;
     }
 
     private int estimateTokensForPrompt(String promptSpec, ResourceLoader loader, String pipelineId, String stepId) {

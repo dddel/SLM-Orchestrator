@@ -12,3 +12,5 @@ steps:
     validators:
       - field: codiceFiscale
         validator: codice_fiscale
+    coherence_checks:
+      - anagrafica

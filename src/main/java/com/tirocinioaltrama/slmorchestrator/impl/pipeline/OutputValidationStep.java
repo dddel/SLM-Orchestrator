@@ -8,7 +8,6 @@ import java.util.Map;
 
 import com.tirocinioaltrama.slmorchestrator.core.DocumentType;
 import com.tirocinioaltrama.slmorchestrator.impl.pipeline.config.OnFailureDefinition;
-import com.tirocinioaltrama.slmorchestrator.impl.pipeline.guard.AnagraficaCoherenceValidator;
 import com.tirocinioaltrama.slmorchestrator.impl.pipeline.guard.CatalogMembershipGuard;
 import com.tirocinioaltrama.slmorchestrator.impl.pipeline.guard.PostProcessingGuards;
 import org.slf4j.Logger;
@@ -52,8 +51,17 @@ public class OutputValidationStep implements PipelineStep {
     private final OnFailureDefinition onFailureDefinition;
     private final boolean guardsEnabled;
     private final boolean coherenceEnabled;
+    private final CatalogValidationSpec catalogValidationSpec;
+    private final List<String> coherenceChecks;
 
     public record PathValidatorBinding(FieldPath path, Validator<String> validator) {}
+
+    public record CatalogValidationSpec(String sourceAttribute, List<String> fields) {
+        public CatalogValidationSpec {
+            sourceAttribute = sourceAttribute != null ? sourceAttribute.strip() : "company_roles";
+            fields = fields != null ? List.copyOf(fields) : List.of();
+        }
+    }
 
     public OutputValidationStep() {
         this(defaultValidators());
@@ -81,6 +89,17 @@ public class OutputValidationStep implements PipelineStep {
 
     public OutputValidationStep(String id, List<PathValidatorBinding> pathBindings, List<RequiredFieldSpec> requiredSpecs, OnFailureDefinition onFailureDefinition, boolean guardsEnabled, boolean coherenceEnabled) {
         this(id, new ObjectMapper(), Collections.emptyMap(), pathBindings, requiredSpecs, onFailureDefinition, guardsEnabled, coherenceEnabled);
+    }
+
+    public OutputValidationStep(
+            String id,
+            List<PathValidatorBinding> pathBindings,
+            List<RequiredFieldSpec> requiredSpecs,
+            OnFailureDefinition onFailureDefinition,
+            CatalogValidationSpec catalogValidationSpec,
+            List<String> coherenceChecks
+    ) {
+        this(id, new ObjectMapper(), Collections.emptyMap(), pathBindings, requiredSpecs, onFailureDefinition, true, true, catalogValidationSpec, coherenceChecks);
     }
 
     public OutputValidationStep(
@@ -114,6 +133,21 @@ public class OutputValidationStep implements PipelineStep {
             boolean guardsEnabled,
             boolean coherenceEnabled
     ) {
+        this(id, objectMapper, legacyFieldValidators, pathBindings, requiredSpecs, onFailureDefinition, guardsEnabled, coherenceEnabled, null, null);
+    }
+
+    public OutputValidationStep(
+            String id,
+            ObjectMapper objectMapper,
+            Map<String, java.util.function.Function<String, ValidationResult>> legacyFieldValidators,
+            List<PathValidatorBinding> pathBindings,
+            List<RequiredFieldSpec> requiredSpecs,
+            OnFailureDefinition onFailureDefinition,
+            boolean guardsEnabled,
+            boolean coherenceEnabled,
+            CatalogValidationSpec catalogValidationSpec,
+            List<String> coherenceChecks
+    ) {
         this.id = id != null ? id : "output_validation";
         this.objectMapper = objectMapper != null ? objectMapper : new ObjectMapper();
         this.jsonValidator = new JsonOutputValidator(this.objectMapper);
@@ -123,6 +157,16 @@ public class OutputValidationStep implements PipelineStep {
         this.onFailureDefinition = onFailureDefinition;
         this.guardsEnabled = guardsEnabled;
         this.coherenceEnabled = coherenceEnabled;
+        this.catalogValidationSpec = catalogValidationSpec;
+        this.coherenceChecks = coherenceChecks != null ? List.copyOf(coherenceChecks) : null;
+    }
+
+    public CatalogValidationSpec getCatalogValidationSpec() {
+        return catalogValidationSpec;
+    }
+
+    public List<String> getCoherenceChecks() {
+        return coherenceChecks;
     }
 
     public boolean isGuardsEnabled() {
@@ -178,7 +222,7 @@ public class OutputValidationStep implements PipelineStep {
 
             // 0. Applicazione delle guardie simboliche deterministiche (G1, G2, G3, G4, Evidenza Sesso, Date) se abilitate
             if (guardsEnabled) {
-                boolean modified = PostProcessingGuards.applyGuards(root, payload, context.getDocumentType());
+                boolean modified = PostProcessingGuards.applyGuards(root, payload, context.getDocumentType(), coherenceChecks);
                 if (modified) {
                     try {
                         context.setModelOutput(objectMapper.writeValueAsString(root));
@@ -187,20 +231,8 @@ public class OutputValidationStep implements PipelineStep {
                     }
                 }
 
-                // Guardia simbolica di appartenenza a catalogo (zero-hallucination su decisioni/ruoli)
-                Object catalogData = context.getAttribute("company_roles");
-                if (catalogData == null) {
-                    catalogData = context.getAttribute("company_roles_lookup");
-                }
-                if (catalogData != null) {
-                    ValidationResult catalogResult = CatalogMembershipGuard.validateJson(
-                            root, catalogData, List.of("destinatario", "ruoloDestinatario")
-                    );
-                    if (!catalogResult.isValid()) {
-                        errors.addAll(catalogResult.errors());
-                        fieldErrors.addAll(catalogResult.fieldErrors());
-                    }
-                }
+                // Guardia simbolica di appartenenza a catalogo (dichiarativa da YAML o fallback per istanziazioni dirette)
+                validateCatalogMembership(context, root, errors, fieldErrors);
             }
 
             // 1. Controllo dei campi 'required' precalcolati al bootstrap
@@ -246,15 +278,9 @@ public class OutputValidationStep implements PipelineStep {
                 }
             }
 
-            // 3. Validazione di coerenza anagrafica (V1: Layout UE, V2: CF Cross-Field, Date, Parole Intere) se abilitata
-            if (coherenceEnabled && context.getDocumentType() == DocumentType.ANAGRAFICA) {
-                var coherenceRes = AnagraficaCoherenceValidator.validate(root, payload);
-                if (!coherenceRes.isValid()) {
-                    for (var violation : coherenceRes.violations()) {
-                        errors.add(violation.errorMessage());
-                        fieldErrors.add(new FieldError(violation.path(), "coherence", ValidationErrorCode.FIELD_SWAP_DETECTED, violation.errorMessage()));
-                    }
-                }
+            // 3. Validazione di coerenza inter-campo dichiarativa (o fallback legacy se coherenceChecks non specificato)
+            if (coherenceEnabled) {
+                validateCoherence(context, root, payload, errors, fieldErrors);
             }
 
             // 4. Validazione legacy (se presente)
@@ -277,6 +303,74 @@ public class OutputValidationStep implements PipelineStep {
             return new ValidationResult(false, errors, warnings, fieldErrors);
         }
         return warnings.isEmpty() ? ValidationResult.valid() : ValidationResult.withWarnings(warnings);
+    }
+
+    private void validateCatalogMembership(
+            PipelineContext context,
+            JsonNode root,
+            List<String> errors,
+            List<FieldError> fieldErrors
+    ) {
+        if (catalogValidationSpec != null) {
+            String srcAttr = catalogValidationSpec.sourceAttribute();
+            Object catalogData = context.getAttribute(srcAttr);
+            if (catalogData == null && "company_roles".equals(srcAttr)) {
+                catalogData = context.getAttribute("company_roles_lookup");
+            }
+            if (catalogData != null && !catalogValidationSpec.fields().isEmpty()) {
+                ValidationResult catalogResult = CatalogMembershipGuard.validateJson(
+                        root, catalogData, catalogValidationSpec.fields()
+                );
+                if (!catalogResult.isValid()) {
+                    errors.addAll(catalogResult.errors());
+                    fieldErrors.addAll(catalogResult.fieldErrors());
+                }
+            }
+            return;
+        }
+
+        // Fallback di retrocompatibilità per istanziazioni dirette senza catalog_validation esplicito
+        Object catalogData = context.getAttribute("company_roles");
+        if (catalogData == null) {
+            catalogData = context.getAttribute("company_roles_lookup");
+        }
+        if (catalogData != null) {
+            ValidationResult catalogResult = CatalogMembershipGuard.validateJson(
+                    root, catalogData, List.of("destinatario", "ruoloDestinatario")
+            );
+            if (!catalogResult.isValid()) {
+                errors.addAll(catalogResult.errors());
+                fieldErrors.addAll(catalogResult.fieldErrors());
+            }
+        }
+    }
+
+    private void validateCoherence(
+            PipelineContext context,
+            JsonNode root,
+            String payload,
+            List<String> errors,
+            List<FieldError> fieldErrors
+    ) {
+        if (coherenceChecks != null) {
+            for (String checkName : coherenceChecks) {
+                ValidationResult checkRes = PostProcessingGuards.executeCoherenceCheck(checkName, root, payload);
+                if (!checkRes.isValid()) {
+                    errors.addAll(checkRes.errors());
+                    fieldErrors.addAll(checkRes.fieldErrors());
+                }
+            }
+            return;
+        }
+
+        // Fallback di retrocompatibilità per istanziazioni dirette senza coherence_checks esplicito
+        if (context.getDocumentType() == DocumentType.ANAGRAFICA) {
+            ValidationResult checkRes = PostProcessingGuards.executeCoherenceCheck("anagrafica", root, payload);
+            if (!checkRes.isValid()) {
+                errors.addAll(checkRes.errors());
+                fieldErrors.addAll(checkRes.fieldErrors());
+            }
+        }
     }
 
     private static boolean isAlgebraicField(String path) {

@@ -30,17 +30,18 @@ public class ToolPipelineStep implements PipelineStep {
 
     private final String id;
     private final String toolName;
+    private final String outputKey;
     private final ToolRegistry toolRegistry;
     private final Map<String, Object> args;
     private final ToolExecutionPolicy policy;
     private final ToolInvoker toolInvoker;
 
     public ToolPipelineStep(String id, String toolName, ToolRegistry toolRegistry) {
-        this(id, toolName, toolRegistry, Map.of(), ToolExecutionPolicy.defaults(), new ToolInvoker());
+        this(id, toolName, null, toolRegistry, Map.of(), ToolExecutionPolicy.defaults(), new ToolInvoker());
     }
 
     public ToolPipelineStep(String id, String toolName, ToolRegistry toolRegistry, Map<String, Object> args) {
-        this(id, toolName, toolRegistry, args, ToolExecutionPolicy.defaults(), new ToolInvoker());
+        this(id, toolName, null, toolRegistry, args, ToolExecutionPolicy.defaults(), new ToolInvoker());
     }
 
     public ToolPipelineStep(
@@ -51,8 +52,21 @@ public class ToolPipelineStep implements PipelineStep {
             ToolExecutionPolicy policy,
             ToolInvoker toolInvoker
     ) {
+        this(id, toolName, null, toolRegistry, args, policy, toolInvoker);
+    }
+
+    public ToolPipelineStep(
+            String id,
+            String toolName,
+            String outputKey,
+            ToolRegistry toolRegistry,
+            Map<String, Object> args,
+            ToolExecutionPolicy policy,
+            ToolInvoker toolInvoker
+    ) {
         this.id = id != null ? id : "tool_step";
         this.toolName = toolName;
+        this.outputKey = (outputKey != null && !outputKey.isBlank()) ? outputKey.strip() : null;
         this.toolRegistry = toolRegistry;
         this.args = args != null ? Map.copyOf(args) : Map.of();
         this.policy = policy != null ? policy : ToolExecutionPolicy.defaults();
@@ -65,6 +79,10 @@ public class ToolPipelineStep implements PipelineStep {
 
     public String getToolName() {
         return toolName;
+    }
+
+    public String getOutputKey() {
+        return outputKey;
     }
 
     public ToolExecutionPolicy getPolicy() {
@@ -138,7 +156,9 @@ public class ToolPipelineStep implements PipelineStep {
         Object payload = result.data() != null ? result.data() : result.message();
         context.setAttribute("tool." + id, payload);
         context.setAttribute(toolName, payload);
-        if ("company_roles_lookup".equalsIgnoreCase(toolName)) {
+        if (outputKey != null) {
+            context.setAttribute(outputKey, payload);
+        } else if ("company_roles_lookup".equalsIgnoreCase(toolName)) {
             context.setAttribute("company_roles", payload);
         }
         log.debug("Step tool '{}' completato con successo in {} ms (tentativi: {}).", id, invRes.latencyMs(), invRes.attempts());
