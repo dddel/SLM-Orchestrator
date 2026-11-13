@@ -100,6 +100,7 @@ public class BasePipeline implements Pipeline {
     @Override
     public PipelineResult execute(PipelineContext context) {
         long start = System.currentTimeMillis();
+        context.setDeadlineEpochMs(start + maxDurationMs);
         List<String> accumulatedWarnings = new ArrayList<>();
 
         // Contatori locali per-richiesta: nessuna condivisione tra thread

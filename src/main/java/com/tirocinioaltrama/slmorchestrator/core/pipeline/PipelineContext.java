@@ -69,6 +69,15 @@ public class PipelineContext {
     private String feedbackPrompt;
     private String overrideModelName;
     private Map<String, Object> samplingOptions;
+    private long deadlineEpochMs;
+
+    public long getDeadlineEpochMs() {
+        return deadlineEpochMs;
+    }
+
+    public void setDeadlineEpochMs(long deadlineEpochMs) {
+        this.deadlineEpochMs = deadlineEpochMs;
+    }
 
     public String getFeedbackPrompt() {
         return feedbackPrompt;

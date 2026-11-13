@@ -17,5 +17,7 @@ public enum ValidationErrorCode {
     FIELD_SWAP_DETECTED,
     INFERENCE_ERROR,
     MODEL_UNAVAILABLE,
+    TOOL_TIMEOUT,
+    TOOL_ERROR,
     INDETERMINATE
 }

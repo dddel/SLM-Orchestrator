@@ -194,6 +194,12 @@ public class PipelineConfigValidator {
                             + "' nella pipeline '" + pipelineId + "': il tool '" + toolName
                             + "' non è registrato in ToolRegistry o non è ancora supportato (disponibili: " + toolRegistry.getRegisteredNames() + ").");
                 }
+                validateToolExecutionPolicyParams(
+                        step.getTimeoutMs(),
+                        step.getMaxRetries(),
+                        step.getRetryBackoffMs(),
+                        "lo step 'tool' '" + step.getId() + "' della pipeline '" + pipelineId + "'"
+                );
             }
             case "decision" -> {
                 if (step.getOnFailure() != null && !step.getOnFailure().isEmpty()) {
@@ -294,6 +300,32 @@ public class PipelineConfigValidator {
                     }
                 }
             }
+            validateToolExecutionPolicyParams(
+                    action.getTimeoutMs(),
+                    action.getMaxRetries(),
+                    action.getRetryBackoffMs(),
+                    "l'azione '" + action.getTool() + "' nel blocco '" + groupName + "' della pipeline '" + pipelineId + "'"
+            );
+        }
+    }
+
+    private void validateToolExecutionPolicyParams(
+            Long timeoutMs,
+            Integer maxRetries,
+            Long retryBackoffMs,
+            String contextLabel
+    ) {
+        if (timeoutMs != null && (timeoutMs <= 0 || timeoutMs > 120000L)) {
+            throw new PipelineConfigurationException("Valore 'timeout_ms' non valido (" + timeoutMs
+                    + ") per " + contextLabel + ": deve essere compreso tra 1 e 120000 ms.");
+        }
+        if (maxRetries != null && (maxRetries < 0 || maxRetries > 5)) {
+            throw new PipelineConfigurationException("Valore 'max_retries' non valido (" + maxRetries
+                    + ") per " + contextLabel + ": deve essere compreso tra 0 e 5.");
+        }
+        if (retryBackoffMs != null && retryBackoffMs < 0) {
+            throw new PipelineConfigurationException("Valore 'retry_backoff_ms' non valido (" + retryBackoffMs
+                    + ") per " + contextLabel + ": deve essere maggiore o uguale a 0.");
         }
     }
 
