@@ -149,11 +149,29 @@ public class ModelInferenceStep implements PipelineStep {
         } catch (Exception e) {
             log.error("Errore durante l'invocazione del modello '{}': {}", effectiveModel, e.getMessage(), e);
             String msg = "Errore durante l'elaborazione del modello SLM: " + e.getMessage();
+            ValidationErrorCode errorCode = isModelUnavailable(e)
+                    ? ValidationErrorCode.MODEL_UNAVAILABLE
+                    : ValidationErrorCode.INFERENCE_ERROR;
             return ValidationResult.withFieldErrors(
-                    List.of(new FieldError("$", "system", ValidationErrorCode.INFERENCE_ERROR, msg)),
+                    List.of(new FieldError("$", "system", errorCode, msg)),
                     List.of()
             );
         }
+    }
+
+    private static boolean isModelUnavailable(Throwable t) {
+        Throwable curr = t;
+        while (curr != null) {
+            if (curr instanceof org.springframework.web.client.ResourceAccessException
+                    || curr instanceof org.springframework.web.client.HttpServerErrorException
+                    || curr instanceof java.net.ConnectException
+                    || curr instanceof java.net.SocketTimeoutException
+                    || curr instanceof java.net.http.HttpTimeoutException) {
+                return true;
+            }
+            curr = curr.getCause();
+        }
+        return false;
     }
 
     private String mergeJsonOutputs(String previousOutput, String newOutput) {

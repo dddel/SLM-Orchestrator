@@ -26,4 +26,12 @@ public interface Router {
      * Determina la tipologia di documento fornendo anche il nome del router/strategia utilizzata.
      */
     RoutingDecision routeWithDecision(String payload);
+
+    /**
+     * Determina la tipologia di documento consentendo di sovrascrivere per-richiesta
+     * l'abilitazione del fallback euristico.
+     */
+    default RoutingDecision routeWithDecision(String payload, Boolean allowHeuristicFallback) {
+        return routeWithDecision(payload);
+    }
 }

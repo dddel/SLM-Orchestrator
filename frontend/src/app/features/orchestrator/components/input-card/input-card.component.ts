@@ -29,6 +29,8 @@ export class InputCardComponent {
   readonly selectedDocType = input<DocumentType | null>(null);
   /** Motore router selezionato */
   readonly selectedRouterType = input<RouterType | null>(null);
+  /** Abilitazione del fallback euristico a parole chiave del router */
+  readonly allowHeuristicFallback = input<boolean>(true);
   /** Stato di caricamento (inferenza in corso) */
   readonly isLoading = input<boolean>(false);
   /** Se disabilitato */
@@ -40,6 +42,8 @@ export class InputCardComponent {
   readonly docTypeChange = output<DocumentType | null>();
   /** Modifica del motore router */
   readonly routerTypeChange = output<RouterType | null>();
+  /** Modifica dell'abilitazione del fallback euristico */
+  readonly heuristicFallbackChange = output<boolean>();
   /** Invio del documento per elaborazione */
   readonly submitRequest = output<void>();
   /** Pulizia del testo */
@@ -66,6 +70,15 @@ export class InputCardComponent {
     { value: 'reflex', label: 'APUS Reflex Classifier' }
   ];
 
+  readonly fallbackOptions: ParamOption[] = [
+    { value: 'true', label: 'Attivo (Parole Chiave)', badge: 'Predefinito' },
+    { value: 'false', label: 'Disattivato (Strict)' }
+  ];
+
+  readonly selectedFallbackValue = computed(() =>
+    this.allowHeuristicFallback() ? 'true' : 'false'
+  );
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
@@ -91,6 +104,11 @@ export class InputCardComponent {
   onSelectRouter(val: string | null): void {
     this.userInteracted.emit();
     this.routerTypeChange.emit(val as RouterType | null);
+  }
+
+  onSelectFallback(val: string | null): void {
+    this.userInteracted.emit();
+    this.heuristicFallbackChange.emit(val !== 'false');
   }
 
   onSubmit(): void {

@@ -125,9 +125,14 @@ public class DefaultOrchestrator implements Orchestrator {
             log.info("Tipo documento non specificato: interrogazione del Router (tipo richiesto: '{}', effettivo: '{}')...",
                     request.routerType(), activeRouter.getClass().getSimpleName());
             try {
-                RoutingDecision decision = activeRouter.routeWithDecision(sanitizedPayload);
+                RoutingDecision decision = (request.allowHeuristicFallback() != null)
+                        ? activeRouter.routeWithDecision(sanitizedPayload, request.allowHeuristicFallback())
+                        : activeRouter.routeWithDecision(sanitizedPayload);
                 type = decision.documentType();
                 routerUsed = decision.routerName();
+            } catch (RoutingException e) {
+                log.error("Errore durante l'invocazione del Router: {}", e.getMessage(), e);
+                throw e;
             } catch (Exception e) {
                 log.error("Errore durante l'invocazione del Router: {}", e.getMessage(), e);
                 throw new RoutingException("Impossibile determinare il tipo di documento tramite il Router", e);
@@ -158,11 +163,21 @@ public class DefaultOrchestrator implements Orchestrator {
         PipelineResult result;
         try {
             result = pipeline.execute(context);
+        } catch (PipelineExecutionException e) {
+            throw e;
         } catch (Exception e) {
-            long totalElapsed = System.currentTimeMillis() - startTime;
             log.error("Eccezione imprevista durante l'esecuzione della pipeline '{}': {}", effectiveType, e.getMessage(), e);
-            FieldError sysErr = new FieldError("$", "system", ValidationErrorCode.INFERENCE_ERROR, "Errore imprevisto esecuzione pipeline: " + e.getMessage());
-            return OrchestratorResponse.failure(effectiveType, routerUsed, List.of(sysErr), totalElapsed);
+            throw new PipelineExecutionException("Errore imprevisto durante l'esecuzione della pipeline '" + effectiveType + "': " + e.getMessage(), e);
+        }
+
+        if (result.outcome() == PipelineResult.Outcome.FAILURE) {
+            String errMsg = result.validationResult() != null && !result.validationResult().errors().isEmpty()
+                    ? String.join("; ", result.validationResult().errors())
+                    : (result.validationResult() != null && !result.validationResult().fieldErrors().isEmpty()
+                            ? result.validationResult().fieldErrors().get(0).message()
+                            : "Motore di inferenza non disponibile o fallimento infrastrutturale della pipeline");
+            log.error("Fallimento infrastrutturale per pipeline '{}': {}", effectiveType, errMsg);
+            throw new PipelineExecutionException(errMsg);
         }
 
         long totalElapsed = System.currentTimeMillis() - startTime;

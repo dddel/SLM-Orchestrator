@@ -426,7 +426,7 @@ class PipelineRetryEscalationTest {
     }
 
     @Test
-    @DisplayName("D1 (c): Fallimento al primo tentativo: resta errore infrastrutturale (nessun output)")
+    @DisplayName("D1 (c): Fallimento al primo tentativo senza output: propaga PipelineExecutionException (HTTP 503)")
     void testFallimentoAlPrimoTentativoInfrastrutturale() {
         PipelineDefinition def = new PipelineDefinition();
         def.setId("email_pipe");
@@ -447,18 +447,51 @@ class PipelineRetryEscalationTest {
         def.setSteps(List.of(inf, val));
         DefaultOrchestrator orchestrator = createOrchestratorWithPipeline(def);
 
-        // Fallimento secco al primo colpo
+        // Fallimento secco di rete al primo colpo (nessun output pregresso) -> PipelineExecutionException (HTTP 503)
         when(modelClient.generate(any(ModelRequest.class)))
-                .thenThrow(new RuntimeException("Connessione rifiutata"));
+                .thenThrow(new org.springframework.web.client.ResourceAccessException("Connessione rifiutata"));
+
+        var ex = org.junit.jupiter.api.Assertions.assertThrows(
+                com.tirocinioaltrama.slmorchestrator.core.exception.PipelineExecutionException.class,
+                () -> orchestrator.process(new OrchestratorRequest(DocumentType.EMAIL, "Contatto"))
+        );
+        assertTrue(ex.getMessage().contains("Connessione rifiutata"));
+    }
+
+    @Test
+    @DisplayName("T2.5: Guasto di rete (ResourceAccessException) al secondo tentativo preserva output in INDETERMINATE con MODEL_UNAVAILABLE")
+    void testGuastoReteDuranteRetryProduceModelUnavailableInIndeterminate() {
+        PipelineDefinition def = new PipelineDefinition();
+        def.setId("email_pipe");
+        def.setDocumentType("EMAIL");
+
+        StepDefinition inf = new StepDefinition();
+        inf.setId("inf");
+        inf.setType("model_inference");
+        inf.setModel("email-slm");
+        inf.setSchema("schemas/email_info.json");
+
+        StepDefinition val = new StepDefinition();
+        val.setId("val");
+        val.setType("field_validation");
+        val.setValidators(List.of(new FieldValidatorDefinition("email", "email")));
+        val.setOnFailure(Map.of("retry_step", "inf", "max_retries", 1));
+
+        def.setSteps(List.of(inf, val));
+        DefaultOrchestrator orchestrator = createOrchestratorWithPipeline(def);
+
+        String invalidOutput = "{\"mittente\":\"Mario\",\"email\":\"senza_chiocciola\"}";
+        when(modelClient.generate(any(ModelRequest.class)))
+                .thenReturn(new ModelResponse(invalidOutput, 30))
+                .thenThrow(new org.springframework.web.client.ResourceAccessException("I/O error on POST request"));
 
         OrchestratorResponse resp = orchestrator.process(new OrchestratorRequest(DocumentType.EMAIL, "Contatto"));
 
-        // Primo tentativo senza output -> status INDETERMINATE con 1 solo errore (infrastrutturale/INFERENCE_ERROR)
         assertEquals(OrchestratorStatus.INDETERMINATE, resp.status());
-        assertNull(resp.result());
-        assertNull(resp.unvalidatedResult());
-        assertEquals(1, resp.errors().size());
-        assertEquals(ValidationErrorCode.INFERENCE_ERROR, resp.errors().get(0).code());
+        assertEquals(invalidOutput, resp.unvalidatedResult());
+        assertEquals(2, resp.errors().size());
+        assertEquals(ValidationErrorCode.FORMAT_INVALID, resp.errors().get(0).code());
+        assertEquals(ValidationErrorCode.MODEL_UNAVAILABLE, resp.errors().get(1).code());
     }
 
     @Test

@@ -58,6 +58,7 @@ public final class ValidationFeedbackBuilder {
             case VALUE_NOT_IN_CATALOG -> "valore non appartenente al catalogo o insieme di scelte consentite.";
             case FIELD_SWAP_DETECTED -> "rilevata inversione tra i campi 'nome' e 'cognome'. Nei documenti con numerazione europea (es. Patente di guida), '1.' indica il COGNOME e '2.' il NOME; verifica la coerenza con le etichette e con il Codice Fiscale.";
             case INFERENCE_ERROR -> "errore di generazione del modello SLM.";
+            case MODEL_UNAVAILABLE -> "motore di inferenza temporaneamente non disponibile.";
             case INDETERMINATE -> "decisione indeterminata per consenso insufficiente tra permutazioni.";
         };
     }

@@ -116,5 +116,32 @@ class LocalOllamaRouterTest {
         RoutingDecision decision = router.routeWithDecision("Un testo generico che descrive un paesaggio montano innevato.");
         assertEquals(DocumentType.ALTRO, decision.documentType());
         assertEquals(LocalOllamaRouter.ROUTER_NAME_FALLBACK, decision.routerName());
+        assertTrue(decision.isHeuristicFallback());
+    }
+
+    @Test
+    @DisplayName("T2.2: Fallback euristico non confonde 'Data:' con l'intestazione email 'A:'")
+    void fallbackNonConfondeDataConIntestazioneEmail() {
+        DocumentType detected = LocalOllamaRouter.fallbackHeuristic("Data: 12/03/2026\nVerbale riunione interna di progetto.");
+        assertEquals(DocumentType.ALTRO, detected, "'Data:' non deve essere interpretato come intestazione 'A:'");
+    }
+
+    @Test
+    @DisplayName("T2.1: Con fallback euristico disabilitato (configurazione o per-request) solleva RoutingException se Ollama è irraggiungibile")
+    void fallbackDisabilitatoSollevaRoutingException() {
+        // 1. Disabilitato da configurazione del router
+        LocalOllamaRouter strictRouter = new LocalOllamaRouter(
+                "http://localhost:65432", "qwen2.5:3b", Duration.ofMillis(200), null, null, false
+        );
+        org.junit.jupiter.api.Assertions.assertThrows(
+                com.tirocinioaltrama.slmorchestrator.core.exception.RoutingException.class,
+                () -> strictRouter.routeWithDecision("Fattura commerciale n. 45")
+        );
+
+        // 2. Disabilitato per-request su router con fallback attivo di default
+        org.junit.jupiter.api.Assertions.assertThrows(
+                com.tirocinioaltrama.slmorchestrator.core.exception.RoutingException.class,
+                () -> router.routeWithDecision("Fattura commerciale n. 45", false)
+        );
     }
 }
