@@ -31,6 +31,7 @@ export interface OrchestratorRequest {
   type?: DocumentType | null;
   payload: string;
   routerType?: RouterType | null;
+  allowHeuristicFallback?: boolean;
 }
 
 export interface OrchestratorResponse {

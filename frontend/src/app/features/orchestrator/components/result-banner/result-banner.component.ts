@@ -23,6 +23,12 @@ export class ResultBannerComponent {
   /** Confidenza classificazione (opzionale) */
   readonly confidence = input<number | string | null>(null);
 
+  /** Indica se il routing è avvenuto tramite fallback euristico a parole chiave */
+  readonly isHeuristicFallback = computed(() => {
+    const r = this.router();
+    return Boolean(r && r.toLowerCase().includes('fallback'));
+  });
+
   readonly displayConfidence = computed(() => {
     const c = this.confidence();
     if (c !== null && c !== undefined) {

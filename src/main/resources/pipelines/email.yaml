@@ -20,6 +20,9 @@ steps:
   - id: roles_lookup
     type: tool
     tool: company_roles_lookup
+    timeout_ms: 2000
+    max_retries: 1
+    retry_backoff_ms: 100
 
   - id: recipient_inference
     type: model_inference
@@ -40,5 +43,7 @@ steps:
 actions:
   on_ok:
     - tool: send_email
+      timeout_ms: 10000
+      max_retries: 0
       args:
         document: "$result"

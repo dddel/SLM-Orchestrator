@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tirocinioaltrama.slmorchestrator.core.DocumentType;
 import com.tirocinioaltrama.slmorchestrator.core.Router;
 import com.tirocinioaltrama.slmorchestrator.core.RoutingDecision;
+import com.tirocinioaltrama.slmorchestrator.core.exception.RoutingException;
 
 /**
  * Router deterministico basato su modello decisionale locale APUS Reflex (APUS-Reflex-4B).
@@ -65,23 +66,33 @@ public class ApusReflexRouter implements Router {
     private final String promptTemplate;
     private final boolean randomizeOptions;
     private final java.util.Random random;
+    private final boolean heuristicFallbackEnabled;
     private final java.util.concurrent.atomic.AtomicLong invalidTokenCount = new java.util.concurrent.atomic.AtomicLong();
     private final java.util.concurrent.atomic.AtomicLong fallbackInvocationCount = new java.util.concurrent.atomic.AtomicLong();
     private final java.util.Map<String, Boolean> thinkingCapabilityCache = new java.util.concurrent.ConcurrentHashMap<>();
 
     public ApusReflexRouter(String baseUrl, String model, Duration timeout) {
-        this(baseUrl, model, timeout, null, false, null);
+        this(baseUrl, model, timeout, null, false, null, true);
+    }
+
+    public ApusReflexRouter(String baseUrl, String model, Duration timeout, boolean heuristicFallbackEnabled) {
+        this(baseUrl, model, timeout, null, false, null, heuristicFallbackEnabled);
     }
 
     public ApusReflexRouter(String baseUrl, String model, Duration timeout, String promptTemplate) {
-        this(baseUrl, model, timeout, promptTemplate, false, null);
+        this(baseUrl, model, timeout, promptTemplate, false, null, true);
     }
 
     public ApusReflexRouter(String baseUrl, String model, Duration timeout, String promptTemplate, boolean randomizeOptions, java.util.Random random) {
+        this(baseUrl, model, timeout, promptTemplate, randomizeOptions, random, true);
+    }
+
+    public ApusReflexRouter(String baseUrl, String model, Duration timeout, String promptTemplate, boolean randomizeOptions, java.util.Random random, boolean heuristicFallbackEnabled) {
         this.model = (model != null && !model.isBlank()) ? model : DEFAULT_REFLEX_MODEL;
         this.promptTemplate = (promptTemplate != null && !promptTemplate.isBlank()) ? promptTemplate : DEFAULT_PROMPT_TEMPLATE;
         this.randomizeOptions = randomizeOptions;
         this.random = random != null ? random : new java.util.Random();
+        this.heuristicFallbackEnabled = heuristicFallbackEnabled;
         Duration effectiveTimeout = timeout != null ? timeout : Duration.ofSeconds(10);
 
         HttpClient httpClient = HttpClient.newBuilder()
@@ -97,19 +108,28 @@ public class ApusReflexRouter implements Router {
     }
 
     public ApusReflexRouter(RestClient restClient, String model) {
-        this(restClient, model, null, false, null);
+        this(restClient, model, null, false, null, true);
     }
 
     public ApusReflexRouter(RestClient restClient, String model, String promptTemplate) {
-        this(restClient, model, promptTemplate, false, null);
+        this(restClient, model, promptTemplate, false, null, true);
     }
 
     public ApusReflexRouter(RestClient restClient, String model, String promptTemplate, boolean randomizeOptions, java.util.Random random) {
+        this(restClient, model, promptTemplate, randomizeOptions, random, true);
+    }
+
+    public ApusReflexRouter(RestClient restClient, String model, String promptTemplate, boolean randomizeOptions, java.util.Random random, boolean heuristicFallbackEnabled) {
         this.restClient = restClient;
         this.model = (model != null && !model.isBlank()) ? model : DEFAULT_REFLEX_MODEL;
         this.promptTemplate = (promptTemplate != null && !promptTemplate.isBlank()) ? promptTemplate : DEFAULT_PROMPT_TEMPLATE;
         this.randomizeOptions = randomizeOptions;
         this.random = random != null ? random : new java.util.Random();
+        this.heuristicFallbackEnabled = heuristicFallbackEnabled;
+    }
+
+    public boolean isHeuristicFallbackEnabled() {
+        return heuristicFallbackEnabled;
     }
 
     @Override
@@ -173,15 +193,25 @@ public class ApusReflexRouter implements Router {
 
     @Override
     public RoutingDecision routeWithDecision(String payload) {
+        return routeWithDecision(payload, null);
+    }
+
+    @Override
+    public RoutingDecision routeWithDecision(String payload, Boolean allowHeuristicFallback) {
         if (!randomizeOptions) {
-            return routeWithCandidates(payload, DEFAULT_CANDIDATES);
+            return routeWithCandidates(payload, DEFAULT_CANDIDATES, allowHeuristicFallback);
         }
         List<RouterCategoryCandidate> candidates = new java.util.ArrayList<>(DEFAULT_CANDIDATES);
         java.util.Collections.shuffle(candidates, random != null ? random : new java.util.Random());
-        return routeWithCandidates(payload, candidates);
+        return routeWithCandidates(payload, candidates, allowHeuristicFallback);
     }
 
     public RoutingDecision routeWithCandidates(String payload, List<RouterCategoryCandidate> candidates) {
+        return routeWithCandidates(payload, candidates, null);
+    }
+
+    public RoutingDecision routeWithCandidates(String payload, List<RouterCategoryCandidate> candidates, Boolean allowHeuristicFallback) {
+        boolean fallbackAllowed = allowHeuristicFallback != null ? allowHeuristicFallback : this.heuristicFallbackEnabled;
         if (payload == null || payload.isBlank()) {
             return new RoutingDecision(DocumentType.ALTRO, ROUTER_NAME_FALLBACK);
         }
@@ -240,21 +270,34 @@ public class ApusReflexRouter implements Router {
                     return new RoutingDecision(detected, routerName);
                 }
                 invalidTokenCount.incrementAndGet();
+                if (!fallbackAllowed) {
+                    throw new RoutingException("APUS Reflex Router (" + model + ") ha restituito un token non riconosciuto ('" + token + "') e il fallback euristico è disabilitato.");
+                }
                 fallbackInvocationCount.incrementAndGet();
                 DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
                 String fallbackRouterName = ROUTER_NAME_PREFIX + model + " -> Fallback Euristico per Token Non Valido: '" + token + "')";
                 log.warn("APUS Reflex Router ha restituito un token non riconosciuto ('{}'). Attivazione fallback: '{}'", token, fallbackRouterName);
                 return new RoutingDecision(fallbackType, fallbackRouterName);
             }
+        } catch (RoutingException e) {
+            throw e;
         } catch (Exception e) {
+            if (!fallbackAllowed) {
+                log.error("Errore durante l'invocazione di APUS Reflex Router ({}) e fallback euristico disabilitato: {}",
+                        model, e.getMessage());
+                throw new RoutingException("APUS Reflex Router (" + model + ") non raggiungibile: " + e.getMessage(), e);
+            }
             fallbackInvocationCount.incrementAndGet();
             DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
             String fallbackRouterName = ROUTER_NAME_PREFIX + model + " -> Fallback Euristico per Errore: " + e.getMessage() + ")";
-            log.error("Errore durante l'invocazione di APUS Reflex Router ({}): {}. Attivazione fallback: '{}'",
+            log.warn("Errore durante l'invocazione di APUS Reflex Router ({}): {}. Attivazione fallback: '{}'",
                     model, e.getMessage(), fallbackRouterName);
             return new RoutingDecision(fallbackType, fallbackRouterName);
         }
 
+        if (!fallbackAllowed) {
+            throw new RoutingException("APUS Reflex Router (" + model + ") ha restituito una risposta vuota e il fallback euristico è disabilitato.");
+        }
         fallbackInvocationCount.incrementAndGet();
         DocumentType fallbackType = LocalOllamaRouter.fallbackHeuristic(payload);
         log.info("Routing completato tramite fallback euristico: '{}'", fallbackType);

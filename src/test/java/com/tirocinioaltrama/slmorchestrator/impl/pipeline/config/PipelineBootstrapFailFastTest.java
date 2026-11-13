@@ -571,4 +571,44 @@ class PipelineBootstrapFailFastTest {
         // La validazione al bootstrap non deve sollevare eccezioni
         assertDoesNotThrow(() -> validator.validateAll(List.of(fatturaDef.get())));
     }
+
+    @Test
+    @DisplayName("Fail-fast: timeout_ms <= 0 o > 120000 e max_retries < 0 o > 5 in step tool / actions rifiutati")
+    void failFastToolExecutionPolicyInvalidBounds() {
+        ToolRegistry reg = new ToolRegistry();
+        PipelineConfigValidator v = new PipelineConfigValidator(validatorRegistry, reg, resourceLoader);
+
+        PipelineDefinition def = new PipelineDefinition();
+        def.setId("email_test");
+        def.setDocumentType("EMAIL");
+
+        StepDefinition toolStep = new StepDefinition();
+        toolStep.setId("roles_lookup");
+        toolStep.setType("tool");
+        toolStep.setTool("company_roles_lookup");
+        toolStep.setTimeoutMs(0L);
+        def.setSteps(List.of(toolStep));
+
+        PipelineConfigurationException ex1 = assertThrows(
+                PipelineConfigurationException.class,
+                () -> v.validateAll(List.of(def))
+        );
+        assertTrue(ex1.getMessage().contains("timeout_ms"));
+
+        toolStep.setTimeoutMs(2000L);
+        toolStep.setMaxRetries(6);
+        PipelineConfigurationException ex2 = assertThrows(
+                PipelineConfigurationException.class,
+                () -> v.validateAll(List.of(def))
+        );
+        assertTrue(ex2.getMessage().contains("max_retries"));
+
+        toolStep.setMaxRetries(1);
+        toolStep.setRetryBackoffMs(-10L);
+        PipelineConfigurationException ex3 = assertThrows(
+                PipelineConfigurationException.class,
+                () -> v.validateAll(List.of(def))
+        );
+        assertTrue(ex3.getMessage().contains("retry_backoff_ms"));
+    }
 }

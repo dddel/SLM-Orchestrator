@@ -67,6 +67,7 @@ export class OrchestratorPageComponent {
   readonly userPayload = signal<string>('');
   readonly userDocType = signal<DocumentType | null>(null);
   readonly userRouterType = signal<RouterType | null>('local-ollama');
+  readonly userHeuristicFallback = signal<boolean>(true);
   readonly activePresetId = signal<string | null>(null);
   readonly manualPipelineStages = signal<PipelineStageState[]>(DEFAULT_PIPELINE);
   readonly isInfoOpen = signal<boolean>(false);
@@ -199,10 +200,15 @@ export class OrchestratorPageComponent {
     this.userRouterType.set(val);
   }
 
+  onHeuristicFallbackChange(val: boolean): void {
+    this.userHeuristicFallback.set(val);
+  }
+
   onClearPayload(): void {
     this.userPayload.set('');
     this.activePresetId.set(null);
     this.userRouterType.set('local-ollama');
+    this.userHeuristicFallback.set(true);
     this.orchestratorService.clearResponse();
     this.manualPipelineStages.set(DEFAULT_PIPELINE);
   }
@@ -226,18 +232,26 @@ export class OrchestratorPageComponent {
       .process({
         type: this.userDocType(),
         payload: text,
-        routerType: this.userRouterType()
+        routerType: this.userRouterType(),
+        allowHeuristicFallback: this.userHeuristicFallback()
       })
       .subscribe({
         next: (res) => {
           const isWarning = res.status === 'INDETERMINATE';
+          const isFallback = (res.router || '').toLowerCase().includes('fallback');
           const routerMs = Math.max(15, Math.round(res.latencyMs * 0.08));
           const guardsMs = Math.max(2, Math.round(res.latencyMs * 0.02));
           const slmMs = Math.max(20, res.latencyMs - routerMs - guardsMs);
 
           this.manualPipelineStages.set([
             { id: 'input', label: 'Input', sublabel: 'Payload elaborato', status: 'completed' },
-            { id: 'router', label: 'Router', sublabel: res.router, status: 'completed', durationText: `${routerMs}ms` },
+            {
+              id: 'router',
+              label: 'Router',
+              sublabel: isFallback ? 'Fallback Euristico attivo' : res.router,
+              status: isFallback ? 'warning' : 'completed',
+              durationText: `${routerMs}ms`
+            },
             { id: 'slm', label: 'SLM', sublabel: 'Estrazione completata', status: 'completed', durationText: `${slmMs}ms` },
             {
               id: 'guards',
@@ -261,6 +275,15 @@ export class OrchestratorPageComponent {
 
   private extractGuardsFromResponse(res: OrchestratorResponse): GuardPresentationItem[] {
     const items: GuardPresentationItem[] = [];
+
+    if (res.router && res.router.toLowerCase().includes('fallback')) {
+      items.push({
+        id: 'router-heuristic-fallback',
+        title: 'Avviso Router: Fallback Euristico Attivato',
+        detail: `Il router SLM non era raggiungibile o ha restituito un token non valido (${res.router}). La categoria '${res.label}' è stata assegnata dall'euristica a parole chiave.`,
+        status: 'warning'
+      });
+    }
 
     // Se ci sono errori specifici restituiti dalle guardie
     if (res.errors && res.errors.length > 0) {
