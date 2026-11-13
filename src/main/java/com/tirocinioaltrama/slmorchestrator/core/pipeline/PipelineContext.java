@@ -94,6 +94,16 @@ public class PipelineContext {
         this.samplingOptions = samplingOptions;
     }
 
+    /**
+     * Azzera lo stato transitorio del retry (feedback, override del modello di escalation
+     * e opzioni di campionamento) dopo il completamento valido di uno step.
+     */
+    public void clearRetryState() {
+        this.feedbackPrompt = null;
+        this.overrideModelName = null;
+        this.samplingOptions = null;
+    }
+
     @SuppressWarnings("unchecked")
     public <T> T getAttribute(String key, Class<T> type) {
         Object val = attributes.get(key);

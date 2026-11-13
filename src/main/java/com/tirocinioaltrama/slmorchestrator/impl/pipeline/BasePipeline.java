@@ -261,11 +261,11 @@ public class BasePipeline implements Pipeline {
                 return PipelineResult.failure(stepResult, elapsed, metrics);
             }
 
-            // Step valido: pulizia eventuale feedback per passi successivi e avanzamento
+            // Step valido: pulizia dello stato transitorio di retry (feedback, overrideModelName, samplingOptions) per passi successivi e avanzamento
             if (step instanceof OutputValidationStep) {
                 lastValidationResult = null;
             }
-            context.setFeedbackPrompt(null);
+            context.clearRetryState();
             currentIndex++;
         }
 
