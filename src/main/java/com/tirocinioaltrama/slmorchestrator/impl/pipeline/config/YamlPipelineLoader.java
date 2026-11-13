@@ -10,7 +10,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.tirocinioaltrama.slmorchestrator.core.tool.ToolExecutionPolicy;
 import com.tirocinioaltrama.slmorchestrator.core.tool.ToolRegistry;
+import com.tirocinioaltrama.slmorchestrator.impl.tool.ToolInvoker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -56,6 +58,7 @@ public class YamlPipelineLoader {
     private final ValidatorRegistry validatorRegistry;
     private final PipelineConfigValidator configValidator;
     private final ToolRegistry toolRegistry;
+    private final ToolInvoker toolInvoker;
     private final PathMatchingResourcePatternResolver resourceResolver;
     private final ObjectMapper objectMapper;
 
@@ -64,7 +67,16 @@ public class YamlPipelineLoader {
             ValidatorRegistry validatorRegistry,
             PipelineConfigValidator configValidator
     ) {
-        this(environment, validatorRegistry, configValidator, new ToolRegistry());
+        this(environment, validatorRegistry, configValidator, new ToolRegistry(), new ToolInvoker());
+    }
+
+    public YamlPipelineLoader(
+            Environment environment,
+            ValidatorRegistry validatorRegistry,
+            PipelineConfigValidator configValidator,
+            ToolRegistry toolRegistry
+    ) {
+        this(environment, validatorRegistry, configValidator, toolRegistry, new ToolInvoker());
     }
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -72,12 +84,14 @@ public class YamlPipelineLoader {
             Environment environment,
             ValidatorRegistry validatorRegistry,
             PipelineConfigValidator configValidator,
-            ToolRegistry toolRegistry
+            ToolRegistry toolRegistry,
+            ToolInvoker toolInvoker
     ) {
         this.environment = environment;
         this.validatorRegistry = validatorRegistry;
         this.configValidator = configValidator;
         this.toolRegistry = toolRegistry != null ? toolRegistry : new ToolRegistry();
+        this.toolInvoker = toolInvoker != null ? toolInvoker : new ToolInvoker();
         this.resourceResolver = new PathMatchingResourcePatternResolver();
         this.objectMapper = new ObjectMapper();
     }
@@ -216,6 +230,9 @@ public class YamlPipelineLoader {
                     if (sm.get("args") instanceof Map<?, ?> am) {
                         step.setArgs((Map<String, Object>) am);
                     }
+                    step.setTimeoutMs(parseOptionalLong(sm, "timeout_ms", "timeoutMs", sourceName, step.getId()));
+                    step.setMaxRetries(parseOptionalInt(sm, "max_retries", "maxRetries", sourceName, step.getId()));
+                    step.setRetryBackoffMs(parseOptionalLong(sm, "retry_backoff_ms", "retryBackoffMs", sourceName, step.getId()));
                     if (sm.get("on_failure") instanceof Map<?, ?> ofMap) {
                         step.setOnFailure((Map<String, Object>) ofMap);
                         step.setOnFailureDefinition(OnFailureDefinition.fromMap((Map<String, Object>) ofMap));
@@ -250,10 +267,10 @@ public class YamlPipelineLoader {
         if (actionsObj instanceof Map<?, ?> actionsMap) {
             ActionsGroupDefinition group = new ActionsGroupDefinition();
             if (actionsMap.get("on_ok") instanceof List<?> onOkList) {
-                group.setOnOk(parseActionList((List<?>) onOkList));
+                group.setOnOk(parseActionList((List<?>) onOkList, sourceName));
             }
             if (actionsMap.get("on_indeterminate") instanceof List<?> onIndetList) {
-                group.setOnIndeterminate(parseActionList((List<?>) onIndetList));
+                group.setOnIndeterminate(parseActionList((List<?>) onIndetList, sourceName));
             }
             def.setActions(group);
         }
@@ -262,17 +279,52 @@ public class YamlPipelineLoader {
     }
 
     @SuppressWarnings("unchecked")
-    private List<ActionDefinition> parseActionList(List<?> list) {
+    private List<ActionDefinition> parseActionList(List<?> list, String sourceName) {
         List<ActionDefinition> actions = new ArrayList<>();
         for (Object item : list) {
             if (item instanceof Map<?, ?> itemMap) {
                 Map<String, Object> im = (Map<String, Object>) itemMap;
                 String tool = im.get("tool") != null ? im.get("tool").toString().strip() : null;
                 Map<String, Object> args = im.get("args") instanceof Map<?, ?> am ? (Map<String, Object>) am : Map.of();
-                actions.add(new ActionDefinition(tool, args));
+                Long timeoutMs = parseOptionalLong(im, "timeout_ms", "timeoutMs", sourceName, tool);
+                Integer maxRetries = parseOptionalInt(im, "max_retries", "maxRetries", sourceName, tool);
+                Long retryBackoffMs = parseOptionalLong(im, "retry_backoff_ms", "retryBackoffMs", sourceName, tool);
+                actions.add(new ActionDefinition(tool, args, timeoutMs, maxRetries, retryBackoffMs));
             }
         }
         return actions;
+    }
+
+    private Long parseOptionalLong(Map<String, Object> map, String snakeKey, String camelKey, String sourceName, String contextId) {
+        Object raw = map.containsKey(snakeKey) ? map.get(snakeKey) : map.get(camelKey);
+        if (raw == null) {
+            return null;
+        }
+        if (raw instanceof Number n) {
+            return n.longValue();
+        }
+        try {
+            return Long.parseLong(raw.toString().strip());
+        } catch (NumberFormatException e) {
+            throw new PipelineConfigurationException("Valore numerico non valido per '" + snakeKey + "' in '"
+                    + contextId + "' (" + sourceName + "): " + raw, e);
+        }
+    }
+
+    private Integer parseOptionalInt(Map<String, Object> map, String snakeKey, String camelKey, String sourceName, String contextId) {
+        Object raw = map.containsKey(snakeKey) ? map.get(snakeKey) : map.get(camelKey);
+        if (raw == null) {
+            return null;
+        }
+        if (raw instanceof Number n) {
+            return n.intValue();
+        }
+        try {
+            return Integer.parseInt(raw.toString().strip());
+        } catch (NumberFormatException e) {
+            throw new PipelineConfigurationException("Valore intero non valido per '" + snakeKey + "' in '"
+                    + contextId + "' (" + sourceName + "): " + raw, e);
+        }
     }
 
     private Pipeline buildPipeline(PipelineDefinition def, ModelClient modelClient) {
@@ -312,7 +364,21 @@ public class YamlPipelineLoader {
                 }
                 case "tool" -> {
                     String toolName = stepDef.getTool();
-                    steps.add(new ToolPipelineStep(stepDef.getId(), toolName, toolRegistry, stepDef.getArgs()));
+                    long defaultTimeoutMs = environment.getProperty(
+                            "orchestrator.tools.default-timeout-ms", Long.class, ToolExecutionPolicy.DEFAULT_TIMEOUT_MS);
+                    int defaultMaxRetries = environment.getProperty(
+                            "orchestrator.tools.default-max-retries", Integer.class, ToolExecutionPolicy.DEFAULT_MAX_RETRIES);
+                    long defaultBackoffMs = environment.getProperty(
+                            "orchestrator.tools.default-retry-backoff-ms", Long.class, ToolExecutionPolicy.DEFAULT_BACKOFF_MS);
+                    ToolExecutionPolicy policy = ToolExecutionPolicy.resolve(
+                            stepDef.getTimeoutMs(),
+                            stepDef.getMaxRetries(),
+                            stepDef.getRetryBackoffMs(),
+                            defaultTimeoutMs,
+                            defaultMaxRetries,
+                            defaultBackoffMs
+                    );
+                    steps.add(new ToolPipelineStep(stepDef.getId(), toolName, toolRegistry, stepDef.getArgs(), policy, toolInvoker));
                 }
                 case "decision" -> {
                     String model = stepDef.getModel();

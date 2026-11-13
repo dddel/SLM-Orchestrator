@@ -23,8 +23,35 @@ public class StepDefinition {
     private String candidatesSource;
     private String targetField;
     private Boolean shuffleCandidates;
+    private Long timeoutMs;
+    private Integer maxRetries;
+    private Long retryBackoffMs;
 
     public StepDefinition() {
+    }
+
+    public Long getTimeoutMs() {
+        return timeoutMs;
+    }
+
+    public void setTimeoutMs(Long timeoutMs) {
+        this.timeoutMs = timeoutMs;
+    }
+
+    public Integer getMaxRetries() {
+        return maxRetries;
+    }
+
+    public void setMaxRetries(Integer maxRetries) {
+        this.maxRetries = maxRetries;
+    }
+
+    public Long getRetryBackoffMs() {
+        return retryBackoffMs;
+    }
+
+    public void setRetryBackoffMs(Long retryBackoffMs) {
+        this.retryBackoffMs = retryBackoffMs;
     }
 
     public Boolean getShuffleCandidates() {

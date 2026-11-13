@@ -100,6 +100,7 @@ public class BasePipeline implements Pipeline {
     @Override
     public PipelineResult execute(PipelineContext context) {
         long start = System.currentTimeMillis();
+        context.setDeadlineEpochMs(start + maxDurationMs);
         List<String> accumulatedWarnings = new ArrayList<>();
 
         // Contatori locali per-richiesta: nessuna condivisione tra thread
@@ -156,14 +157,19 @@ public class BasePipeline implements Pipeline {
                 }
 
                 // Se il fallimento avviene su ModelInferenceStep:
-                // Se esiste già un output precedente (guasto durante un retry o escalation), passiamo a INDETERMINATE preservando l'output precedente.
-                // Se non esiste alcun output (guasto al primo colpo), fallimento secco infrastrutturale.
+                // - Se l'errore è un troncamento di contesto (CONTEXT_TRUNCATED) o di output (OUTPUT_TRUNCATED),
+                //   si tratta di un esito deterministico non recuperabile via retry: transizione immediata a INDETERMINATE.
+                // - Se esiste già un output precedente (guasto durante un retry o escalation), passiamo a INDETERMINATE preservando l'output precedente.
+                // - Se non esiste alcun output (guasto al primo colpo), fallimento secco infrastrutturale.
                 if (step instanceof ModelInferenceStep) {
                     long elapsed = System.currentTimeMillis() - start;
                     ExecutionMetrics metrics =
                             ExecutionMetrics.of(elapsed, context.getStepMetrics());
-                    if (context.getModelOutput() != null && !context.getModelOutput().isBlank()) {
-                        log.warn("Guasto inferenza durante retry per pipeline {}. Output precedente preservato in INDETERMINATE.", supportedType);
+                    boolean isTruncationError = stepResult.fieldErrors() != null && stepResult.fieldErrors().stream()
+                            .anyMatch(fe -> fe.code() == ValidationErrorCode.CONTEXT_TRUNCATED
+                                    || fe.code() == ValidationErrorCode.OUTPUT_TRUNCATED);
+                    if (isTruncationError || (context.getModelOutput() != null && !context.getModelOutput().isBlank())) {
+                        log.warn("Interruzione inferenza (troncamento o guasto in retry) per pipeline {}. Transizione a INDETERMINATE.", supportedType);
                         List<FieldError> combinedFieldErrors = new ArrayList<>();
                         if (lastValidationResult != null && lastValidationResult.fieldErrors() != null) {
                             combinedFieldErrors.addAll(lastValidationResult.fieldErrors());
@@ -261,11 +267,11 @@ public class BasePipeline implements Pipeline {
                 return PipelineResult.failure(stepResult, elapsed, metrics);
             }
 
-            // Step valido: pulizia eventuale feedback per passi successivi e avanzamento
+            // Step valido: pulizia dello stato transitorio di retry (feedback, overrideModelName, samplingOptions) per passi successivi e avanzamento
             if (step instanceof OutputValidationStep) {
                 lastValidationResult = null;
             }
-            context.setFeedbackPrompt(null);
+            context.clearRetryState();
             currentIndex++;
         }
 
@@ -307,6 +313,8 @@ public class BasePipeline implements Pipeline {
             return false;
         }
         return stepResult.fieldErrors().stream()
-                .allMatch(fe -> fe.code() == ValidationErrorCode.SOURCE_CHECKSUM_INVALID);
+                .allMatch(fe -> fe.code() == ValidationErrorCode.SOURCE_CHECKSUM_INVALID
+                        || fe.code() == ValidationErrorCode.CONTEXT_TRUNCATED
+                        || fe.code() == ValidationErrorCode.OUTPUT_TRUNCATED);
     }
 }

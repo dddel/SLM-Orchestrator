@@ -40,6 +40,9 @@ export class OrchestratorService {
     if (request.routerType) {
       body['routerType'] = request.routerType;
     }
+    if (request.allowHeuristicFallback !== undefined) {
+      body['allowHeuristicFallback'] = request.allowHeuristicFallback;
+    }
 
     return this.http.post<OrchestratorResponse>(this.ENDPOINT, body).pipe(
       map((response) => {

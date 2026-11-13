@@ -29,10 +29,11 @@ public class RouterConfig {
     @Bean
     public LocalOllamaRouter localOllamaRouter(
             OllamaProperties ollamaProperties,
-            ResourceLoader resourceLoader
+            ResourceLoader resourceLoader,
+            @Value("${router.heuristic-fallback.enabled:true}") boolean heuristicFallbackEnabled
     ) {
         String model = ollamaProperties.routerModel();
-        log.info("Inizializzazione Router Local Ollama (modello: {})", model);
+        log.info("Inizializzazione Router Local Ollama (modello: {}, fallback euristico: {})", model, heuristicFallbackEnabled);
         String systemPrompt = null;
         if (ollamaProperties.routerSystemPrompt() != null && !ollamaProperties.routerSystemPrompt().isBlank()) {
             try {
@@ -61,20 +62,23 @@ public class RouterConfig {
                 model,
                 ollamaProperties.readTimeout(),
                 systemPrompt,
-                runtimeOptions
+                runtimeOptions,
+                heuristicFallbackEnabled
         );
     }
 
     @Bean
     public ApusReflexRouter apusReflexRouter(
-            OllamaProperties ollamaProperties
+            OllamaProperties ollamaProperties,
+            @Value("${router.heuristic-fallback.enabled:true}") boolean heuristicFallbackEnabled
     ) {
         String model = ollamaProperties.reflexModel();
-        log.info("Inizializzazione Router APUS Reflex (modello: {})", model);
+        log.info("Inizializzazione Router APUS Reflex (modello: {}, fallback euristico: {})", model, heuristicFallbackEnabled);
         return new ApusReflexRouter(
                 ollamaProperties.baseUrl(),
                 model,
-                ollamaProperties.readTimeout()
+                ollamaProperties.readTimeout(),
+                heuristicFallbackEnabled
         );
     }
 

@@ -69,6 +69,15 @@ public class PipelineContext {
     private String feedbackPrompt;
     private String overrideModelName;
     private Map<String, Object> samplingOptions;
+    private long deadlineEpochMs;
+
+    public long getDeadlineEpochMs() {
+        return deadlineEpochMs;
+    }
+
+    public void setDeadlineEpochMs(long deadlineEpochMs) {
+        this.deadlineEpochMs = deadlineEpochMs;
+    }
 
     public String getFeedbackPrompt() {
         return feedbackPrompt;
@@ -92,6 +101,16 @@ public class PipelineContext {
 
     public void setSamplingOptions(Map<String, Object> samplingOptions) {
         this.samplingOptions = samplingOptions;
+    }
+
+    /**
+     * Azzera lo stato transitorio del retry (feedback, override del modello di escalation
+     * e opzioni di campionamento) dopo il completamento valido di uno step.
+     */
+    public void clearRetryState() {
+        this.feedbackPrompt = null;
+        this.overrideModelName = null;
+        this.samplingOptions = null;
     }
 
     @SuppressWarnings("unchecked")

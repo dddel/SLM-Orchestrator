@@ -8,11 +8,15 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import com.tirocinioaltrama.slmorchestrator.core.DocumentType;
+import com.tirocinioaltrama.slmorchestrator.core.model.StepMetric;
 import com.tirocinioaltrama.slmorchestrator.core.pipeline.PipelineContext;
 import com.tirocinioaltrama.slmorchestrator.core.tool.Tool;
+import com.tirocinioaltrama.slmorchestrator.core.tool.ToolExecutionPolicy;
 import com.tirocinioaltrama.slmorchestrator.core.tool.ToolRegistry;
 import com.tirocinioaltrama.slmorchestrator.core.tool.ToolResult;
+import com.tirocinioaltrama.slmorchestrator.core.validation.ValidationErrorCode;
 import com.tirocinioaltrama.slmorchestrator.core.validation.ValidationResult;
+import com.tirocinioaltrama.slmorchestrator.impl.tool.ToolInvoker;
 
 class ToolPipelineStepTest {
 
@@ -81,5 +85,42 @@ class ToolPipelineStepTest {
         ValidationResult result = step.execute(ctx);
 
         assertFalse(result.isValid());
+        assertEquals(ValidationErrorCode.TOOL_ERROR, result.fieldErrors().get(0).code());
+    }
+
+    @Test
+    void testExecuteToolRecordsStepMetricAndHandlesTimeout() {
+        ToolRegistry registry = new ToolRegistry();
+        Tool slowTool = new Tool() {
+            @Override
+            public String getName() {
+                return "slow_tool";
+            }
+
+            @Override
+            public ToolResult execute(Map<String, Object> args) {
+                try {
+                    Thread.sleep(2000);
+                    return ToolResult.ok("OK", "x");
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return ToolResult.failure("Interrupted");
+                }
+            }
+        };
+        registry.register(slowTool);
+
+        ToolExecutionPolicy policy = new ToolExecutionPolicy(60L, 0, 10L);
+        ToolPipelineStep step = new ToolPipelineStep("step_slow", "slow_tool", registry, Map.of(), policy, new ToolInvoker());
+        PipelineContext ctx = new PipelineContext("test", DocumentType.EMAIL);
+        ValidationResult result = step.execute(ctx);
+
+        assertFalse(result.isValid());
+        assertEquals(ValidationErrorCode.TOOL_TIMEOUT, result.fieldErrors().get(0).code());
+        assertEquals(1, ctx.getStepMetrics().size());
+        StepMetric metric = ctx.getStepMetrics().get(0);
+        assertEquals("TOOL", metric.type());
+        assertEquals("slow_tool", metric.model());
+        assertTrue(metric.doneReason().contains("TIMEOUT"));
     }
 }
