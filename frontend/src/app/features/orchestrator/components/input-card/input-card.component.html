@@ -63,6 +63,15 @@
         [disabled]="disabled() || isLoading()"
         (valueChange)="onSelectRouter($event)"
       ></app-param-select>
+
+      <app-param-select
+        label="Fallback Euristico"
+        icon="zap"
+        [options]="fallbackOptions"
+        [selectedValue]="selectedFallbackValue()"
+        [disabled]="disabled() || isLoading()"
+        (valueChange)="onSelectFallback($event)"
+      ></app-param-select>
     </div>
 
     <div class="action-group">

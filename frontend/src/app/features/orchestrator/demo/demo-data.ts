@@ -157,7 +157,8 @@ Volume stimato: 15.000 doc/mese.
 Ing. Marco Bianchi - TechSolution S.r.l.`,
     expectedJson: JSON.stringify(
       {
-        mittente: 'marco.bianchi@techsolution.it',
+        mittente: 'Marco Bianchi',
+        email: 'marco.bianchi@techsolution.it',
         oggetto: 'Richiesta urgente preventivo integrazione SLM',
         urgenza: 'URGENTE',
         sintesiRichiesta: 'Richiesta preventivo per pipeline on-premises Qwen 2.5 3B.'

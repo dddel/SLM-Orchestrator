@@ -31,12 +31,19 @@
             <span>Confidenza: <strong>{{ displayConfidence() }}</strong></span>
           </span>
         }
+
+        @if (isHeuristicFallback()) {
+          <span class="outcome-pill outcome-warn fallback-pill" role="status" title="Il router SLM non ha risposto: classificazione effettuata tramite euristica a parole chiave">
+            <app-icon name="alert-circle" [size]="12"></app-icon>
+            <span>Fallback Euristico Attivo</span>
+          </span>
+        }
       </div>
     </div>
   </div>
 
   <div class="banner-right">
-    <span class="meta-chip router-chip" title="Router utilizzato">
+    <span class="meta-chip router-chip" [class.router-fallback-chip]="isHeuristicFallback()" title="Router utilizzato">
       <app-icon name="cpu" [size]="13"></app-icon>
       <span>{{ router() }}</span>
     </span>
@@ -46,4 +53,14 @@
       <span class="mono-num">{{ latencyMs() }} ms</span>
     </span>
   </div>
+
+  @if (isHeuristicFallback()) {
+    <div class="fallback-warning-bar" role="alert">
+      <app-icon name="alert-circle" [size]="14" customClass="status-icon-warn"></app-icon>
+      <span>
+        <strong>Attenzione:</strong> Il router SLM non era raggiungibile o ha emesso una risposta non valida.
+        Il documento è stato instradato alla pipeline <strong>{{ label() }}</strong> tramite fallback euristico a parole chiave ({{ router() }}).
+      </span>
+    </div>
+  }
 </div>

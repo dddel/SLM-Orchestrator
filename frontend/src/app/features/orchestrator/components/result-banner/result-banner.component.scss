@@ -145,3 +145,28 @@
   font-family: var(--font-mono);
   color: var(--color-text-main);
 }
+
+.fallback-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.router-fallback-chip {
+  border-color: var(--color-warning-border);
+  color: var(--color-warning-text);
+}
+
+.fallback-warning-bar {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-primary);
+  background-color: var(--color-warning-bg);
+  border: var(--border-thin) solid var(--color-warning-border);
+  color: var(--color-warning-text);
+  font-size: var(--type-label-sm-size);
+}

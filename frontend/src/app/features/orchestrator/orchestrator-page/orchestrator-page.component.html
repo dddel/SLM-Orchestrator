@@ -29,10 +29,12 @@
             [payload]="effectivePayload()"
             [selectedDocType]="effectiveDocType()"
             [selectedRouterType]="effectiveRouterType()"
+            [allowHeuristicFallback]="userHeuristicFallback()"
             [isLoading]="effectiveIsLoading()"
             (payloadChange)="onPayloadChange($event)"
             (docTypeChange)="onDocTypeChange($event)"
             (routerTypeChange)="onRouterTypeChange($event)"
+            (heuristicFallbackChange)="onHeuristicFallbackChange($event)"
             (submitRequest)="onSubmitRequest()"
             (clearPayload)="onClearPayload()"
             (userInteracted)="onUserInteracted()"
@@ -54,6 +56,7 @@
               [streamingJson]="effectiveStreamingJson()"
               [errorMessage]="effectiveError()"
             ></app-result-panel>
+            <app-mailpit-preview [state]="effectiveMailpitState()"></app-mailpit-preview>
           } @else {
             <app-empty-state></app-empty-state>
           }

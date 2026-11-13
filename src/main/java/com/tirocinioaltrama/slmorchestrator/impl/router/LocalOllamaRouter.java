@@ -4,7 +4,9 @@ import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
+import com.tirocinioaltrama.slmorchestrator.core.exception.RoutingException;
 import com.tirocinioaltrama.slmorchestrator.impl.model.OllamaRuntimeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,10 @@ public class LocalOllamaRouter implements Router {
     public static final String ROUTER_NAME_PREFIX = "Ollama Local (";
     public static final String ROUTER_NAME_FALLBACK = "Fallback Euristico";
     private static final String DEFAULT_ROUTER_SYSTEM_PROMPT_RESOURCE = "prompts/router-system.txt";
+    private static final Pattern EMAIL_HEADER_PATTERN =
+            Pattern.compile("(?im)^\\s*(da|a|cc|oggetto|from|to|subject)\\s*:");
+    private static final Pattern EMAIL_ADDRESS_PATTERN =
+            Pattern.compile("(?i)[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,}");
 
     @Override
     public String getName() {
@@ -41,17 +47,23 @@ public class LocalOllamaRouter implements Router {
     private final String model;
     private final String systemPrompt;
     private final OllamaRuntimeOptions runtimeOptions;
+    private final boolean heuristicFallbackEnabled;
 
     public LocalOllamaRouter(String baseUrl, String model, Duration timeout) {
-        this(baseUrl, model, timeout, null, null);
+        this(baseUrl, model, timeout, null, null, true);
     }
 
     public LocalOllamaRouter(String baseUrl, String model, Duration timeout, String systemPrompt) {
-        this(baseUrl, model, timeout, systemPrompt, null);
+        this(baseUrl, model, timeout, systemPrompt, null, true);
     }
 
     public LocalOllamaRouter(String baseUrl, String model, Duration timeout, String systemPrompt,
             OllamaRuntimeOptions runtimeOptions) {
+        this(baseUrl, model, timeout, systemPrompt, runtimeOptions, true);
+    }
+
+    public LocalOllamaRouter(String baseUrl, String model, Duration timeout, String systemPrompt,
+            OllamaRuntimeOptions runtimeOptions, boolean heuristicFallbackEnabled) {
         this.model = (model != null && !model.isBlank()) ? model : "qwen2.5-router:latest";
         this.systemPrompt = (systemPrompt != null && !systemPrompt.isBlank())
                 ? systemPrompt.strip()
@@ -59,6 +71,7 @@ public class LocalOllamaRouter implements Router {
         this.runtimeOptions = runtimeOptions != null
                 ? runtimeOptions
                 : OllamaRuntimeOptions.defaults();
+        this.heuristicFallbackEnabled = heuristicFallbackEnabled;
         Duration effectiveTimeout = timeout != null ? timeout : Duration.ofSeconds(10);
 
         HttpClient httpClient = HttpClient.newBuilder()
@@ -74,15 +87,20 @@ public class LocalOllamaRouter implements Router {
     }
 
     public LocalOllamaRouter(RestClient restClient, String model) {
-        this(restClient, model, null, null);
+        this(restClient, model, null, null, true);
     }
 
     public LocalOllamaRouter(RestClient restClient, String model, String systemPrompt) {
-        this(restClient, model, systemPrompt, null);
+        this(restClient, model, systemPrompt, null, true);
     }
 
     public LocalOllamaRouter(RestClient restClient, String model, String systemPrompt,
             OllamaRuntimeOptions runtimeOptions) {
+        this(restClient, model, systemPrompt, runtimeOptions, true);
+    }
+
+    public LocalOllamaRouter(RestClient restClient, String model, String systemPrompt,
+            OllamaRuntimeOptions runtimeOptions, boolean heuristicFallbackEnabled) {
         this.restClient = restClient;
         this.model = (model != null && !model.isBlank()) ? model : "qwen2.5-router:latest";
         this.systemPrompt = (systemPrompt != null && !systemPrompt.isBlank())
@@ -91,6 +109,11 @@ public class LocalOllamaRouter implements Router {
         this.runtimeOptions = runtimeOptions != null
                 ? runtimeOptions
                 : OllamaRuntimeOptions.defaults();
+        this.heuristicFallbackEnabled = heuristicFallbackEnabled;
+    }
+
+    public boolean isHeuristicFallbackEnabled() {
+        return heuristicFallbackEnabled;
     }
 
     private static String loadDefaultSystemPrompt() {
@@ -126,6 +149,12 @@ public class LocalOllamaRouter implements Router {
 
     @Override
     public RoutingDecision routeWithDecision(String payload) {
+        return routeWithDecision(payload, null);
+    }
+
+    @Override
+    public RoutingDecision routeWithDecision(String payload, Boolean allowHeuristicFallback) {
+        boolean fallbackAllowed = allowHeuristicFallback != null ? allowHeuristicFallback : this.heuristicFallbackEnabled;
         if (payload == null || payload.isBlank()) {
             return new RoutingDecision(DocumentType.ALTRO, ROUTER_NAME_FALLBACK);
         }
@@ -170,6 +199,7 @@ public class LocalOllamaRouter implements Router {
                 runtimeOptions.keepAlive()
         );
 
+        Exception callException = null;
         try {
             OllamaChatResponse response = restClient.post()
                     .uri(CHAT_PATH)
@@ -187,8 +217,19 @@ public class LocalOllamaRouter implements Router {
                 return new RoutingDecision(detected, routerName);
             }
         } catch (Exception e) {
-            log.error("Errore durante l'invocazione di Ollama Router ({}): {}. Attivazione fallback euristico.",
-                    model, e.getMessage());
+            callException = e;
+            if (fallbackAllowed) {
+                log.warn("Errore durante l'invocazione di Ollama Router ({}): {}. Attivazione fallback euristico.",
+                        model, e.getMessage());
+            } else {
+                log.error("Errore durante l'invocazione di Ollama Router ({}) e fallback euristico disabilitato: {}",
+                        model, e.getMessage());
+                throw new RoutingException("Router Ollama (" + model + ") non raggiungibile: " + e.getMessage(), e);
+            }
+        }
+
+        if (!fallbackAllowed) {
+            throw new RoutingException("Router Ollama (" + model + ") ha restituito una risposta vuota o nulla e il fallback euristico è disabilitato.", callException);
         }
 
         return new RoutingDecision(fallbackHeuristic(payload), ROUTER_NAME_FALLBACK);
@@ -212,14 +253,21 @@ public class LocalOllamaRouter implements Router {
     }
 
     public static DocumentType fallbackHeuristic(String text) {
+        if (text == null || text.isBlank()) {
+            return DocumentType.ALTRO;
+        }
         String lower = text.toLowerCase(Locale.ROOT);
-        if (lower.contains("fattura") || lower.contains("p.iva") || lower.contains("iban") || lower.contains("imponibile")) {
+        if (lower.contains("fattura") || lower.contains("p.iva") || lower.contains("partita iva") || lower.contains("iban") || lower.contains("imponibile")) {
             return DocumentType.FATTURA;
         }
         if (lower.contains("carta d'identità") || lower.contains("passaporto") || lower.contains("codice fiscale") || lower.contains("patente") || lower.contains("cie ")) {
             return DocumentType.ANAGRAFICA;
         }
-        if (lower.contains("da:") || lower.contains("a:") || lower.contains("oggetto:") || lower.contains("gentil") || lower.contains("cordiali saluti") || lower.contains("@")) {
+        if (EMAIL_HEADER_PATTERN.matcher(text).find()
+                || lower.contains("gentil")
+                || lower.contains("cordiali saluti")
+                || lower.contains("distinti saluti")
+                || EMAIL_ADDRESS_PATTERN.matcher(text).find()) {
             return DocumentType.EMAIL;
         }
         return DocumentType.ALTRO;

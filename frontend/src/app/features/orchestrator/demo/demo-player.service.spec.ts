@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DemoPlayerService } from './demo-player.service';
+import { DEMO_ITEMS } from './demo-data';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 describe('DemoPlayerService', () => {
@@ -21,11 +22,19 @@ describe('DemoPlayerService', () => {
   it('dovrebbe avviarsi correttamente', () => {
     expect(service.isRunning()).toBe(false);
     expect(service.isPaused()).toBe(false);
+    expect(service.mailpitState().phase).toBe('hidden');
 
     service.start();
     expect(service.isRunning()).toBe(true);
     expect(service.isPaused()).toBe(false);
     expect(service.currentStep()).toBe('select_chip');
+  });
+
+  it('dovrebbe usare nel mock email il destinatario estratto dalla richiesta', () => {
+    const emailDemo = DEMO_ITEMS.find((item) => item.id === 'email-preventivo');
+    const expectedEmail = JSON.parse(emailDemo?.expectedJson ?? '{}') as { email?: string };
+
+    expect(expectedEmail.email).toBe('marco.bianchi@techsolution.it');
   });
 
   it('dovrebbe mettere in pausa e riprendere continuando lo step corrente', () => {
@@ -76,5 +85,6 @@ describe('DemoPlayerService', () => {
     service.stop();
     expect(service.isRunning()).toBe(false);
     expect(service.isPaused()).toBe(false);
+    expect(service.mailpitState().phase).toBe('hidden');
   });
 });
