@@ -188,6 +188,7 @@ Le proprietà principali sono in `src/main/resources/application.properties` e p
 | `OLLAMA_BASE_MODEL` | `qwen2.5:3b-instruct-q8_0` | Modello generativo base |
 | `OLLAMA_REFLEX_MODEL` | `hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M` | Modello decisionale |
 | `ROUTER_TYPE` | `local-ollama` | Router da utilizzare |
+| `ROUTER_HEURISTIC_FALLBACK` | `true` | Abilita il fallback euristico del router |
 | `ORCHESTRATOR_GUARDS_ENABLED` | `true` | Abilita le guardie deterministiche |
 | `ORCHESTRATOR_COHERENCE_ENABLED` | `true` | Abilita i controlli di coerenza |
 | `EMAIL_ENABLED` | `false` | Abilita l'azione di invio email |
@@ -216,21 +217,6 @@ Per limitare i destinatari durante i test è possibile configurare
 `EMAIL_ALLOWED_RECIPIENT_DOMAINS` (default: `example.test`). Un'azione fallita
 non altera lo stato primario della pipeline: viene riportata in `actionErrors`.
 
-### Demo email con Mailpit
-
-La pipeline `EMAIL` può eseguire l'azione post-pipeline `send_email`, che invia un
-riepilogo testuale dell'output validato. L'invio è disabilitato e in `dry-run` per
-default; Mailpit viene avviato solo con il profilo Compose dedicato:
-
-```bash
-EMAIL_ENABLED=true EMAIL_DRY_RUN=false \
-  docker compose --profile mailpit up -d --build
-```
-
-La UI di Mailpit è disponibile su <http://localhost:8025>. Per limitare i
-destinatari durante i test è possibile configurare
-`EMAIL_ALLOWED_RECIPIENT_DOMAINS` (default: `example.test`).
-
 Per aggiungere una nuova pipeline occorre definire la categoria documentale, lo schema JSON, il prompt e il file YAML; la procedura completa è descritta nella sezione dedicata della [documentazione tecnica](docs/documentazione_progetto.md).
 
 ## Limiti e sicurezza
@@ -238,7 +224,7 @@ Per aggiungere una nuova pipeline occorre definire la categoria documentale, lo 
 - L'API è volutamente aperta in ambiente locale: non sono implementati autenticazione, autorizzazione o rate limiting. Non esporla direttamente a Internet.
 - L'esecuzione locale riduce l'invio di dati a terzi, ma non risolve automaticamente gli obblighi GDPR relativi a log, accessi e conservazione di `unvalidatedResult`.
 - `OK` indica il superamento dei controlli configurati, non la verità dei dati estratti: valori plausibili ma errati possono passare.
-- Il limite di contesto del modello può essere inferiore al limite massimo del payload; input molto lunghi possono essere troncati dal runtime.
+- `ContextBudgetValidator` stima pre-volo il budget di token della finestra di contesto (`num_ctx`) respingendo i payload eccedenti con HTTP 422 (`CONTEXT_TRUNCATED`) e verifica post-inferenza l'eventuale saturazione del contesto o il troncamento dell'output (`OUTPUT_TRUNCATED`).
 - Il throughput è pensato per un prototipo con un runner locale; concorrenza e gestione della cache richiedono ulteriori verifiche.
 - La licenza del modello base Qwen2.5-3B è una Qwen Research License: verificarne la compatibilità prima dell'uso aziendale. Le licenze dei modelli sono distinte da quella del codice del progetto.
 

@@ -129,13 +129,13 @@ flowchart TD
 
 - **`DocumentType`**: Enum delle etichette di classificazione supportate: `FATTURA`, `EMAIL`, `ANAGRAFICA`, `ALTRO`.
 - **`Orchestrator`**: Interfaccia principale: `OrchestratorResponse process(OrchestratorRequest request)`.
-- **`OrchestratorRequest`**: Record immutabile della richiesta: `DocumentType type`, `String payload`, `RouterType routerType`.
+- **`OrchestratorRequest`**: Record immutabile della richiesta: `DocumentType type`, `String payload`, `RouterType routerType`, `Boolean allowHeuristicFallback`.
 - **`OrchestratorResponse`**: Record immutabile della risposta: `status` (`OK`, `INDETERMINATE`), `label`, `router`, `result`, `unvalidatedResult`, `errors`, `actionErrors`, `latencyMs`, `metrics`.
 - **`OrchestratorStatus`**: Enum: `OK`, `INDETERMINATE`. Il metodo factory `OrchestratorResponse.failure(...)` produce comunque una risposta `INDETERMINATE`.
-- **`Router`**: Interfaccia per la classificazione: `getName()`, `DocumentType route(String payload)` e `RoutingDecision routeWithDecision(String payload)`.
+- **`Router`**: Interfaccia per la classificazione: `getName()`, `DocumentType route(String payload)`, `RoutingDecision routeWithDecision(String payload)` e `RoutingDecision routeWithDecision(String payload, Boolean allowHeuristicFallback)`.
 - **`RouterRegistry`**: Registro concorrente per la gestione dei router per enum e alias.
 - **`RouterType`**: Enum dei router supportati nativamente: `LOCAL_OLLAMA("local-ollama")`, `REFLEX("reflex")`.
-- **`RoutingDecision`**: Record del risultato di instradamento: `documentType` e `routerName`.
+- **`RoutingDecision`**: Record del risultato di instradamento: `documentType`, `routerName` e metodo helper `isHeuristicFallback()`.
 
 ---
 
@@ -173,6 +173,7 @@ flowchart TD
 ## 8. com.tirocinioaltrama.slmorchestrator.core.tool
 
 - **`Tool`**: Interfaccia base per i tool: `getName()`, `ToolResult execute(Map<String, Object> args)`.
+- **`ToolExecutionPolicy`**: Record immutabile per la policy di esecuzione controllata di un tool (`timeoutMs`, `maxRetries`, `backoffMs`).
 - **`ToolRegistry`**: Componente concorrente che registra i tool disponibili.
 - **`ToolResult`**: Record immutabile: `success`, `message`, `data`.
 
@@ -184,9 +185,10 @@ flowchart TD
 - **`ValidationResult`**: Contenitore dell'esito: `valid`, `errors`, `warnings`, `fieldErrors`.
 - **`FieldError`**: Record per errori puntuali sui campi: `path`, `validatorName`, `code` ([`ValidationErrorCode`](src/main/java/com/tirocinioaltrama/slmorchestrator/core/validation/ValidationErrorCode.java)), `message`.
 - **`ValidationErrorCode`**: Enum degli errori formali e semantici:
-  - `JSON_SYNTAX_INVALID`, `REQUIRED_MISSING`, `REQUIRED_EMPTY`, `REQUIRED_NULL`, `FORMAT_INVALID`, `LENGTH_INVALID`, `CHECKSUM_INVALID`, `SOURCE_CHECKSUM_INVALID`, `VALUE_EMPTY`, `VALUE_NOT_IN_CATALOG`, `FIELD_SWAP_DETECTED`, `INFERENCE_ERROR`, `INDETERMINATE`.
+  - `JSON_SYNTAX_INVALID`, `REQUIRED_MISSING`, `REQUIRED_EMPTY`, `REQUIRED_NULL`, `FORMAT_INVALID`, `LENGTH_INVALID`, `CHECKSUM_INVALID`, `SOURCE_CHECKSUM_INVALID`, `VALUE_EMPTY`, `VALUE_NOT_IN_CATALOG`, `FIELD_SWAP_DETECTED`, `INFERENCE_ERROR`, `MODEL_UNAVAILABLE`, `TOOL_TIMEOUT`, `TOOL_ERROR`, `CONTEXT_TRUNCATED`, `OUTPUT_TRUNCATED`, `INDETERMINATE`.
 - **`FieldPath`**: Utility di navigazione dot-notation in JSON.
 - **`InputValidator`**: Sanificazione dell'input: limite 32KB, neutralizzazione tag XML riservati e controlli injection.
+- **`ContextBudgetValidator`**: Guardia pre-volo e al bootstrap della finestra di contesto (`num_ctx`): calcola l'overhead statico per pipeline e respinge con `ValidationException` (HTTP 422, `CONTEXT_TRUNCATED`) i payload che superano il budget di token disponibile.
 
 ### Sottopacchetto `core.validation.field`
 - **`CodiceFiscaleValidator`**: Valida formalmente il CF italiano (16 caratteri) con gestione omocodia e carattere CIN.
@@ -227,8 +229,10 @@ flowchart TD
 
 ## 13. com.tirocinioaltrama.slmorchestrator.impl.tool
 
+- **`ToolInvoker`**: Esecutore controllato dei tool su virtual thread con timeout per singolo tentativo (vincolato anche alla deadline globale della pipeline) e retry con backoff esponenziale sui guasti transitori.
 - **`CompanyRolesTool`**: Implementa [`Tool`](src/main/java/com/tirocinioaltrama/slmorchestrator/core/tool/Tool.java) (`company_roles_lookup`). Carica la directory mock del personale aziendale da `mock/company_roles.json` (Direzione, H.R., Reparto Tecnico, Testers, Developers).
-- **`ActionExecutor`**: Esegue le azioni post-pipeline dichiarate in `actions.on_ok` o `actions.on_indeterminate`.
+- **`SendEmailTool`**: Implementa [`Tool`](src/main/java/com/tirocinioaltrama/slmorchestrator/core/tool/Tool.java) (`send_email`). Costruisce e invia (o simula in dry-run) un'email di riepilogo tramite `EmailSender`.
+- **`ActionExecutor`**: Esegue le azioni post-pipeline dichiarate in `actions.on_ok` o `actions.on_indeterminate` tramite `ToolInvoker`.
 
 ---
 
