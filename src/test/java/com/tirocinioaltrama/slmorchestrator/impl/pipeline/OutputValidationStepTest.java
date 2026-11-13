@@ -137,4 +137,96 @@ class OutputValidationStepTest {
         ValidationResult resBad = step.execute(ctxBad);
         assertFalse(resBad.isValid());
     }
+
+    @Test
+    @DisplayName("Validazione dichiarativa su catalogo custom e controlli di coerenza dichiarativi indipendenti dal DocumentType")
+    void testDeclarativeCatalogValidationAndCoherenceChecks() {
+        OutputValidationStep.CatalogValidationSpec catSpec =
+                new OutputValidationStep.CatalogValidationSpec("reparti_custom", List.of("repartoAssegnato"));
+        OutputValidationStep step = new OutputValidationStep(
+                "custom_val",
+                List.of(),
+                List.of(),
+                null,
+                catSpec,
+                List.of("anagrafica")
+        );
+        assertEquals(catSpec, step.getCatalogValidationSpec());
+        assertEquals(List.of("anagrafica"), step.getCoherenceChecks());
+
+        // 1. Catalogo custom su DocumentType.ALTRO blocca valore fuori catalogo
+        PipelineContext ctxCatalogFail = new PipelineContext("testo neutro", DocumentType.ALTRO);
+        ctxCatalogFail.setAttribute("reparti_custom", "{\"ufficio_legale\": {\"nome\": \"Avv. Bianchi\"}}");
+        ctxCatalogFail.setModelOutput("{\"repartoAssegnato\": \"Reparto Inesistente\"}");
+        ValidationResult resCatFail = step.execute(ctxCatalogFail);
+        assertFalse(resCatFail.isValid());
+        assertTrue(resCatFail.fieldErrors().stream()
+                .anyMatch(fe -> fe.code() == ValidationErrorCode.VALUE_NOT_IN_CATALOG && "repartoAssegnato".equals(fe.path())));
+
+        // 2. Controllo di coerenza 'anagrafica' eseguito dichiarativamente anche su DocumentType.ALTRO
+        PipelineContext ctxCoherenceFail = new PipelineContext(
+                "CARTA D'IDENTITA Cognome: ROSSI Nome: MARIO Sesso: M Data di nascita: 01/08/1985",
+                DocumentType.ALTRO
+        );
+        ctxCoherenceFail.setAttribute("reparti_custom", "{\"ufficio_legale\": {\"nome\": \"Avv. Bianchi\"}}");
+        ctxCoherenceFail.setModelOutput("""
+                {
+                  "repartoAssegnato": "Avv. Bianchi",
+                  "nome": "ROSSI",
+                  "cognome": "MARIO",
+                  "codiceFiscale": "RSSMRA85M01H501Q"
+                }
+                """);
+        ValidationResult resCohFail = step.execute(ctxCoherenceFail);
+        assertFalse(resCohFail.isValid());
+        assertTrue(resCohFail.fieldErrors().stream()
+                .anyMatch(fe -> fe.code() == ValidationErrorCode.FIELD_SWAP_DETECTED));
+    }
+
+    @Test
+    @DisplayName("ModelInferenceStep dichiarativo: inject_context e merge_fields personalizzati senza riferimenti a EMAIL")
+    void testDeclarativeModelInferenceInjectContextAndMergeFields() {
+        com.tirocinioaltrama.slmorchestrator.core.model.ModelClient mockClient =
+                org.mockito.Mockito.mock(com.tirocinioaltrama.slmorchestrator.core.model.ModelClient.class);
+        org.mockito.ArgumentCaptor<com.tirocinioaltrama.slmorchestrator.core.model.ModelRequest> captor =
+                org.mockito.ArgumentCaptor.forClass(com.tirocinioaltrama.slmorchestrator.core.model.ModelRequest.class);
+
+        org.mockito.Mockito.when(mockClient.generate(captor.capture()))
+                .thenReturn(new com.tirocinioaltrama.slmorchestrator.core.model.ModelResponse(
+                        "{\"categoriaRilevata\": \"TENTATIVO_OVERWRITE\", \"assegnatario\": \"Team Sicurezza\"}",
+                        25L
+                ));
+
+        java.util.Map<String, String> injectMap = new java.util.LinkedHashMap<>();
+        injectMap.put("catalogo_team", "team_list");
+        injectMap.put("dati_estratti", "step.first_step.output");
+
+        ModelInferenceStep step = new ModelInferenceStep(
+                "second_step",
+                mockClient,
+                "custom-model",
+                "{}",
+                "System prompt",
+                injectMap,
+                List.of("assegnatario")
+        );
+        assertEquals(injectMap, step.getInjectContext());
+        assertEquals(java.util.Set.of("assegnatario"), step.getMergeFields());
+
+        PipelineContext ctx = new PipelineContext("Segnalazione anomalia", DocumentType.ALTRO);
+        ctx.setAttribute("team_list", "[\"Team Sicurezza\", \"Team Rete\"]");
+        ctx.setAttribute("step.first_step.output", "{\"categoriaRilevata\": \"Incidente\", \"argomentoPrincipale\": \"Firewall\"}");
+        ctx.setModelOutput("{\"categoriaRilevata\": \"Incidente\", \"argomentoPrincipale\": \"Firewall\"}");
+
+        ValidationResult res = step.execute(ctx);
+        assertTrue(res.isValid());
+
+        String sentPrompt = captor.getValue().userPrompt();
+        assertTrue(sentPrompt.contains("<catalogo_team>\n[\"Team Sicurezza\", \"Team Rete\"]\n</catalogo_team>"));
+        assertTrue(sentPrompt.contains("<dati_estratti>\n{\"categoriaRilevata\": \"Incidente\", \"argomentoPrincipale\": \"Firewall\"}\n</dati_estratti>"));
+
+        // Verifica che solo 'assegnatario' (in merge_fields) sia stato unito, preservando 'categoriaRilevata' originale
+        assertTrue(ctx.getModelOutput().contains("\"categoriaRilevata\":\"Incidente\""));
+        assertTrue(ctx.getModelOutput().contains("\"assegnatario\":\"Team Sicurezza\""));
+    }
 }

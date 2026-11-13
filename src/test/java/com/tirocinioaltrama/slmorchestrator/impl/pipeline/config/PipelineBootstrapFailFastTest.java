@@ -611,4 +611,73 @@ class PipelineBootstrapFailFastTest {
         );
         assertTrue(ex3.getMessage().contains("retry_backoff_ms"));
     }
+
+    @Test
+    @DisplayName("Fail-fast: validazione dichiarativa di merge_fields, inject_context, catalog_validation e coherence_checks")
+    void failFastDeclarativeStepPropertiesValidation() {
+        // 1. merge_fields con campo inesistente nello schema JSON
+        PipelineDefinition defMerge = new PipelineDefinition();
+        defMerge.setId("merge_invalid_pipe");
+        defMerge.setDocumentType("ALTRO");
+        StepDefinition infMerge = new StepDefinition();
+        infMerge.setId("inf1");
+        infMerge.setType("model_inference");
+        infMerge.setModel("m");
+        infMerge.setSchema("schemas/altro_info.json");
+        infMerge.setMergeFields(List.of("campoCheNonEsiste"));
+        defMerge.setSteps(List.of(infMerge));
+
+        PipelineConfigurationException exMerge = assertThrows(
+                PipelineConfigurationException.class,
+                () -> validator.validateAll(List.of(defMerge))
+        );
+        assertTrue(exMerge.getMessage().contains("merge_fields"));
+
+        // 2. inject_context con chiave o valore vuoto
+        StepDefinition infInject = new StepDefinition();
+        infInject.setId("inf2");
+        infInject.setType("model_inference");
+        infInject.setModel("m");
+        infInject.setSchema("schemas/altro_info.json");
+        infInject.setInjectContext(Map.of("tag_valido", "   "));
+        defMerge.setSteps(List.of(infInject));
+
+        PipelineConfigurationException exInject = assertThrows(
+                PipelineConfigurationException.class,
+                () -> validator.validateAll(List.of(defMerge))
+        );
+        assertTrue(exInject.getMessage().contains("inject_context"));
+
+        // 3. catalog_validation con campo inesistente nello schema JSON
+        StepDefinition infValid = new StepDefinition();
+        infValid.setId("inf3");
+        infValid.setType("model_inference");
+        infValid.setModel("m");
+        infValid.setSchema("schemas/altro_info.json");
+
+        StepDefinition valCat = new StepDefinition();
+        valCat.setId("val_cat");
+        valCat.setType("field_validation");
+        valCat.setCatalogValidation(new StepDefinition.CatalogValidationDefinition("company_roles", List.of("campoInesistente")));
+        defMerge.setSteps(List.of(infValid, valCat));
+
+        PipelineConfigurationException exCat = assertThrows(
+                PipelineConfigurationException.class,
+                () -> validator.validateAll(List.of(defMerge))
+        );
+        assertTrue(exCat.getMessage().contains("catalog_validation.fields"));
+
+        // 4. coherence_checks con nome di controllo non registrato
+        StepDefinition valCoh = new StepDefinition();
+        valCoh.setId("val_coh");
+        valCoh.setType("field_validation");
+        valCoh.setCoherenceChecks(List.of("controllo_inventato"));
+        defMerge.setSteps(List.of(infValid, valCoh));
+
+        PipelineConfigurationException exCoh = assertThrows(
+                PipelineConfigurationException.class,
+                () -> validator.validateAll(List.of(defMerge))
+        );
+        assertTrue(exCoh.getMessage().contains("coherence_checks"));
+    }
 }

@@ -22,6 +22,7 @@ import com.tirocinioaltrama.slmorchestrator.core.exception.PipelineConfiguration
 import com.tirocinioaltrama.slmorchestrator.core.validation.FieldPath;
 import com.tirocinioaltrama.slmorchestrator.core.validation.ValidatorRegistry;
 import com.tirocinioaltrama.slmorchestrator.impl.pipeline.config.StepDefinition.FieldValidatorDefinition;
+import com.tirocinioaltrama.slmorchestrator.impl.pipeline.guard.PostProcessingGuards;
 
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
@@ -121,6 +122,7 @@ public class PipelineConfigValidator {
             String type = step.getType().strip().toLowerCase(Locale.ROOT);
             if ("model_inference".equals(type)) {
                 activeSchemaRoot = loadAndValidateSchema(step.getSchema(), def.getId(), step.getId());
+                validateModelInferenceDeclarativeFields(step, def.getId(), activeSchemaRoot);
                 allSchemaRoots.add(activeSchemaRoot);
                 inferenceStepCount++;
             } else if ("field_validation".equals(type)) {
@@ -168,6 +170,12 @@ public class PipelineConfigValidator {
                 if (step.getUnvalidated() != null && !step.getUnvalidated().isEmpty()) {
                     throw new PipelineConfigurationException("La direttiva 'unvalidated' è ammessa solo su step di tipo 'field_validation' (trovata nello step '" + step.getId() + "').");
                 }
+                if (step.getCatalogValidation() != null) {
+                    throw new PipelineConfigurationException("La direttiva 'catalog_validation' è ammessa solo su step di tipo 'field_validation' (trovata nello step '" + step.getId() + "').");
+                }
+                if (step.getCoherenceChecks() != null && !step.getCoherenceChecks().isEmpty()) {
+                    throw new PipelineConfigurationException("La direttiva 'coherence_checks' è ammessa solo su step di tipo 'field_validation' (trovata nello step '" + step.getId() + "').");
+                }
                 if (step.getSystemPrompt() != null) {
                     // Fail-Fast: la risorsa (o il testo inline) deve esistere ed essere non vuota
                     SystemPromptResolver.resolve(step.getSystemPrompt(), resourceLoader,
@@ -178,11 +186,21 @@ public class PipelineConfigValidator {
                 }
             }
             case "field_validation" -> {
+                if (step.getInjectContext() != null && !step.getInjectContext().isEmpty()) {
+                    throw new PipelineConfigurationException("La direttiva 'inject_context' è ammessa solo su step di tipo 'model_inference' (trovata nello step '" + step.getId() + "').");
+                }
+                if (step.getMergeFields() != null && !step.getMergeFields().isEmpty()) {
+                    throw new PipelineConfigurationException("La direttiva 'merge_fields' è ammessa solo su step di tipo 'model_inference' (trovata nello step '" + step.getId() + "').");
+                }
                 validateOnFailureIfPresent(step, pipelineId, priorSteps);
             }
             case "tool" -> {
                 if (step.getOnFailure() != null && !step.getOnFailure().isEmpty()) {
                     throw new PipelineConfigurationException("La policy 'on_failure' è ammessa solo su step di tipo 'field_validation' (trovata nello step '" + step.getId() + "').");
+                }
+                if (step.getOutputKey() != null && step.getOutputKey().isBlank()) {
+                    throw new PipelineConfigurationException("La direttiva 'output_key' nello step 'tool' '" + step.getId()
+                            + "' della pipeline '" + pipelineId + "' non può essere vuota.");
                 }
                 String toolName = step.getTool() != null ? step.getTool().strip() : null;
                 if (toolName == null || toolName.isBlank()) {
@@ -399,6 +417,72 @@ public class PipelineConfigValidator {
                             + "' non esiste nello schema JSON della pipeline '" + pipelineId + "'.");
                 }
                 allUnvalidatedPaths.add(path.getOriginalPath());
+            }
+        }
+
+        StepDefinition.CatalogValidationDefinition catDef = step.getCatalogValidation();
+        if (catDef != null) {
+            if (catDef.getSource() == null || catDef.getSource().isBlank()) {
+                throw new PipelineConfigurationException("La direttiva 'catalog_validation' nello step '" + step.getId()
+                        + "' della pipeline '" + pipelineId + "' richiede una chiave 'source' non vuota.");
+            }
+            if (catDef.getFields() == null || catDef.getFields().isEmpty()) {
+                throw new PipelineConfigurationException("La direttiva 'catalog_validation' nello step '" + step.getId()
+                        + "' della pipeline '" + pipelineId + "' richiede almeno un campo in 'fields'.");
+            }
+            for (String catField : catDef.getFields()) {
+                if (catField == null || catField.isBlank()) {
+                    throw new PipelineConfigurationException("Campo vuoto in 'catalog_validation.fields' nello step '"
+                            + step.getId() + "' della pipeline '" + pipelineId + "'.");
+                }
+                FieldPath path = new FieldPath(catField.strip());
+                if (schemaRoot != null && !path.existsInJsonSchema(schemaRoot)) {
+                    throw new PipelineConfigurationException("Il campo '" + path.getOriginalPath()
+                            + "' dichiarato in 'catalog_validation.fields' nello step '" + step.getId()
+                            + "' non esiste nello schema JSON della pipeline '" + pipelineId + "'.");
+                }
+            }
+        }
+
+        List<String> coherenceChecks = step.getCoherenceChecks();
+        if (coherenceChecks != null) {
+            for (String checkName : coherenceChecks) {
+                if (checkName == null || checkName.isBlank() || !PostProcessingGuards.isSupportedCoherenceCheck(checkName)) {
+                    throw new PipelineConfigurationException("Controllo di coerenza sconosciuto '" + checkName
+                            + "' dichiarato in 'coherence_checks' nello step '" + step.getId()
+                            + "' della pipeline '" + pipelineId + "'.");
+                }
+            }
+        }
+    }
+
+    private void validateModelInferenceDeclarativeFields(
+            StepDefinition step,
+            String pipelineId,
+            JsonNode schemaRoot
+    ) {
+        if (step.getInjectContext() != null) {
+            for (Map.Entry<String, String> entry : step.getInjectContext().entrySet()) {
+                if (entry.getKey() == null || entry.getKey().isBlank()
+                        || entry.getValue() == null || entry.getValue().isBlank()) {
+                    throw new PipelineConfigurationException("La direttiva 'inject_context' nello step '" + step.getId()
+                            + "' della pipeline '" + pipelineId + "' contiene tag o chiavi di attributo vuoti.");
+                }
+            }
+        }
+
+        if (step.getMergeFields() != null) {
+            for (String mergeField : step.getMergeFields()) {
+                if (mergeField == null || mergeField.isBlank()) {
+                    throw new PipelineConfigurationException("Campo vuoto in 'merge_fields' nello step '" + step.getId()
+                            + "' della pipeline '" + pipelineId + "'.");
+                }
+                FieldPath path = new FieldPath(mergeField.strip());
+                if (schemaRoot != null && !path.existsInJsonSchema(schemaRoot)) {
+                    throw new PipelineConfigurationException("Il campo '" + path.getOriginalPath()
+                            + "' dichiarato in 'merge_fields' nello step '" + step.getId()
+                            + "' non esiste nello schema JSON della pipeline '" + pipelineId + "'.");
+                }
             }
         }
     }

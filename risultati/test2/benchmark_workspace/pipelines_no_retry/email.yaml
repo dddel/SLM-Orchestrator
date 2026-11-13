@@ -16,15 +16,28 @@ steps:
   - id: roles_lookup
     type: tool
     tool: company_roles_lookup
+    output_key: company_roles
 
   - id: recipient_inference
     type: model_inference
     model: "${ollama.email-model}"
     schema: schemas/email_recipient_info.json
     system_prompt: prompts/email-recipient-system.txt
+    inject_context:
+      company_roles: company_roles
+      extracted_info: step.email_inference.output
+    merge_fields:
+      - destinatario
+      - ruoloDestinatario
+      - motivoInstradamento
 
   - id: recipient_validation
     type: field_validation
     unvalidated:
       - destinatario
       - ruoloDestinatario
+    catalog_validation:
+      source: company_roles
+      fields:
+        - destinatario
+        - ruoloDestinatario
