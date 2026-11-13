@@ -14,16 +14,19 @@ Il sistema combina la flessibilità semantica dei modelli linguistici con contro
   - `ANAGRAFICA`
   - `EMAIL`
   - `ALTRO`
-- Estrazione vincolata a JSON Schema tramite pipeline dichiarative YAML.
+- Estrazione vincolata a JSON Schema tramite pipeline dichiarative YAML multi-step, con isolamento dello stato di retry tra step consecutivi (`clearRetryState()`).
 - Validazione deterministica di formato, checksum e coerenza:
   - Partita IVA con algoritmo di Luhn
   - Codice Fiscale con carattere CIN
   - IBAN con ISO 7064 MOD 97-10
   - date, email, cataloghi e relazioni tra campi
+- Guardrail pre-volo e post-inferenza sulla finestra di contesto (`ContextBudgetValidator`): rifiuto preventivo dei payload fuori budget (`HTTP 422`, `CONTEXT_TRUNCATED`) e short-circuit immediato su saturazione del contesto o troncamento dell'output (`done_reason=length` -> `OUTPUT_TRUNCATED`).
 - Smart Retry con feedback strutturato e short-circuit dei documenti non validi.
+- Esecuzione resiliente dei Tool (`ToolInvoker` e `ToolExecutionPolicy`) su virtual thread con timeout per singola invocazione, retry esponenziale per errori infrastrutturali e tracciamento delle metriche `StepMetric` (`stepType="TOOL"`).
+- Separazione netta tra errori infrastrutturali (`HTTP 502` su router non disponibile con fallback disabilitato, `HTTP 503` su modello di estrazione irraggiungibile al primo tentativo) ed esiti di dominio (`HTTP 200` con `OK` o `INDETERMINATE`).
 - Stato di dominio `OK` o `INDETERMINATE`, con conservazione dell'output non validato e degli errori di campo.
-- Metriche per richiesta e per step: latenza, token, modello e durata della pipeline.
-- Frontend Angular per l'invio dei documenti, la visualizzazione del JSON e l'ispezione degli errori.
+- Metriche per richiesta e per step: latenza, token, modello e durata della pipeline (`MODEL` e `TOOL`).
+- Frontend Angular per l'invio dei documenti, il controllo per-request del fallback euristico del router (con banner di warning dedicato quando attivato), la visualizzazione del JSON e l'ispezione degli errori.
 
 ## Architettura
 
@@ -34,12 +37,13 @@ Client / Angular
 POST /api/orchestrator/process
         |
         v
-InputValidator -> Router -> Pipeline YAML
-                              |
-                              +--> SLM locale via Ollama
-                              +--> JSON Schema
-                              +--> Guardie deterministiche
-                              +--> Retry / INDETERMINATE
+InputValidator -> Router -> ContextBudgetValidator -> Pipeline YAML
+                    |                                       |
+                    +--> Fallback euristico (opzionale)     +--> SLM locale via Ollama
+                    +--> HTTP 502 se disabilitato/down      +--> JSON Schema + Guardie Java
+                                                            +--> ToolInvoker (timeout + retry)
+                                                            +--> Smart Retry / INDETERMINATE
+                                                            +--> Post-pipeline Actions (es. Mailpit)
 ```
 
 Il backend è sviluppato con Java 21 e Spring Boot 4. Le pipeline, gli schemi e i prompt sono risorse configurabili:
@@ -148,13 +152,25 @@ curl -X POST http://localhost:8080/api/orchestrator/process \
   -d '{
     "payload": "Fattura n. 12 del 10/01/2026. Totale 1.220,00 euro. IBAN: IT...",
     "type": null,
-    "routerType": "local-ollama"
+    "routerType": "local-ollama",
+    "allowHeuristicFallback": true
   }'
 ```
 
-`type` è opzionale: se omesso o `null`, il router classifica automaticamente il testo. È possibile specificare `FATTURA`, `ANAGRAFICA`, `EMAIL` o `ALTRO`. `routerType` può selezionare il router locale o `reflex`, quando il relativo modello è configurato.
+- `type` (opzionale): se omesso o `null`, il router classifica automaticamente il testo. È possibile specificare `FATTURA`, `ANAGRAFICA`, `EMAIL` o `ALTRO`.
+- `routerType` (opzionale): seleziona il router `local-ollama` o `reflex`, quando il relativo modello è configurato.
+- `allowHeuristicFallback` (opzionale): sovrascrive per la singola richiesta l'impostazione `router.heuristic-fallback.enabled` (`true` abilita il fallback a parole chiave e segnala il warning nel frontend, `false` restituisce `HTTP 502` se il router SLM non risponde).
 
-Una risposta con stato `OK` contiene il JSON validato in `result`. Una risposta `INDETERMINATE` contiene gli errori in `errors` e, quando disponibile, l'ultimo JSON prodotto dal modello in `unvalidatedResult`; tale output non deve essere trattato come dato certificato.
+### Codici di stato HTTP
+
+| HTTP | Esito / Eccezione | Significato |
+|---|---|---|
+| `200 OK` | `OrchestratorResponse` (`OK` / `INDETERMINATE`) | Elaborazione completata. Con `OK` il JSON certificato è in `result`; con `INDETERMINATE` gli errori sono in `errors` e l'ultimo JSON grezzo (non certificato) è in `unvalidatedResult`. |
+| `400 Bad Request` | `MethodArgumentNotBlank` / JSON malformato | Payload mancante, vuoto o richiesta HTTP sintatticamente non valida. |
+| `422 Unprocessable Entity` | `ValidationException` | Il payload viola i vincoli di dominio (`InputValidator`) oppure supera il budget di token della finestra di contesto (`ContextBudgetValidator`, codice `CONTEXT_TRUNCATED`). |
+| `502 Bad Gateway` | `RoutingException` | Il modello di routing è irraggiungibile o va in timeout e il fallback euristico è disabilitato. |
+| `503 Service Unavailable` | `PipelineExecutionException` | Il modello di estrazione è irraggiungibile al primo tentativo (nessun output parziale disponibile) o si verifica un errore infrastrutturale critico della pipeline. |
+| `500 Internal Server Error` | `OrchestratorException` / `Exception` | Errore interno imprevisto o di configurazione. |
 
 ## Test e build
 
@@ -182,15 +198,22 @@ I risultati non sono una garanzia di accuratezza generale: i dataset sono ridott
 
 Le proprietà principali sono in `src/main/resources/application.properties` e possono essere sovrascritte con variabili d'ambiente:
 
-| Variabile | Default | Scopo |
+| Variabile / Property | Default | Scopo |
 |---|---|---|
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | URL del servizio Ollama |
 | `OLLAMA_BASE_MODEL` | `qwen2.5:3b-instruct-q8_0` | Modello generativo base |
 | `OLLAMA_REFLEX_MODEL` | `hf.co/apus-ailab/APUS-Reflex-4B-GGUF:Q4_K_M` | Modello decisionale |
-| `ROUTER_TYPE` | `local-ollama` | Router da utilizzare |
-| `ROUTER_HEURISTIC_FALLBACK` | `true` | Abilita il fallback euristico del router |
+| `OLLAMA_NUM_CTX` | `2048` | Dimensione finestra di contesto (`num_ctx`) |
+| `OLLAMA_NUM_PREDICT` | `400` | Numero massimo di token generati in output (`num_predict`) |
+| `ROUTER_TYPE` | `local-ollama` | Router da utilizzare (`local-ollama` o `reflex`) |
+| `ROUTER_HEURISTIC_FALLBACK` | `true` | Abilita il fallback euristico a parole chiave del router |
 | `ORCHESTRATOR_GUARDS_ENABLED` | `true` | Abilita le guardie deterministiche |
 | `ORCHESTRATOR_COHERENCE_ENABLED` | `true` | Abilita i controlli di coerenza |
+| `orchestrator.pipeline.max-duration-ms` | `120000` | Budget temporale massimo (wall-clock) di una pipeline |
+| `orchestrator.tools.default-timeout-ms` | `5000` | Timeout di default per singola invocazione tool |
+| `orchestrator.tools.default-max-retries` | `0` | Numero di retry di default per errori infrastrutturali dei tool |
+| `orchestrator.tools.default-retry-backoff-ms` | `200` | Backoff esponenziale iniziale (ms) per i retry dei tool |
+| `orchestrator.context.chars-per-token` | `2.5` | Stima conservativa caratteri/token per `ContextBudgetValidator` |
 | `EMAIL_ENABLED` | `false` | Abilita l'azione di invio email |
 | `EMAIL_DRY_RUN` | `true` | Simula l'invio senza contattare SMTP |
 | `EMAIL_FROM` | `no-reply@example.test` | Mittente dei messaggi |
